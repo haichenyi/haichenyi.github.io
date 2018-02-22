@@ -110,17 +110,17 @@
 
 
 
-<meta name="description" content="我负责征战天下，你负责貌美如花！">
+<meta name="description" content="&amp;emsp;&amp;emsp;传统的同步阻塞I/O通讯模型，导致的结果就是只要有一方处理数据缓慢，都会影响另外一方的处理性能。按照故障设计原则，一方的处理出现问题，不应该影响到另外一方才对。但是，在同步阻塞的模式下面，这样的情况是无法避免的，很难通过业务层去解决。既然同步无法避免，为了避免就产生了异步。Netty框架就一个完全异步非阻塞的I/O通讯方式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android自定义View">
-<meta property="og:url" content="http://haichenyi.com/2018/02/08/Android自定义View/index.html">
+<meta property="og:title" content="IO编程和NIO编程简介">
+<meta property="og:url" content="http://haichenyi.com/2018/02/07/IO编程和NIO编程简介/index.html">
 <meta property="og:site_name" content="海晨忆的博客">
-<meta property="og:description" content="我负责征战天下，你负责貌美如花！">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;传统的同步阻塞I/O通讯模型，导致的结果就是只要有一方处理数据缓慢，都会影响另外一方的处理性能。按照故障设计原则，一方的处理出现问题，不应该影响到另外一方才对。但是，在同步阻塞的模式下面，这样的情况是无法避免的，很难通过业务层去解决。既然同步无法避免，为了避免就产生了异步。Netty框架就一个完全异步非阻塞的I/O通讯方式">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-08T13:56:33.180Z">
+<meta property="og:updated_time" content="2018-02-22T13:08:36.720Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android自定义View">
-<meta name="twitter:description" content="我负责征战天下，你负责貌美如花！">
+<meta name="twitter:title" content="IO编程和NIO编程简介">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;传统的同步阻塞I/O通讯模型，导致的结果就是只要有一方处理数据缓慢，都会影响另外一方的处理性能。按照故障设计原则，一方的处理出现问题，不应该影响到另外一方才对。但是，在同步阻塞的模式下面，这样的情况是无法避免的，很难通过业务层去解决。既然同步无法避免，为了避免就产生了异步。Netty框架就一个完全异步非阻塞的I/O通讯方式">
 
 
 
@@ -149,13 +149,13 @@
 
 
 
-  <link rel="canonical" href="http://haichenyi.com/2018/02/08/Android自定义View/"/>
+  <link rel="canonical" href="http://haichenyi.com/2018/02/07/IO编程和NIO编程简介/"/>
 
 
 
 
 
-  <title>Android自定义View | 海晨忆的博客</title>
+  <title>IO编程和NIO编程简介 | 海晨忆的博客</title>
   
 
 
@@ -334,7 +334,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haichenyi.com/2018/02/08/Android自定义View/">
+    <link itemprop="mainEntityOfPage" href="http://haichenyi.com/2018/02/07/IO编程和NIO编程简介/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海晨忆">
@@ -351,7 +351,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Android自定义View</h1>
+          <h1 class="post-title" itemprop="name headline">IO编程和NIO编程简介</h1>
         
 
         <div class="post-meta">
@@ -363,8 +363,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-08T21:55:20+08:00">
-                2018-02-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-07T20:49:47+08:00">
+                2018-02-07
               </time>
             
 
@@ -386,8 +386,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android-自定义view/" itemprop="url" rel="index">
-                    <span itemprop="name">Android -自定义view</span>
+                  <a href="/categories/Android-Socket/" itemprop="url" rel="index">
+                    <span itemprop="name">Android -Socket</span>
                   </a>
                 </span>
 
@@ -415,7 +415,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  0
+                  2,582
                 </span>
               
 
@@ -431,7 +431,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  1
+                  11
                 </span>
               
             </div>
@@ -452,7 +452,44 @@
       
 
       
-        
+        <p>&emsp;&emsp;传统的同步阻塞I/O通讯模型，导致的结果就是只要有一方处理数据缓慢，都会影响另外一方的处理性能。按照故障设计原则，一方的处理出现问题，不应该影响到另外一方才对。但是，在同步阻塞的模式下面，这样的情况是无法避免的，很难通过业务层去解决。既然同步无法避免，为了避免就产生了异步。Netty框架就一个完全异步非阻塞的I/O通讯方式<br><a id="more"></a></p>
+<h2 id="同步阻塞式I-O编程"><a href="#同步阻塞式I-O编程" class="headerlink" title="同步阻塞式I/O编程"></a>同步阻塞式I/O编程</h2><p>&emsp;&emsp;简单的来说，传统同步阻塞的I/O通讯模式，服务器端处理的方式是，每当有一个新用户接入的时候，就new一个新的线程，一个线程只能处理一个客户端的连接，在高性能方面，并发高的情景下无法满足。伪代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">import java.io.IOException;</span><br><span class="line">import java.net.ServerSocket;</span><br><span class="line">import java.net.Socket;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author 海晨忆</span><br><span class="line"> * @date 2018/2/9</span><br><span class="line"> * @desc</span><br><span class="line"> */</span><br><span class="line">public class SocketServer &#123;</span><br><span class="line">  private int port = 8080;</span><br><span class="line">  private Socket socket = null;</span><br><span class="line"></span><br><span class="line">  public SocketServer(int port) &#123;</span><br><span class="line">    this.port = port;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public void connect() &#123;</span><br><span class="line">    ServerSocket server = null;</span><br><span class="line">    try &#123;</span><br><span class="line">      server = new ServerSocket(port);</span><br><span class="line">      while (true) &#123;</span><br><span class="line">        socket = server.accept();</span><br><span class="line">        new Thread(new Runnable() &#123;</span><br><span class="line">          @Override</span><br><span class="line">          public void run() &#123;</span><br><span class="line">            new TimerServerHandler(socket).run();</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;).start();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; catch (IOException e) &#123;</span><br><span class="line">      e.printStackTrace();</span><br><span class="line">    &#125; finally &#123;</span><br><span class="line">      //释放资源</span><br><span class="line">      if (server != null) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">          server.close();</span><br><span class="line">        &#125; catch (IOException e) &#123;</span><br><span class="line">          e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        server = null;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">import java.io.BufferedReader;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.InputStreamReader;</span><br><span class="line">import java.io.PrintWriter;</span><br><span class="line">import java.net.Socket;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author 海晨忆</span><br><span class="line"> * @date 2018/2/9</span><br><span class="line"> * @desc</span><br><span class="line"> */</span><br><span class="line">public class TimerServerHandler implements Runnable &#123;</span><br><span class="line">  private Socket socket;</span><br><span class="line"></span><br><span class="line">  public TimerServerHandler(Socket socket) &#123;</span><br><span class="line">    this.socket = socket;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public void run() &#123;</span><br><span class="line">    BufferedReader in = null;</span><br><span class="line">    PrintWriter out = null;</span><br><span class="line">    try &#123;</span><br><span class="line">      in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));</span><br><span class="line">      out = new PrintWriter(this.socket.getOutputStream(), true);</span><br><span class="line">      String currentTime = null;</span><br><span class="line">      String body = null;</span><br><span class="line">      while (true) &#123;</span><br><span class="line">        body = in.readLine();</span><br><span class="line">        if (body == null)</span><br><span class="line">          break;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; catch (IOException e) &#123;</span><br><span class="line">      e.printStackTrace();</span><br><span class="line">      //释放in，out，socket资源</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;上面这个就是最原始的服务端IO的代码，这里我就给出的是最简化的，当有新的客户端接入的时候，服务端是怎么处理线程的，可以看出，每当有新的客户端接入的时候，总是回新创建一个线程去服务这个新的客户端</p>
+<h2 id="伪异步式编程"><a href="#伪异步式编程" class="headerlink" title="伪异步式编程"></a>伪异步式编程</h2><p>&emsp;&emsp;后来慢慢演化出一个版本“伪异步”模型，新增加一个线程池或者消息队列，满足一个线程或者多个线程满足N个客户端，通过线程池可以灵活的调用线程资源。通过设置线程池的最大值，防止海量并发接入造成的线程耗尽，它的底层实现依然是同步阻塞模型，伪代码如下：<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">import com.example.zwang.mysocket.server.TimerServerHandler;</span><br><span class="line"></span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.net.ServerSocket;</span><br><span class="line">import java.net.Socket;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author 海晨忆</span><br><span class="line"> * @date 2018/2/9</span><br><span class="line"> * @desc</span><br><span class="line"> */</span><br><span class="line">public class SocketServer &#123;</span><br><span class="line">  private int port = 8080;</span><br><span class="line">  private Socket socket = null;</span><br><span class="line"></span><br><span class="line">  public SocketServer(int port) &#123;</span><br><span class="line">    this.port = port;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  private void connect() &#123;</span><br><span class="line">    ServerSocket server = null;</span><br><span class="line">    try &#123;</span><br><span class="line">      server = new ServerSocket(port);</span><br><span class="line">      TimeServerHandlerExecutePool executePool = new TimeServerHandlerExecutePool(50, 1000);</span><br><span class="line">      while (true) &#123;</span><br><span class="line">        socket = server.accept();</span><br><span class="line">        executePool.execute(new TimerServerHandler(socket));</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; catch (IOException e) &#123;</span><br><span class="line">      e.printStackTrace();</span><br><span class="line">    &#125;finally &#123;</span><br><span class="line">      //释放资源</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import java.util.concurrent.ArrayBlockingQueue;</span><br><span class="line">import java.util.concurrent.ExecutorService;</span><br><span class="line">import java.util.concurrent.ThreadPoolExecutor;</span><br><span class="line">import java.util.concurrent.TimeUnit;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author 海晨忆</span><br><span class="line"> * @date 2018/2/9</span><br><span class="line"> * @desc</span><br><span class="line"> */</span><br><span class="line">public class TimeServerHandlerExecutePool &#123;</span><br><span class="line">  private ExecutorService executor;</span><br><span class="line"></span><br><span class="line">  public TimeServerHandlerExecutePool(int maxPoolSize, int queueSize) &#123;</span><br><span class="line">    executor = new ThreadPoolExecutor(Runtime.getRuntime().availableProcessors(), maxPoolSize,</span><br><span class="line">        120L, TimeUnit.SECONDS, new ArrayBlockingQueue&lt;Runnable&gt;(queueSize));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public void execute(Runnable task) &#123;</span><br><span class="line">    executor.execute(task);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;“伪异步”的代码和传统同步的唯一区别就是在于，首先先创建了一个时间服务处理类的线程池，当有新的客户端接入的时候，先将socket请求封装成task，然后调用线程池的execute方法执行，从而避免了每一个新请求创建一个新线程。由于线程池和消息队列都是有限的，因此，无论客户端的并发量多大，它都不会导致线程个数过于大，而造成的内存溢出。相对于传统的同步阻塞，是一种改良。<br></p>
+<p>&emsp;&emsp;但是他没有从更本上解决同步的问题，伪异步的问题在于，他还是有一方处理出现问题还是会影响到另一方。因为：</p>
+<p>&emsp;&emsp;当对socket的输入流进行读取操作的时候，它会一直阻塞直到一下三种方式发生：  </p>
+<ol>
+<li><p>有数据可读  </p>
+</li>
+<li><p>可读数据已经读取完   </p>
+</li>
+<li><p>发生空指针或者I/O异常。  </p>
+</li>
+</ol>
+<p>这意味者，当读取inputstream方处理速度缓慢(不管是什么原因造成的速度缓慢)，另一方会一直同步阻塞，直到这一方把数据处理完.</p>
+<p>&emsp;&emsp;当调用outputstream的write方法写输出流的时候，它将会被阻塞，直到所有要发送的字节全部写入完毕，或者发生异常。学过TCP/IP相关知识的人都直到，当消息的接收方处理消息缓慢，不能及时的从TCP缓冲区读取数据，这将会导致发送方的TCP缓冲区的size一直减少，直到0.缓冲区为0，那么发消息的一方将无法将消息写入缓冲区，直到缓冲区的size大于0<br></p>
+<p>&emsp;&emsp;通过以上。我们了解到读和写的操作都是同步阻塞的，阻塞的时间取决于对方的I/O线程的处理速度和网络I/O的传送速度。从本质上面看，我们无法保证对方的处理速度和网络传送速度。如果，我们的程序依靠与对方的处理速度，那么，他的可靠性将会非常差。</p>
+<h2 id="NIO编程"><a href="#NIO编程" class="headerlink" title="NIO编程"></a>NIO编程</h2><p>&emsp;&emsp;官方叫法new I/O，也就是新的IO编程，更多的人喜欢称它为：Non-block IO即非阻塞IO。</p>
+<p>&emsp;&emsp;与Socket和serverSocket类对应，NIO提供了SocketChannel和ServerSocketChannel两种不同的套接字通道实现，这两种都支持阻塞式编程和非阻塞式编程。开发人员可以根据自己的需求选择合适的编程模式。一般低负载，低并发的应用程序选择同步阻塞的方式以降低编程的复杂度。高负载，高并发的不用想了，非阻塞就是为了解决这个问题的</p>
+<ol>
+<li>缓冲区Buffer</li>
+</ol>
+<p>&emsp;&emsp;Buffer是一个对象，它包含一些写入或者读出的数据。再NIO中加入buffer对象，体现了新库和旧库的一个重要区别。在面向流的io中，可以直接把数据读取或者写入到stream对象中。在NIO库中，所有数据操作都是通过缓冲区处理的。</p>
+<p>&emsp;&emsp;缓冲区实质上是一个数组，通常是一个字节数组（ByteBuffer），基本数据类型除了boolean没有，其他都有，如ShortBuffer,CharBuffer等等</p>
+<ol>
+<li>通道Channel</li>
+</ol>
+<p>&emsp;&emsp;Channel是一个通道，双向通道，网络数据都是通过Channel读取，写入的。是的，没错，Channel它既可以进行读操作，也可以进行写操作。而流只能是一个方向。只能读操作或者只能写操作，而channel是全双工，读写可以同时进行。channel可以分为两大类：网络读写的SelectableChannel和文件操作的FileChannel。我们前面提到的SocketChannel和ServerSocketChannel都是SelectableChannel的子类。</p>
+<ol>
+<li>多路复用器Selector</li>
+</ol>
+<p>&emsp;&emsp;selector多路复用器，他是java NIO编程的基础，熟练的掌握selector对于NIO编程至关重要。多路复用器提供选择已经就绪的任务的能力。简单的讲就是他会不断的轮询注册的channel，如果一个Channel发生了读写操作，这个Chnnel就会处于就绪状态，会被selector轮询出来，通过SelectorKey获取就绪Channel集合，进行后续的IO操作。一个selector对应多个Channel<br></p>
+<p>&emsp;&emsp;由于原生NIO编码比较麻烦和复杂，我这里就给出了思路的伪代码。下一篇我们将用NIO中的Netty框架实现Socket通信，编码简单，一行代码解决烦人粘包、拆包问题。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">   * 服务端nio过程的伪代码</span><br><span class="line">   *</span><br><span class="line">   * @param port 端口号</span><br><span class="line">   * @throws IOException IOException</span><br><span class="line">   */</span><br><span class="line">  private void init(int port) throws IOException &#123;</span><br><span class="line">    //第一步：打开ServerSocketChannel，用于监听客户端连接，它是所有客户端连接的父管道</span><br><span class="line">    ServerSocketChannel socketChannel = ServerSocketChannel.open();</span><br><span class="line">    //第二步：监听绑定端口，设置连接模式为非阻塞模式，</span><br><span class="line">    socketChannel.socket().bind(new InetSocketAddress(InetAddress.getByName(&quot;IP&quot;), port));</span><br><span class="line">    socketChannel.configureBlocking(false);</span><br><span class="line">    //第三步：创建Reactor线程，创建多路复用器，并启动线程。</span><br><span class="line">    Selector selector = Selector.open();</span><br><span class="line">    new Thread().start();</span><br><span class="line">    //第四步：将ServerSocketChannel注册到Reactor线程的多路复用器上，监听accept事件</span><br><span class="line">    SelectionKey key = socketChannel.register(selector, SelectionKey.OP_ACCEPT/*,ioHandler*/);</span><br><span class="line">    //第五步：多路复用器在线程run方法的无线循环体内轮询准备就绪的key</span><br><span class="line">    int num = selector.select();</span><br><span class="line">    Set&lt;SelectionKey&gt; selectionKeys = selector.selectedKeys();</span><br><span class="line">    Iterator&lt;SelectionKey&gt; it = selectionKeys.iterator();</span><br><span class="line">    while (it.hasNext()) &#123;</span><br><span class="line">      SelectionKey next = it.next();</span><br><span class="line">      //deal with io event...</span><br><span class="line">    &#125;</span><br><span class="line">    //第六步：多路复用器检测到有新客户端接入，处理新的接入请求，完成TCP三次握手，建立物理链路</span><br><span class="line">    SocketChannel channel = socketChannel.accept();</span><br><span class="line">    //第七步：设置客户端为非阻塞模式</span><br><span class="line">    channel.configureBlocking(false);</span><br><span class="line">    channel.socket().setReuseAddress(true);</span><br><span class="line">    //第八步：将新接入的客户端注册到reactor线程的多路复用器上，监听读操作，读取客户端发送的消息</span><br><span class="line">    SelectionKey key1 = socketChannel.register(selector, SelectionKey.OP_ACCEPT/*,ioHandler*/);</span><br><span class="line">    //第九步：异步读取客户端消息到缓冲区，</span><br><span class="line">    /*int readNumber = channel.read(&quot;receivebuff&quot;);*/</span><br><span class="line">    //第十步：对byteBuffer进行编解码，如果有半包信息指针reset，继续读取到后续的报文，将解码成功消息封装成task，投递到业务线程池，进行业务逻辑编排</span><br><span class="line">    Object massage = null;</span><br><span class="line">    while (buff.hasRemain()) &#123;</span><br><span class="line">      buff.mark();</span><br><span class="line">      Object massage1 = decode(btyeBuffer);</span><br><span class="line">      if (massage1 == null) &#123;</span><br><span class="line">        byteBuffer.reset();</span><br><span class="line">        break;</span><br><span class="line">      &#125;</span><br><span class="line">      massageList.add(massage1);</span><br><span class="line">    &#125;</span><br><span class="line">    if (!byteBuffer.hasRemain()) &#123;</span><br><span class="line">      byteBuffer.clean();</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      byteBuffer.compact();</span><br><span class="line">    &#125;</span><br><span class="line">    if (massageList != null &amp;&amp; !massageList.isEmpty()) &#123;</span><br><span class="line">      for (Object massage3 : massageList)&#123;</span><br><span class="line">        handlerTask(massage3);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    //第十一步：将POJO对象encode成ByteBuff，调用SocketChannel的异步write接口，将异步消息发送到客户端</span><br><span class="line">    socketChannel.write(buffer);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+
       
     </div>
     
@@ -475,12 +512,12 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2018/02/08/Android自定义View/">Android自定义View</a></p>
+  <p><span>本文标题:</span><a href="/2018/02/07/IO编程和NIO编程简介/">IO编程和NIO编程简介</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 海晨忆 的个人博客">海晨忆</a></p>
-  <p><span>发布时间:</span>2018年02月08日 - 21:02</p>
-  <p><span>最后更新:</span>2018年02月08日 - 21:02</p>
-  <p><span>原始链接:</span><a href="/2018/02/08/Android自定义View/" title="Android自定义View">http://haichenyi.com/2018/02/08/Android自定义View/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://haichenyi.com/2018/02/08/Android自定义View/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2018年02月07日 - 20:02</p>
+  <p><span>最后更新:</span>2018年02月22日 - 21:02</p>
+  <p><span>原始链接:</span><a href="/2018/02/07/IO编程和NIO编程简介/" title="IO编程和NIO编程简介">http://haichenyi.com/2018/02/07/IO编程和NIO编程简介/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://haichenyi.com/2018/02/07/IO编程和NIO编程简介/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -548,15 +585,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/08/MVP-Dagger-RxJava-Retrofit-OkHttp的简单框架/" rel="next" title="MVP+Dagger+RxJava+Retrofit+OkHttp的简单框架">
-                <i class="fa fa-chevron-left"></i> MVP+Dagger+RxJava+Retrofit+OkHttp的简单框架
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/08/Netty的简单使用，实现socket通讯/" rel="prev" title="Netty的简单使用，实现socket通讯">
+                Netty的简单使用，实现socket通讯 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -627,8 +664,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/artistic_image/psb17.jpg"
@@ -723,6 +769,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#同步阻塞式I-O编程"><span class="nav-number">1.</span> <span class="nav-text">同步阻塞式I/O编程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伪异步式编程"><span class="nav-number">2.</span> <span class="nav-text">伪异步式编程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NIO编程"><span class="nav-number">3.</span> <span class="nav-text">NIO编程</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
