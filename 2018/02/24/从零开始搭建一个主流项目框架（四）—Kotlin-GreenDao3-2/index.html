@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet"><style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="海晨忆的博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="&amp;emsp;&amp;emsp;本篇介绍android常用的数据库之一GreenDao的简单用法，增删改查。基于前面搭的框架，当然，你也可以选择不用。看懂用法之后，用起来很方便。GreenDao数据库升级到3.0版本之后api用起来更加方便了，便于让开发人员专注于业务逻辑。我需要额外说明的是，我把之前的项目框架转成了kotlin，不会kotlin语法的同学，可以去研究一下。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从零开始搭建一个主流项目框架（四）—Kotlin+GreenDao3.2">
+<meta property="og:url" content="http://haichenyi.com/2018/02/24/从零开始搭建一个主流项目框架（四）—Kotlin-GreenDao3-2/index.html">
+<meta property="og:site_name" content="海晨忆的博客">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;本篇介绍android常用的数据库之一GreenDao的简单用法，增删改查。基于前面搭的框架，当然，你也可以选择不用。看懂用法之后，用起来很方便。GreenDao数据库升级到3.0版本之后api用起来更加方便了，便于让开发人员专注于业务逻辑。我需要额外说明的是，我把之前的项目框架转成了kotlin，不会kotlin语法的同学，可以去研究一下。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7041675-a6b08f6861b1e514.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7041675-57cbd658b027825f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7041675-76d1c00d544ec20b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-02-24T13:19:17.773Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从零开始搭建一个主流项目框架（四）—Kotlin+GreenDao3.2">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;本篇介绍android常用的数据库之一GreenDao的简单用法，增删改查。基于前面搭的框架，当然，你也可以选择不用。看懂用法之后，用起来很方便。GreenDao数据库升级到3.0版本之后api用起来更加方便了，便于让开发人员专注于业务逻辑。我需要额外说明的是，我把之前的项目框架转成了kotlin，不会kotlin语法的同学，可以去研究一下。">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/7041675-a6b08f6861b1e514.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://haichenyi.com/2018/02/24/从零开始搭建一个主流项目框架（四）—Kotlin-GreenDao3-2/"/>
+
+
+
+
+
+  <title>从零开始搭建一个主流项目框架（四）—Kotlin+GreenDao3.2 | 海晨忆的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+		<a href="https://github.com/haichenyi"><img style="position: absolute; top: 0; right: 0; border: 0;" 
+		src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" 
+		alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">海晨忆的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">技术源于生活！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://haichenyi.com/2018/02/24/从零开始搭建一个主流项目框架（四）—Kotlin-GreenDao3-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="海晨忆">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/artistic_image/psb17.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="海晨忆的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">从零开始搭建一个主流项目框架（四）—Kotlin+GreenDao3.2</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-24T21:16:34+08:00">
+                2018-02-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android-框架/" itemprop="url" rel="index">
+                    <span itemprop="name">Android -框架</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  3,637
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  18
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&emsp;&emsp;本篇介绍android常用的数据库之一<a href="https://github.com/greenrobot/greenDAO" target="_blank" rel="noopener">GreenDao</a>的简单用法，增删改查。基于前面搭的框架，当然，你也可以选择不用。看懂用法之后，用起来很方便。GreenDao数据库升级到3.0版本之后api用起来更加方便了，便于让开发人员专注于业务逻辑。我需要额外说明的是，我把之前的项目框架转成了<a href="http://kotlinlang.org/docs/reference/" target="_blank" rel="noopener">kotlin</a>，不会<a href="http://kotlinlang.org/docs/reference/" target="_blank" rel="noopener">kotlin</a>语法的同学，可以去研究一下。</p>
+<a id="more"></a>
+<h3 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h3><p>最终，我们要添加如下代码，效果图如下：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/7041675-a6b08f6861b1e514.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="初始化数据库.png"></p>
+<h4 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h4><p>&emsp;&emsp;打开的你根目录下面的build.gradle文件，也就是项目下面的，并不是app目录下面的build.gradle。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// In your root build.gradle file:</span><br><span class="line">buildscript &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        jcenter()</span><br><span class="line">        ...//其他你自己的</span><br><span class="line">        mavenCentral() // add repository</span><br><span class="line">    &#125;</span><br><span class="line">    dependencies &#123;</span><br><span class="line">        classpath &apos;com.android.tools.build:gradle:3.0.0&apos;</span><br><span class="line">        ...//其他你自己的</span><br><span class="line">        classpath &apos;org.greenrobot:greendao-gradle-plugin:3.2.2&apos; // add plugin</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h4><p>&emsp;&emsp;打开你的项目下面的build.gradle文件，也就是你的app目录下面的，之前我们添加依赖的时候的那个文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// In your app projects build.gradle file:</span><br><span class="line">apply plugin: &apos;com.android.application&apos;</span><br><span class="line">apply plugin: &apos;org.greenrobot.greendao&apos; // apply plugin</span><br><span class="line"> </span><br><span class="line">dependencies &#123;</span><br><span class="line">    compile &apos;org.greenrobot:greendao:3.2.2&apos; // add library</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;完成上面两步，辣么，关于greendao的依赖我们就添加完成了</p>
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>&emsp;&emsp;我们首先得有一个bean类，这个bean类对应的就是数据库表的表结构。我这里想说明的是（敲黑板了），<strong>看到了很多网上说的什么主键id必须用Long类型，这种说法是不准确的，准确的说，你的主键字段名称，如果是“id”，辣么，你这个字段“id”，必须用Long类型，如果你换一个名称，比方说“myId”，辣么，你就不必用Long类型</strong>，这个问题，说大不大，说小，又困扰了我有一会。我这里新建用户表，就需要一个User的java bean类。如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">package com.haichenyi.myproject.model.bean;</span><br><span class="line"></span><br><span class="line">import org.greenrobot.greendao.annotation.Entity;</span><br><span class="line">import org.greenrobot.greendao.annotation.Id;</span><br><span class="line">import org.greenrobot.greendao.annotation.NotNull;</span><br><span class="line">import org.greenrobot.greendao.annotation.Property;</span><br><span class="line">import org.greenrobot.greendao.annotation.Transient;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Author: 海晨忆</span><br><span class="line"> * Date: 2018/2/24</span><br><span class="line"> * Desc: 用户表的bean类</span><br><span class="line"> */</span><br><span class="line">@Entity</span><br><span class="line">public class User &#123;</span><br><span class="line">  @Id</span><br><span class="line">  private String name;</span><br><span class="line">  private int sex;</span><br><span class="line">  @Property(nameInDb = &quot;Height&quot;)</span><br><span class="line">  private int height;</span><br><span class="line">  private String weight;</span><br><span class="line">  @NotNull</span><br><span class="line">  private int age;</span><br><span class="line">  @Transient</span><br><span class="line">  private String character;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;这里我把几个常用的注解都写出来了，说一下这几个注解是什么意思</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">注解</th>
+<th style="text-align:center">意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">@Entity</td>
+<td style="text-align:center">用于标识这是一个需要Greendao帮我们生成代码的bean</td>
+</tr>
+<tr>
+<td style="text-align:center">@Id</td>
+<td style="text-align:center">标明主键，括号里可以指定是否自增</td>
+</tr>
+<tr>
+<td style="text-align:center">@Property</td>
+<td style="text-align:center">用于设置属性在数据库中的列名（默认不写就是保持一致）</td>
+</tr>
+<tr>
+<td style="text-align:center">@NotNull</td>
+<td style="text-align:center">非空</td>
+</tr>
+<tr>
+<td style="text-align:center">@Transient</td>
+<td style="text-align:center">标识这个字段是自定义的不会创建到数据库表里</td>
+</tr>
+</tbody>
+</table>
+<p>简单的讲一下：</p>
+<ol>
+<li><p>@Entity：标识的bean类，我们在运行的时候，greendao会自动帮我们生成对应的表</p>
+</li>
+<li><p>@Id：标识的字段就是这个表对应的主键</p>
+</li>
+<li><p>@Property：标识的字段在表中对应的那一栏的名称是后面括号里面的，这个表height字段对应表中的Height，一般我们直接设置成默认就可以了</p>
+</li>
+<li><p>@NotNull：标识的字段，这个字段在表中不能为空，不然就出错，所以，在添加数据的时候设置默认值</p>
+</li>
+<li><p>@Transient：标识的字段，在生成表的时候不会生成对应的字段。这个什么时候用呢？这个，我一般用作标记flag，比方说，从数据库拿数据，又不想重新写一个bean类，就用这个bean类，RecyclerView，填充完数据，item点击的时候，状态发生变化，我们要有一个flag，就通过修改这个字段的值，页面做出相应的变化。</p>
+</li>
+</ol>
+<p>&emsp;&emsp;写到这里，我们的bean类也有了，要怎么生成数据库呢？在生成数据库之前，我们先把项目重新clean一遍，再build一遍，看到你刚写的需要生成表的bean类变成了如下样子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">package com.haichenyi.myproject.model.bean;</span><br><span class="line"></span><br><span class="line">import org.greenrobot.greendao.annotation.Entity;</span><br><span class="line">import org.greenrobot.greendao.annotation.Id;</span><br><span class="line">import org.greenrobot.greendao.annotation.NotNull;</span><br><span class="line">import org.greenrobot.greendao.annotation.Property;</span><br><span class="line">import org.greenrobot.greendao.annotation.Transient;</span><br><span class="line">import org.greenrobot.greendao.annotation.Generated;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Author: 海晨忆</span><br><span class="line"> * Date: 2018/2/24</span><br><span class="line"> * Desc: 用户表的bean类</span><br><span class="line"> */</span><br><span class="line">@Entity</span><br><span class="line">public class User &#123;</span><br><span class="line">  @Id</span><br><span class="line">  private String name;</span><br><span class="line">  private int sex;</span><br><span class="line">  @Property(nameInDb = &quot;Height&quot;)</span><br><span class="line">  private int height;</span><br><span class="line">  private String weight;</span><br><span class="line">  @NotNull</span><br><span class="line">  private int age;</span><br><span class="line">  @Transient</span><br><span class="line">  private String character;</span><br><span class="line">  @Generated(hash = 717717955)</span><br><span class="line">  public User(String name, int sex, int height, String weight, int age) &#123;</span><br><span class="line">      this.name = name;</span><br><span class="line">      this.sex = sex;</span><br><span class="line">      this.height = height;</span><br><span class="line">      this.weight = weight;</span><br><span class="line">      this.age = age;</span><br><span class="line">  &#125;</span><br><span class="line">  @Generated(hash = 586692638)</span><br><span class="line">  public User() &#123;</span><br><span class="line">  &#125;</span><br><span class="line">  public String getName() &#123;</span><br><span class="line">      return this.name;</span><br><span class="line">  &#125;</span><br><span class="line">  public void setName(String name) &#123;</span><br><span class="line">      this.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">  public int getSex() &#123;</span><br><span class="line">      return this.sex;</span><br><span class="line">  &#125;</span><br><span class="line">  public void setSex(int sex) &#123;</span><br><span class="line">      this.sex = sex;</span><br><span class="line">  &#125;</span><br><span class="line">  public int getHeight() &#123;</span><br><span class="line">      return this.height;</span><br><span class="line">  &#125;</span><br><span class="line">  public void setHeight(int height) &#123;</span><br><span class="line">      this.height = height;</span><br><span class="line">  &#125;</span><br><span class="line">  public String getWeight() &#123;</span><br><span class="line">      return this.weight;</span><br><span class="line">  &#125;</span><br><span class="line">  public void setWeight(String weight) &#123;</span><br><span class="line">      this.weight = weight;</span><br><span class="line">  &#125;</span><br><span class="line">  public int getAge() &#123;</span><br><span class="line">      return this.age;</span><br><span class="line">  &#125;</span><br><span class="line">  public void setAge(int age) &#123;</span><br><span class="line">      this.age = age;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;如上，greendao通过注解的方式帮我们自动生成了set/get方法，还有构造方法，这就对了，我们不用关，之后我们再执行如下代码生成数据库和表：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DaoMaster.DevOpenHelper devOpenHelper = new DaoMaster.DevOpenHelper(getApplicationContext(), &quot;haichenyi.db&quot;, null);</span><br><span class="line">DaoMaster daoMaster = new DaoMaster(devOpenHelper.getWritableDb());</span><br><span class="line">DaoSession daoSession = daoMaster.newSession();</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;通过 DaoMaster 的内部类 DevOpenHelper，你可以得到一个便利的 SQLiteOpenHelper 对象。可能你已经注意到了，你并不需要去编写「CREATE TABLE」这样的 SQL 语句，因为 greenDAO 已经帮你做了。注意：默认的 DaoMaster.DevOpenHelper会在数据库升级时，删除所有的表，意味着这将导致数据的丢失。所以，在正式的项目中，你还应该做一层封装，来实现数据库的安全升级。升级的问题，我们在后面讲，这里我们先把数据库和表先创建了。</p>
+<p>&emsp;&emsp;上面这个方式是java格式的，由于，我昨天写完框架之后，我把项目转成了kotlin代码，所以这里有点不一样，项目我后面会上传。这里我要说明的是（敲黑板）<strong>我用kotlin的时候，碰到了一个问题，当我使用greendao的时候，他提示我，无法引入用注解方式生成的类，dagger2也是一样的，我用java代码写就没有问题</strong>，我写这篇博客的时候，目前还没有找到解决的办法。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/7041675-57cbd658b027825f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="greendao的问题.png"></p>
+<p>&emsp;&emsp;我用了另外一种方式，采用跟之前网络请求一样的设计模式——装饰者模式。我这里就不多做说明了。我贴出我的代码。</p>
+<p>SqlHelper</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">package com.haichenyi.myproject.model.sql;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Author: 海晨忆</span><br><span class="line"> * Date: 2018/2/24</span><br><span class="line"> * Desc:</span><br><span class="line"> */</span><br><span class="line">public interface SqlHelper &#123;</span><br><span class="line">  void onAdd();</span><br><span class="line"></span><br><span class="line">  void onDelete();</span><br><span class="line"></span><br><span class="line">  void onUpdate();</span><br><span class="line"></span><br><span class="line">  void onSelect();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;这里定义增删改查4个方法，用于测试这4个功能</p>
+<p>SqlImpl</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">package com.haichenyi.myproject.model.sql;</span><br><span class="line"></span><br><span class="line">import com.haichenyi.myproject.base.MyApplication;</span><br><span class="line">import com.haichenyi.myproject.model.bean.DaoMaster;</span><br><span class="line">import com.haichenyi.myproject.model.bean.DaoSession;</span><br><span class="line">import com.haichenyi.myproject.model.bean.UserDao;</span><br><span class="line">import com.haichenyi.myproject.utils.ToastUtils;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Author: 海晨忆</span><br><span class="line"> * Date: 2018/2/24</span><br><span class="line"> * Desc:</span><br><span class="line"> */</span><br><span class="line">public class SqlImpl implements SqlHelper &#123;</span><br><span class="line">  private final UserDao userDao;</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * 初始化Sql Dao.</span><br><span class="line">   *</span><br><span class="line">   * @param application &#123;@link MyApplication&#125;</span><br><span class="line">   */</span><br><span class="line">  public SqlImpl(MyApplication application) &#123;</span><br><span class="line">    SqlOpenHelper helper = new SqlOpenHelper(application, &quot;haichenyi.db&quot;);</span><br><span class="line">    DaoSession daoSession = new DaoMaster(helper.getWritableDb()).newSession();</span><br><span class="line">    userDao = daoSession.getUserDao();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public void onAdd() &#123;</span><br><span class="line">    ToastUtils.Companion.showTipMsg(&quot;增加数据&quot;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public void onDelete() &#123;</span><br><span class="line">    ToastUtils.Companion.showTipMsg(&quot;删除数据&quot;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public void onUpdate() &#123;</span><br><span class="line">    ToastUtils.Companion.showTipMsg(&quot;更新数据&quot;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public void onSelect() &#123;</span><br><span class="line">    ToastUtils.Companion.showTipMsg(&quot;查询数据&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;功能实现类，看到他的构造方法里面，第二个参数就是我们的数据库名称，后面通过getWritableDb()获取的是可写的数据库，可写就肯定可读。然后就是接口的实现类了，这里就是具体的增删改查功能的实现类，我这里在对应的方法里面就写了Toast，增删改查具体怎么写后面再说</p>
+<p>SqlOpenHelper</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">package com.haichenyi.myproject.model.sql;</span><br><span class="line"></span><br><span class="line">import android.content.Context;</span><br><span class="line"></span><br><span class="line">import com.haichenyi.myproject.model.bean.DaoMaster;</span><br><span class="line">import com.haichenyi.myproject.model.bean.UserDao;</span><br><span class="line"></span><br><span class="line">import org.greenrobot.greendao.database.Database;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Author: 海晨忆</span><br><span class="line"> * Date: 2018/2/24</span><br><span class="line"> * Desc:</span><br><span class="line"> */</span><br><span class="line">public class SqlOpenHelper extends DaoMaster.OpenHelper &#123;</span><br><span class="line">  public SqlOpenHelper(Context context, String name) &#123;</span><br><span class="line">    super(context, name);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @SuppressWarnings(&quot;unchecked&quot;)</span><br><span class="line">  @Override</span><br><span class="line">  public void onUpgrade(Database db, int oldVersion, int newVersion) &#123;</span><br><span class="line">    super.onUpgrade(db, oldVersion, newVersion);</span><br><span class="line"></span><br><span class="line">    MigrationHelper.migrate(db, new MigrationHelper.ReCreateAllTableListener() &#123;</span><br><span class="line">      @Override</span><br><span class="line">      public void onCreateAllTables(Database db, boolean ifNotExists) &#123;</span><br><span class="line">        DaoMaster.createAllTables(db, ifNotExists);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      @Override</span><br><span class="line">      public void onDropAllTables(Database db, boolean ifExists) &#123;</span><br><span class="line">        DaoMaster.dropAllTables(db, ifExists);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, UserDao.class);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;这个类用于管理数据库的表对应的字段发生变化的时候，数据库需要进行的版本更新，连上下面那个类，都是用于版本数据库版本更新的，防止数据丢失。怎么写呢？看到最后面的&emsp;<strong>UserDao.class</strong>&emsp;了吗？这个就是我们需要更新的表，你哪个表需要更新，直接写在后面就可以了，这个是可以一次传多个表的，并不是一次只能传一个</p>
+<p>MigrationHelper</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br></pre></td><td class="code"><pre><span class="line">package com.haichenyi.myproject.model.sql;</span><br><span class="line"></span><br><span class="line">import android.database.Cursor;</span><br><span class="line">import android.database.SQLException;</span><br><span class="line">import android.database.sqlite.SQLiteDatabase;</span><br><span class="line">import android.support.annotation.NonNull;</span><br><span class="line">import android.text.TextUtils;</span><br><span class="line">import android.util.Log;</span><br><span class="line"></span><br><span class="line">import org.greenrobot.greendao.AbstractDao;</span><br><span class="line">import org.greenrobot.greendao.database.Database;</span><br><span class="line">import org.greenrobot.greendao.database.StandardDatabase;</span><br><span class="line">import org.greenrobot.greendao.internal.DaoConfig;</span><br><span class="line"></span><br><span class="line">import java.lang.ref.WeakReference;</span><br><span class="line">import java.lang.reflect.InvocationTargetException;</span><br><span class="line">import java.lang.reflect.Method;</span><br><span class="line">import java.util.ArrayList;</span><br><span class="line">import java.util.Arrays;</span><br><span class="line">import java.util.List;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Author: 海晨忆.</span><br><span class="line"> * Date: 2018/2/24</span><br><span class="line"> * Desc:</span><br><span class="line"> */</span><br><span class="line">public final class MigrationHelper &#123;</span><br><span class="line">  public static boolean DEBUG = false;</span><br><span class="line">  private static String TAG = &quot;MigrationHelper&quot;;</span><br><span class="line">  private static final String SQLITE_MASTER = &quot;sqlite_master&quot;;</span><br><span class="line">  private static final String SQLITE_TEMP_MASTER = &quot;sqlite_temp_master&quot;;</span><br><span class="line"></span><br><span class="line">  private static WeakReference&lt;ReCreateAllTableListener&gt; weakListener;</span><br><span class="line"></span><br><span class="line">  public interface ReCreateAllTableListener &#123;</span><br><span class="line">    void onCreateAllTables(Database db, boolean ifNotExists);</span><br><span class="line"></span><br><span class="line">    void onDropAllTables(Database db, boolean ifExists);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public static void migrate(SQLiteDatabase db, Class&lt;? extends AbstractDao&lt;?, ?&gt;&gt;... daoClasses) &#123;</span><br><span class="line">    printLog(&quot;【The Old Database Version】&quot; + db.getVersion());</span><br><span class="line">    Database database = new StandardDatabase(db);</span><br><span class="line">    migrate(database, daoClasses);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public static void migrate(SQLiteDatabase db, ReCreateAllTableListener listener, Class&lt;? extends AbstractDao&lt;?, ?&gt;&gt;... daoClasses) &#123;</span><br><span class="line">    weakListener = new WeakReference&lt;&gt;(listener);</span><br><span class="line">    migrate(db, daoClasses);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public static void migrate(Database database, ReCreateAllTableListener listener, Class&lt;? extends AbstractDao&lt;?, ?&gt;&gt;... daoClasses) &#123;</span><br><span class="line">    weakListener = new WeakReference&lt;&gt;(listener);</span><br><span class="line">    migrate(database, daoClasses);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public static void migrate(Database database, Class&lt;? extends AbstractDao&lt;?, ?&gt;&gt;... daoClasses) &#123;</span><br><span class="line">    printLog(&quot;【Generate temp table】start&quot;);</span><br><span class="line">    generateTempTables(database, daoClasses);</span><br><span class="line">    printLog(&quot;【Generate temp table】complete&quot;);</span><br><span class="line"></span><br><span class="line">    ReCreateAllTableListener listener = null;</span><br><span class="line">    if (weakListener != null) &#123;</span><br><span class="line">      listener = weakListener.get();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (listener != null) &#123;</span><br><span class="line">      listener.onDropAllTables(database, true);</span><br><span class="line">      printLog(&quot;【Drop all table by listener】&quot;);</span><br><span class="line">      listener.onCreateAllTables(database, false);</span><br><span class="line">      printLog(&quot;【Create all table by listener】&quot;);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      dropAllTables(database, true, daoClasses);</span><br><span class="line">      createAllTables(database, false, daoClasses);</span><br><span class="line">    &#125;</span><br><span class="line">    printLog(&quot;【Restore data】start&quot;);</span><br><span class="line">    restoreData(database, daoClasses);</span><br><span class="line">    printLog(&quot;【Restore data】complete&quot;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  private static void generateTempTables(Database db, Class&lt;? extends AbstractDao&lt;?, ?&gt;&gt;... daoClasses) &#123;</span><br><span class="line">    for (int i = 0; i &lt; daoClasses.length; i++) &#123;</span><br><span class="line">      String tempTableName = null;</span><br><span class="line"></span><br><span class="line">      DaoConfig daoConfig = new DaoConfig(db, daoClasses[i]);</span><br><span class="line">      String tableName = daoConfig.tablename;</span><br><span class="line">      if (!isTableExists(db, false, tableName)) &#123;</span><br><span class="line">        printLog(&quot;【New Table】&quot; + tableName);</span><br><span class="line">        continue;</span><br><span class="line">      &#125;</span><br><span class="line">      try &#123;</span><br><span class="line">        tempTableName = daoConfig.tablename.concat(&quot;_TEMP&quot;);</span><br><span class="line">        StringBuilder dropTableStringBuilder = new StringBuilder();</span><br><span class="line">        dropTableStringBuilder.append(&quot;DROP TABLE IF EXISTS &quot;).append(tempTableName).append(&quot;;&quot;);</span><br><span class="line">        db.execSQL(dropTableStringBuilder.toString());</span><br><span class="line"></span><br><span class="line">        StringBuilder insertTableStringBuilder = new StringBuilder();</span><br><span class="line">        insertTableStringBuilder.append(&quot;CREATE TEMPORARY TABLE &quot;).append(tempTableName);</span><br><span class="line">        insertTableStringBuilder.append(&quot; AS SELECT * FROM &quot;).append(tableName).append(&quot;;&quot;);</span><br><span class="line">        db.execSQL(insertTableStringBuilder.toString());</span><br><span class="line">        printLog(&quot;【Table】&quot; + tableName + &quot;\n ---Columns--&gt;&quot; + getColumnsStr(daoConfig));</span><br><span class="line">        printLog(&quot;【Generate temp table】&quot; + tempTableName);</span><br><span class="line">      &#125; catch (SQLException e) &#123;</span><br><span class="line">        Log.e(TAG, &quot;【Failed to generate temp table】&quot; + tempTableName, e);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  private static boolean isTableExists(Database db, boolean isTemp, String tableName) &#123;</span><br><span class="line">    if (db == null || TextUtils.isEmpty(tableName)) &#123;</span><br><span class="line">      return false;</span><br><span class="line">    &#125;</span><br><span class="line">    String dbName = isTemp ? SQLITE_TEMP_MASTER : SQLITE_MASTER;</span><br><span class="line">    String sql = &quot;SELECT COUNT(*) FROM &quot; + dbName + &quot; WHERE type = ? AND name = ?&quot;;</span><br><span class="line">    Cursor cursor = null;</span><br><span class="line">    int count = 0;</span><br><span class="line">    try &#123;</span><br><span class="line">      cursor = db.rawQuery(sql, new String[]&#123;&quot;table&quot;, tableName&#125;);</span><br><span class="line">      if (cursor == null || !cursor.moveToFirst()) &#123;</span><br><span class="line">        return false;</span><br><span class="line">      &#125;</span><br><span class="line">      count = cursor.getInt(0);</span><br><span class="line">    &#125; catch (Exception e) &#123;</span><br><span class="line">      e.printStackTrace();</span><br><span class="line">    &#125; finally &#123;</span><br><span class="line">      if (cursor != null)</span><br><span class="line">        cursor.close();</span><br><span class="line">    &#125;</span><br><span class="line">    return count &gt; 0;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  private static String getColumnsStr(DaoConfig daoConfig) &#123;</span><br><span class="line">    if (daoConfig == null) &#123;</span><br><span class="line">      return &quot;no columns&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    StringBuilder builder = new StringBuilder();</span><br><span class="line">    for (int i = 0; i &lt; daoConfig.allColumns.length; i++) &#123;</span><br><span class="line">      builder.append(daoConfig.allColumns[i]);</span><br><span class="line">      builder.append(&quot;,&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    if (builder.length() &gt; 0) &#123;</span><br><span class="line">      builder.deleteCharAt(builder.length() - 1);</span><br><span class="line">    &#125;</span><br><span class="line">    return builder.toString();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  private static void dropAllTables(Database db, boolean ifExists, @NonNull Class&lt;? extends AbstractDao&lt;?, ?&gt;&gt;... daoClasses) &#123;</span><br><span class="line">    reflectMethod(db, &quot;dropTable&quot;, ifExists, daoClasses);</span><br><span class="line">    printLog(&quot;【Drop all table by reflect】&quot;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  private static void createAllTables(Database db, boolean ifNotExists, @NonNull Class&lt;? extends AbstractDao&lt;?, ?&gt;&gt;... daoClasses) &#123;</span><br><span class="line">    reflectMethod(db, &quot;createTable&quot;, ifNotExists, daoClasses);</span><br><span class="line">    printLog(&quot;【Create all table by reflect】&quot;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * dao class already define the sql exec method, so just invoke it</span><br><span class="line">   */</span><br><span class="line">  private static void reflectMethod(Database db, String methodName, boolean isExists, @NonNull Class&lt;? extends AbstractDao&lt;?, ?&gt;&gt;... daoClasses) &#123;</span><br><span class="line">    if (daoClasses.length &lt; 1) &#123;</span><br><span class="line">      return;</span><br><span class="line">    &#125;</span><br><span class="line">    try &#123;</span><br><span class="line">      for (Class cls : daoClasses) &#123;</span><br><span class="line">        Method method = cls.getDeclaredMethod(methodName, Database.class, boolean.class);</span><br><span class="line">        method.invoke(null, db, isExists);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; catch (NoSuchMethodException e) &#123;</span><br><span class="line">      e.printStackTrace();</span><br><span class="line">    &#125; catch (InvocationTargetException e) &#123;</span><br><span class="line">      e.printStackTrace();</span><br><span class="line">    &#125; catch (IllegalAccessException e) &#123;</span><br><span class="line">      e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  private static void restoreData(Database db, Class&lt;? extends AbstractDao&lt;?, ?&gt;&gt;... daoClasses) &#123;</span><br><span class="line">    for (int i = 0; i &lt; daoClasses.length; i++) &#123;</span><br><span class="line">      DaoConfig daoConfig = new DaoConfig(db, daoClasses[i]);</span><br><span class="line">      String tableName = daoConfig.tablename;</span><br><span class="line">      String tempTableName = daoConfig.tablename.concat(&quot;_TEMP&quot;);</span><br><span class="line"></span><br><span class="line">      if (!isTableExists(db, true, tempTableName)) &#123;</span><br><span class="line">        continue;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      try &#123;</span><br><span class="line">        // get all columns from tempTable, take careful to use the columns list</span><br><span class="line">        List&lt;String&gt; columns = getColumns(db, tempTableName);</span><br><span class="line">        ArrayList&lt;String&gt; properties = new ArrayList&lt;&gt;(columns.size());</span><br><span class="line">        for (int j = 0; j &lt; daoConfig.properties.length; j++) &#123;</span><br><span class="line">          String columnName = daoConfig.properties[j].columnName;</span><br><span class="line">          if (columns.contains(columnName)) &#123;</span><br><span class="line">            properties.add(&quot;`&quot; + columnName + &quot;`&quot;);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (properties.size() &gt; 0) &#123;</span><br><span class="line">          final String columnSQL = TextUtils.join(&quot;,&quot;, properties);</span><br><span class="line"></span><br><span class="line">          StringBuilder insertTableStringBuilder = new StringBuilder();</span><br><span class="line">          insertTableStringBuilder.append(&quot;REPLACE INTO &quot;).append(tableName).append(&quot; (&quot;);</span><br><span class="line">          insertTableStringBuilder.append(columnSQL);</span><br><span class="line">          insertTableStringBuilder.append(&quot;) SELECT &quot;);</span><br><span class="line">          insertTableStringBuilder.append(columnSQL);</span><br><span class="line">          insertTableStringBuilder.append(&quot; FROM &quot;).append(tempTableName).append(&quot;;&quot;);</span><br><span class="line">          db.execSQL(insertTableStringBuilder.toString());</span><br><span class="line">          printLog(&quot;【Restore data】 to &quot; + tableName);</span><br><span class="line">        &#125;</span><br><span class="line">        StringBuilder dropTableStringBuilder = new StringBuilder();</span><br><span class="line">        dropTableStringBuilder.append(&quot;DROP TABLE &quot;).append(tempTableName);</span><br><span class="line">        db.execSQL(dropTableStringBuilder.toString());</span><br><span class="line">        printLog(&quot;【Drop temp table】&quot; + tempTableName);</span><br><span class="line">      &#125; catch (SQLException e) &#123;</span><br><span class="line">        Log.e(TAG, &quot;【Failed to restore data from temp table 】&quot; + tempTableName, e);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  private static List&lt;String&gt; getColumns(Database db, String tableName) &#123;</span><br><span class="line">    List&lt;String&gt; columns = null;</span><br><span class="line">    Cursor cursor = null;</span><br><span class="line">    try &#123;</span><br><span class="line">      cursor = db.rawQuery(&quot;SELECT * FROM &quot; + tableName + &quot; limit 0&quot;, null);</span><br><span class="line">      if (null != cursor &amp;&amp; cursor.getColumnCount() &gt; 0) &#123;</span><br><span class="line">        columns = Arrays.asList(cursor.getColumnNames());</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; catch (Exception e) &#123;</span><br><span class="line">      e.printStackTrace();</span><br><span class="line">    &#125; finally &#123;</span><br><span class="line">      if (cursor != null)</span><br><span class="line">        cursor.close();</span><br><span class="line">      if (null == columns)</span><br><span class="line">        columns = new ArrayList&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    return columns;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  private static void printLog(String info) &#123;</span><br><span class="line">    if (DEBUG) &#123;</span><br><span class="line">      Log.d(TAG, info);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;这个类是工具类，拿过去用就好了，还有就是，应用怎么判断是否需要版本更新呢？打开你的app下面的build.grade，在根结点下面添加如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">greendao &#123;</span><br><span class="line">    schemaVersion 1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>每当你发布新版本的时候，把这个版本号+1即可。</p>
+<p>&emsp;&emsp;当然，我门这里依然是用的dagger生成的全局单例，所以，你还需要在你的AppModule下面添加如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Provides</span><br><span class="line">@Singleton</span><br><span class="line">SqlHelper provideSqlHelper() &#123;</span><br><span class="line">  return new SqlImpl(application);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;记得把项目重新clean一遍，build一遍，重新跑项目的时候，找到你的数据库。data-data-你的应用包名-databases-haichenyi.db，这个就是我们的数据库。找个Sqlite可视化工具打开，你会看到如下结构。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/7041675-76d1c00d544ec20b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="表结构.png"></p>
+<p>&emsp;&emsp;太多了，不写了，下一篇写增删改查。</p>
+<p><a href="http://download.csdn.net/download/qq_27634797/10257727" target="_blank" rel="noopener">项目链接</a></p>
+
+      
+    </div>
+    
+    
+    
+	<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">---------------------END---------------------</div>
+    
+</div>
+  
+  <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2018/02/24/从零开始搭建一个主流项目框架（四）—Kotlin-GreenDao3-2/">从零开始搭建一个主流项目框架（四）—Kotlin+GreenDao3.2</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 海晨忆 的个人博客">海晨忆</a></p>
+  <p><span>发布时间:</span>2018年02月24日 - 21:02</p>
+  <p><span>最后更新:</span>2018年02月24日 - 21:02</p>
+  <p><span>原始链接:</span><a href="/2018/02/24/从零开始搭建一个主流项目框架（四）—Kotlin-GreenDao3-2/" title="从零开始搭建一个主流项目框架（四）—Kotlin+GreenDao3.2">http://haichenyi.com/2018/02/24/从零开始搭建一个主流项目框架（四）—Kotlin-GreenDao3-2/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://haichenyi.com/2018/02/24/从零开始搭建一个主流项目框架（四）—Kotlin-GreenDao3-2/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
+      
+</div>
+	</div>
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/uploads/wechat_reward.png" alt="海晨忆 WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/uploads/alipay_reward.jpg" alt="海晨忆 Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/23/从零开始搭建一个主流项目框架（三）—RxJava2-0-Retrofit2-0-OkHttp/" rel="next" title="从零开始搭建一个主流项目框架（三）—RxJava2.0+Retrofit2.0+OkHttp">
+                <i class="fa fa-chevron-left"></i> 从零开始搭建一个主流项目框架（三）—RxJava2.0+Retrofit2.0+OkHttp
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/24/从零开始搭建一个主流项目框架（五）—GreenDao的增删改查/" rel="prev" title="从零开始搭建一个主流项目框架（五）—GreenDao的增删改查">
+                从零开始搭建一个主流项目框架（五）—GreenDao的增删改查 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/artistic_image/psb17.jpg"
+               alt="海晨忆" />
+          <p class="site-author-name" itemprop="name">海晨忆</p>
+           
+              <p class="site-description motion-element" itemprop="description">我负责征战天下，你负责貌美如花！</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://www.jianshu.com/u/6077ee440c37" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      简书
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net/qq_27634797" target="_blank" title="CSDN">
+                  
+                    <i class="fa fa-fw fa-github-square"></i>
+                  
+                    
+                      CSDN
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/haichenyi" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github-alt"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#添加依赖"><span class="nav-number">1.</span> <span class="nav-text">添加依赖</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一步"><span class="nav-number">1.1.</span> <span class="nav-text">第一步</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二步"><span class="nav-number">1.2.</span> <span class="nav-text">第二步</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化"><span class="nav-number">2.</span> <span class="nav-text">初始化</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">海晨忆</span>
+</div>
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共20.0k字</span>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/three.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
+<div id="hexo-helper-live2d">
+  <canvas id="live2dcanvas" width="150" height="300"></canvas>
+</div>
+<style>
+  #live2dcanvas{
+    position: fixed;
+    width: 150px;
+    height: 300px;
+    opacity:0.7;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -20px;
+  }
+</style>
+<script type="text/javascript" src="/live2d/device.min.js"></script>
+<script type="text/javascript">
+const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
+(function(){
+  if((typeof(device) != 'undefined') && (device.mobile())){
+    var trElement = document.getElementById('hexo-helper-live2d');
+    trElement.parentNode.removeChild(trElement);
+    return;
+  }else
+    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
+  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/wanko.model.json", 0.5);});
+})();
+</script>
+
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+</body>
+</html>

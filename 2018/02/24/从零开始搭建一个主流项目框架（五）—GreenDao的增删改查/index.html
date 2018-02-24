@@ -110,21 +110,23 @@
 
 
 
-<meta name="description" content="Android框架的最终目的，也是体现一个项目好坏的唯一标准——高类聚，低耦合">
+<meta name="description" content="&amp;emsp;&amp;emsp;上一篇我们讲了GreenDao的数据库的依赖和创建，这一篇，我们来讲常用的增删改查四种方法。我们操作数据库都是Dao层，不同的表，有不懂的Dao层对象。我们上一篇的数据库接口的实现类里面，我们定义了UserDao，我们这一篇讲的就是操作我们昨天创建的user表。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MVC、MVP、MVVM比较">
-<meta property="og:url" content="http://haichenyi.com/2018/02/22/MVC、MVP、MVVM比较/index.html">
+<meta property="og:title" content="从零开始搭建一个主流项目框架（五）—GreenDao的增删改查">
+<meta property="og:url" content="http://haichenyi.com/2018/02/24/从零开始搭建一个主流项目框架（五）—GreenDao的增删改查/index.html">
 <meta property="og:site_name" content="海晨忆的博客">
-<meta property="og:description" content="Android框架的最终目的，也是体现一个项目好坏的唯一标准——高类聚，低耦合">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;上一篇我们讲了GreenDao的数据库的依赖和创建，这一篇，我们来讲常用的增删改查四种方法。我们操作数据库都是Dao层，不同的表，有不懂的Dao层对象。我们上一篇的数据库接口的实现类里面，我们定义了UserDao，我们这一篇讲的就是操作我们昨天创建的user表。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7041675-e7fc3f5706296a96.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7041675-a146abe4db80cdf6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7041675-b41a65879e0e8d11.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-02-22T13:48:18.240Z">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7041675-8b4f3073de1af3a4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7041675-0d7bc09082e64fa8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7041675-85447db350c369a5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7041675-58575c3a7edb7ebc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7041675-70f33a5a63a304fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-02-24T13:20:09.619Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MVC、MVP、MVVM比较">
-<meta name="twitter:description" content="Android框架的最终目的，也是体现一个项目好坏的唯一标准——高类聚，低耦合">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/7041675-e7fc3f5706296a96.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="从零开始搭建一个主流项目框架（五）—GreenDao的增删改查">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;上一篇我们讲了GreenDao的数据库的依赖和创建，这一篇，我们来讲常用的增删改查四种方法。我们操作数据库都是Dao层，不同的表，有不懂的Dao层对象。我们上一篇的数据库接口的实现类里面，我们定义了UserDao，我们这一篇讲的就是操作我们昨天创建的user表。">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/7041675-8b4f3073de1af3a4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -153,13 +155,13 @@
 
 
 
-  <link rel="canonical" href="http://haichenyi.com/2018/02/22/MVC、MVP、MVVM比较/"/>
+  <link rel="canonical" href="http://haichenyi.com/2018/02/24/从零开始搭建一个主流项目框架（五）—GreenDao的增删改查/"/>
 
 
 
 
 
-  <title>MVC、MVP、MVVM比较 | 海晨忆的博客</title>
+  <title>从零开始搭建一个主流项目框架（五）—GreenDao的增删改查 | 海晨忆的博客</title>
   
 
 
@@ -338,7 +340,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haichenyi.com/2018/02/22/MVC、MVP、MVVM比较/">
+    <link itemprop="mainEntityOfPage" href="http://haichenyi.com/2018/02/24/从零开始搭建一个主流项目框架（五）—GreenDao的增删改查/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海晨忆">
@@ -355,7 +357,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">MVC、MVP、MVVM比较</h1>
+          <h1 class="post-title" itemprop="name headline">从零开始搭建一个主流项目框架（五）—GreenDao的增删改查</h1>
         
 
         <div class="post-meta">
@@ -367,8 +369,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-22T21:43:00+08:00">
-                2018-02-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-24T21:17:55+08:00">
+                2018-02-24
               </time>
             
 
@@ -419,7 +421,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1,075
+                  1,199
                 </span>
               
 
@@ -435,7 +437,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  4
+                  5
                 </span>
               
             </div>
@@ -456,44 +458,40 @@
       
 
       
-        <p>Android框架的最终目的，也是体现一个项目好坏的唯一标准——<strong>高类聚，低耦合</strong></p>
+        <p>&emsp;&emsp;上一篇我们讲了GreenDao的数据库的依赖和创建，这一篇，我们来讲常用的增删改查四种方法。我们操作数据库都是Dao层，不同的表，有不懂的Dao层对象。我们上一篇的数据库接口的实现类里面，我们定义了UserDao，我们这一篇讲的就是操作我们昨天创建的user表。</p>
 <a id="more"></a>
-<h3 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h3><p>&emsp;&emsp;我们刚接触android写代码的时候基本上都是MVC架构。什么是MVC架构呢？</p>
-<p>&emsp;&emsp;MVC：Model View Controller的简称。流程图如下：<br><img src="http://upload-images.jianshu.io/upload_images/7041675-e7fc3f5706296a96.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="mvc流程图.png"></p>
-<p>&emsp;&emsp;当用户发出事件的时候，首先通过V层，通知C层，然后C层通知Model层数据发生了变化，更新数据，M层直接显示数据到V层。</p>
-<p>&emsp;&emsp;通俗的讲，xml可以理解层View层，你封装的网络请求的帮助类理解成model层，activity，fragment理解成Controller层。这么理解是可以的，但是，你不能说xml就是view层，这样说是不对的</p>
-<p>&emsp;&emsp;举个例子，比方说一个登录的网络请求，首先，你需要点击按钮去触发网络请求的方法，你点击的这个button就是写在xml布局里面的，这就是V层。然后触发的网络请求帮助类去发送对应的登录请求方法，这就是model层。两者是怎么联系在一起的呢？就是我们在activity，fragment层里面写的onclick方法。activity，fragment就是Controller层。</p>
-<h3 id="MVP"><a href="#MVP" class="headerlink" title="MVP"></a>MVP</h3><p>&emsp;&emsp;所有的UI变化，网络请求等等业务逻辑之类的都写在Activity里面，Activity既要处理业务逻辑，又要处理UI变化，代码就显得非常臃肿。</p>
-<p>&emsp;&emsp;这个时候，MVP就顺势而生，什么是MVP架构呢？</p>
-<p>&emsp;&emsp;MVP：Model View Presenter的简称</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/7041675-a146abe4db80cdf6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="MVP流程图.png"></p>
-<p>&emsp;&emsp;MVP作为MVC的演化版本，解决了MVC不少的缺点，对于Android来说，MVP的M层，相对于MVC来说是一样的，而不一样的就是activity不再是controller，而是纯粹的V层，所有关于用户事件的转发，全都由P层去处理</p>
-<p>&emsp;&emsp;MVP和MVC最明显的差别就是，M层和V层完全解藕，两者的通信是通过P层，P层作为桥梁，用于操作View层发送的事件到P层，P层去操作M层，并且，讲数据返回给V层。整个过层M层和V层两者完全没有联系。辣么，就有好奇的宝宝就问了，这样做解决不了更本问题，你这样做P层和V层不一样耦合在一起了吗？我们并不能完全不耦合，只是尽可能减少耦合度。我们写程序最终目的就是高类聚，低耦合，不是说完全不耦合。并且，我们这里P层和V层是通过接口通信的，如果网络请求逻辑发生变化，直接修改P层里面的代码，就可以了。V层完全不用改。如果业务逻辑发生变化，我们直接重新定义接口也非常方便</p>
-<h3 id="MVVM"><a href="#MVVM" class="headerlink" title="MVVM"></a>MVVM</h3><p>&emsp;&emsp;由微软提出来的—MVVM。什么是MVVM架构呢？</p>
-<p>&emsp;&emsp;MVVM：Model View ViewModel</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/7041675-b41a65879e0e8d11.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="MVVM流程图.png"></p>
-<p>&emsp;&emsp;一眼看上去更MVP差不多，只是把P层换成了ViewModel层。还有一点就是View层和ViewModel层是相互绑定的关系，当你更新ViewMdel层数据的时候，View层的UI就要相应的发生变化。</p>
-<p>&emsp;&emsp;不管怎么说，三种模式的出现，或者说所有的开发模式，或者说是架构的出现，他们都有一个最终的目的，那就体现是一个项目架构好坏的：<strong>高类聚，低耦合</strong></p>
-<p>&emsp;&emsp;学习成本，MVC最简单，弊端也是最多的，学起来也是最快的。MVP和MVVM两者都是MVC的演化版本，两者没法评论优缺点，各有千秋。MVP是目前最火的架构（-.-）。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>&emsp;&emsp;吹了这么多，MVP有没有什么缺点呢？答案是肯定的：有。本人认为，MVP是目前已知框架最好的</p>
-<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ol>
-<li><p>P层比较臃肿，所有的逻辑代码，网络请求都丢在P层</p>
+<p>&emsp;&emsp;在写下面几个方法之前，我还是先把MVP的用法先讲一遍吧，防止有人不知道，以增操作为例，另外三个就不再讲了：</p>
+<ol>
+<li><p>点击页面的增按钮，我们要调用P层的方法去做增操作。效果图如下：<br><img src="http://upload-images.jianshu.io/upload_images/7041675-8b4f3073de1af3a4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="增1.png"></p>
 </li>
-<li><p>接口很多，一个功能，相对于MVC来讲，需要多写很多代码</p>
+<li><p>P层的方法从哪来呢？P层实现的接口来撒，所以，我们只用在接口定义对应的方法，在P层去实现，效果图如下：<br><img src="http://upload-images.jianshu.io/upload_images/7041675-0d7bc09082e64fa8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="增2.png"></p>
 </li>
-<li><p>V层P层耦合度过于高，一旦视图需要变更，P层就要相应的发生变化</p>
+<li><p>辣么，具体实现代码怎么写呢？既不记得，我们的装饰者模式，我们P层里面有一个DataHelper对象，通过它去调用对应的方法就可以了，效果图如下：<br><img src="http://upload-images.jianshu.io/upload_images/7041675-85447db350c369a5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="增3.png"></p>
+</li>
+<li><p>接下来，datahelper的方法又是从哪里来呢？我们的DataHelper是不是实现了SqlHelper接口，所以，直接在SqlHelper定义方法，在datahelper实现即可，效果图如下：<br><img src="http://upload-images.jianshu.io/upload_images/7041675-58575c3a7edb7ebc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="增4.png"></p>
+</li>
+<li><p>最后，前面只是调用了，具体实现在哪里呢？我之前有没有讲过装饰者模式，一个接口，两个实现方法，对，没错，就是在SqlImpl方法里面实现，效果图如下：<br><img src="http://upload-images.jianshu.io/upload_images/7041675-70f33a5a63a304fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="增5.png"></p>
 </li>
 </ol>
-<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ol>
-<li><p>解藕，这个不用说了</p>
-</li>
-<li><p>结构清晰明了，不会过了一个月就变成别人的代码</p>
-</li>
-<li><p>提高了维护性，功能出了问题，直接定位到接口，修改接口就行了</p>
-</li>
-<li><p>容易进行单元测试，虽然会用单元测试的人比较少</p>
-</li>
+<p>&emsp;&emsp;通过以上5步，就完成我们的增操作。有同鞋就会问，那参数怎么传？我特么怎么知道需要传什么传输，你这个方法是干什么的，调用这个方法需要什么数据，你就丢在参数里面传过去，即可。</p>
+<h3 id="增"><a href="#增" class="headerlink" title="增"></a>增</h3><h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//插入单个对象</span><br><span class="line">userDao.insert(user);</span><br><span class="line"></span><br><span class="line">//插入一个list</span><br><span class="line">userDao.insertInTx(users);</span><br></pre></td></tr></table></figure>
+<h4 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//basePresenter.onAdd(User(&quot;小红&quot;, 1, 165, &quot;50KG&quot;, 18))</span><br><span class="line">val dataList = mutableListOf&lt;User&gt;()</span><br><span class="line">dataList.add(User(&quot;小刚&quot;, 2, 175, &quot;60KG&quot;, 28))</span><br><span class="line">dataList.add(User(&quot;小东&quot;, 2, 185, &quot;65KG&quot;, 25))</span><br><span class="line">basePresenter.onAddList(dataList)</span><br></pre></td></tr></table></figure>
+<p>效果图我就不贴出来了，如果，你的效果出不来，就肯定是你的代码写的有问题，我写这个博客都是边写代码，边写博客，我这边肯定是没问题的。</p>
+<h3 id="查"><a href="#查" class="headerlink" title="查"></a>查</h3><h4 id="方法-1"><a href="#方法-1" class="headerlink" title="方法"></a>方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//查询单个对象</span><br><span class="line">userDao.queryBuilder().where(UserDao.Properties.Name.eq(name)).build().unique();</span><br><span class="line">//查询一个list</span><br><span class="line">userDao.queryBuilder().where(UserDao.Properties.Name.eq(name)).build().list();</span><br></pre></td></tr></table></figure>
+<h4 id="调用-1"><a href="#调用-1" class="headerlink" title="调用"></a>调用</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">val user = basePresenter.onSelect(&quot;小红&quot;)</span><br><span class="line">println(user.name)</span><br><span class="line">val users = basePresenter.onSelectList(&quot;小东&quot;)</span><br><span class="line"> users.forEach &#123;</span><br><span class="line">     println(it.name)</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;这里，我需要做一点说明，那就是手动能力强的宝宝，看见有两个查询方法，一个查询一个对象，一个查询list，这两个方法没问题，查询肯定是查询的一个，list里面也是只有一个对象，就有宝宝想着多插入几条数据，这个时候，项目就可能崩掉，因为，你插入的名字是相同的，我们这里名字是作为主键，表里面主键是不能相同的，所以就崩掉了，所以，你就得改表结构，正好测试我们之前说的版本更新问题，我这里亲测可用，数据也不会丢失。步骤如下：</p>
+<ol>
+<li>修改数据库版本，把1改成2</li>
+<li>User bean里面增加一个字段id Long类型，递增即可，clean，build项目</li>
+<li>在你的Activity里面会报错，因为，你User的构造方法里面新增了一个参数，辣么这里你用的时候参数个数都不对，肯定报错，你把id字段对应的参数传null即可，他自己递增。这里也只有Long类型可以传null</li>
+<li>重新运行项目，没有问题</li>
 </ol>
+<h3 id="删"><a href="#删" class="headerlink" title="删"></a>删</h3><h4 id="方法-2"><a href="#方法-2" class="headerlink" title="方法"></a>方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">/*//通过主键删除一个对象，删除满足条件的第一个对象</span><br><span class="line">    User user1 = userDao.queryBuilder().where(UserDao.Properties.Name.eq(name)).build().unique();</span><br><span class="line">    //一定要记得做非空判断</span><br><span class="line">    if (user1 != null) &#123;</span><br><span class="line">      userDao.deleteByKey(user1.getId());</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      ToastUtils.Companion.showTipMsg(&quot;为查询到相关数据&quot;);</span><br><span class="line">    &#125;*/</span><br><span class="line"></span><br><span class="line">    //通过主键删除一个满足条件的List</span><br><span class="line">    List&lt;User&gt; list = userDao.queryBuilder().where(UserDao.Properties.Name.eq(name)).build().list();</span><br><span class="line">    if (list.size() &gt; 0) &#123;</span><br><span class="line">      List&lt;Long&gt; keys = new ArrayList&lt;&gt;();</span><br><span class="line">      for (User user : list) &#123;</span><br><span class="line">        keys.add(user.getId());</span><br><span class="line">      &#125;</span><br><span class="line">      userDao.deleteByKeyInTx(keys);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      ToastUtils.Companion.showTipMsg(&quot;为查询到相关数据&quot;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="调用-2"><a href="#调用-2" class="headerlink" title="调用"></a>调用</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//basePresenter.onDelete(&quot;小红&quot;)</span><br><span class="line">basePresenter.onDelete(&quot;小东&quot;)</span><br></pre></td></tr></table></figure>
+<h3 id="改"><a href="#改" class="headerlink" title="改"></a>改</h3><h4 id="方法-3"><a href="#方法-3" class="headerlink" title="方法"></a>方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">List&lt;User&gt; list = userDao.queryBuilder().where(UserDao.Properties.Name.eq(oldName)).build().list();</span><br><span class="line">    if (list.size() &gt; 0) &#123;</span><br><span class="line">      for (User user : list) &#123;</span><br><span class="line">        user.setName(newName);</span><br><span class="line">      &#125;</span><br><span class="line">//      userDao.update(user1);</span><br><span class="line">      userDao.updateInTx(list);</span><br><span class="line">      ToastUtils.Companion.showTipMsg(&quot;修改成功&quot;);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      ToastUtils.Companion.showTipMsg(&quot;未查询到相关数据&quot;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="调用-3"><a href="#调用-3" class="headerlink" title="调用"></a>调用</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">basePresenter.onUpdate(&quot;小刚&quot;, &quot;小贝&quot;)</span><br></pre></td></tr></table></figure>
+<p>完了，数据库的简单的增删改查</p>
+<p><a href="http://download.csdn.net/download/qq_27634797/10257729" target="_blank" rel="noopener">项目链接</a></p>
 
       
     </div>
@@ -517,12 +515,12 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2018/02/22/MVC、MVP、MVVM比较/">MVC、MVP、MVVM比较</a></p>
+  <p><span>本文标题:</span><a href="/2018/02/24/从零开始搭建一个主流项目框架（五）—GreenDao的增删改查/">从零开始搭建一个主流项目框架（五）—GreenDao的增删改查</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 海晨忆 的个人博客">海晨忆</a></p>
-  <p><span>发布时间:</span>2018年02月22日 - 21:02</p>
-  <p><span>最后更新:</span>2018年02月22日 - 21:02</p>
-  <p><span>原始链接:</span><a href="/2018/02/22/MVC、MVP、MVVM比较/" title="MVC、MVP、MVVM比较">http://haichenyi.com/2018/02/22/MVC、MVP、MVVM比较/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://haichenyi.com/2018/02/22/MVC、MVP、MVVM比较/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2018年02月24日 - 21:02</p>
+  <p><span>最后更新:</span>2018年02月24日 - 21:02</p>
+  <p><span>原始链接:</span><a href="/2018/02/24/从零开始搭建一个主流项目框架（五）—GreenDao的增删改查/" title="从零开始搭建一个主流项目框架（五）—GreenDao的增删改查">http://haichenyi.com/2018/02/24/从零开始搭建一个主流项目框架（五）—GreenDao的增删改查/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://haichenyi.com/2018/02/24/从零开始搭建一个主流项目框架（五）—GreenDao的增删改查/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -590,8 +588,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/22/Android事件分发机制原理/" rel="next" title="Android事件分发机制原理">
-                <i class="fa fa-chevron-left"></i> Android事件分发机制原理
+              <a href="/2018/02/24/从零开始搭建一个主流项目框架（四）—Kotlin-GreenDao3-2/" rel="next" title="从零开始搭建一个主流项目框架（四）—Kotlin+GreenDao3.2">
+                <i class="fa fa-chevron-left"></i> 从零开始搭建一个主流项目框架（四）—Kotlin+GreenDao3.2
               </a>
             
           </div>
@@ -599,10 +597,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/23/从零开始搭建一个主流项目框架（一）—简单的框架/" rel="prev" title="从零开始搭建一个主流项目框架（一）—简单的框架">
-                从零开始搭建一个主流项目框架（一）—简单的框架 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -788,7 +782,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#MVC"><span class="nav-number">1.</span> <span class="nav-text">MVC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MVP"><span class="nav-number">2.</span> <span class="nav-text">MVP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MVVM"><span class="nav-number">3.</span> <span class="nav-text">MVVM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#缺点"><span class="nav-number">4.1.</span> <span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优点"><span class="nav-number">4.2.</span> <span class="nav-text">优点</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#增"><span class="nav-number">1.</span> <span class="nav-text">增</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方法"><span class="nav-number">1.1.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调用"><span class="nav-number">1.2.</span> <span class="nav-text">调用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查"><span class="nav-number">2.</span> <span class="nav-text">查</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方法-1"><span class="nav-number">2.1.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调用-1"><span class="nav-number">2.2.</span> <span class="nav-text">调用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删"><span class="nav-number">3.</span> <span class="nav-text">删</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方法-2"><span class="nav-number">3.1.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调用-2"><span class="nav-number">3.2.</span> <span class="nav-text">调用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改"><span class="nav-number">4.</span> <span class="nav-text">改</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方法-3"><span class="nav-number">4.1.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调用-3"><span class="nav-number">4.2.</span> <span class="nav-text">调用</span></a></li></ol></li></ol></div>
             
 
           </div>
