@@ -110,17 +110,17 @@
 
 
 
-<meta name="description" content="自从用了netty框架，妈妈再也不用担心我的socket通讯了">
+<meta name="description" content="&amp;emsp;&amp;emsp;做过二维码扫描的童鞋都知道，要用Zxing，可是google官方推的Zxing，我们集成扫描的时候很慢，有时候就直接扫不出来，体验太差了。因为他适配了太多东西，我们只要一个扫描功能，然后就去网上搜索，怎么使zxing扫描变的很快，zxing的优化，然后跟着网上的博客，一步一步走，即使最终做完了，感觉体验还是不够好。我这里推荐一个二维码扫描的开源框架——BGAQRCode-A">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Netty的简单使用，实现socket通讯">
-<meta property="og:url" content="http://haichenyi.com/2018/02/08/Netty的简单使用，实现socket通讯/index.html">
+<meta property="og:title" content="Android二维码扫描——BGAQRCode-Android">
+<meta property="og:url" content="http://haichenyi.com/2018/03/05/AnAndroid二维码扫描——BGAQRCode-Android/index.html">
 <meta property="og:site_name" content="海晨忆的博客">
-<meta property="og:description" content="自从用了netty框架，妈妈再也不用担心我的socket通讯了">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;做过二维码扫描的童鞋都知道，要用Zxing，可是google官方推的Zxing，我们集成扫描的时候很慢，有时候就直接扫不出来，体验太差了。因为他适配了太多东西，我们只要一个扫描功能，然后就去网上搜索，怎么使zxing扫描变的很快，zxing的优化，然后跟着网上的博客，一步一步走，即使最终做完了，感觉体验还是不够好。我这里推荐一个二维码扫描的开源框架——BGAQRCode-A">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-22T12:59:18.347Z">
+<meta property="og:updated_time" content="2018-03-05T12:20:00.912Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Netty的简单使用，实现socket通讯">
-<meta name="twitter:description" content="自从用了netty框架，妈妈再也不用担心我的socket通讯了">
+<meta name="twitter:title" content="Android二维码扫描——BGAQRCode-Android">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;做过二维码扫描的童鞋都知道，要用Zxing，可是google官方推的Zxing，我们集成扫描的时候很慢，有时候就直接扫不出来，体验太差了。因为他适配了太多东西，我们只要一个扫描功能，然后就去网上搜索，怎么使zxing扫描变的很快，zxing的优化，然后跟着网上的博客，一步一步走，即使最终做完了，感觉体验还是不够好。我这里推荐一个二维码扫描的开源框架——BGAQRCode-A">
 
 
 
@@ -149,13 +149,13 @@
 
 
 
-  <link rel="canonical" href="http://haichenyi.com/2018/02/08/Netty的简单使用，实现socket通讯/"/>
+  <link rel="canonical" href="http://haichenyi.com/2018/03/05/AnAndroid二维码扫描——BGAQRCode-Android/"/>
 
 
 
 
 
-  <title>Netty的简单使用，实现socket通讯 | 海晨忆的博客</title>
+  <title>Android二维码扫描——BGAQRCode-Android | 海晨忆的博客</title>
   
 
 
@@ -334,7 +334,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haichenyi.com/2018/02/08/Netty的简单使用，实现socket通讯/">
+    <link itemprop="mainEntityOfPage" href="http://haichenyi.com/2018/03/05/AnAndroid二维码扫描——BGAQRCode-Android/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海晨忆">
@@ -351,7 +351,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Netty的简单使用，实现socket通讯</h1>
+          <h1 class="post-title" itemprop="name headline">Android二维码扫描——BGAQRCode-Android</h1>
         
 
         <div class="post-meta">
@@ -363,8 +363,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-08T21:46:05+08:00">
-                2018-02-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-05T20:14:02+08:00">
+                2018-03-05
               </time>
             
 
@@ -386,8 +386,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android-Socket/" itemprop="url" rel="index">
-                    <span itemprop="name">Android -Socket</span>
+                  <a href="/categories/Android-常用功能/" itemprop="url" rel="index">
+                    <span itemprop="name">Android -常用功能</span>
                   </a>
                 </span>
 
@@ -415,7 +415,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  2,098
+                  1,140
                 </span>
               
 
@@ -431,7 +431,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  10
+                  5
                 </span>
               
             </div>
@@ -452,112 +452,182 @@
       
 
       
-        <p>自从用了netty框架，妈妈再也不用担心我的socket通讯了<br><a id="more"></a><br>&emsp;&emsp;题外话，很多人都把JDK1.4提供的NIO称之为异步非阻塞I/O；其实，并不然，从严格意义上面讲，它只能称为非阻塞I/O。在JDK1.7提供的NIO 2.0，新增了异步的套接字通道Channel，它才是真正的异步非阻塞I/O。下表是不同I/O模型的对比：</p>
-<p>表1-1 几种I/O模型和同能对比</p>
+        <p>&emsp;&emsp;做过二维码扫描的童鞋都知道，要用Zxing，可是google官方推的Zxing，我们集成扫描的时候很慢，有时候就直接扫不出来，体验太差了。因为他适配了太多东西，我们只要一个扫描功能，然后就去网上搜索，怎么使zxing扫描变的很快，zxing的优化，然后跟着网上的博客，一步一步走，即使最终做完了，感觉体验还是不够好。我这里推荐一个二维码扫描的开源框架——<a href="https://github.com/bingoogolapple/BGAQRCode-Android" target="_blank" rel="noopener">BGAQRCode-Android</a></p>
+<a id="more"></a>
+<p>&emsp;&emsp;QRCode 扫描二维码、扫描条形码、相册获取图片后识别、生成带 Logo 二维码、支持微博微信、QQ 二维码扫描样式。他把Zbar和Zxing，都做了优化，扫描速度非常快，用户体验很好，用起来也非常方便</p>
+<h3 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">implementation &apos;cn.bingoogolapple:bga-qrcode-zbar:1.2.1&apos;</span><br><span class="line">或者</span><br><span class="line">implementation &apos;cn.bingoogolapple:bga-qrcode-zxing:1.2.1&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><p>以Zbar为例（Zxing类似）</p>
+<h4 id="第一步：XML文件"><a href="#第一步：XML文件" class="headerlink" title="第一步：XML文件"></a>第一步：XML文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;cn.bingoogolapple.qrcode.zbar.ZBarView</span><br><span class="line">        android:id=&quot;@+id/zbarview&quot;</span><br><span class="line">        style=&quot;@style/MatchMatch&quot;</span><br><span class="line">        app:qrcv_animTime=&quot;1000&quot;</span><br><span class="line">        app:qrcv_borderColor=&quot;@android:color/white&quot;</span><br><span class="line">        app:qrcv_borderSize=&quot;1dp&quot;</span><br><span class="line">        app:qrcv_cornerColor=&quot;@color/colorPrimaryDark&quot;</span><br><span class="line">        app:qrcv_cornerLength=&quot;20dp&quot;</span><br><span class="line">        app:qrcv_cornerSize=&quot;3dp&quot;</span><br><span class="line">        app:qrcv_isShowDefaultScanLineDrawable=&quot;true&quot;</span><br><span class="line">        app:qrcv_maskColor=&quot;#33FFFFFF&quot;</span><br><span class="line">        app:qrcv_rectWidth=&quot;200dp&quot;</span><br><span class="line">        app:qrcv_scanLineColor=&quot;@color/colorPrimaryDark&quot;</span><br><span class="line">        app:qrcv_topOffset=&quot;90dp&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p><strong><em>自定义属性说明</em></strong></p>
 <table>
 <thead>
 <tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">同步阻塞I/O(BIO)</th>
-<th style="text-align:center">伪异步I/O</th>
-<th style="text-align:center">非阻塞I/O(NIO)</th>
-<th style="text-align:center">异步I/O(AIO)</th>
+<th style="text-align:center">属性名</th>
+<th style="text-align:center">说明</th>
+<th style="text-align:center">默认值</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">客户端个数：I/O线程</td>
-<td style="text-align:center">1:1</td>
-<td style="text-align:center">M:N(M可以大于N)</td>
-<td style="text-align:center">M:1(1个I/O线程处理多个客户端连接)</td>
-<td style="text-align:center">M:0(不需要启动额外的I/O线程，被动回调)</td>
+<td style="text-align:center">qrcv_topOffset</td>
+<td style="text-align:center">扫描框距离 toolbar 底部的距离</td>
+<td style="text-align:center">90dp</td>
 </tr>
 <tr>
-<td style="text-align:center">I/O类型(阻塞)</td>
-<td style="text-align:center">阻塞I/O</td>
-<td style="text-align:center">阻塞I/O</td>
-<td style="text-align:center">非阻塞I/O</td>
-<td style="text-align:center">非阻塞I/O</td>
+<td style="text-align:center">qrcv_cornerSize</td>
+<td style="text-align:center">扫描框边角线的宽度</td>
+<td style="text-align:center">3dp</td>
 </tr>
 <tr>
-<td style="text-align:center">I/O类型(同步)</td>
-<td style="text-align:center">同步I/O</td>
-<td style="text-align:center">同步I/O</td>
-<td style="text-align:center">同步I/O(I/O多路复用)</td>
-<td style="text-align:center">异步I/O</td>
+<td style="text-align:center">qrcv_cornerLength</td>
+<td style="text-align:center">扫描框边角线的长度</td>
+<td style="text-align:center">20dp</td>
 </tr>
 <tr>
-<td style="text-align:center">API使用难度</td>
-<td style="text-align:center">简单</td>
-<td style="text-align:center">简单</td>
-<td style="text-align:center">非常复杂</td>
-<td style="text-align:center">复杂</td>
+<td style="text-align:center">qrcv_cornerColor</td>
+<td style="text-align:center">扫描框边角线的颜色</td>
+<td style="text-align:center">@android:color/white</td>
 </tr>
 <tr>
-<td style="text-align:center">调试难度</td>
-<td style="text-align:center">简单</td>
-<td style="text-align:center">简单</td>
-<td style="text-align:center">复杂</td>
-<td style="text-align:center">复杂</td>
+<td style="text-align:center">qrcv_rectWidth</td>
+<td style="text-align:center">扫描框的宽度</td>
+<td style="text-align:center">200dp</td>
 </tr>
 <tr>
-<td style="text-align:center">可靠性</td>
-<td style="text-align:center">非常差</td>
-<td style="text-align:center">差</td>
-<td style="text-align:center">高</td>
-<td style="text-align:center">高</td>
+<td style="text-align:center">qrcv_barcodeRectHeight</td>
+<td style="text-align:center">条码扫样式描框的高度</td>
+<td style="text-align:center">140dp</td>
 </tr>
 <tr>
-<td style="text-align:center">吞吐量</td>
-<td style="text-align:center">低</td>
-<td style="text-align:center">中</td>
-<td style="text-align:center">高</td>
-<td style="text-align:center">高</td>
+<td style="text-align:center">qrcv_maskColor</td>
+<td style="text-align:center">除去扫描框，其余部分阴影颜色</td>
+<td style="text-align:center">#33FFFFFF</td>
+</tr>
+<tr>
+<td style="text-align:center">qrcv_scanLineSize</td>
+<td style="text-align:center">扫描线的宽度</td>
+<td style="text-align:center">1dp</td>
+</tr>
+<tr>
+<td style="text-align:center">qrcv_scanLineColor</td>
+<td style="text-align:center">扫描线的颜色「扫描线和默认的扫描线图片的颜色」</td>
+<td style="text-align:center">@android:color/white</td>
+</tr>
+<tr>
+<td style="text-align:center">qrcv_scanLineMargin</td>
+<td style="text-align:center">扫描线距离上下或者左右边框的间距</td>
+<td style="text-align:center">0dp</td>
+</tr>
+<tr>
+<td style="text-align:center">qrcv_isShowDefaultScanLineDrawable</td>
+<td style="text-align:center">是否显示默认的图片扫描线「设置该属性后 qrcv_scanLineSize 将失效，可以通过 qrcv_scanLineColor 设置扫描线的颜色，避免让你公司的UI单独给你出特定颜色的扫描线图片」</td>
+<td style="text-align:center">false</td>
+</tr>
+<tr>
+<td style="text-align:center">qrcv_customScanLineDrawable</td>
+<td style="text-align:center">扫描线的图片资源「默认的扫描线图片样式不能满足你的需求时使用，设置该属性后 qrcv_isShowDefaultScanLineDrawable、qrcv_scanLineSize、qrcv_scanLineColor 将失效」</td>
+<td style="text-align:center">null</td>
+</tr>
+<tr>
+<td style="text-align:center">qrcv_borderSize</td>
+<td style="text-align:center">扫描边框的宽度</td>
+<td style="text-align:center">1dp</td>
+</tr>
+<tr>
+<td style="text-align:center">qrcv_borderColor</td>
+<td style="text-align:center">扫描边框的颜色</td>
+<td style="text-align:center">@android:color/white</td>
+</tr>
+<tr>
+<td style="text-align:center">qrcv_animTime</td>
+<td style="text-align:center">扫描线从顶部移动到底部的动画时间「单位为毫秒」</td>
+<td style="text-align:center">1000</td>
+</tr>
+<tr>
+<td style="text-align:center">qrcv_isCenterVertical</td>
+<td style="text-align:center">扫描框是否垂直居中，该属性为true时会忽略 qrcv_topOffset 属性</td>
+<td style="text-align:center">false</td>
+</tr>
+<tr>
+<td style="text-align:center">qrcv_toolbarHeight</td>
+<td style="text-align:center">Toolbar 的高度，通过该属性来修正由 Toolbar 导致扫描框在垂直方向上的偏差</td>
+<td style="text-align:center">0dp</td>
+</tr>
+<tr>
+<td style="text-align:center">qrcv_isBarcode</td>
+<td style="text-align:center">是否是扫条形码</td>
+<td style="text-align:center">false</td>
+</tr>
+<tr>
+<td style="text-align:center">qrcv_tipText</td>
+<td style="text-align:center">提示文案</td>
+<td style="text-align:center">null</td>
+</tr>
+<tr>
+<td style="text-align:center">qrcv_tipTextSize</td>
+<td style="text-align:center">提示文案字体大小</td>
+<td style="text-align:center">14sp</td>
+</tr>
+<tr>
+<td style="text-align:center">qrcv_tipTextColor</td>
+<td style="text-align:center">提示文案颜色</td>
+<td style="text-align:center">@android:color/white</td>
+</tr>
+<tr>
+<td style="text-align:center">qrcv_isTipTextBelowRect</td>
+<td style="text-align:center">提示文案是否在扫描框的底部</td>
+<td style="text-align:center">false</td>
+</tr>
+<tr>
+<td style="text-align:center">qrcv_tipTextMargin</td>
+<td style="text-align:center">提示文案与扫描框之间的间距</td>
+<td style="text-align:center">20dp</td>
+</tr>
+<tr>
+<td style="text-align:center">qrcv_isShowTipTextAsSingleLine</td>
+<td style="text-align:center">是否把提示文案作为单行显示</td>
+<td style="text-align:center">false</td>
+</tr>
+<tr>
+<td style="text-align:center">qrcv_isShowTipBackground</td>
+<td style="text-align:center">是否显示提示文案的背景</td>
+<td style="text-align:center">false</td>
+</tr>
+<tr>
+<td style="text-align:center">qrcv_tipBackgroundColor</td>
+<td style="text-align:center">提示文案的背景色</td>
+<td style="text-align:center">#22000000</td>
+</tr>
+<tr>
+<td style="text-align:center">qrcv_isScanLineReverse</td>
+<td style="text-align:center">扫描线是否来回移动</td>
+<td style="text-align:center">true</td>
+</tr>
+<tr>
+<td style="text-align:center">qrcv_isShowDefaultGridScanLineDrawable</td>
+<td style="text-align:center">是否显示默认的网格图片扫描线</td>
+<td style="text-align:center">false</td>
+</tr>
+<tr>
+<td style="text-align:center">qrcv_customGridScanLineDrawable</td>
+<td style="text-align:center">扫描线的网格图片资源</td>
+<td style="text-align:center">null</td>
+</tr>
+<tr>
+<td style="text-align:center">qrcv_isOnlyDecodeScanBoxArea</td>
+<td style="text-align:center">是否只识别扫描框区域的二维码</td>
+<td style="text-align:center">false</td>
 </tr>
 </tbody>
 </table>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>&emsp;&emsp;Netty是由<a href="https://baike.baidu.com/item/JBOSS" target="_blank" rel="noopener">JBOSS</a>提供的一个<a href="https://baike.baidu.com/item/java%E5%BC%80%E6%BA%90" target="_blank" rel="noopener">java开源</a>框架。Netty提供异步的、<a href="https://baike.baidu.com/item/%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8" target="_blank" rel="noopener">事件驱动</a>的网络应用程序框架和工具，用以快速开发高性能、高可靠性的<a href="https://baike.baidu.com/item/%E7%BD%91%E7%BB%9C%E6%9C%8D%E5%8A%A1%E5%99%A8" target="_blank" rel="noopener">网络服务器</a>和客户端程序。</p>
-<p>&emsp;&emsp;也就是说，Netty 是一个基于NIO的客户、服务器端编程框架，使用Netty 可以确保你快速和简单的开发出一个网络应用，例如实现了某种协议的客户，<a href="https://baike.baidu.com/item/%E6%9C%8D%E5%8A%A1%E7%AB%AF" target="_blank" rel="noopener">服务端</a>应用。Netty相当简化和流线化了网络应用的编程开发过程，例如，TCP和UDP的socket服务开发。</p>
-<p>&emsp;&emsp;“快速”和“简单”并不用产生维护性或性能上的问题。Netty 是一个吸收了多种协议的实现经验，这些协议包括FTP,SMTP,HTTP，各种二进制，文本协议，并经过相当精心设计的项目，最终，Netty 成功的找到了一种方式，在保证易于开发的同时还保证了其应用的性能，稳定性和伸缩性。——百度百科</p>
-<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ol>
-<li><p>API使用简单，开发门槛低</p>
-</li>
-<li><p>功能强大，预置了多种编解码功能，支持多种主流协议</p>
-</li>
-<li><p>性能高，通过与业界其他主流NIO框架相比，netty的综合性能最高</p>
-</li>
-<li><p>成熟，稳定，Netty已经修复了已经发现的所有的JDK NIO BUG，业务开发人员不用再为NIO的bug而烦恼</p>
-</li>
-<li><p>社区活跃，版本迭代周期短，发现bug可以及时被修复，同时有更多的新功能加入</p>
-</li>
-<li><p>经历了大规模的商界业务考验，只能得到了验证</p>
-</li>
-</ol>
-<h2 id="粘包、拆包"><a href="#粘包、拆包" class="headerlink" title="粘包、拆包"></a>粘包、拆包</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>&emsp;&emsp;TCP是一个流协议，所谓的流，就是没有界限的一串数据。可以考虑河里的流水，他们并没有界限。tcp底层并不了解业务层数据的具体含义，他会根据tcp缓冲区的实际情况进行包的划分，所以在业务上认为，一个完整的包可能会被tcp拆分成多个包进行发送，也可能把多个小包封装成一个大数据一起发送，这就是所谓的tcp粘包，拆包问题</p>
-<h3 id="产生原因"><a href="#产生原因" class="headerlink" title="产生原因"></a>产生原因</h3><ol>
-<li><p>应用程序write写入的字节大小大于套接口发送缓冲区的大小</p>
-</li>
-<li><p>进行MSS大小的tcp分段</p>
-</li>
-<li><p>以太网帧的payload大于MTU进行IP分片</p>
-</li>
-</ol>
-<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><ol>
-<li><p>消息定长，每个报文大小固定长度，不够的补0</p>
-</li>
-<li><p>包尾增加回车换行符进行分割。例如：FTP协议</p>
-</li>
-<li><p>将消息分为消息头和消息体。消息头中包含消息的总长度字段</p>
-</li>
-<li><p>更复杂的应用层协议</p>
-</li>
-</ol>
-<h3 id="Netty框架的解决办法"><a href="#Netty框架的解决办法" class="headerlink" title="Netty框架的解决办法"></a>Netty框架的解决办法</h3><p>&emsp;&emsp;LineBasedFrameDecoder和StringDecoder两个类</p>
-<h4 id="LineBasedFrameDecoder"><a href="#LineBasedFrameDecoder" class="headerlink" title="LineBasedFrameDecoder"></a>LineBasedFrameDecoder</h4><p>&emsp;&emsp;LineBasedFrameDecoder的工作原理是依次遍历ByteBuf中的可读字节，判断看是否有”\r”或者”\r\n”，如果有就以此为结束位置，从可读索引位置到结束区间的字节就组成了一行。他是以换行符为结束标志的解码器，支持携带结束符和不带结束符两种解码方式。同时支持配置单行的最大长度。如果连续读取到最大长度后仍然没有发现换行符，就会抛出异常，同时忽略掉之前读取的异常流</p>
-<h4 id="StringDecoder"><a href="#StringDecoder" class="headerlink" title="StringDecoder"></a>StringDecoder</h4><p>&emsp;&emsp;StringDecoder的功能就非常简单，就是将接收到的对象换成字符串，然后继续调用后面的handler，LineBasedFrameDecoder+StringDecoder组合就是按换行符切换文本解码器，他被设计用来支持TCP粘包和拆包。Netty支持其他其他符号的解码器(DelimiterBasedFrameDecode)</p>
-<p>&emsp;&emsp;说了这么多，代码来了，就是用Netty实现的心跳。对于懒癌晚期，已经风装好，可以直接拿过去用，注释也写的很清楚</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><span class="line">import android.util.Log;</span><br><span class="line"></span><br><span class="line">import io.netty.bootstrap.Bootstrap;</span><br><span class="line">import io.netty.channel.Channel;</span><br><span class="line">import io.netty.channel.ChannelFuture;</span><br><span class="line">import io.netty.channel.ChannelInitializer;</span><br><span class="line">import io.netty.channel.ChannelOption;</span><br><span class="line">import io.netty.channel.ChannelPipeline;</span><br><span class="line">import io.netty.channel.EventLoopGroup;</span><br><span class="line">import io.netty.channel.nio.NioEventLoopGroup;</span><br><span class="line">import io.netty.channel.socket.SocketChannel;</span><br><span class="line">import io.netty.channel.socket.nio.NioSocketChannel;</span><br><span class="line">import io.netty.handler.codec.LineBasedFrameDecoder;</span><br><span class="line">import io.netty.handler.codec.string.StringDecoder;</span><br><span class="line">import io.netty.handler.codec.string.StringEncoder;</span><br><span class="line">import io.netty.util.CharsetUtil;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author 海晨忆</span><br><span class="line"> * @date 2018/2/6</span><br><span class="line"> * @desc</span><br><span class="line"> */</span><br><span class="line">public class SocketTcp &#123;</span><br><span class="line">  private static SocketTcp socketTcp = new SocketTcp();</span><br><span class="line">  private Channel channel = null;</span><br><span class="line">  private EventLoopGroup group;</span><br><span class="line">  private int port;</span><br><span class="line">  private String host;</span><br><span class="line"></span><br><span class="line">  public static SocketTcp getInstance() &#123;</span><br><span class="line">    return socketTcp;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public SocketTcp setPort(int port) &#123;</span><br><span class="line">    this.port = port;</span><br><span class="line">    return this;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public SocketTcp setHost(String host) &#123;</span><br><span class="line">    this.host = host;</span><br><span class="line">    return this;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public void connect() &#123;</span><br><span class="line">    if (channel != null) return;</span><br><span class="line">    if (group == null) &#123;</span><br><span class="line">      //NIO线程组</span><br><span class="line">      group = new NioEventLoopGroup();</span><br><span class="line">    &#125;</span><br><span class="line">    try &#123;//配置Bootstrap</span><br><span class="line">      Bootstrap bootstrap = new Bootstrap();</span><br><span class="line">      bootstrap.group(group)</span><br><span class="line">          .channel(NioSocketChannel.class)</span><br><span class="line">          .option(ChannelOption.TCP_NODELAY, true)</span><br><span class="line">          .handler(new ChannelInitializer&lt;SocketChannel&gt;() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            protected void initChannel(SocketChannel ch) throws Exception &#123;</span><br><span class="line">              //以换行符为结束标记</span><br><span class="line">              ChannelPipeline pipeline = ch.pipeline();</span><br><span class="line">              pipeline.addLast(&quot;encoder&quot;, new StringEncoder(CharsetUtil.UTF_8));</span><br><span class="line">              pipeline.addLast(new LineBasedFrameDecoder(Integer.MAX_VALUE));</span><br><span class="line">              pipeline.addLast(new StringDecoder());</span><br><span class="line">              pipeline.addLast(new MyHeartSocket());</span><br><span class="line"></span><br><span class="line">              //以&quot;$_&quot;作为分隔符</span><br><span class="line">              /*ChannelPipeline pipeline = ch.pipeline();</span><br><span class="line">              pipeline.addLast(&quot;encoder&quot;, new StringEncoder(CharsetUtil.UTF_8));</span><br><span class="line">              String s = &quot;$_&quot;;</span><br><span class="line">              ByteBuf byteBuf = Unpooled.copiedBuffer(s.getBytes());</span><br><span class="line">              pipeline.addLast(new DelimiterBasedFrameDecoder(Integer.MAX_VALUE,byteBuf));</span><br><span class="line">              pipeline.addLast(new StringDecoder());</span><br><span class="line">              pipeline.addLast(new MyHeartSocket());*/</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;);</span><br><span class="line">      //发起异步连接操作</span><br><span class="line">      ChannelFuture channelFuture = bootstrap.connect(host, port).sync();</span><br><span class="line">      channel = channelFuture.channel();</span><br><span class="line">      //等待服务端监听端口关闭</span><br><span class="line">      channel.closeFuture().sync();</span><br><span class="line">    &#125; catch (Exception e) &#123;</span><br><span class="line">      e.printStackTrace();</span><br><span class="line">    &#125; finally &#123;</span><br><span class="line">      disConnect();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * 断开tcp连接.</span><br><span class="line">   */</span><br><span class="line">  private void disConnect() &#123;</span><br><span class="line">    if (null != group) &#123;</span><br><span class="line">      group.shutdownGracefully();</span><br><span class="line">    &#125;</span><br><span class="line">    group = null;</span><br><span class="line">    channel = null;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public void sendMessage(String msg) &#123;//连接成功后，通过Channel提供的接口进行IO操作</span><br><span class="line">    try &#123;</span><br><span class="line">      if (channel != null &amp;&amp; channel.isOpen()) &#123;</span><br><span class="line">        channel.writeAndFlush(msg).sync();</span><br><span class="line">        Log.d(&quot;wz&quot;, &quot;send succeed &quot; + msg);</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        reConnect();</span><br><span class="line">        throw new Exception(&quot;channel is null | closed&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; catch (Exception e) &#123;</span><br><span class="line">      reConnect();</span><br><span class="line">      e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * 重连.</span><br><span class="line">   */</span><br><span class="line">  private void reConnect() &#123;</span><br><span class="line">    new Thread(this::connect);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line">package com.example.zwang.myapplication.socket;</span><br><span class="line"></span><br><span class="line">import android.os.SystemClock;</span><br><span class="line">import android.util.Log;</span><br><span class="line"></span><br><span class="line">import java.util.concurrent.TimeUnit;</span><br><span class="line"></span><br><span class="line">import io.netty.buffer.ByteBuf;</span><br><span class="line">import io.netty.buffer.Unpooled;</span><br><span class="line">import io.netty.channel.ChannelHandlerContext;</span><br><span class="line">import io.netty.channel.EventLoop;</span><br><span class="line">import io.netty.channel.SimpleChannelInboundHandler;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public class MyHeartSocket extends SimpleChannelInboundHandler&lt;Object&gt; &#123;</span><br><span class="line">  private ChannelHandlerContext ctx;</span><br><span class="line">  private boolean isConnect = false;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  protected void messageReceived(ChannelHandlerContext ctx, Object msg) throws Exception &#123;</span><br><span class="line">    Log.v(&quot;WZ&quot;, &quot;连接正常messageReceived&quot;);</span><br><span class="line">    ByteBuf msg1 = (ByteBuf) msg;</span><br><span class="line">    byte[] bytes = new byte[msg1.readableBytes()];</span><br><span class="line">    msg1.readBytes(bytes);</span><br><span class="line">    String s = new String(bytes, &quot;UTF-8&quot;);</span><br><span class="line">    Log.v(&quot;WZ&quot;, &quot;接收到的消息:&quot; + s);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public void channelActive(ChannelHandlerContext ctx) throws Exception &#123;</span><br><span class="line">    super.channelActive(ctx);</span><br><span class="line">    Log.v(&quot;WZ&quot;, &quot;连接正常channelActive&quot;);</span><br><span class="line">    isConnect = true;</span><br><span class="line">    if (this.ctx == null) &#123;</span><br><span class="line">      synchronized (MyHeartSocket.class) &#123;</span><br><span class="line">        if (this.ctx == null) &#123;</span><br><span class="line">          this.ctx = ctx;</span><br><span class="line">          MyAppHeart();</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  private void MyAppHeart() &#123;</span><br><span class="line">    new Thread(() -&gt; &#123;</span><br><span class="line">      while (ctx != null &amp;&amp; isConnect) &#123;</span><br><span class="line">        String data = &quot;123&quot;;</span><br><span class="line">        byte[] bytes = data.getBytes();</span><br><span class="line">        if (isConnect) &#123;</span><br><span class="line">          ctx.writeAndFlush(Unpooled.buffer(bytes.length).writeBytes(bytes));</span><br><span class="line">          SystemClock.sleep(3000);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;).start();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public void channelInactive(ChannelHandlerContext ctx) throws Exception &#123;</span><br><span class="line">    EventLoop loop = ctx.channel().eventLoop();</span><br><span class="line">    loop.schedule(() -&gt; SocketTcp.getInstance().connect(), 5, TimeUnit.SECONDS);</span><br><span class="line">    super.channelInactive(ctx);</span><br><span class="line">    Log.v(&quot;WZ&quot;, &quot;重新连接socket服务器&quot;);</span><br><span class="line">    isConnect = false;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception &#123;</span><br><span class="line">    super.userEventTriggered(ctx, evt);</span><br><span class="line">    Log.v(&quot;WZ&quot;, &quot;发送数据包&quot;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception &#123;</span><br><span class="line">    super.exceptionCaught(ctx, cause);</span><br><span class="line">    Log.v(&quot;WZ&quot;, &quot;连接出现异常&quot;);</span><br><span class="line">    this.ctx.close();</span><br><span class="line">    this.ctx = null;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="第二步：获取控件，并实现QRCodeView-Delegate接口"><a href="#第二步：获取控件，并实现QRCodeView-Delegate接口" class="headerlink" title="第二步：获取控件，并实现QRCodeView.Delegate接口"></a>第二步：获取控件，并实现QRCodeView.Delegate接口</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">QRCodeView mQRCodeView = (ZBarView) findViewById(R.id.zbarview);</span><br><span class="line">mQRCodeView.setDelegate(this);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">  public void onScanQRCodeSuccess(String result) &#123;</span><br><span class="line">    vibrate();</span><br><span class="line">    Toast.makeText(this,result,Toast.LENGTH_SHORT).show();</span><br><span class="line">    mQRCodeView.startSpot();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public void onScanQRCodeOpenCameraError() &#123;</span><br><span class="line">    Toast.makeText(this,&quot;错误&quot;,Toast.LENGTH_SHORT).show();</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="第四步：实现onStart，onStop，onDestroy方法"><a href="#第四步：实现onStart，onStop，onDestroy方法" class="headerlink" title="第四步：实现onStart，onStop，onDestroy方法"></a>第四步：实现onStart，onStop，onDestroy方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">  protected void onStart() &#123;</span><br><span class="line">    super.onStart();</span><br><span class="line">    mQRCodeView.startCamera();//打开相机</span><br><span class="line">    mQRCodeView.showScanRect();//显示扫描框</span><br><span class="line">    mQRCodeView.startSpot();//开始识别二维码</span><br><span class="line">    //mQRCodeView.openFlashlight();//开灯</span><br><span class="line">    //mQRCodeView.closeFlashlight();//关灯</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  protected void onStop() &#123;</span><br><span class="line">    mQRCodeView.stopCamera();</span><br><span class="line">    super.onStop();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  protected void onDestroy() &#123;</span><br><span class="line">    mQRCodeView.onDestroy();</span><br><span class="line">    super.onDestroy();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  private void vibrate() &#123;</span><br><span class="line">    Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);</span><br><span class="line">    vibrator.vibrate(200);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="第五步：添加权限"><a href="#第五步：添加权限" class="headerlink" title="第五步：添加权限"></a>第五步：添加权限</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;uses-permission android:name=&quot;android.permission.CAMERA&quot;/&gt;</span><br><span class="line">&lt;uses-permission android:name=&quot;android.permission.VIBRATE&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<p>经过上面5步，扫描功能就已经出来了，Zbar扫描比Zxing快，Zbar是基于C实现的，Zxing是基于C++。有个问题就是Zbar无法生成二维码，如果你是集成的BGA的Zxing可以生成二维码。Zxing生成二维码的方式如下：</p>
+<p><strong><em>耗时操作，新开线程</em></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//中文</span><br><span class="line">Bitmap bitmap = QRCodeEncoder.syncEncodeQRCode(&quot;海晨忆&quot;, BGAQRCodeUtil.dp2px(this, 150));</span><br><span class="line"></span><br><span class="line">//带logo</span><br><span class="line">Bitmap logoBitmap = BitmapFactory.decodeResource(TestGeneratectivity.this.getResources(), R.mipmap.logo);</span><br><span class="line">QRCodeEncoder.syncEncodeQRCode(&quot;海晨忆&quot;, BGAQRCodeUtil.dp2px(TestGeneratectivity.this, 150), Color.parseColor(&quot;#ff0000&quot;), logoBitmap);</span><br></pre></td></tr></table></figure>
+<p><strong><em>解析图片二维码</em></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//mEnglishLogoIv：显示二维码的控件</span><br><span class="line">mEnglishLogoIv.setDrawingCacheEnabled(true);</span><br><span class="line">Bitmap bitmap = mEnglishLogoIv.getDrawingCache();</span><br><span class="line"></span><br><span class="line">//返回二维码图片里的内容 或 null</span><br><span class="line">String result = QRCodeDecoder.syncDecodeQRCode(bitmap);</span><br><span class="line">String result = QRCodeDecoder.syncDecodeQRCode(picturePath);</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -581,12 +651,12 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2018/02/08/Netty的简单使用，实现socket通讯/">Netty的简单使用，实现socket通讯</a></p>
+  <p><span>本文标题:</span><a href="/2018/03/05/AnAndroid二维码扫描——BGAQRCode-Android/">Android二维码扫描——BGAQRCode-Android</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 海晨忆 的个人博客">海晨忆</a></p>
-  <p><span>发布时间:</span>2018年02月08日 - 21:02</p>
-  <p><span>最后更新:</span>2018年02月22日 - 20:02</p>
-  <p><span>原始链接:</span><a href="/2018/02/08/Netty的简单使用，实现socket通讯/" title="Netty的简单使用，实现socket通讯">http://haichenyi.com/2018/02/08/Netty的简单使用，实现socket通讯/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://haichenyi.com/2018/02/08/Netty的简单使用，实现socket通讯/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2018年03月05日 - 20:03</p>
+  <p><span>最后更新:</span>2018年03月05日 - 20:03</p>
+  <p><span>原始链接:</span><a href="/2018/03/05/AnAndroid二维码扫描——BGAQRCode-Android/" title="Android二维码扫描——BGAQRCode-Android">http://haichenyi.com/2018/03/05/AnAndroid二维码扫描——BGAQRCode-Android/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://haichenyi.com/2018/03/05/AnAndroid二维码扫描——BGAQRCode-Android/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -654,8 +724,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/07/IO编程和NIO编程简介/" rel="next" title="IO编程和NIO编程简介">
-                <i class="fa fa-chevron-left"></i> IO编程和NIO编程简介
+              <a href="/2018/03/05/Android-WIFI功能——WifiManager/" rel="next" title="Android WIFI功能——WifiManager">
+                <i class="fa fa-chevron-left"></i> Android WIFI功能——WifiManager
               </a>
             
           </div>
@@ -663,10 +733,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/08/Android自定义View/" rel="prev" title="Android自定义View">
-                Android自定义View <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -852,7 +918,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优点"><span class="nav-number">2.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#粘包、拆包"><span class="nav-number">3.</span> <span class="nav-text">粘包、拆包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念"><span class="nav-number">3.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#产生原因"><span class="nav-number">3.2.</span> <span class="nav-text">产生原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决办法"><span class="nav-number">3.3.</span> <span class="nav-text">解决办法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Netty框架的解决办法"><span class="nav-number">3.4.</span> <span class="nav-text">Netty框架的解决办法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#LineBasedFrameDecoder"><span class="nav-number">3.4.1.</span> <span class="nav-text">LineBasedFrameDecoder</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#StringDecoder"><span class="nav-number">3.4.2.</span> <span class="nav-text">StringDecoder</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#依赖"><span class="nav-number">1.</span> <span class="nav-text">依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用法"><span class="nav-number">2.</span> <span class="nav-text">用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一步：XML文件"><span class="nav-number">2.1.</span> <span class="nav-text">第一步：XML文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二步：获取控件，并实现QRCodeView-Delegate接口"><span class="nav-number">2.2.</span> <span class="nav-text">第二步：获取控件，并实现QRCodeView.Delegate接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第四步：实现onStart，onStop，onDestroy方法"><span class="nav-number">2.3.</span> <span class="nav-text">第四步：实现onStart，onStop，onDestroy方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第五步：添加权限"><span class="nav-number">2.4.</span> <span class="nav-text">第五步：添加权限</span></a></li></ol></li></ol></div>
             
 
           </div>
