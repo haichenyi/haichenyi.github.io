@@ -110,19 +110,17 @@
 
 
 
-<meta name="description" content="&amp;emsp;&amp;emsp;接着上一篇简单的框架，没有看过的同鞋可以去喵一眼。上一篇我们搭好了简单的框架，初始化一次的内容丢在Application里面，所有的activity继承一个类BaseActivity，还有Fragment继承的一个类BaseFragment">
+<meta name="description" content="&amp;emsp;&amp;emsp;我这里只说我关心的问题，并不是说Android 7.0只增加了一个“私有目录被限制访问”，当然还有其他的变化。android 7.0的新特性中，对程序员开发造成最直接的变化就是FileUriExposedException异常，这个异常的产生就是由私有目录被限制访问造成的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="从零开始搭建一个主流项目框架（二）—MVP+dagger2">
-<meta property="og:url" content="http://haichenyi.com/2018/02/23/从零开始搭建一个主流项目框架（二）—MVP-dagger2/index.html">
+<meta property="og:title" content="从零开始搭建一个主流项目框架（八）—— 私有目录被限制访问(Android 7.0)">
+<meta property="og:url" content="http://haichenyi.com/2018/03/01/从零开始搭建一个主流项目框架（八）—私有目录被限制访问-Android7.0/index.html">
 <meta property="og:site_name" content="海晨忆的博客">
-<meta property="og:description" content="&amp;emsp;&amp;emsp;接着上一篇简单的框架，没有看过的同鞋可以去喵一眼。上一篇我们搭好了简单的框架，初始化一次的内容丢在Application里面，所有的activity继承一个类BaseActivity，还有Fragment继承的一个类BaseFragment">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;我这里只说我关心的问题，并不是说Android 7.0只增加了一个“私有目录被限制访问”，当然还有其他的变化。android 7.0的新特性中，对程序员开发造成最直接的变化就是FileUriExposedException异常，这个异常的产生就是由私有目录被限制访问造成的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7041675-97ad0d5ba60d4af3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-02-23T12:38:17.053Z">
+<meta property="og:updated_time" content="2018-03-07T12:21:15.505Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="从零开始搭建一个主流项目框架（二）—MVP+dagger2">
-<meta name="twitter:description" content="&amp;emsp;&amp;emsp;接着上一篇简单的框架，没有看过的同鞋可以去喵一眼。上一篇我们搭好了简单的框架，初始化一次的内容丢在Application里面，所有的activity继承一个类BaseActivity，还有Fragment继承的一个类BaseFragment">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/7041675-97ad0d5ba60d4af3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="从零开始搭建一个主流项目框架（八）—— 私有目录被限制访问(Android 7.0)">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;我这里只说我关心的问题，并不是说Android 7.0只增加了一个“私有目录被限制访问”，当然还有其他的变化。android 7.0的新特性中，对程序员开发造成最直接的变化就是FileUriExposedException异常，这个异常的产生就是由私有目录被限制访问造成的">
 
 
 
@@ -151,13 +149,13 @@
 
 
 
-  <link rel="canonical" href="http://haichenyi.com/2018/02/23/从零开始搭建一个主流项目框架（二）—MVP-dagger2/"/>
+  <link rel="canonical" href="http://haichenyi.com/2018/03/01/从零开始搭建一个主流项目框架（八）—私有目录被限制访问-Android7.0/"/>
 
 
 
 
 
-  <title>从零开始搭建一个主流项目框架（二）—MVP+dagger2 | 海晨忆的博客</title>
+  <title>从零开始搭建一个主流项目框架（八）—— 私有目录被限制访问(Android 7.0) | 海晨忆的博客</title>
   
 
 
@@ -336,7 +334,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haichenyi.com/2018/02/23/从零开始搭建一个主流项目框架（二）—MVP-dagger2/">
+    <link itemprop="mainEntityOfPage" href="http://haichenyi.com/2018/03/01/从零开始搭建一个主流项目框架（八）—私有目录被限制访问-Android7.0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海晨忆">
@@ -353,7 +351,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">从零开始搭建一个主流项目框架（二）—MVP+dagger2</h1>
+          <h1 class="post-title" itemprop="name headline">从零开始搭建一个主流项目框架（八）—— 私有目录被限制访问(Android 7.0)</h1>
         
 
         <div class="post-meta">
@@ -365,8 +363,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-23T20:36:38+08:00">
-                2018-02-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-01T23:22:01+08:00">
+                2018-03-01
               </time>
             
 
@@ -417,7 +415,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1,818
+                  1,352
                 </span>
               
 
@@ -433,7 +431,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  9
+                  6
                 </span>
               
             </div>
@@ -454,53 +452,60 @@
       
 
       
-        <p>&emsp;&emsp;接着上一篇简单的框架，没有看过的同鞋可以去喵一眼。上一篇我们搭好了简单的框架，初始化一次的内容丢在Application里面，所有的activity继承一个类BaseActivity，还有Fragment继承的一个类BaseFragment</p>
+        <p>&emsp;&emsp;我这里只说我关心的问题，并不是说Android 7.0只增加了一个“私有目录被限制访问”，当然还有其他的变化。android 7.0的新特性中，对程序员开发造成最直接的变化就是<strong>FileUriExposedException</strong>异常，这个异常的产生就是由<strong>私有目录被限制访问</strong>造成的</p>
 <a id="more"></a>
-<p>&emsp;&emsp;现在我们来加上MVP，不懂MVP的同鞋可以看一下，我前面写过的三种主流框架的对比。我们先导入dagger2的两个包，代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">implementation &apos;com.google.dagger:dagger:2.14.1&apos;</span><br><span class="line">annotationProcessor &quot;com.google.dagger:dagger-compiler:2.14.1&quot;</span><br></pre></td></tr></table></figure>
-<h3 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h3><p>&emsp;&emsp;新建BasePresenter接口，BaseMvpPresenter类去实现BasePresenter接口，代码如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">package com.shfzwkeji.smartwardrobe.base;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Author: 海晨忆.</span><br><span class="line"> * Date: 2017/12/21</span><br><span class="line"> * Desc: 不带mvp的presenter的基类</span><br><span class="line"> */</span><br><span class="line">public interface BasePresenter&lt;T extends BaseView&gt; &#123;</span><br><span class="line">  void attachView(T baseView);</span><br><span class="line"></span><br><span class="line">  void detachView();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">package com.haichenyi.myproject.base;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Author: 海晨忆</span><br><span class="line"> * Date: 2018/2/23</span><br><span class="line"> * Desc:带mvp的presenter的基类</span><br><span class="line"> */</span><br><span class="line">public class BaseMvpPresenter&lt;T extends BaseView&gt; implements BasePresenter&lt;T&gt; &#123;</span><br><span class="line">  protected T baseView;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public void attachView(T baseView) &#123;</span><br><span class="line">    this.baseView = baseView;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public void detachView() &#123;</span><br><span class="line">    this.baseView = null;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;这里就只有两个方法，一个是绑定view，还有一个是在ondestory方法里面解除绑定的方法，用来保证P层的生命周期和V层同步，避免了，当V层销毁的时候，P层仍然存在造成的内存泄漏。</p>
-<h3 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h3><p>&emsp;&emsp;新建BaseMvpActivity</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">package com.haichenyi.myproject.base;</span><br><span class="line"></span><br><span class="line">import javax.inject.Inject;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Author: 海晨忆</span><br><span class="line"> * Date: 2018/2/23</span><br><span class="line"> * Desc:带MVP的Activity</span><br><span class="line"> */</span><br><span class="line">public abstract class BaseMvpActivity&lt;T extends BasePresenter&gt;  extends BaseActivity&#123;</span><br><span class="line">  @Inject</span><br><span class="line">  protected T basePresenter;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  @SuppressWarnings(&quot;unchecked&quot;)</span><br><span class="line">  protected void initView() &#123;</span><br><span class="line">    super.initView();</span><br><span class="line">    initInject();</span><br><span class="line">    if (null != basePresenter) &#123;</span><br><span class="line">      basePresenter.attachView(this);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  protected abstract void initInject();</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  protected void onDestroy() &#123;</span><br><span class="line">    if (null != basePresenter) &#123;</span><br><span class="line">      basePresenter.detachView();</span><br><span class="line">      basePresenter = null;</span><br><span class="line">    &#125;</span><br><span class="line">    super.onDestroy();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;运用dagger2注解的方式，生成P层，这里我们在用P层之前得先生成P层，所以initject方法一定要在basePresenter用之前调用，因为他就是生成P层的代码。</p>
-<p>&emsp;&emsp;怎么生成呢？dagger我们一般都命名成di层，所以，我们先创建di层的package，项目结构图如下：</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/7041675-97ad0d5ba60d4af3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="项目结构图.png"></p>
-<p>&emsp;&emsp;这里给出的是mvp+dagger加入之后的项目结构。我们重点看选中的di层，里面有4个package分别是component，module，qualifier，scope四个包，至于他们的作用分别是什么，请自行百度，google，dagger的用法。我这里先贴出这几个类，接口的代码：</p>
-<p>ActivityComponent </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">package com.haichenyi.myproject.di.component;</span><br><span class="line"></span><br><span class="line">import com.haichenyi.myproject.MainActivity;</span><br><span class="line">import com.haichenyi.myproject.di.module.ActivityModule;</span><br><span class="line">import com.haichenyi.myproject.di.scope.ActivityScope;</span><br><span class="line"></span><br><span class="line">import dagger.Component;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Author: 海晨忆</span><br><span class="line"> * Date: 2018/2/23</span><br><span class="line"> * Desc:</span><br><span class="line"> */</span><br><span class="line">@ActivityScope</span><br><span class="line">@Component(dependencies = AppComponent.class, modules = ActivityModule.class)</span><br><span class="line">public interface ActivityComponent &#123;</span><br><span class="line">  void inject(MainActivity mainActivity);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>AppComponent </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">package com.haichenyi.myproject.di.component;</span><br><span class="line"></span><br><span class="line">import com.haichenyi.myproject.di.module.AppModule;</span><br><span class="line">import com.haichenyi.myproject.di.module.HttpModule;</span><br><span class="line"></span><br><span class="line">import javax.inject.Singleton;</span><br><span class="line"></span><br><span class="line">import dagger.Component;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Author: 海晨忆</span><br><span class="line"> * Date: 2018/2/23</span><br><span class="line"> * Desc:</span><br><span class="line"> */</span><br><span class="line">@Singleton</span><br><span class="line">@Component(modules = &#123;AppModule.class, HttpModule.class&#125;)</span><br><span class="line">public interface AppComponent &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>ActivityModule </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">package com.haichenyi.myproject.di.module;</span><br><span class="line"></span><br><span class="line">import dagger.Module;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Author: 海晨忆</span><br><span class="line"> * Date: 2018/2/23</span><br><span class="line"> * Desc:</span><br><span class="line"> */</span><br><span class="line">@Module</span><br><span class="line">public class ActivityModule &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>AppModule </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">package com.haichenyi.myproject.di.module;</span><br><span class="line"></span><br><span class="line">import com.haichenyi.myproject.base.MyApplication;</span><br><span class="line"></span><br><span class="line">import dagger.Module;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Author: 海晨忆</span><br><span class="line"> * Date: 2018/2/23</span><br><span class="line"> * Desc:</span><br><span class="line"> */</span><br><span class="line">@Module</span><br><span class="line">public class AppModule &#123;</span><br><span class="line">  private MyApplication application;</span><br><span class="line"></span><br><span class="line">  public AppModule(MyApplication application) &#123;</span><br><span class="line">    this.application = application;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>HttpModule </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">package com.haichenyi.myproject.di.module;</span><br><span class="line"></span><br><span class="line">import dagger.Module;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Author: 海晨忆</span><br><span class="line"> * Date: 2018/2/23</span><br><span class="line"> * Desc:</span><br><span class="line"> */</span><br><span class="line">@Module</span><br><span class="line">public class HttpModule &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>ActivityScope </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">package com.haichenyi.myproject.di.scope;</span><br><span class="line"></span><br><span class="line">import java.lang.annotation.Retention;</span><br><span class="line">import java.lang.annotation.RetentionPolicy;</span><br><span class="line"></span><br><span class="line">import javax.inject.Scope;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Author: 海晨忆</span><br><span class="line"> * Date: 2018/2/23</span><br><span class="line"> * Desc:</span><br><span class="line"> */</span><br><span class="line">@Scope</span><br><span class="line">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="line">public @interface ActivityScope &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;这几个类，接口里面基本上都没有内容，因为这几个类都是后面才会用的到的，这里我直接贴出来，说起来方便一些。还需要加两个方法，在MyApplication里面加如下方法:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">   * 获取AppComponent.</span><br><span class="line">   *</span><br><span class="line">   * @return AppComponent</span><br><span class="line">   */</span><br><span class="line">  public static synchronized AppComponent getAppComponent() &#123;</span><br><span class="line">    if (null == appComponent) &#123;</span><br><span class="line">      appComponent = DaggerAppComponent.builder()</span><br><span class="line">          .appModule(new AppModule(getInstance()))</span><br><span class="line">          .httpModule(new HttpModule())</span><br><span class="line">          .build();</span><br><span class="line">    &#125;</span><br><span class="line">    return appComponent;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<p>在BaseActivity里面加如下方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">protected ActivityComponent getActivityComponent() &#123;</span><br><span class="line">    return DaggerActivityComponent.builder()</span><br><span class="line">        .appComponent(MyApplication.getAppComponent())</span><br><span class="line">        .activityModule(new ActivityModule())</span><br><span class="line">        .build();</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;加完这两个方法之后，肯定会有错误提示，重新编译一遍项目就可以了，如果重新编译一遍，还是不行，请重新对比一下，哪里不一样。</p>
-<h3 id="第三步"><a href="#第三步" class="headerlink" title="第三步"></a>第三步</h3><p>&emsp;&emsp;就是关于mvp的了，从上面图应该看到了，有一个presenter包，和contract包，我们之前有一篇博客讲过，MVP就是多了很多个接口，这些接口写在哪呢？就在contract层</p>
-<p>MainContract 代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">package com.haichenyi.myproject.contract;</span><br><span class="line"></span><br><span class="line">import com.haichenyi.myproject.base.BasePresenter;</span><br><span class="line">import com.haichenyi.myproject.base.BaseView;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Author: 海晨忆</span><br><span class="line"> * Date: 2018/2/23</span><br><span class="line"> * Desc:</span><br><span class="line"> */</span><br><span class="line">public interface MainContract &#123;</span><br><span class="line">  interface IView extends BaseView&#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">  interface Presenter extends BasePresenter&lt;IView&gt;&#123;</span><br><span class="line">    void loadData();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;这里我需要说明的就是Presenter接口继承的是IVew，不是BaseView，页面变化的方法都是在IView接口里面定义，逻辑处理，网络请求方法都是在Presenter接口里面定义</p>
-<p>MainPresenter 代码如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">package com.haichenyi.myproject.presenter;</span><br><span class="line"></span><br><span class="line">import com.haichenyi.myproject.base.BaseMvpPresenter;</span><br><span class="line">import com.haichenyi.myproject.contract.MainContract;</span><br><span class="line"></span><br><span class="line">import javax.inject.Inject;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Author: 海晨忆</span><br><span class="line"> * Date: 2018/2/23</span><br><span class="line"> * Desc:</span><br><span class="line"> */</span><br><span class="line">public class MainPresenter extends BaseMvpPresenter&lt;MainContract.IView&gt;</span><br><span class="line">    implements MainContract.Presenter &#123;</span><br><span class="line">  @Inject</span><br><span class="line">  MainPresenter() &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public void loadData() &#123;</span><br><span class="line">    baseView.showTipMsg(&quot;加载数据&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;这里我需要说明的是注意继承BaseMvpPresenter传的是MainContract.IView，不是BaseView，实现MainContract.Presenter接口，还有一点就是注意构造方法，上面有注解，这里的loadData里面应该是我们的网络请求逻辑，这里我放到后面一篇在说，这里我先就直接Toast，表示走了这个方法</p>
-<h3 id="第四步"><a href="#第四步" class="headerlink" title="第四步"></a>第四步</h3><p>&emsp;&emsp;就是MainActivity，这里我贴出代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">package com.haichenyi.myproject;</span><br><span class="line"></span><br><span class="line">import android.os.Bundle;</span><br><span class="line"></span><br><span class="line">import com.haichenyi.myproject.base.BaseMvpActivity;</span><br><span class="line">import com.haichenyi.myproject.contract.MainContract;</span><br><span class="line">import com.haichenyi.myproject.presenter.MainPresenter;</span><br><span class="line"></span><br><span class="line">public class MainActivity extends BaseMvpActivity&lt;MainPresenter&gt; implements MainContract.IView &#123;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  protected int getLayoutId(Bundle savedInstanceState) &#123;</span><br><span class="line">    return R.layout.activity_main;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  protected void initData() &#123;</span><br><span class="line">    super.initData();</span><br><span class="line">    initToolbar(true, false, true).setMyTitle(&quot;主页&quot;).setMoreTitle(&quot;更多&quot;);</span><br><span class="line">    basePresenter.loadData();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  protected void initInject() &#123;</span><br><span class="line">    getActivityComponent().inject(this);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;这里我需要说明的是继承BaseMvpActivity，泛型直接传MainPresenter，然后，实现MainContract.IView接口，直接用basePresenter调用方法，需要实现initInject方法，只要是是继承BaseMvpActivity的activity，都需要在ActivityComponent()里面注册一边。比方说，LoginActivity也是继承的BaseMvpActivity，辣么，在di层的component包下面的ActivityComponent接口里面定义一个方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void inject(LoginActivity loginActivity);</span><br></pre></td></tr></table></figure>
-<p>在LoginActivity的initInject方法里面写同样的代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getActivityComponent().inject(this);</span><br></pre></td></tr></table></figure>
-<p>就像这样写就可以了。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>&emsp;&emsp;写到这里，mvp+dagger2基本上完成了，MVP的目的就是解藕，把业务逻辑，网络请求丢在P层，页面不发生变化，就只用改P层逻辑，从而达到了解藕的目的。dagger2简化了代码，并且，它有着全局单例模式，和局部单例模式，优化了我们的内存，减少了内存浪费。不用每次都去new一个P层对象出来。下一篇，我们就把网络请求加上</p>
-<p><a href="http://download.csdn.net/download/qq_27634797/10256146" target="_blank" rel="noopener">项目链接</a></p>
+<p>&emsp;&emsp;Andoird 7.0中为了提高文件的安全性，面向Android N或者更高版本的应用私有目录将会被禁止访问，常见最直接的bug就是：<strong>你的应用给其他应用传递file:// URI类型的Uri时，可能导致接受者无法访问该路径</strong>会造成我们前面说的文件uri异常。</p>
+<h3 id="调用系统相机"><a href="#调用系统相机" class="headerlink" title="调用系统相机"></a>调用系统相机</h3><p>最直接的就是我们常用的拍照功能,我们自己的应用启动手机相机，这里手机相机就是其他应用，按照我们以前的写法就是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">File file=new File(Environment.getExternalStorageDirectory(), &quot;/temp/&quot;+System.currentTimeMillis() + &quot;.jpg&quot;);</span><br><span class="line">if (!file.getParentFile().exists())file.getParentFile().mkdirs();</span><br><span class="line">Uri imageUri = Uri.fromFile(file);</span><br><span class="line">Intent intent = new Intent();</span><br><span class="line">intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);//设置Action为拍照</span><br><span class="line">intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);//将拍取的照片保存到指定URI</span><br><span class="line">startActivityForResult(intent,986);</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;先创建一个存放我们拍照图片的存放file，参数就是路径+文件名称，当我们还是按之前的写法，跑在android N及以上的机型的时候，会报如下异常：</p>
+<p>FileUriExposedException.png</p>
+<p>&emsp;&emsp;这就是由于Android 7.0执行了“StrictMode API 政策禁”对我们广大程序员造成的最常见，最直接的结果。辣么，怎么解决呢？</p>
+<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><h4 id="FileProvider"><a href="#FileProvider" class="headerlink" title="FileProvider"></a>FileProvider</h4><p>使用FileProvider解决上面的问题，步骤如下：</p>
+<h5 id="第一步：在清单文件里面申请provider"><a href="#第一步：在清单文件里面申请provider" class="headerlink" title="第一步：在清单文件里面申请provider"></a>第一步：在清单文件里面申请provider</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;provider</span><br><span class="line">    android:name=&quot;android.support.v4.content.FileProvider&quot;</span><br><span class="line">    android:authorities=&quot;com.haichenyi.myproject.fileprovider&quot;</span><br><span class="line">    android:grantUriPermissions=&quot;true&quot;</span><br><span class="line">    android:exported=&quot;false&quot;&gt;</span><br><span class="line">    &lt;meta-data</span><br><span class="line">        android:name=&quot;android.support.FILE_PROVIDER_PATHS&quot;</span><br><span class="line">        android:resource=&quot;@xml/file_paths&quot; /&gt;</span><br><span class="line">&lt;/provider&gt;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;FileProvider是V4包下面的类，这里exproted属性必须给false，不然也会报异常，grantUriPermissions的值给true，表示授予临时URI访问权限，下面meta-data就是指定共享目录，authorities属性后面讲</p>
+<h4 id="第二步：指定共享目录"><a href="#第二步：指定共享目录" class="headerlink" title="第二步：指定共享目录"></a>第二步：指定共享目录</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;resources&gt;</span><br><span class="line">    &lt;path&gt;</span><br><span class="line">        &lt;external-path</span><br><span class="line">            name=&quot;camera_photos&quot;</span><br><span class="line">            path=&quot;&quot;/&gt;</span><br><span class="line">    &lt;/path&gt;</span><br><span class="line">&lt;/resources&gt;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;有点android开发基础的人就知道，这个@xml目录是位于res根目录，跟layout目录平级的。所以，你得先创建xml文件夹，然后新建file_paths文件，添加上面的代码在文件中。这里的path路径，我们先瞅瞅下面的表：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">物理路径</th>
+<th style="text-align:center">写法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Context.getFilesDir() + /path/</td>
+<td style="text-align:center"><strong><files-path name="name" path="path"></files-path></strong></td>
+</tr>
+<tr>
+<td style="text-align:center">Context.getCacheDir() + /path/</td>
+<td style="text-align:center"><strong><cache-path name="name" path="path"></cache-path></strong></td>
+</tr>
+<tr>
+<td style="text-align:center">Environment.getExternalStorageDirectory() + /path/</td>
+<td style="text-align:center"><strong><external-path name="name" path="path"></external-path></strong></td>
+</tr>
+<tr>
+<td style="text-align:center">Context.getExternalFilesDir(String) + /path/</td>
+<td style="text-align:center"><strong><external-files-path name="name" path="path"></external-files-path></strong></td>
+</tr>
+<tr>
+<td style="text-align:center">Context.getExternalCacheDir() + /path/</td>
+<td style="text-align:center"><strong><external-cache-path name="name" path="path"></external-cache-path></strong></td>
+</tr>
+</tbody>
+</table>
+<p>&emsp;&emsp;辣么，我们代码中path=””，是有特殊意义的，它代码根目录，也就是说你可以向其它的应用共享根目录及其子目录下任何一个文件了，如果你将path设为path=”pictures”， 那么它代表着根目录下的pictures目录(eg:/storage/emulated/0/pictures)，如果你向其它应用分享pictures目录范围之外的文件是不行的</p>
+<h4 id="第三步：使用FileProvider"><a href="#第三步：使用FileProvider" class="headerlink" title="第三步：使用FileProvider"></a>第三步：使用FileProvider</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">val file = File(Environment.getExternalStorageDirectory(), &quot;/temp/&quot; + System.currentTimeMillis() + &quot;.jpg&quot;)</span><br><span class="line">        if (!file.parentFile.exists()) file.parentFile.mkdirs()</span><br><span class="line">        //变化</span><br><span class="line">        val imageUri = FileProvider.getUriForFile(this, &quot;com.haichenyi.myproject.fileprovider&quot;, file)//通过FileProvider创建一个content类型的Uri</span><br><span class="line">        val intent = Intent()</span><br><span class="line">        //变化</span><br><span class="line">        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION) //添加这一句表示对目标应用临时授权该Uri所代表的文件</span><br><span class="line">        intent.action = MediaStore.ACTION_IMAGE_CAPTURE//设置Action为拍照</span><br><span class="line">        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)//将拍取的照片保存到指定URI</span><br><span class="line">        startActivityForResult(intent, 986)</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;我们调用系统相机的代码发生了变化，变化的位置，我都注明了获取imageUri的方式发生了变化，其中，第二个参数就是我们在前面说放在后面讲的authorities属性的内容，再就是增加了一个flag，表示临时授权。加上如上代码，我们就可以正常调用系统相机了。</p>
+<p>&emsp;&emsp;经过如上步骤之后，我们就能拍照了，拍完照片之后的存放路径在哪里呢？我们前面说了，这里我打印出了路径，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">file!!.absolutePath:/storage/emulated/0/temp/1519896174785.jpg</span><br><span class="line"></span><br><span class="line">imageUri:content://com.haichenyi.myproject.fileprovider/camera_photos/temp/1519896174785.jpg</span><br></pre></td></tr></table></figure>
+<h3 id="照片裁剪"><a href="#照片裁剪" class="headerlink" title="照片裁剪"></a>照片裁剪</h3><p>Android 7.0之前，我们裁剪照片</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">File file=new File(Environment.getExternalStorageDirectory(), &quot;/temp/&quot;+System.currentTimeMillis() + &quot;.jpg&quot;);</span><br><span class="line">if (!file.getParentFile().exists())file.getParentFile().mkdirs();</span><br><span class="line">Uri outputUri = Uri.fromFile(file);</span><br><span class="line">Uri imageUri=Uri.fromFile(new File(&quot;/storage/emulated/0/temp/1519896174785.jpg&quot;));</span><br><span class="line">Intent intent = new Intent(&quot;com.android.camera.action.CROP&quot;);</span><br><span class="line">intent.setDataAndType(imageUri, &quot;image/*&quot;);</span><br><span class="line">intent.putExtra(&quot;crop&quot;, &quot;true&quot;);</span><br><span class="line">intent.putExtra(&quot;aspectX&quot;, 1);</span><br><span class="line">intent.putExtra(&quot;aspectY&quot;, 1);</span><br><span class="line">intent.putExtra(&quot;scale&quot;, true);</span><br><span class="line">intent.putExtra(MediaStore.EXTRA_OUTPUT, outputUri);</span><br><span class="line">intent.putExtra(&quot;outputFormat&quot;, Bitmap.CompressFormat.JPEG.toString());</span><br><span class="line">intent.putExtra(&quot;noFaceDetection&quot;, true); // no face detection</span><br><span class="line">startActivityForResult(intent,987);</span><br></pre></td></tr></table></figure>
+<p>Android 7.0之后，我们裁剪照片</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">File file=new File(Environment.getExternalStorageDirectory(), &quot;/temp/&quot;+System.currentTimeMillis() + &quot;.jpg&quot;);</span><br><span class="line">if (!file.getParentFile().exists())file.getParentFile().mkdirs();</span><br><span class="line">Uri outputUri = FileProvider.getUriForFile(context, &quot;com.haichenyi.myproject.fileprovider&quot;,file);</span><br><span class="line">Uri imageUri=FileProvider.getUriForFile(context, &quot;com.haichenyi.myproject.fileprovider&quot;, new File(&quot;/storage/emulated/0/temp/1519896174785.jpg&quot;);//通过FileProvider创建一个content类型的Uri</span><br><span class="line">Intent intent = new Intent(&quot;com.android.camera.action.CROP&quot;);</span><br><span class="line">intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);</span><br><span class="line">intent.setDataAndType(imageUri, &quot;image/*&quot;);</span><br><span class="line">intent.putExtra(&quot;crop&quot;, &quot;true&quot;);</span><br><span class="line">intent.putExtra(&quot;aspectX&quot;, 1);</span><br><span class="line">intent.putExtra(&quot;aspectY&quot;, 1);</span><br><span class="line">intent.putExtra(&quot;scale&quot;, true);</span><br><span class="line">intent.putExtra(MediaStore.EXTRA_OUTPUT, outputUri);</span><br><span class="line">intent.putExtra(&quot;outputFormat&quot;, Bitmap.CompressFormat.JPEG.toString());</span><br><span class="line">intent.putExtra(&quot;noFaceDetection&quot;, true); // no face detection</span><br><span class="line">startActivityForResult(intent,987);</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;拍照裁剪这是一个很常用的功能，很早之前就写过一篇，封装的不是很好。最近，又做了一遍这个功能，发现了一个好用的框架——<a href="https://github.com/crazycodeboy/TakePhoto" target="_blank" rel="noopener">TakePhoto</a></p>
+<p><a href="http://download.csdn.net/download/qq_27634797/10265743" target="_blank" rel="noopener">项目链接</a></p>
 
       
     </div>
@@ -524,12 +529,12 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2018/02/23/从零开始搭建一个主流项目框架（二）—MVP-dagger2/">从零开始搭建一个主流项目框架（二）—MVP+dagger2</a></p>
+  <p><span>本文标题:</span><a href="/2018/03/01/从零开始搭建一个主流项目框架（八）—私有目录被限制访问-Android7.0/">从零开始搭建一个主流项目框架（八）—— 私有目录被限制访问(Android 7.0)</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 海晨忆 的个人博客">海晨忆</a></p>
-  <p><span>发布时间:</span>2018年02月23日 - 20:02</p>
-  <p><span>最后更新:</span>2018年02月23日 - 20:02</p>
-  <p><span>原始链接:</span><a href="/2018/02/23/从零开始搭建一个主流项目框架（二）—MVP-dagger2/" title="从零开始搭建一个主流项目框架（二）—MVP+dagger2">http://haichenyi.com/2018/02/23/从零开始搭建一个主流项目框架（二）—MVP-dagger2/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://haichenyi.com/2018/02/23/从零开始搭建一个主流项目框架（二）—MVP-dagger2/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2018年03月01日 - 23:03</p>
+  <p><span>最后更新:</span>2018年03月07日 - 20:03</p>
+  <p><span>原始链接:</span><a href="/2018/03/01/从零开始搭建一个主流项目框架（八）—私有目录被限制访问-Android7.0/" title="从零开始搭建一个主流项目框架（八）—— 私有目录被限制访问(Android 7.0)">http://haichenyi.com/2018/03/01/从零开始搭建一个主流项目框架（八）—私有目录被限制访问-Android7.0/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://haichenyi.com/2018/03/01/从零开始搭建一个主流项目框架（八）—私有目录被限制访问-Android7.0/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -597,8 +602,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/23/从零开始搭建一个主流项目框架（一）—简单的框架/" rel="next" title="从零开始搭建一个主流项目框架（一）—简单的框架">
-                <i class="fa fa-chevron-left"></i> 从零开始搭建一个主流项目框架（一）—简单的框架
+              <a href="/2018/03/01/从零开始搭建一个主流项目框架（七）—权限申请-Android6.0/" rel="next" title="从零开始搭建一个主流项目框架（七）—— 权限申请(Android 6.0)">
+                <i class="fa fa-chevron-left"></i> 从零开始搭建一个主流项目框架（七）—— 权限申请(Android 6.0)
               </a>
             
           </div>
@@ -607,8 +612,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/02/23/从零开始搭建一个主流项目框架（三）—RxJava2-0-Retrofit2-0-OkHttp/" rel="prev" title="从零开始搭建一个主流项目框架（三）—RxJava2.0+Retrofit2.0+OkHttp">
-                从零开始搭建一个主流项目框架（三）—RxJava2.0+Retrofit2.0+OkHttp <i class="fa fa-chevron-right"></i>
+              <a href="/2018/03/02/Android图片压缩——Luban鲁班压缩/" rel="prev" title="Android图片压缩——Luban鲁班压缩">
+                Android图片压缩——Luban鲁班压缩 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -795,7 +800,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一步"><span class="nav-number">1.</span> <span class="nav-text">第一步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二步"><span class="nav-number">2.</span> <span class="nav-text">第二步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三步"><span class="nav-number">3.</span> <span class="nav-text">第三步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第四步"><span class="nav-number">4.</span> <span class="nav-text">第四步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#调用系统相机"><span class="nav-number">1.</span> <span class="nav-text">调用系统相机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决办法"><span class="nav-number">2.</span> <span class="nav-text">解决办法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#FileProvider"><span class="nav-number">2.1.</span> <span class="nav-text">FileProvider</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#第一步：在清单文件里面申请provider"><span class="nav-number">2.1.1.</span> <span class="nav-text">第一步：在清单文件里面申请provider</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二步：指定共享目录"><span class="nav-number">2.2.</span> <span class="nav-text">第二步：指定共享目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第三步：使用FileProvider"><span class="nav-number">2.3.</span> <span class="nav-text">第三步：使用FileProvider</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#照片裁剪"><span class="nav-number">3.</span> <span class="nav-text">照片裁剪</span></a></li></ol></div>
             
 
           </div>

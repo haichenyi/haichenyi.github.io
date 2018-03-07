@@ -110,16 +110,17 @@
 
 
 
-<meta name="description" content="我负责征战天下，你负责貌美如花！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="海晨忆的博客">
-<meta property="og:url" content="http://haichenyi.com/page/3/index.html">
+<meta name="description" content="六、适配器模式分类有三种：类的适配器模式，对象的适配器模式，接口的适配器模式，我印象最深刻的是接口适配器模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 设计模式（Design Patterns）（二）">
+<meta property="og:url" content="http://haichenyi.com/2018/03/07/Java-设计模式（Design-Patterns）（二）/index.html">
 <meta property="og:site_name" content="海晨忆的博客">
-<meta property="og:description" content="我负责征战天下，你负责貌美如花！">
+<meta property="og:description" content="六、适配器模式分类有三种：类的适配器模式，对象的适配器模式，接口的适配器模式，我印象最深刻的是接口适配器模式">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-07T12:26:04.183Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="海晨忆的博客">
-<meta name="twitter:description" content="我负责征战天下，你负责貌美如花！">
+<meta name="twitter:title" content="Java 设计模式（Design Patterns）（二）">
+<meta name="twitter:description" content="六、适配器模式分类有三种：类的适配器模式，对象的适配器模式，接口的适配器模式，我印象最深刻的是接口适配器模式">
 
 
 
@@ -148,13 +149,13 @@
 
 
 
-  <link rel="canonical" href="http://haichenyi.com/page/3/"/>
+  <link rel="canonical" href="http://haichenyi.com/2018/03/07/Java-设计模式（Design-Patterns）（二）/"/>
 
 
 
 
 
-  <title>海晨忆的博客</title>
+  <title>Java 设计模式（Design Patterns）（二） | 海晨忆的博客</title>
   
 
 
@@ -179,9 +180,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 		<a href="https://github.com/haichenyi"><img style="position: absolute; top: 0; right: 0; border: 0;" 
 		src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" 
@@ -320,9 +319,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -335,7 +334,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haichenyi.com/2018/02/22/Android事件分发机制原理/">
+    <link itemprop="mainEntityOfPage" href="http://haichenyi.com/2018/03/07/Java-设计模式（Design-Patterns）（二）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海晨忆">
@@ -352,9 +351,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/22/Android事件分发机制原理/" itemprop="url">Android事件分发机制原理</a></h1>
+          <h1 class="post-title" itemprop="name headline">Java 设计模式（Design Patterns）（二）</h1>
         
 
         <div class="post-meta">
@@ -366,8 +363,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-22T21:30:11+08:00">
-                2018-02-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-07T20:23:53+08:00">
+                2018-03-07
               </time>
             
 
@@ -389,8 +386,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android-自定义view/" itemprop="url" rel="index">
-                    <span itemprop="name">Android -自定义view</span>
+                  <a href="/categories/Android-设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">Android -设计模式</span>
                   </a>
                 </span>
 
@@ -418,7 +415,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1,125
+                  1,208
                 </span>
               
 
@@ -434,7 +431,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  4
+                  5
                 </span>
               
             </div>
@@ -455,407 +452,138 @@
       
 
       
+        <h2 id="六、适配器模式"><a href="#六、适配器模式" class="headerlink" title="六、适配器模式"></a>六、适配器模式</h2><p>分类有三种：类的适配器模式，对象的适配器模式，接口的适配器模式，我印象最深刻的是<strong><em>接口适配器模式</em></strong></p>
+ <a id="more"></a>
+<p><strong>接口适配器模式</strong></p>
+<p>&emsp;&emsp;有的时候，我们写的一个接口，会有很多种方法。而，我们的实现类只需要实现某一种，或者某几种，所以，我们这里会借助一个抽象类，去实现接口的所有方法。我们的具体实现类跟这个抽象类去打交道，而不是跟原始的接口去打交道。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Author: 海晨忆.</span><br><span class="line"> * Date: 2017/12/21</span><br><span class="line"> * Desc:</span><br><span class="line"> */</span><br><span class="line">public abstract class MySubscriber&lt;T&gt; extends ResourceSubscriber&lt;T&gt; &#123;</span><br><span class="line">  private BaseView baseView;</span><br><span class="line">  private boolean showLoading;</span><br><span class="line"></span><br><span class="line">  public MySubscriber(BaseView baseView) &#123;</span><br><span class="line">    this.baseView = baseView;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public MySubscriber(BaseView baseView, boolean showLoading) &#123;</span><br><span class="line">    this.baseView = baseView;</span><br><span class="line">    this.showLoading = showLoading;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  protected void onStart() &#123;</span><br><span class="line">    super.onStart();</span><br><span class="line">    if (null != baseView &amp;&amp; showLoading) &#123;</span><br><span class="line">      baseView.showLoading();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public void onError(Throwable t) &#123;</span><br><span class="line">    if (null == baseView) &#123;</span><br><span class="line">      return;</span><br><span class="line">    &#125;</span><br><span class="line">    baseView.hideLoading();</span><br><span class="line">    if (t instanceof ApiException) &#123;</span><br><span class="line">      ApiException apiException = (ApiException) t;</span><br><span class="line">      switch (apiException.getCode()) &#123;</span><br><span class="line">        case HttpCode.NO_PARAMETER:</span><br><span class="line">          baseView.showTipMsg(&quot;参数为空&quot;);</span><br><span class="line">          break;</span><br><span class="line">        case HttpCode.SERVER_ERR:</span><br><span class="line">          baseView.showTipMsg(&quot;服务器错误&quot;);</span><br><span class="line">          break;</span><br><span class="line">        default:</span><br><span class="line">          break;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public void onComplete() &#123;</span><br><span class="line">    if (null != baseView) &#123;</span><br><span class="line">      baseView.hideLoading();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">addSubscribe(helper.selectBrandList()</span><br><span class="line">        .compose(RxUtil.handleHttp())</span><br><span class="line">        .subscribeWith(new MySubscriber&lt;List&lt;String&gt;&gt;(baseView, true) &#123;</span><br><span class="line">          @Override</span><br><span class="line">          public void onNext(List&lt;String&gt; dataList) &#123;</span><br><span class="line">            Log.v(&quot;wz&quot;,&quot;111&quot;)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;));</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;上面这个代码，就是我之前写的<a href="http://haichenyi.com/categories/Android-框架/">从零开始搭建一个主流项目框架</a>系列里面的网络请求，处理返回结果的回调方法，我的返回结果，不可能每个去实现onStart，onError，onNext，onCompleted方法。我的实现类只用去继承这个类，实现某一个，或者某几个方法。更直接的就是，我之前写的框架，BaseActivity，实现BaseView接口，然后，我其他的Activity去继承BaseActivity，选择实现BaseView的方法。</p>
+<p>如果上面这样，你还无法认同，那我们看看下面这个：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//success动画结束监听</span><br><span class="line">    successAnim.addListener(new AnimatorListenerAdapter() &#123;</span><br><span class="line">      @Override</span><br><span class="line">      public void onAnimationEnd(Animator animation) &#123;</span><br><span class="line">        super.onAnimationEnd(animation);</span><br><span class="line">        if (null != myAnimotionInterface) &#123;</span><br><span class="line">          myAnimotionInterface.AnimationEnd();</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<p>动画监听，我这里只想监听动画结束，在动画结束的时候，我做我的逻辑处理，但是，他的接口有开始，结束，暂停，重复等等监听，我不要这么，你们可以点 <strong>AnimatorListenerAdapter()</strong> 这个类，去看一下他是什么，他就是一个抽象类，实现了动画监听的那个接口，这个是官方封装好的一个类。</p>
+<h2 id="七、装饰器模式"><a href="#七、装饰器模式" class="headerlink" title="七、装饰器模式"></a>七、装饰器模式</h2><p>这个模式就是我之前写<a href="http://haichenyi.com/categories/Android-框架/">从零开始搭建一个主流项目框架</a>系列里面网络请求，SP的操作，Socket的操作，关于他们的封装都是用的装饰者模式。说的官方一点：装饰模式就是给一个对象增加一些新的功能，而且是动态的，要求装饰对象和被装饰对象实现同一个接口，装饰对象持有被装饰对象的实例。项目中的应用就是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Author: 海晨忆.</span><br><span class="line"> * Date: 2017/12/21</span><br><span class="line"> * Desc:</span><br><span class="line"> */</span><br><span class="line">public interface HttpHelper &#123;</span><br><span class="line">  Flowable&lt;WeatherBean&gt; getWeather(String city);</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * 登录时获取验证码.</span><br><span class="line">   *</span><br><span class="line">   * @param phone 手机号</span><br><span class="line">   * @return &#123;&quot;code&quot;:0&#125;</span><br><span class="line">   */</span><br><span class="line">  Flowable&lt;HttpNoResult&gt; loginCode(String phone);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;这个就是装饰对象和被装饰对象实现的同一个接口，他们一开始就只有一个功能，那就是获取天气，后来他们又新加了一个功能，必须登录之后才能获取天气，那就多了一个登录功能</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Author: 海晨忆.</span><br><span class="line"> * Date: 2017/12/21</span><br><span class="line"> * Desc:</span><br><span class="line"> */</span><br><span class="line">public class DataHelper implements HttpHelper, PreferencesHelper, SqlHelper &#123;</span><br><span class="line">  private SqlHelper sqlHelper;</span><br><span class="line">  private HttpHelper httpHelper;</span><br><span class="line">  private PreferencesHelper preferencesHelper;</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * 初始化数据帮助类.</span><br><span class="line">   *</span><br><span class="line">   * @param sqlHelper         &#123;@link SqlHelper&#125;</span><br><span class="line">   * @param httpHelper        &#123;@link HttpHelper&#125;</span><br><span class="line">   * @param preferencesHelper &#123;@link PreferencesHelper&#125;</span><br><span class="line">   */</span><br><span class="line">  public DataHelper(SqlHelper sqlHelper, HttpHelper httpHelper,</span><br><span class="line">                    PreferencesHelper preferencesHelper) &#123;</span><br><span class="line">    this.sqlHelper = sqlHelper;</span><br><span class="line">    this.httpHelper = httpHelper;</span><br><span class="line">    this.preferencesHelper = preferencesHelper;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public Flowable&lt;WeatherBean&gt; getWeather(String city) &#123;</span><br><span class="line">    return httpHelper.getWeather(city);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public Flowable&lt;HttpNoResult&gt; loginCode(String phone) &#123;</span><br><span class="line">    return httpHelper.loginCode(phone);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;这个就是装饰类，负责调用接口的方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Author: 海晨忆.</span><br><span class="line"> * Date: 2017/12/21</span><br><span class="line"> * Desc:</span><br><span class="line"> */</span><br><span class="line">public class RetrofitHttp implements HttpHelper &#123;</span><br><span class="line">  private WardrobeApi wardrobeApi;</span><br><span class="line">  private WeatherApi weatherApi;</span><br><span class="line"></span><br><span class="line">  @Inject</span><br><span class="line">  RetrofitHttp(WardrobeApi wardrobeApi, WeatherApi weatherApi) &#123;</span><br><span class="line">    this.wardrobeApi = wardrobeApi;</span><br><span class="line">    this.weatherApi = weatherApi;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public Flowable&lt;WeatherBean&gt; getWeather(String city) &#123;</span><br><span class="line">    return weatherApi.getWeather(city, &quot;c41d9ca568d449e2802244d8eeb3d3c6&quot;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public Flowable&lt;HttpNoResult&gt; loginCode(String phone) &#123;</span><br><span class="line">    return wardrobeApi.loginCode(phone);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;这个就是被装饰类，负责具体的实现，这里是retrofit网络请求。以上都是伪代码。具体就是为了说明这个装饰者模式的中心思想，以及我在项目中的运用，不保证一定完全正确，都是按照自己的理解写的。</p>
+<p>PS：其他的设计模式等用到了再补充</p>
+
+      
+    </div>
+    
+    
+    
+	<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">---------------------END---------------------</div>
+    
+</div>
+  
+  <div>
+      
         
-          <p>推荐：<a href="http://www.gcssloop.com/#blog" target="_blank" rel="noopener">非著名程序员</a>的<a href="http://www.gcssloop.com/customview/CustomViewIndex" target="_blank" rel="noopener">安卓自定义View教程目录</a>，我的自定义view就是看他的这个系列学会的</p>
-<p>&emsp;&emsp;首先，我们需要确认的是android的事件传递机制是<strong>责任链模式</strong>，如果自己能处理就拦截下来自己处理，如果自己处理不了或者不确定就传递给下一个对象</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/02/22/Android事件分发机制原理/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2018/03/07/Java-设计模式（Design-Patterns）（二）/">Java 设计模式（Design Patterns）（二）</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 海晨忆 的个人博客">海晨忆</a></p>
+  <p><span>发布时间:</span>2018年03月07日 - 20:03</p>
+  <p><span>最后更新:</span>2018年03月07日 - 20:03</p>
+  <p><span>原始链接:</span><a href="/2018/03/07/Java-设计模式（Design-Patterns）（二）/" title="Java 设计模式（Design Patterns）（二）">http://haichenyi.com/2018/03/07/Java-设计模式（Design-Patterns）（二）/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://haichenyi.com/2018/03/07/Java-设计模式（Design-Patterns）（二）/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
+      
+</div>
+	</div>
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/uploads/wechat_reward.png" alt="海晨忆 WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/uploads/alipay_reward.jpg" alt="海晨忆 Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/06/Java-设计模式（Design-Patterns）（一）/" rel="next" title="Java 设计模式（Design Patterns）（一）">
+                <i class="fa fa-chevron-left"></i> Java 设计模式（Design Patterns）（一）
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-	<div>
-  
-  <div>
-      
-</div>
-	</div>
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haichenyi.com/2018/02/08/Netty的简单使用，实现socket通讯/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="海晨忆">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/artistic_image/psb17.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="海晨忆的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/08/Netty的简单使用，实现socket通讯/" itemprop="url">Netty的简单使用，实现socket通讯</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-08T21:46:05+08:00">
-                2018-02-08
-              </time>
+              <a href="/2018/03/07/Java-设计模式（Design-Patterns）（三）/" rel="prev" title="Java 设计模式（Design Patterns）（三）">
+                Java 设计模式（Design Patterns）（三） <i class="fa fa-chevron-right"></i>
+              </a>
             
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android-Socket/" itemprop="url" rel="index">
-                    <span itemprop="name">Android -Socket</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  2,098
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  10
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>自从用了netty框架，妈妈再也不用担心我的socket通讯了<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/02/08/Netty的简单使用，实现socket通讯/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-	<div>
-  
-  <div>
-      
-</div>
-	</div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haichenyi.com/2018/02/07/IO编程和NIO编程简介/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="海晨忆">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/artistic_image/psb17.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="海晨忆的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/07/IO编程和NIO编程简介/" itemprop="url">IO编程和NIO编程简介</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-07T20:49:47+08:00">
-                2018-02-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android-Socket/" itemprop="url" rel="index">
-                    <span itemprop="name">Android -Socket</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  2,582
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  11
-                </span>
-              
-            </div>
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <p>&emsp;&emsp;传统的同步阻塞I/O通讯模型，导致的结果就是只要有一方处理数据缓慢，都会影响另外一方的处理性能。按照故障设计原则，一方的处理出现问题，不应该影响到另外一方才对。但是，在同步阻塞的模式下面，这样的情况是无法避免的，很难通过业务层去解决。既然同步无法避免，为了避免就产生了异步。Netty框架就一个完全异步非阻塞的I/O通讯方式<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/02/07/IO编程和NIO编程简介/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-	<div>
-  
-  <div>
-      
-</div>
-	</div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -865,190 +593,34 @@
   </article>
 
 
-    
+
+    <div class="post-spread">
       
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haichenyi.com/2018/02/08/Android自定义View/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="海晨忆">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/artistic_image/psb17.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="海晨忆的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/08/Android自定义View/" itemprop="url">Android自定义View</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-08T21:55:20+08:00">
-                2018-02-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android-自定义view/" itemprop="url" rel="index">
-                    <span itemprop="name">Android -自定义view</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  0
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
       
     </div>
-    
-    
-    
-	<div>
-  
-  <div>
-      
-</div>
-	</div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
-  </nav>
-
 
 
           </div>
@@ -1076,8 +648,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/artistic_image/psb17.jpg"
@@ -1172,6 +753,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#六、适配器模式"><span class="nav-number">1.</span> <span class="nav-text">六、适配器模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、装饰器模式"><span class="nav-number">2.</span> <span class="nav-text">七、装饰器模式</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1302,10 +899,10 @@
 
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 
