@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet"><style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="海晨忆的博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="简介&amp;emsp;&amp;emsp;PorterDuffXfermode是什么鬼？个人理解，简单的来讲就是做两个Bitmap操作的，什么操作呢？有裁剪，合并等等，有16种图形混合模式。先举一个简单的例子，我们在慢慢讲：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android——PorterDuffXfermode">
+<meta property="og:url" content="http://haichenyi.com/2018/05/13/Android——PorterDuffXfermode/index.html">
+<meta property="og:site_name" content="海晨忆的博客">
+<meta property="og:description" content="简介&amp;emsp;&amp;emsp;PorterDuffXfermode是什么鬼？个人理解，简单的来讲就是做两个Bitmap操作的，什么操作呢？有裁剪，合并等等，有16种图形混合模式。先举一个简单的例子，我们在慢慢讲：">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-a473668793539882.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-eae7b8c745ec218e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-f1b34b7fb8df357e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-e8ad2cf4229095fc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-85a4080bc042c63c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-0b1c817304fec954.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-38b1242793a0807b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-5a78edd1ea287820.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-efa828311c86ebcb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-d715a0025e2c1baa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-7e2826c64c63d907.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-4bea3004d59f8260.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-306477eebd6a23d6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-05650d7d10021591.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-dcdb3859d8e4fbf8.gif?imageMogr2/auto-orient/strip">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-946eca2d7f94cdcf.gif?imageMogr2/auto-orient/strip">
+<meta property="og:updated_time" content="2018-05-13T14:35:37.735Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android——PorterDuffXfermode">
+<meta name="twitter:description" content="简介&amp;emsp;&amp;emsp;PorterDuffXfermode是什么鬼？个人理解，简单的来讲就是做两个Bitmap操作的，什么操作呢？有裁剪，合并等等，有16种图形混合模式。先举一个简单的例子，我们在慢慢讲：">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/7041675-a473668793539882.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://haichenyi.com/2018/05/13/Android——PorterDuffXfermode/"/>
+
+
+
+
+
+  <title>Android——PorterDuffXfermode | 海晨忆的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+		<a href="https://github.com/haichenyi"><img style="position: absolute; top: 0; right: 0; border: 0;" 
+		src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" 
+		alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">海晨忆的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">技术源于生活！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://haichenyi.com/2018/05/13/Android——PorterDuffXfermode/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="海晨忆">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/artistic_image/psb17.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="海晨忆的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android——PorterDuffXfermode</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-13T22:27:36+08:00">
+                2018-05-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android-自定义view/" itemprop="url" rel="index">
+                    <span itemprop="name">Android -自定义view</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  2,678
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  11
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>&emsp;&emsp;PorterDuffXfermode是什么鬼？个人理解，简单的来讲就是做两个Bitmap操作的，什么操作呢？有裁剪，合并等等，有16种图形混合模式。先举一个简单的例子，我们在慢慢讲：</p>
+ <a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Author: 海晨忆</span><br><span class="line"> * Date: 2018/3/28</span><br><span class="line"> * Desc:</span><br><span class="line"> */</span><br><span class="line">public class MyCustomView extends View &#123;</span><br><span class="line">  private int width = 300;</span><br><span class="line">  private int height = 300;</span><br><span class="line">  private Bitmap dstBmp;</span><br><span class="line">  private Bitmap srcBmp;</span><br><span class="line">  private Paint mPaint;</span><br><span class="line"></span><br><span class="line">  public MyCustomView(Context context) &#123;</span><br><span class="line">    this(context, null);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public MyCustomView(Context context, @Nullable AttributeSet attrs) &#123;</span><br><span class="line">    this(context, attrs, 0);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public MyCustomView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) &#123;</span><br><span class="line">    super(context, attrs, defStyleAttr);</span><br><span class="line">    initView();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  private void initView() &#123;</span><br><span class="line">    setLayerType(View.LAYER_TYPE_SOFTWARE, null);</span><br><span class="line">    srcBmp = makeSrc(width, height);</span><br><span class="line">    dstBmp = makeDst(width, height);</span><br><span class="line">    mPaint = new Paint();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  protected void onDraw(Canvas canvas) &#123;</span><br><span class="line">    super.onDraw(canvas);</span><br><span class="line">    canvas.translate(getWidth() / 2 - width / 2, getHeight() / 2 - height / 2);</span><br><span class="line">    canvas.drawColor(Color.BLUE);</span><br><span class="line">    int layerID = canvas.saveLayer(0, 0, width * 2, height * 2, mPaint, Canvas.ALL_SAVE_FLAG);</span><br><span class="line">    canvas.drawBitmap(dstBmp, 0, 0, mPaint);</span><br><span class="line">    @SuppressLint(&quot;DrawAllocation&quot;) PorterDuffXfermode xfermode = new PorterDuffXfermode(PorterDuff.Mode.SRC_IN);</span><br><span class="line">    mPaint.setXfermode(xfermode);</span><br><span class="line">    canvas.drawBitmap(srcBmp, width / 2, height / 2, mPaint);</span><br><span class="line">    mPaint.setXfermode(null);</span><br><span class="line">    canvas.restoreToCount(layerID);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  private Bitmap makeDst(int w, int h) &#123;</span><br><span class="line">    Bitmap dst = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);</span><br><span class="line">    Canvas mCanvas = new Canvas(dst);</span><br><span class="line">    Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);</span><br><span class="line">    mPaint.setColor(Color.RED);</span><br><span class="line">    mCanvas.drawOval(new RectF(0, 0, w, h), mPaint);</span><br><span class="line">    return dst;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  private Bitmap makeSrc(int w, int h) &#123;</span><br><span class="line">    Bitmap src = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);</span><br><span class="line">    Canvas mCanvas = new Canvas(src);</span><br><span class="line">    Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);</span><br><span class="line">    mPaint.setColor(Color.YELLOW);</span><br><span class="line">    mCanvas.drawRect(0, 0, w, h, mPaint);</span><br><span class="line">    return src;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>效果图如下：<br><img src="https://upload-images.jianshu.io/upload_images/7041675-a473668793539882.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="简介demo图.png"></p>
+<p>&emsp;&emsp;上面画了一个圆形bitmap，画了一个矩形bitmap，设置了一个模式 <strong><em>PorterDuff.Mode.SRC_IN</em></strong> 就变成了上面的形状，这是怎么做到的呢？带着我们的问题，进入我们的主题。</p>
+<h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a><strong><em>注意点</em></strong></h2><p>&emsp;&emsp;为什么我要拿一个大标题来写这个呢？因为，我当时卡在这里很久，然后踩着巨人的肩膀，我才踏过去的。</p>
+<ol>
+<li><p>首先，两个图形必须都是Bitmap，直接用Canvas画形状，做操作，是达不到效果的。重要的事情说三遍：<strong><em>两个图形必须都是Bitmap。两个图形必须都是Bitmap。两个图形必须都是Bitmap</em></strong></p>
+</li>
+<li><p>其次，避免不必要的麻烦，请先关闭硬件加速。重要的事情说三遍：<strong><em>请先关闭硬件加速。请先关闭硬件加速。请先关闭硬件加速</em></strong></p>
+</li>
+<li><p>然后，两个bitmap的大小最好一样。</p>
+</li>
+<li><p>最后，我要强调的是：<strong><em>先绘制的是目标图，后绘制的是源图。</em></strong></p>
+</li>
+</ol>
+<p>&emsp;&emsp;这里一直说bitmap，辣么，怎么生成这个bitmap，生成这个bitmap之后怎么画图形呢？如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//第一步，我们先创建一个bitmap对象</span><br><span class="line">Bitmap dst = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);</span><br><span class="line">//第二步，我们通过这个bitmap对象创建一个画布，</span><br><span class="line">//说白了，就是new 一个画布，把bitmap放到画布的构造方法里面</span><br><span class="line">    Canvas mCanvas = new Canvas(dst);</span><br><span class="line">    Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);</span><br><span class="line">    mPaint.setColor(Color.RED);</span><br><span class="line">//最后，在这个画布上面的所有操作，最后都是呈现在bitmap上面。</span><br><span class="line">//就像这里的，在这个画布上面画了一个椭圆，其实，最后我们的bitmap就是一个椭圆</span><br><span class="line">    mCanvas.drawOval(new RectF(0, 0, w, h), mPaint);</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;可以，bitmap会创建了，再就是我们前面说的两个bitmap，<strong><em>先绘制的是目标图，后绘制的是源图</em></strong>，一个是dst（目标图片，下层，先画），一个是src（源图片，上层，后画）。就是我们上面的自定view里面的onDraw()方法里面，用onDraw的canvas画的东西。</p>
+<p>&emsp;&emsp;我们如果不用这个xfermode模式，我们的代码应该是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">  protected void onDraw(Canvas canvas) &#123;</span><br><span class="line">    super.onDraw(canvas);</span><br><span class="line">    canvas.translate(getWidth() / 2 - width / 2, getHeight() / 2 - height / 2);</span><br><span class="line">    canvas.drawColor(Color.BLUE);</span><br><span class="line">    canvas.drawBitmap(dstBmp, 0, 0, mPaint);</span><br><span class="line">    canvas.drawBitmap(srcBmp, width / 2, height / 2, mPaint);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;很简单的几行代码，把画布移到正中间，给画布加一个背景蓝色，先画dst，后画src，跑出来的效果图应该是下面这样的：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-eae7b8c745ec218e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="注意点1.png"></p>
+<p>&emsp;&emsp;我们如果加上这个xfermode模式里面的 <strong><em>PorterDuff.Mode.SRC_IN</em></strong>模式，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">  protected void onDraw(Canvas canvas) &#123;</span><br><span class="line">    super.onDraw(canvas);</span><br><span class="line">    canvas.translate(getWidth() / 2 - width / 2, getHeight() / 2 - height / 2);</span><br><span class="line">    canvas.drawColor(Color.BLUE);</span><br><span class="line">    int layerID = canvas.saveLayer(0, 0, width * 2, height * 2, mPaint, Canvas.ALL_SAVE_FLAG);</span><br><span class="line">    canvas.drawBitmap(dstBmp, 0, 0, mPaint);</span><br><span class="line">    @SuppressLint(&quot;DrawAllocation&quot;) PorterDuffXfermode xfermode = new PorterDuffXfermode(PorterDuff.Mode.SRC_IN);</span><br><span class="line">    mPaint.setXfermode(xfermode);</span><br><span class="line">    canvas.drawBitmap(srcBmp, width / 2, height / 2, mPaint);</span><br><span class="line">    mPaint.setXfermode(null);</span><br><span class="line">    canvas.restoreToCount(layerID);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;比上面的代码，就多加了一个xfermode模式，他们要是同一个画笔，用完之后，记得要把这个模式置null这个saveLayer等会讲，先不说。跑出来的效果图，如下：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-f1b34b7fb8df357e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="注意点2.png"></p>
+<p>&emsp;&emsp;前面，我们一直都在强调dst先画，src后画，如果调换一下，会是什么样的结果呢？代码我就不贴出来了，就把那两个drawBitmap调换一个位置，跑出来的效果图，如下：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-e8ad2cf4229095fc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="注意点3.png"></p>
+<p>&emsp;&emsp;很明显，跟我们的预期结果不一样。这是为什么呢？带着我们的问题进入下一节。</p>
+<h2 id="十六种模式和saveLayer"><a href="#十六种模式和saveLayer" class="headerlink" title="十六种模式和saveLayer()"></a>十六种模式和saveLayer()</h2><h3 id="十六种模式"><a href="#十六种模式" class="headerlink" title="十六种模式"></a>十六种模式</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">名字</th>
+<th style="text-align:center">含义</th>
+<th style="text-align:center">名字</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">CLEAR</td>
+<td style="text-align:center">清除模式［0，0］，即最终所有点的像素的alpha 和color 都为 0，所以画出来的效果只有白色背景</td>
+<td style="text-align:center">SRC</td>
+<td style="text-align:center">显示上层绘制图片</td>
+</tr>
+<tr>
+<td style="text-align:center">DST</td>
+<td style="text-align:center">显示下层绘制图片</td>
+<td style="text-align:center">SRC_OVER</td>
+<td style="text-align:center">正常绘制显示，上下层绘制叠盖</td>
+</tr>
+<tr>
+<td style="text-align:center">DST_OVER</td>
+<td style="text-align:center">上下层都显示，下层居上显示</td>
+<td style="text-align:center">SRC_IN</td>
+<td style="text-align:center">取两层绘制交集。显示上层</td>
+</tr>
+<tr>
+<td style="text-align:center">DST_IN</td>
+<td style="text-align:center">取两层绘制交集，显示下层</td>
+<td style="text-align:center">SRC_OUT</td>
+<td style="text-align:center">取上层绘制非交集部分</td>
+</tr>
+<tr>
+<td style="text-align:center">DST_OUT</td>
+<td style="text-align:center">取下层绘制非交集部分</td>
+<td style="text-align:center">SRC_ATOP</td>
+<td style="text-align:center">取下层非交集部分与上层交集部分</td>
+</tr>
+<tr>
+<td style="text-align:center">DST_ATOP</td>
+<td style="text-align:center">取上层非交集部分与下层交集部分</td>
+<td style="text-align:center">XOR</td>
+<td style="text-align:center">异或：去除两图层交集部分</td>
+</tr>
+<tr>
+<td style="text-align:center">DARKEN</td>
+<td style="text-align:center">取两图层全部区域，交集部分颜色加深</td>
+<td style="text-align:center">LIGHTEN</td>
+<td style="text-align:center">取两图层全部，点亮交集部分颜色</td>
+</tr>
+<tr>
+<td style="text-align:center">MULTIPLY</td>
+<td style="text-align:center">取两图层交集部分叠加后颜色</td>
+<td style="text-align:center">SCREEN</td>
+<td style="text-align:center">取两图层全部区域，交集部分变为透明色</td>
+</tr>
+</tbody>
+</table>
+<p>PS：名称前面都应该有：<strong><em>PorterDuff.Mode</em></strong> ，例如：PorterDuff.Mode.CLEAR</p>
+<p>&emsp;&emsp;什么？有的看不懂什么意思？没关系，我也没指望你一次就看懂，我们先来说一说saveLayer()，且听我娓娓道来。</p>
+<h3 id="saveLayer"><a href="#saveLayer" class="headerlink" title="saveLayer()"></a>saveLayer()</h3><p>&emsp;&emsp;这个方法是干嘛用的？保存指定区域内画布的内容。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public int saveLayer(RectF bounds, Paint paint, int saveFlags)  </span><br><span class="line">public int saveLayer(float left, float top, float right, float bottom,Paint paint, int saveFlags)</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;后面的saveFlags，有6个值，我们这里用到的 <strong><em>Canvas.ALL_SAVE_FLAG</em></strong>，很明显，表示保存所有内容。我们这里如果把这个方法去掉，会是什么样的结果呢？代码就不贴出来了，就直接注释掉saveLayer的两行代码。还是先画dst，后画src，跑出来的效果图如下：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-85a4080bc042c63c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="去掉saveLayer().png"></p>
+<p>我们先规定两点：</p>
+<ol>
+<li>先画dst，也就是目标图像，是一个圆形。</li>
+<li>后画src，也就是源图像，是一个矩形。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">代码名称1</th>
+<th style="text-align:center">顺序</th>
+<th style="text-align:center">中文名称</th>
+<th style="text-align:center">形状</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">dst</td>
+<td style="text-align:center">先画</td>
+<td style="text-align:center">目标图像</td>
+<td style="text-align:center">红色圆形</td>
+</tr>
+<tr>
+<td style="text-align:center">src</td>
+<td style="text-align:center">后画</td>
+<td style="text-align:center">源图像</td>
+<td style="text-align:center">黄色矩形</td>
+</tr>
+</tbody>
+</table>
+<p>&emsp;&emsp;规定好之后，我们再来说一说这个 <strong><em>SRC_IN</em></strong>，我们前面说了：取两层绘制交集。显示上层。首先IN是取交集部分，OUT是取非交集部分。这个就是说最后显示的图形，他们的交集部分，显示src，也就是矩形的颜色，也就是黄色。先画的dst，他自然在src的上层。所以，显示dst的形状，两者交集部分显示src的颜色。可以看下图：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-0b1c817304fec954.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="saveLayer.png"></p>
+<p>&emsp;&emsp;我们再来说说saveLayer的绘制流程：如上图所示，它会创建一个全新图名的bitmap，大小跟你前面指定的保存区域相同，然后，绘制的图形会保存在这个全新透明的bitmap上面，最后把这个透明的bitmap画在画布上面。</p>
+<p>&emsp;&emsp;辣么，没有savelayer()方法的绘制流程呢？如下图：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-38b1242793a0807b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="no_saveLayer.png"></p>
+<p>他是直接作用在画布上面的。</p>
+<h2 id="常用的PorterDuffXfermode模式介绍"><a href="#常用的PorterDuffXfermode模式介绍" class="headerlink" title="常用的PorterDuffXfermode模式介绍"></a>常用的PorterDuffXfermode模式介绍</h2><h3 id="SRC模式"><a href="#SRC模式" class="headerlink" title="SRC模式"></a>SRC模式</h3><p>&emsp;&emsp;只保留源图像的 alpha 和 color ，所以绘制出来只有源图，有时候会感觉分不清先绘制的是源图还是后绘制的是源图，这个时候可以这么记，先绘制的是目标图，不管任何时候，一定要做一个有目标的人，目标在前！（未达到我们的预期效果，感觉有问题）</p>
+<h3 id="DST模式"><a href="#DST模式" class="headerlink" title="DST模式"></a>DST模式</h3><p>&emsp;&emsp;只显示目标图片，也就是只显示红色的圆形。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-5a78edd1ea287820.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="DST.png"></p>
+<h3 id="SRC-OVER模式"><a href="#SRC-OVER模式" class="headerlink" title="SRC_OVER模式"></a>SRC_OVER模式</h3><p>&emsp;&emsp;在目标图片顶部绘制源图像,从命名上也可以看出来就是把源图像绘制在上方，也就是把黄色长方形，画在红色圆形的上面。效果图如下：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-efa828311c86ebcb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="SRC_OVER.png"></p>
+<h3 id="DST-OVER模式"><a href="#DST-OVER模式" class="headerlink" title="DST_OVER模式"></a>DST_OVER模式</h3><p>&emsp;&emsp;把目标图像绘制在上方。与前一个相反，把红色圆形画在长方形上面。效果图如下：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-d715a0025e2c1baa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="DST_OVER.png"></p>
+<h3 id="SRC-IN模式"><a href="#SRC-IN模式" class="headerlink" title="SRC_IN模式"></a>SRC_IN模式</h3><p>&emsp;&emsp;在两者相交的地方绘制源图像，并且绘制的效果会受到目标图像对应地方透明度的影响。</p>
+<p>&emsp;&emsp;有点绕，我分成几段讲出来：</p>
+<p>&emsp;&emsp;也就是说，两者相交的位置，显示源图像，也就是黄色的矩形，目标图像的透明度为0，然后，&emsp;源图像的其他位置的透明度&emsp;&emsp;会跟源图像与目标图像相交的地方&emsp;&emsp;的目标图像的透明度一样。</p>
+<p>&emsp;&emsp;有点绕。其实，就是说源图像的其他地方隐藏，就显示相交的位置。效果图如下：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-7e2826c64c63d907.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="SRC_IN.png"></p>
+<h3 id="DST-IN模式"><a href="#DST-IN模式" class="headerlink" title="DST_IN模式"></a>DST_IN模式</h3><p>&emsp;&emsp;跟前面刚好对应，在两者相交的地方绘制目标图像，并且，绘制效果会受到源图像对应地方透明度的影响。我们最是绘制目标图像。效果图如下：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-4bea3004d59f8260.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="DST_IN.png"></p>
+<h3 id="SRC-OUT模式"><a href="#SRC-OUT模式" class="headerlink" title="SRC_OUT模式"></a>SRC_OUT模式</h3><p>&emsp;&emsp;在不相交的地方绘制源图像，相交处根据目标alpha进行过滤，目标色完全不透明时则完全过滤，完全透明则不过滤；</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-306477eebd6a23d6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="SRC_OUT.png"></p>
+<h3 id="DST-OUT模式"><a href="#DST-OUT模式" class="headerlink" title="DST_OUT模式"></a>DST_OUT模式</h3><p>&emsp;&emsp;同样，可以类比SRC_OUT , 在不相交的地方绘制目标图像，相交处根据源图像alpha进行过滤，完全不透明处则完全过滤，完全透明则不过滤；</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-05650d7d10021591.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="DST_OUT.png"></p>
+<p>太多了，后面就不写了，用的也比较少。</p>
+<p>用途，加上上一篇的贝赛尔曲线的水波纹。很明显，我就想做如下效果：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-dcdb3859d8e4fbf8.gif?imageMogr2/auto-orient/strip" alt="圆形水波纹.gif"></p>
+<p>这个圆只是一种，这只是一个demo，这个圆，你可以换成任意的形状。你知道水波纹用贝赛尔曲线怎么做，知道了，PorterDuffXfermode这个模式，两张图片是怎么切割。像这样的，还不就是一个道理。随手拈来。如下图：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-946eca2d7f94cdcf.gif?imageMogr2/auto-orient/strip" alt="自定义背景.gif"></p>
+<p>这个水波纹的，已经全部封装好了。任意改变背景图片。<a href="https://download.csdn.net/download/qq_27634797/10314335" target="_blank" rel="noopener">项目链接</a></p>
+
+      
+    </div>
+    
+    
+    
+	<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">---------------------END---------------------</div>
+    
+</div>
+  
+  <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2018/05/13/Android——PorterDuffXfermode/">Android——PorterDuffXfermode</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 海晨忆 的个人博客">海晨忆</a></p>
+  <p><span>发布时间:</span>2018年05月13日 - 22:05</p>
+  <p><span>最后更新:</span>2018年05月13日 - 22:05</p>
+  <p><span>原始链接:</span><a href="/2018/05/13/Android——PorterDuffXfermode/" title="Android——PorterDuffXfermode">http://haichenyi.com/2018/05/13/Android——PorterDuffXfermode/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://haichenyi.com/2018/05/13/Android——PorterDuffXfermode/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
+      
+</div>
+	</div>
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/uploads/wechat_reward.png" alt="海晨忆 WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/uploads/alipay_reward.jpg" alt="海晨忆 Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/13/Android自定义View——贝赛尔曲线/" rel="next" title="Android自定义View——贝赛尔曲线">
+                <i class="fa fa-chevron-left"></i> Android自定义View——贝赛尔曲线
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/13/Android转场动画——共享元素/" rel="prev" title="Android转场动画——共享元素">
+                Android转场动画——共享元素 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/artistic_image/psb17.jpg"
+               alt="海晨忆" />
+          <p class="site-author-name" itemprop="name">海晨忆</p>
+           
+              <p class="site-description motion-element" itemprop="description">我负责征战天下，你负责貌美如花！</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://www.jianshu.com/u/6077ee440c37" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      简书
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net/qq_27634797" target="_blank" title="CSDN">
+                  
+                    <i class="fa fa-fw fa-github-square"></i>
+                  
+                    
+                      CSDN
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/haichenyi" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github-alt"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意点"><span class="nav-number">2.</span> <span class="nav-text">注意点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十六种模式和saveLayer"><span class="nav-number">3.</span> <span class="nav-text">十六种模式和saveLayer()</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#十六种模式"><span class="nav-number">3.1.</span> <span class="nav-text">十六种模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#saveLayer"><span class="nav-number">3.2.</span> <span class="nav-text">saveLayer()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用的PorterDuffXfermode模式介绍"><span class="nav-number">4.</span> <span class="nav-text">常用的PorterDuffXfermode模式介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SRC模式"><span class="nav-number">4.1.</span> <span class="nav-text">SRC模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DST模式"><span class="nav-number">4.2.</span> <span class="nav-text">DST模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SRC-OVER模式"><span class="nav-number">4.3.</span> <span class="nav-text">SRC_OVER模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DST-OVER模式"><span class="nav-number">4.4.</span> <span class="nav-text">DST_OVER模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SRC-IN模式"><span class="nav-number">4.5.</span> <span class="nav-text">SRC_IN模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DST-IN模式"><span class="nav-number">4.6.</span> <span class="nav-text">DST_IN模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SRC-OUT模式"><span class="nav-number">4.7.</span> <span class="nav-text">SRC_OUT模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DST-OUT模式"><span class="nav-number">4.8.</span> <span class="nav-text">DST_OUT模式</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">海晨忆</span>
+</div>
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共57.7k字</span>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/three.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
+<div id="hexo-helper-live2d">
+  <canvas id="live2dcanvas" width="150" height="300"></canvas>
+</div>
+<style>
+  #live2dcanvas{
+    position: fixed;
+    width: 150px;
+    height: 300px;
+    opacity:0.7;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -20px;
+  }
+</style>
+<script type="text/javascript" src="/live2d/device.min.js"></script>
+<script type="text/javascript">
+const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
+(function(){
+  if((typeof(device) != 'undefined') && (device.mobile())){
+    var trElement = document.getElementById('hexo-helper-live2d');
+    trElement.parentNode.removeChild(trElement);
+    return;
+  }else
+    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
+  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/wanko.model.json", 0.5);});
+})();
+</script>
+
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+</body>
+</html>
