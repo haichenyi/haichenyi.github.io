@@ -110,17 +110,17 @@
 
 
 
-<meta name="description" content="我负责征战天下，你负责貌美如花！">
+<meta name="description" content="&amp;emsp;&amp;emsp;前面几篇学了基本的SQL语句和用工具操作数据库，今天讲一下用代码操作数据库。 连接MySQL&amp;emsp;&amp;emsp;首先记得需要导包，jdbc连接MySQL数据库的jar包，名字：mysql-connector-java &amp;emsp;&amp;emsp;首先记得需要导包，jdbc连接MySQL数据库的jar包，名字：mysql-connector-java &amp;emsp;&amp;emsp;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello-Hexo">
-<meta property="og:url" content="http://haichenyi.com/2018/02/06/Hello-Hexo/index.html">
+<meta property="og:title" content="JDBC的简单使用——MySQL">
+<meta property="og:url" content="http://haichenyi.com/2018/10/11/JDBC的简单使用——MySQL/index.html">
 <meta property="og:site_name" content="海晨忆的博客">
-<meta property="og:description" content="我负责征战天下，你负责貌美如花！">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;前面几篇学了基本的SQL语句和用工具操作数据库，今天讲一下用代码操作数据库。 连接MySQL&amp;emsp;&amp;emsp;首先记得需要导包，jdbc连接MySQL数据库的jar包，名字：mysql-connector-java &amp;emsp;&amp;emsp;首先记得需要导包，jdbc连接MySQL数据库的jar包，名字：mysql-connector-java &amp;emsp;&amp;emsp;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-06T15:06:53.527Z">
+<meta property="og:updated_time" content="2018-10-11T15:03:08.367Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello-Hexo">
-<meta name="twitter:description" content="我负责征战天下，你负责貌美如花！">
+<meta name="twitter:title" content="JDBC的简单使用——MySQL">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;前面几篇学了基本的SQL语句和用工具操作数据库，今天讲一下用代码操作数据库。 连接MySQL&amp;emsp;&amp;emsp;首先记得需要导包，jdbc连接MySQL数据库的jar包，名字：mysql-connector-java &amp;emsp;&amp;emsp;首先记得需要导包，jdbc连接MySQL数据库的jar包，名字：mysql-connector-java &amp;emsp;&amp;emsp;">
 
 
 
@@ -149,13 +149,13 @@
 
 
 
-  <link rel="canonical" href="http://haichenyi.com/2018/02/06/Hello-Hexo/"/>
+  <link rel="canonical" href="http://haichenyi.com/2018/10/11/JDBC的简单使用——MySQL/"/>
 
 
 
 
 
-  <title>Hello-Hexo | 海晨忆的博客</title>
+  <title>JDBC的简单使用——MySQL | 海晨忆的博客</title>
   
 
 
@@ -334,7 +334,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haichenyi.com/2018/02/06/Hello-Hexo/">
+    <link itemprop="mainEntityOfPage" href="http://haichenyi.com/2018/10/11/JDBC的简单使用——MySQL/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海晨忆">
@@ -351,7 +351,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello-Hexo</h1>
+          <h1 class="post-title" itemprop="name headline">JDBC的简单使用——MySQL</h1>
         
 
         <div class="post-meta">
@@ -363,8 +363,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-06T23:06:53+08:00">
-                2018-02-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-11T22:51:00+08:00">
+                2018-10-11
               </time>
             
 
@@ -374,9 +374,29 @@
           </span>
 
           
-
-          
+            <span class="post-category" >
             
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库-JDBC/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库 -JDBC</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
           
 
           
@@ -395,7 +415,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  0
+                  1,625
                 </span>
               
 
@@ -411,7 +431,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  1
+                  8
                 </span>
               
             </div>
@@ -432,7 +452,60 @@
       
 
       
-        
+        <p>&emsp;&emsp;前面几篇学了基本的SQL语句和用工具操作数据库，今天讲一下用代码操作数据库。</p>
+<h4 id="连接MySQL"><a href="#连接MySQL" class="headerlink" title="连接MySQL"></a>连接MySQL</h4><p>&emsp;&emsp;<strong><em>首先记得需要导包，jdbc连接MySQL数据库的jar包，名字：mysql-connector-java</em></strong></p>
+<p>&emsp;&emsp;<strong><em>首先记得需要导包，jdbc连接MySQL数据库的jar包，名字：mysql-connector-java</em></strong></p>
+<p>&emsp;&emsp;<strong><em>首先记得需要导包，jdbc连接MySQL数据库的jar包，名字：mysql-connector-java</em></strong></p>
+<a id="more"></a>
+<p>代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//1、获取驱动类,路动类路径：com.mysql.jdbc.Driver</span><br><span class="line">Class.forName(&quot;com.mysql.jdbc.Driver&quot;);</span><br><span class="line">//获取url：jdbc:mysql://ip:端口号/数据库名称</span><br><span class="line">String url = &quot;jdbc:mysql://localhost:3306/test4&quot;;</span><br><span class="line">//用户名</span><br><span class="line">String username = &quot;root&quot;;</span><br><span class="line">//密码</span><br><span class="line">String password = &quot;123&quot;;</span><br><span class="line">//获取Connection对象</span><br><span class="line">Connection connection = DriverManager.getConnection(url, username, password);</span><br><span class="line">System.out.print(connection);</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;总的来说，先要获取驱动类，然后就是获取Connection对象，就是一行代码<code>DriverManager.getConnection(url, username, password);</code>能走通，就说明连接上了。</p>
+<h4 id="修改数据库"><a href="#修改数据库" class="headerlink" title="修改数据库"></a>修改数据库</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">    public void test1() throws ClassNotFoundException, SQLException &#123;</span><br><span class="line">        //获取驱动类</span><br><span class="line">        Class.forName(&quot;com.mysql.jdbc.Driver&quot;);</span><br><span class="line">        //获取url</span><br><span class="line">        String url = &quot;jdbc:mysql://localhost:3306/test4&quot;;</span><br><span class="line">        //用户名</span><br><span class="line">        String username = &quot;root&quot;;</span><br><span class="line">        //密码</span><br><span class="line">        String password = &quot;123&quot;;</span><br><span class="line">        //获取Connection对象</span><br><span class="line">        Connection connection = DriverManager.getConnection(url, username, password);</span><br><span class="line">        System.out.print(connection);</span><br><span class="line">        //获取Statement对象</span><br><span class="line">        Statement statement = connection.createStatement();</span><br><span class="line">        //String sql=&quot;INSERT INTO employee (eid,ename,edid) VALUES(null,&apos;小红&apos;,2)&quot;;</span><br><span class="line">        String sql = &quot;UPDATE employee SET edid=1 WHERE ename=&apos;小红&apos;&quot;;</span><br><span class="line">        statement.executeUpdate(sql);</span><br><span class="line">        statement.close();</span><br><span class="line">        connection.close();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;就是在连接数据库之后，通过Connection对象获取Statement对象，通过Statement对象的execute方法执行对应的SQL语句，最后记得关闭</p>
+<h4 id="查询数据库"><a href="#查询数据库" class="headerlink" title="查询数据库"></a>查询数据库</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">    public void test3() &#123;</span><br><span class="line">        Connection con = null;</span><br><span class="line">        Statement state = null;</span><br><span class="line">        ResultSet resultSet = null;</span><br><span class="line">        try &#123;</span><br><span class="line">            String driverClassName = &quot;com.mysql.jdbc.Driver&quot;;</span><br><span class="line">            String url = &quot;jdbc:mysql://localhost:3306/test4&quot;;</span><br><span class="line">            String username = &quot;root&quot;;</span><br><span class="line">            String password = &quot;123&quot;;</span><br><span class="line">            Class.forName(driverClassName);</span><br><span class="line">            con = DriverManager.getConnection(url, username, password);</span><br><span class="line">            state = con.createStatement();</span><br><span class="line">            String querySQL = &quot;SELECT * FROM employee&quot;;</span><br><span class="line">            resultSet = state.executeQuery(querySQL);</span><br><span class="line">            List&lt;Map&lt;String, String&gt;&gt; mapList = new ArrayList&lt;&gt;();</span><br><span class="line">            while (resultSet.next()) &#123;</span><br><span class="line">                Map&lt;String, String&gt; map = new HashMap&lt;&gt;();</span><br><span class="line">                map.put(&quot;ename&quot;, resultSet.getString(&quot;ename&quot;));</span><br><span class="line">                map.put(&quot;edid&quot;, String.valueOf(resultSet.getInt(&quot;edid&quot;)));</span><br><span class="line">                mapList.add(map);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.print(mapList.size());</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            throw new RuntimeException(e);</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            try &#123;</span><br><span class="line">                if (resultSet != null) &#123;</span><br><span class="line">                    resultSet.close();</span><br><span class="line">                &#125;</span><br><span class="line">                if (state != null) &#123;</span><br><span class="line">                    state.close();</span><br><span class="line">                &#125;</span><br><span class="line">                if (con != null) &#123;</span><br><span class="line">                    con.close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; catch (Exception e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;查询数据库需要注意的地方就是：</p>
+<ol>
+<li><p>执行SQL语句的方法是<code>executeQuery()</code>，只能执行查询语句。</p>
+</li>
+<li><p>他有一个返回值ResultSet，然后循环这个Set对象，获取数据，他提供了一个移动光标的方法<code>next()</code>，当他为null的时候，返回false，结束循环。</p>
+</li>
+<li><p>还提供了一系列的get方法，传表每一栏的下标index，或者每一栏的名称，获取对应的值。值的类型要与get的类型相同。值为int，就用getInt，值为String就用getString</p>
+</li>
+<li><p>最后记得关闭连接，倒着关闭。</p>
+</li>
+</ol>
+<h4 id="PreparedStatement"><a href="#PreparedStatement" class="headerlink" title="PreparedStatement"></a>PreparedStatement</h4><p>&emsp;&emsp;上面用自己拼接sql语句的方式查询数据库，会容易被sql攻击。所以，我们需要用<code>PreparedStatement</code>来防止被sql攻击，具体方式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public boolean login(String username, String password) throws Exception &#123;</span><br><span class="line">        Connection connection = null;</span><br><span class="line">        PreparedStatement pstat = null;</span><br><span class="line">        ResultSet rs = null;</span><br><span class="line">        try &#123;</span><br><span class="line">            Class.forName(&quot;com.mysql.jdbc.Driver&quot;);</span><br><span class="line">            String url = &quot;jdbc:mysql://localhost:3306/test4&quot;;</span><br><span class="line">            String user = &quot;root&quot;;</span><br><span class="line">            String psw = &quot;123&quot;;</span><br><span class="line">            connection = DriverManager.getConnection(url, user, psw);</span><br><span class="line">            String sql = &quot;select * from t_user where username=? and psw=?&quot;;</span><br><span class="line">            pstat = connection.prepareStatement(sql);</span><br><span class="line">            pstat.setString(1, username);</span><br><span class="line">            pstat.setString(2, password);</span><br><span class="line">            rs = pstat.executeQuery();</span><br><span class="line">            return rs.next();</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            throw new RuntimeException(e);</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            if (rs != null) rs.close();</span><br><span class="line">            if (pstat != null) pstat.close();</span><br><span class="line">            if (connection != null) connection.close();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;如上，是一个登录接口，传用户名，密码给后台，后台查询数据库，我们在获取了connection之后，通过connection调用prepareStatement方法，需要传一个sql模板。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String sql = &quot;select * from t_user where username=? and psw=?&quot;;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;什么是sql模板呢？就是吧需要动态传的参数用问好代替。我们上面这个查询语句，需要动态变化的就是username和psw。然后，我们调用PreparedStatement的setXxx方法，去设置值，第一个参数表示给第几个值赋值，第二个参数就是需要赋值的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//给第一个参数赋值为username</span><br><span class="line">pstat.setString(1, username);</span><br><span class="line">//给第二个参数赋值为password</span><br><span class="line">pstat.setString(2, password);</span><br></pre></td></tr></table></figure>
+<h4 id="大数据存储"><a href="#大数据存储" class="headerlink" title="大数据存储"></a>大数据存储</h4><p>&emsp;&emsp;这里以存mp3为例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE t_binary(</span><br><span class="line">	id INT PRIMARY KEY AUTO_INCREMENT,</span><br><span class="line">	NAME VARCHAR(50),</span><br><span class="line">	DATA MEDIUMBLOB</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;如上，首先创建一张表去存数据，数据类型不要错了，BLOB类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">    public void test1() throws SQLException, IOException &#123;</span><br><span class="line">        Connection connection = JDBCUtils.getConnection();</span><br><span class="line">        String sql=&quot;INSERT INTO t_binary VALUE(?,?,?)&quot;;</span><br><span class="line">        PreparedStatement pstat = connection.prepareStatement(sql);</span><br><span class="line">        pstat.setInt(1,1);</span><br><span class="line">        pstat.setString(2,&quot;KenT - 唱给谁听.mp3&quot;);</span><br><span class="line">        byte[] bytes= IOUtils.toByteArray(new FileInputStream(&quot;D:/CloudMusic/KenT - 唱给谁听.mp3&quot;));</span><br><span class="line">        Blob blob=new SerialBlob(bytes);</span><br><span class="line">        pstat.setBlob(3,blob);</span><br><span class="line">        pstat.executeLargeUpdate();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;上面test1就是存的方法，步骤：</p>
+<ol>
+<li><p>先连接数据库，获取Connection对象</p>
+</li>
+<li><p>然后，获取PreparedStatement对象，设置参数，其中blob参数，Blob是一个接口，先获取他的实现类SerialBlob，这个实现类的构造方法需要传一个byte[]数组，所以，我们只用把需要存储的文件转成byte[]数组就可以了</p>
+</li>
+<li><p>最后，执行sql语句就可以了</p>
+</li>
+</ol>
+<p>这里需要注意的是，要在my.ini服务器配置文件中设置最大存储<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//这个大小大于你的存储文件即可</span><br><span class="line">max_allowed_packet=20M</span><br></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;[mysqld]下边的是服务器配置，[mysql]下边的是客户端配置</p>
+<p>&emsp;&emsp;接下来就是怎么取文件了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">    public void test2() throws SQLException, IOException &#123;</span><br><span class="line">        Connection connection = JDBCUtils.getConnection();</span><br><span class="line">        String sql=&quot;SELECT * FROM t_binary WHERE name=?&quot;;</span><br><span class="line">        PreparedStatement pstat = connection.prepareStatement(sql);</span><br><span class="line">        pstat.setString(1,&quot;KenT - 唱给谁听.mp3&quot;);</span><br><span class="line">        ResultSet rs = pstat.executeQuery();</span><br><span class="line">        if (rs.next())&#123;</span><br><span class="line">            Blob blob = rs.getBlob(&quot;data&quot;);</span><br><span class="line">            InputStream in = blob.getBinaryStream();</span><br><span class="line">            FileOutputStream out = new FileOutputStream(&quot;D:/cgst.mp3&quot;);</span><br><span class="line">            IOUtils.copy(in,out);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;需要说的就是获取到ResultSet之后，获取到Blob，通过他的getBinaryStream()方法，转成输入流，拿到输入流之后，转成File即可</p>
+<h4 id="批处理"><a href="#批处理" class="headerlink" title="批处理"></a>批处理</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">    public void test6() throws SQLException &#123;</span><br><span class="line">        Connection connection = JDBCUtils.getConnection();</span><br><span class="line">        String sql = &quot;INSERT INTO t_user VALUE(?,?,?)&quot;;</span><br><span class="line">        PreparedStatement pstat = connection.prepareStatement(sql);</span><br><span class="line">        for (int i = 0; i &lt; 10000; i++) &#123;</span><br><span class="line">            pstat.setInt(1, i + 1);</span><br><span class="line">            pstat.setString(2, &quot;user&quot; + i);</span><br><span class="line">            pstat.setString(3, i % 2 == 0 ? &quot;男&quot; : &quot;女&quot;);</span><br><span class="line">            pstat.addBatch();</span><br><span class="line">        &#125;</span><br><span class="line">        long start = System.currentTimeMillis();</span><br><span class="line">        pstat.executeBatch();</span><br><span class="line">        long end = System.currentTimeMillis();</span><br><span class="line">        System.out.print(end - start);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;注意点：</p>
+<ol>
+<li>每添加一条数据，调用一遍pstat.addBatch();</li>
+<li>当数据添加完以后，调用pstat.executeBatch();执行sql语句</li>
+<li>mysql要开启批处理功能，不然慢到你无法想象。在获取Connection传的url后面，添加<code>rewriteBatchedStatements=true</code>。完整url<code>jdbc:mysql://localhost:3306/test4?rewriteBatchedStatements=true</code></li>
+</ol>
+
       
     </div>
     
@@ -449,6 +522,35 @@
   <div>
       
         
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2018/10/11/JDBC的简单使用——MySQL/">JDBC的简单使用——MySQL</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 海晨忆 的个人博客">海晨忆</a></p>
+  <p><span>发布时间:</span>2018年10月11日 - 22:10</p>
+  <p><span>最后更新:</span>2018年10月11日 - 23:10</p>
+  <p><span>原始链接:</span><a href="/2018/10/11/JDBC的简单使用——MySQL/" title="JDBC的简单使用——MySQL">http://haichenyi.com/2018/10/11/JDBC的简单使用——MySQL/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://haichenyi.com/2018/10/11/JDBC的简单使用——MySQL/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
       
 </div>
 	</div>
@@ -499,8 +601,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/06/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2018/10/11/MySQL数据库操作（五）——多表查询/" rel="next" title="MySQL数据库操作（五）——多表查询">
+                <i class="fa fa-chevron-left"></i> MySQL数据库操作（五）——多表查询
               </a>
             
           </div>
@@ -508,10 +610,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/08/Netty的简单使用，实现socket通讯/" rel="prev" title="Netty的简单使用，实现socket通讯">
-                Netty的简单使用，实现socket通讯 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -562,10 +660,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
-
 
         </div>
         
@@ -586,8 +680,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/artistic_image/psb17.jpg"
@@ -602,7 +705,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">40</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -613,7 +716,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -683,6 +786,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#连接MySQL"><span class="nav-number">1.</span> <span class="nav-text">连接MySQL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改数据库"><span class="nav-number">2.</span> <span class="nav-text">修改数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询数据库"><span class="nav-number">3.</span> <span class="nav-text">查询数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PreparedStatement"><span class="nav-number">4.</span> <span class="nav-text">PreparedStatement</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#大数据存储"><span class="nav-number">5.</span> <span class="nav-text">大数据存储</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#批处理"><span class="nav-number">6.</span> <span class="nav-text">批处理</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -716,7 +835,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共99字</span>
+  <span class="post-count">博客全站共64.6k字</span>
 </div>
 
 

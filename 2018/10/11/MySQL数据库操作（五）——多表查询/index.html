@@ -110,17 +110,17 @@
 
 
 
-<meta name="description" content="我负责征战天下，你负责貌美如花！">
+<meta name="description" content="合并结果集 union all(包含相同行)、union(去除相同行)&amp;emsp;&amp;emsp;把查询的结果合并到一起。要求： 查询的结果列数相同，列类型相同">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android自定义View">
-<meta property="og:url" content="http://haichenyi.com/2018/02/08/Android自定义View/index.html">
+<meta property="og:title" content="MySQL数据库操作（五）——多表查询">
+<meta property="og:url" content="http://haichenyi.com/2018/10/11/MySQL数据库操作（五）——多表查询/index.html">
 <meta property="og:site_name" content="海晨忆的博客">
-<meta property="og:description" content="我负责征战天下，你负责貌美如花！">
+<meta property="og:description" content="合并结果集 union all(包含相同行)、union(去除相同行)&amp;emsp;&amp;emsp;把查询的结果合并到一起。要求： 查询的结果列数相同，列类型相同">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-08T13:56:33.180Z">
+<meta property="og:updated_time" content="2018-10-11T15:03:11.105Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android自定义View">
-<meta name="twitter:description" content="我负责征战天下，你负责貌美如花！">
+<meta name="twitter:title" content="MySQL数据库操作（五）——多表查询">
+<meta name="twitter:description" content="合并结果集 union all(包含相同行)、union(去除相同行)&amp;emsp;&amp;emsp;把查询的结果合并到一起。要求： 查询的结果列数相同，列类型相同">
 
 
 
@@ -149,13 +149,13 @@
 
 
 
-  <link rel="canonical" href="http://haichenyi.com/2018/02/08/Android自定义View/"/>
+  <link rel="canonical" href="http://haichenyi.com/2018/10/11/MySQL数据库操作（五）——多表查询/"/>
 
 
 
 
 
-  <title>Android自定义View | 海晨忆的博客</title>
+  <title>MySQL数据库操作（五）——多表查询 | 海晨忆的博客</title>
   
 
 
@@ -334,7 +334,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haichenyi.com/2018/02/08/Android自定义View/">
+    <link itemprop="mainEntityOfPage" href="http://haichenyi.com/2018/10/11/MySQL数据库操作（五）——多表查询/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海晨忆">
@@ -351,7 +351,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Android自定义View</h1>
+          <h1 class="post-title" itemprop="name headline">MySQL数据库操作（五）——多表查询</h1>
         
 
         <div class="post-meta">
@@ -363,8 +363,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-08T21:55:20+08:00">
-                2018-02-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-11T22:50:45+08:00">
+                2018-10-11
               </time>
             
 
@@ -386,8 +386,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android-自定义view/" itemprop="url" rel="index">
-                    <span itemprop="name">Android -自定义view</span>
+                  <a href="/categories/数据库-MySQL/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库 -MySQL</span>
                   </a>
                 </span>
 
@@ -415,7 +415,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  0
+                  2,225
                 </span>
               
 
@@ -431,7 +431,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  1
+                  10
                 </span>
               
             </div>
@@ -452,7 +452,34 @@
       
 
       
-        
+        <h3 id="合并结果集-union-all-包含相同行-、union-去除相同行"><a href="#合并结果集-union-all-包含相同行-、union-去除相同行" class="headerlink" title="合并结果集 union all(包含相同行)、union(去除相同行)"></a>合并结果集 <code>union all(包含相同行)、union(去除相同行)</code></h3><p>&emsp;&emsp;把查询的结果合并到一起。<strong>要求：</strong> <code>查询的结果列数相同，列类型相同</code></p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">create table emp(</span><br><span class="line">    eid int,</span><br><span class="line">    ename varchar(50),</span><br><span class="line">    eage int</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">create table stu(</span><br><span class="line">    sid int,</span><br><span class="line">    sname varchar(50)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">//合并结果集（加上all，包含相同的行）</span><br><span class="line">select eid,ename from emp</span><br><span class="line">union all</span><br><span class="line">select * from stu;</span><br><span class="line"></span><br><span class="line">//合并结果集（去掉all，去除相同行）</span><br><span class="line">select eid,ename from emp</span><br><span class="line">union</span><br><span class="line">select * from stu;</span><br></pre></td></tr></table></figure>
+<h3 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h3><h4 id="内连接"><a href="#内连接" class="headerlink" title="内连接"></a>内连接</h4><p><strong>方言：</strong> <code>select * from 表1,表2 where 条件</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">表a有三条数据：q，w，e</span><br><span class="line">表b有两条数据：h，j</span><br><span class="line">select * from a,b;</span><br><span class="line">得出的结果是表a与表b的笛卡尔集，也就是会得到6条数据，</span><br><span class="line">分别：qh,qj,wh,wj,eh,ej</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">去除无用的笛卡尔集，加上where后面的条件</span><br><span class="line">连表查询会有附表的外键=主表的主键这个条件</span><br><span class="line"></span><br><span class="line">select * from student,teacher where student.tid=teacher.tid;</span><br><span class="line"></span><br><span class="line">查询学生的全部信息，需要查询学生表和老师表，</span><br><span class="line">条件是学生表里面的老师id等于老师表里面的老师id，</span><br><span class="line">这样查出来的结果就是我们想要的结果</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">例子：要求打印员工姓名，工资以及部分名称</span><br><span class="line">     员工姓名，工资在emp表，部门名称在dept表</span><br><span class="line">select emp.ename,emp.sal,dept.dname</span><br><span class="line">from emp,dept</span><br><span class="line">where emp.did=dept.did;</span><br><span class="line"></span><br><span class="line">如果嫌弃表名字太长了可以这样：</span><br><span class="line">select e.ename,e.sal,d.dname</span><br><span class="line">from emp e,dept d</span><br><span class="line">where e.did=d.did;</span><br></pre></td></tr></table></figure>
+<p><strong>标准：</strong> <code>select * from 表1 别名1 inner join 表2 别名2 on 条件</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">别名都是可选的，条件跟上面写的一样。两者的区别就只有二个：</span><br><span class="line">1、方言连接两个表是用逗号，标准连接两个表是用 inner join</span><br><span class="line">2、条件：方言用where，标准用on</span><br><span class="line"></span><br><span class="line">select e.ename,e.sal,d.dname</span><br><span class="line">from emp e inner join dept d</span><br><span class="line">where e.did=d.did;</span><br></pre></td></tr></table></figure></p>
+<h4 id="外连接-一主一次"><a href="#外连接-一主一次" class="headerlink" title="外连接 一主一次"></a>外连接 <code>一主一次</code></h4><p><strong>左外连接</strong> <code>left outer join ,左表为主表，右表为次表,左表中不论满足不满足条件都查询出来，右表中对应的位置用null补位</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">查询所有员工名称，工资以及部门名称，部门名称为null的填无部分</span><br><span class="line">select e.ename as 姓名,e.sal as 工资,d.ifnull(dname,&apos;无部门&apos;) as 部门名称</span><br><span class="line">from emp e left outer join dept d</span><br><span class="line">where e.did=d.did;</span><br></pre></td></tr></table></figure></p>
+<p><strong>右外连接</strong> <code>right outer join 与左外对应</code></p>
+<h3 id="子查询-一条sql语句中有多个select关键字-ALL-ANY-IN"><a href="#子查询-一条sql语句中有多个select关键字-ALL-ANY-IN" class="headerlink" title="子查询 一条sql语句中有多个select关键字,ALL,ANY,IN"></a>子查询 <code>一条sql语句中有多个select关键字,ALL,ANY,IN</code></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//查询员工中最高工资员工的详细信息</span><br><span class="line">select * from emp where sal=MAX(sal);</span><br><span class="line">//上面这个写法是错误的，条件中是不能出现集合函数</span><br><span class="line">//上面这个写法是错误的，条件中是不能出现集合函数</span><br><span class="line">//上面这个写法是错误的，条件中是不能出现集合函数</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//1、先查最高工资</span><br><span class="line">select MAX(sal) from emp;</span><br><span class="line">//2、最高工资的员工信息</span><br><span class="line">select * from emp where sal=(select MAX(sal) from emp);</span><br><span class="line">//上面这个写法才是正确的</span><br><span class="line">//上面这个写法才是正确的</span><br><span class="line">//上面这个写法才是正确的</span><br></pre></td></tr></table></figure>
+<p><strong>出现的位置：</strong> <code>1、from后作为表 2、where后作为条件</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">上面那条sql语句就是作为条件</span><br><span class="line">//查询部门等于30的员工的姓名和年龄</span><br><span class="line">select e.name,e.age from (select * from emp where did=30) e;</span><br><span class="line">//上面这条就是from后面作为表</span><br></pre></td></tr></table></figure></p>
+<p><strong>1、打印高于平均工资的所有人的信息(单行单列作为条件)</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from emp where (sal&gt;select AVG(sal) from emp);</span><br></pre></td></tr></table></figure></p>
+<p><strong>2、打印大于30部门的所有员工工资的员工信息(多行单列作为条件)</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from emp where sal &gt; ALL (select sal from emp where did=30);</span><br></pre></td></tr></table></figure></p>
+<p><strong>3、打印大于30部门任意一人员工工资的员工信息</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from emp where sal&gt; ANY (select sal from emp where did = 30);</span><br></pre></td></tr></table></figure></p>
+<p><strong>4、打印工作和部门与张三相同的员工信息</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from emp where (job,did) IN (select job,did from emp where ename=&apos;张三&apos;);</span><br></pre></td></tr></table></figure></p>
+<h3 id="练习题"><a href="#练习题" class="headerlink" title="练习题"></a>练习题</h3><p><strong><em>前提条件已知四张表</em></strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">员工表emp(eid,ename,job,emid,etime,sal,edid)</span><br><span class="line">部门表dept(did,dname,dloc)</span><br><span class="line">薪资等级表salgrade(grade,losal,hisal)</span><br><span class="line">领导表mgr(mid,mname,mtime)</span><br></pre></td></tr></table></figure></p>
+<p><strong>1、查询至少有一个员工的部门，显示部门编号，部门名称，部门位置，部门人数</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">分析：</span><br><span class="line">1、列：d.did，d.dname，d.dloc，部门人数</span><br><span class="line">2、表：dept d，emp e</span><br><span class="line">条件：e.did=d.did</span><br><span class="line"></span><br><span class="line">//查询部门编号，部门名称，部门位置</span><br><span class="line">select * from dept;</span><br><span class="line"></span><br><span class="line">//查询部门人数</span><br><span class="line">select e.did,count(*) from emp group by e.did;</span><br><span class="line"></span><br><span class="line">//把上面查询的两张表内连接</span><br><span class="line">select * from dept inner join select e.did,count(*) from emp group by e.did;</span><br><span class="line"></span><br><span class="line">//加上条件，给出别名</span><br><span class="line">select d.*,z1.cnt from dept d inner join (select did,count(*) cnt from emp group by e.did) z1 where d.did=z1.did;</span><br></pre></td></tr></table></figure></p>
+<p><strong>2、查询所有员工名称及其直接上级领导名称</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">分析：</span><br><span class="line">1、列：e.ename，m.mname</span><br><span class="line">2、表：emp e，mgr m</span><br><span class="line">条件：e.emid=m.mid</span><br><span class="line">//查询员工名称</span><br><span class="line">select ename from emp;</span><br><span class="line">//查询领导名称</span><br><span class="line">select mname from mgr;</span><br><span class="line"></span><br><span class="line">select ename from emp e left outer join (select mname from mgr ) m on e.emid = m.mid;</span><br></pre></td></tr></table></figure></p>
+<p><strong>3、列出受雇佣日期早于直接上级的所有员工编号，姓名，以及部门名称</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">分析：</span><br><span class="line">1、列：e.eid,e.ename,d.dname</span><br><span class="line">2、表：emp，mgr，dept</span><br><span class="line">//查询受雇佣日期早于直接上级领导的员工信息</span><br><span class="line">select etime from emp;</span><br><span class="line">select mtime from mgr;</span><br><span class="line"></span><br><span class="line">select * from emp e</span><br><span class="line">inner join </span><br><span class="line">select mtime from mgr m</span><br><span class="line">on e.emid=m.mid and e.etime&lt;m.mtime</span><br><span class="line"></span><br><span class="line">//再把部门名称加上</span><br><span class="line">(select eid,ename,edid from emp e</span><br><span class="line">inner join </span><br><span class="line">select mtime from mgr m</span><br><span class="line">on e.emid=m.mid and e.etime&lt;m.mtime) z1 </span><br><span class="line">left outer join </span><br><span class="line">select dname from dept d </span><br><span class="line">on z1.edid = d.did;</span><br><span class="line"></span><br><span class="line">或者</span><br><span class="line">select e.eid,e.ename,d.dname</span><br><span class="line">from emp e,mgr m,dept d</span><br><span class="line">where e.emid=m.mid and e.etime&lt;m.mtime and e.edid=d.did;</span><br></pre></td></tr></table></figure></p>
+<p><strong>4、列出部门名称和这些部门的员工信息，同事列出没有员工的部门</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">分析：</span><br><span class="line">1、列：员工信息，和部门名称，没有员工的部门也要列出来</span><br><span class="line">2、表：emp,dept</span><br><span class="line"></span><br><span class="line">select e.*,d.dname from emp e </span><br><span class="line">right outer join </span><br><span class="line">dept d</span><br><span class="line">on e.edid=d.did;</span><br></pre></td></tr></table></figure></p>
+<p><strong>5、列出最低薪资大于15000的各种工作以及从事此工作的人数</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">分析：</span><br><span class="line">1、列：工作类型，人数</span><br><span class="line">2、表：emp</span><br><span class="line">条件：min(sal)&gt;15000</span><br><span class="line"></span><br><span class="line">select job,count(*)</span><br><span class="line">from emp</span><br><span class="line">group by job</span><br><span class="line">having min(sal)&gt;15000</span><br></pre></td></tr></table></figure></p>
+<p><strong>6、列出在销售部工作的员工姓名，假定不知道销售部的部门编号</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">分析：</span><br><span class="line">1、列：员工姓名</span><br><span class="line">2、表：emp,dept</span><br><span class="line">条件：e.edid=d.did</span><br><span class="line"></span><br><span class="line">select ename</span><br><span class="line">from emp e</span><br><span class="line">where e.edid=(select did from dept where dname=&apos;销售部&apos;);</span><br></pre></td></tr></table></figure></p>
+<p><strong>7、列出薪资高于公司平均工资的所有员工信息，所在部门名称，上级领导，工资等级</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">分析：</span><br><span class="line">1、列：员工信息，部门名称，上级领导名称，工资等级</span><br><span class="line">2、表：emp,dept,mgr</span><br><span class="line">条件：sal&gt;avg(sal),e.edid=d.did,e.emid=m.mid</span><br><span class="line">//先查询高出平均工资的员工信息</span><br><span class="line">select * from emp where sal&gt;(select avg(sal) from emp);</span><br><span class="line"></span><br><span class="line">//把后面的表一个一个的加上去</span><br><span class="line">//加部门名称</span><br><span class="line">select e.*,d.dname</span><br><span class="line">from </span><br><span class="line">    emp e left outer join dept d on e.edid=d.did</span><br><span class="line">where e.sal&gt;(select avg(sal) from emp)</span><br><span class="line"></span><br><span class="line">//加上级领导名称</span><br><span class="line">select e.*,d.dname,m.mname</span><br><span class="line">from </span><br><span class="line">    emp e left outer join dept d on e.edid=d.did</span><br><span class="line">    left outer join mgr m on e.emid = m.mid</span><br><span class="line">where e.sal&gt;(select avg(sal) from emp)</span><br><span class="line"></span><br><span class="line">//最后加工资等级</span><br><span class="line">select e.*,d.dname,m.mname,s.grade</span><br><span class="line">from </span><br><span class="line">    emp e left outer join dept d on e.edid=d.did</span><br><span class="line">    left outer join mgr m on e.emid = m.mid</span><br><span class="line">    left outer join salgrade s on e.sal between s.losal and hisal</span><br><span class="line">where e.sal&gt;(select avg(sal) from emp)</span><br></pre></td></tr></table></figure></p>
+<p><strong>8、列出与张三从事相同工作的所有员工以及部门名称</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">分析：</span><br><span class="line">1、列：所有员工，部门名称</span><br><span class="line">2、表：emp，dept</span><br><span class="line">条件：张三的工作相同，e.edid=d.did</span><br><span class="line"></span><br><span class="line">select e.*,d.dname from emp e </span><br><span class="line">left outer join dept d</span><br><span class="line">on e.edid=d.did</span><br><span class="line">where e.job=(select job from emp where ename=&apos;张三&apos;);</span><br><span class="line"></span><br><span class="line">或者</span><br><span class="line"></span><br><span class="line">select e.*,d.dname from emp e,dept d where e.edid=did and e.job=(select job from emp where ename=&apos;张三&apos;);</span><br></pre></td></tr></table></figure></p>
+<p><strong>9、列出薪资高于30部门的所有员工薪资的员工的姓名和薪资，部门名称</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">select e.ename,e.sal,d.dname from emp e left outer join dept d</span><br><span class="line">where e.sal &gt; all (select sal from emp where edid=30) and e.edid = d.did;</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -475,12 +502,12 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2018/02/08/Android自定义View/">Android自定义View</a></p>
+  <p><span>本文标题:</span><a href="/2018/10/11/MySQL数据库操作（五）——多表查询/">MySQL数据库操作（五）——多表查询</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 海晨忆 的个人博客">海晨忆</a></p>
-  <p><span>发布时间:</span>2018年02月08日 - 21:02</p>
-  <p><span>最后更新:</span>2018年02月08日 - 21:02</p>
-  <p><span>原始链接:</span><a href="/2018/02/08/Android自定义View/" title="Android自定义View">http://haichenyi.com/2018/02/08/Android自定义View/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://haichenyi.com/2018/02/08/Android自定义View/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2018年10月11日 - 22:10</p>
+  <p><span>最后更新:</span>2018年10月11日 - 23:10</p>
+  <p><span>原始链接:</span><a href="/2018/10/11/MySQL数据库操作（五）——多表查询/" title="MySQL数据库操作（五）——多表查询">http://haichenyi.com/2018/10/11/MySQL数据库操作（五）——多表查询/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://haichenyi.com/2018/10/11/MySQL数据库操作（五）——多表查询/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -548,8 +575,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/08/Netty的简单使用，实现socket通讯/" rel="next" title="Netty的简单使用，实现socket通讯">
-                <i class="fa fa-chevron-left"></i> Netty的简单使用，实现socket通讯
+              <a href="/2018/10/11/MySQL数据库操作（四）——多表之间的关系/" rel="next" title="MySQL数据库操作（四）——多表之间的关系">
+                <i class="fa fa-chevron-left"></i> MySQL数据库操作（四）——多表之间的关系
               </a>
             
           </div>
@@ -558,8 +585,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/02/22/Android事件分发机制原理/" rel="prev" title="Android事件分发机制原理">
-                Android事件分发机制原理 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/10/11/JDBC的简单使用——MySQL/" rel="prev" title="JDBC的简单使用——MySQL">
+                JDBC的简单使用——MySQL <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -631,8 +658,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/artistic_image/psb17.jpg"
@@ -727,6 +763,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#合并结果集-union-all-包含相同行-、union-去除相同行"><span class="nav-number">1.</span> <span class="nav-text">合并结果集 union all(包含相同行)、union(去除相同行)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连接查询"><span class="nav-number">2.</span> <span class="nav-text">连接查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#内连接"><span class="nav-number">2.1.</span> <span class="nav-text">内连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#外连接-一主一次"><span class="nav-number">2.2.</span> <span class="nav-text">外连接 一主一次</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#子查询-一条sql语句中有多个select关键字-ALL-ANY-IN"><span class="nav-number">3.</span> <span class="nav-text">子查询 一条sql语句中有多个select关键字,ALL,ANY,IN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#练习题"><span class="nav-number">4.</span> <span class="nav-text">练习题</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
