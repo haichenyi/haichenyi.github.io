@@ -110,16 +110,21 @@
 
 
 
-<meta name="description" content="我负责征战天下，你负责貌美如花！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="海晨忆的博客">
-<meta property="og:url" content="http://haichenyi.com/archives/2018/03/index.html">
+<meta name="description" content="&amp;emsp;&amp;emsp;kotlin协程用于线程切换，kotlin里面不需要new Thread，并且，协程的开销小于new Thread。有三种写法：runBlocking，launch，async">
+<meta property="og:type" content="article">
+<meta property="og:title" content="kotlin之协程（一）">
+<meta property="og:url" content="http://haichenyi.com/2019/07/16/kotlin之协程（一）/index.html">
 <meta property="og:site_name" content="海晨忆的博客">
-<meta property="og:description" content="我负责征战天下，你负责貌美如花！">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;kotlin协程用于线程切换，kotlin里面不需要new Thread，并且，协程的开销小于new Thread。有三种写法：runBlocking，launch，async">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-11e4e6518a2ae60a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-5ca88fb171a13ac1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-88ae9ed7f521dfca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-07-16T10:18:33.512Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="海晨忆的博客">
-<meta name="twitter:description" content="我负责征战天下，你负责貌美如花！">
+<meta name="twitter:title" content="kotlin之协程（一）">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;kotlin协程用于线程切换，kotlin里面不需要new Thread，并且，协程的开销小于new Thread。有三种写法：runBlocking，launch，async">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/7041675-11e4e6518a2ae60a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -148,13 +153,13 @@
 
 
 
-  <link rel="canonical" href="http://haichenyi.com/archives/2018/03/"/>
+  <link rel="canonical" href="http://haichenyi.com/2019/07/16/kotlin之协程（一）/"/>
 
 
 
 
 
-  <title>归档 | 海晨忆的博客</title>
+  <title>kotlin之协程（一） | 海晨忆的博客</title>
   
 
 
@@ -179,7 +184,7 @@
     
   
 
-  <div class="container sidebar-position-left  page-archive  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 		<a href="https://github.com/haichenyi"><img style="position: absolute; top: 0; right: 0; border: 0;" 
 		src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" 
@@ -319,410 +324,327 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      <span class="archive-page-counter">
-        
-        
-         
-        
-        OK! 目前共计 48 篇日志。 继续努力。
-      </span>
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://haichenyi.com/2019/07/16/kotlin之协程（一）/">
 
-      
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="海晨忆">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/artistic_image/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="海晨忆的博客">
+    </span>
+
+    
+      <header class="post-header">
 
         
         
+          <h1 class="post-title" itemprop="name headline">kotlin之协程（一）</h1>
         
 
-        
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-16T18:17:14+08:00">
+                2019-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-          <div class="collection-title">
-            <h2 class="archive-year motion-element" id="archive-year-2018">2018</h2>
-          </div>
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/08/Java-加密算法（一）/" itemprop="url">
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
               
-                <span itemprop="name">Java 加密算法（一）</span>
+                <span class="post-meta-item-text">分类于</span>
               
-            </a>
-        
-      </h2>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/kotlin/" itemprop="url" rel="index">
+                    <span itemprop="name">kotlin</span>
+                  </a>
+                </span>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-08T20:06:32+08:00"
-              content="2018-03-08" >
-          03-08
-        </time>
-      </div>
+                
+                
+              
+            </span>
+          
 
-    </header>
-  </article>
+          
 
+          
+          
 
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  971
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/07/EventBus源码解析-二-——注册/" itemprop="url">
-              
-                <span itemprop="name">EventBus源码解析(二)——注册</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-07T20:24:37+08:00"
-              content="2018-03-07" >
-          03-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/07/Java-设计模式（Design-Patterns）（三）/" itemprop="url">
-              
-                <span itemprop="name">Java 设计模式（Design Patterns）（三）</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-07T20:24:11+08:00"
-              content="2018-03-07" >
-          03-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <p>&emsp;&emsp;kotlin协程用于线程切换，kotlin里面不需要new Thread，并且，协程的开销小于new Thread。有三种写法：<strong><em>runBlocking，launch，async</em></strong></p>
+<a id="more"></a>
+<p>既然协程的出现可以取代Thread，我们这里想要验证的是：</p>
+<ol>
+<li>会不会阻塞主线程，能不能做耗时操作？</li>
+<li>协程里面的代码是怎么执行的？按顺序执行还是并行?</li>
+<li>协程里面能不能更新页面？</li>
+</ol>
+<h3 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h3><p>&emsp;&emsp;协程需要额外依赖一个库协程用于android的库，它会自动依赖官方提供的那个协程的代码库。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">implementation &apos;org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0-M2&apos;</span><br></pre></td></tr></table></figure></p>
+<h3 id="runBlocking"><a href="#runBlocking" class="headerlink" title="runBlocking"></a>runBlocking</h3><p>用法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">override fun onCreate(savedInstanceState: Bundle?) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState)</span><br><span class="line">        setContentView(R.layout.activity_main)</span><br><span class="line"></span><br><span class="line">        runBlocking &#123;</span><br><span class="line">            Log.e(&quot;wz&quot;, &quot;for_start&quot;)</span><br><span class="line">            for (i in 0..5) &#123;</span><br><span class="line">                delay(500)</span><br><span class="line">                Log.e(&quot;wz&quot;, i.toString())</span><br><span class="line">            &#125;</span><br><span class="line">            Log.e(&quot;wz&quot;, &quot;for_end&quot;)</span><br><span class="line">            tvName.text =  &quot;for_end&quot;</span><br><span class="line">        &#125;</span><br><span class="line">        Log.e(&quot;wz&quot;, &quot;runBocking外&quot;)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>结果：<br><img src="https://upload-images.jianshu.io/upload_images/7041675-11e4e6518a2ae60a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="runBlocking.png"></p>
+<p>&emsp;&emsp;从打印顺序上看，runBlocking的执行顺序是从上往下执行的，并且能更新页面，所以，runBlocking可以理解成在主线程中执行。回答上面的三个问题：</p>
+<ol>
+<li>会阻塞线程，可以做耗时操作</li>
+<li>从上往下按顺序执行的</li>
+<li>可以更新页面</li>
+</ol>
+<p>&emsp;&emsp;java里面有Thread，所以线程休眠用Thread.sleep()。kotlin里面既然协程可以取代Thread，所以，kotlin也有自己的休眠方法，也就是上面的delay()，注意，这里delay只能用在协程里面，不能用在外面。</p>
+<h3 id="GlobalScope-launch"><a href="#GlobalScope-launch" class="headerlink" title="GlobalScope.launch"></a>GlobalScope.launch</h3><p>用法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">override fun onCreate(savedInstanceState: Bundle?) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState)</span><br><span class="line">        setContentView(R.layout.activity_main)</span><br><span class="line"></span><br><span class="line">        GlobalScope.launch &#123;</span><br><span class="line">            Log.e(&quot;wz&quot;, &quot;for_start&quot;)</span><br><span class="line">            for (i in 0..5) &#123;</span><br><span class="line">                delay(500)</span><br><span class="line">                Log.e(&quot;wz&quot;, i.toString())</span><br><span class="line">            &#125;</span><br><span class="line">            Log.e(&quot;wz&quot;, &quot;for_end&quot;)</span><br><span class="line">            tvName.text =  &quot;for_end&quot;</span><br><span class="line">        &#125;</span><br><span class="line">        Log.e(&quot;wz&quot;, &quot;runBocking外&quot;)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-5ca88fb171a13ac1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="launch.png"></p>
+<p>&emsp;&emsp;从打印顺序上面看，launch是先执行外面的代码，然后执行协程里面的代码，最后在设置text的时候程序崩掉了。所以，launch可以理解成新开了一个线程执行，但是，协程的开销小于新开线程。回答上面的三个问题:</p>
+<ol>
+<li>不会阻塞线程，可以做耗时操作</li>
+<li>既然会阻塞线程，那就是并行的</li>
+<li>不能更新页面</li>
+</ol>
+<h3 id="GlobalScope-async"><a href="#GlobalScope-async" class="headerlink" title="GlobalScope.async"></a>GlobalScope.async</h3><p>用法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">override fun onCreate(savedInstanceState: Bundle?) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState)</span><br><span class="line">        setContentView(R.layout.activity_main)</span><br><span class="line"></span><br><span class="line">        GlobalScope.async &#123;</span><br><span class="line">            Log.e(&quot;wz&quot;, &quot;for_start&quot;)</span><br><span class="line">            for (i in 0..5) &#123;</span><br><span class="line">                delay(500)</span><br><span class="line">                Log.e(&quot;wz&quot;, i.toString())</span><br><span class="line">            &#125;</span><br><span class="line">            Log.e(&quot;wz&quot;, &quot;for_end&quot;)</span><br><span class="line">            tvName.text =  &quot;for_end&quot;</span><br><span class="line">        &#125;</span><br><span class="line">        Log.e(&quot;wz&quot;, &quot;runBocking外&quot;)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>结果：<br><img src="https://upload-images.jianshu.io/upload_images/7041675-88ae9ed7f521dfca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="async.png"></p>
+<p>&emsp;&emsp;从打印顺序上看，跟launch是一样的，只是async的程序没有崩溃，但是页面一样没有更新。所以结论更launch是一样的。</p>
+<p>&emsp;&emsp;都一样的话，那么launch和async有什么区别呢？他们俩的返回值不一样。launch的返回值：Job，而async的返回值：Deferred<t> 这也是我们用于线程切换，更新页面的原因。</t></p>
+<p>&emsp;&emsp;那么，问题来了，既然可以代替Thread，怎么更新页面呢？我们实际项目里面很多时候，都是拿到数据之后，对数据做完操作就更新页面。协程要怎么做呢？async一般都是与await成对出现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">override fun onCreate(savedInstanceState: Bundle?) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState)</span><br><span class="line">        setContentView(R.layout.activity_main)</span><br><span class="line">        GlobalScope.launch(Dispatchers.Main) &#123;</span><br><span class="line">            tvName.text = GlobalScope.async(Dispatchers.IO) &#123;</span><br><span class="line">                var index = 0</span><br><span class="line">                for (index1 in 0..10) &#123;</span><br><span class="line">                    index++</span><br><span class="line">                    delay(500)</span><br><span class="line">                    Log.e(&quot;wz&quot;, &quot;index的值为：$&#123;index&#125;&quot;)</span><br><span class="line">                &#125;</span><br><span class="line">                return@async &quot;index的值为：$&#123;index&#125;&quot;</span><br><span class="line">            &#125;.await()</span><br><span class="line">        &#125;</span><br><span class="line">        Log.e(&quot;wz&quot;, &quot;runBocking外&quot;)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>如上面的代码所示：</p>
+<ol>
+<li>launch(Dispatchers.Main)的意思就是在主线程中执行</li>
+<li>async(Dispatchers.IO)的意思就是在IO线程中执行，并且用await方法获取到返回值，赋值给text</li>
+</ol>
+<p>&emsp;&emsp;所以，上面的意思就是launch里面套了一个async，launch的构造方法里面传的Main，意思就是在主线程中执行，async的构造方法里面传IO，意思就是在IO线程中执行。并且拿到返回值，赋值给text。</p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/07/Java-设计模式（Design-Patterns）（二）/" itemprop="url">
-              
-                <span itemprop="name">Java 设计模式（Design Patterns）（二）</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-07T20:23:53+08:00"
-              content="2018-03-07" >
-          03-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/06/Java-设计模式（Design-Patterns）（一）/" itemprop="url">
-              
-                <span itemprop="name">Java 设计模式（Design Patterns）（一）</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-06T21:02:20+08:00"
-              content="2018-03-06" >
-          03-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/06/Java反射机制/" itemprop="url">
-              
-                <span itemprop="name">Java反射机制</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-06T21:01:58+08:00"
-              content="2018-03-06" >
-          03-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/06/EventBus源码解析-一-——获取EventBus对象/" itemprop="url">
-              
-                <span itemprop="name">EventBus源码解析(一)——获取EventBus对象</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-06T21:01:41+08:00"
-              content="2018-03-06" >
-          03-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/05/Android二维码扫描——BGAQRCode-Android/" itemprop="url">
-              
-                <span itemprop="name">Android二维码扫描——BGAQRCode-Android</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-05T20:14:02+08:00"
-              content="2018-03-05" >
-          03-05
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/05/Android-WIFI功能——WifiManager/" itemprop="url">
-              
-                <span itemprop="name">Android WIFI功能——WifiManager</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-05T20:13:31+08:00"
-              content="2018-03-05" >
-          03-05
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/05/简单的蓝牙通信/" itemprop="url">
-              
-                <span itemprop="name">简单的蓝牙通信</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-05T20:12:58+08:00"
-              content="2018-03-05" >
-          03-05
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+	<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">---------------------END---------------------</div>
+    
+</div>
+  
+  <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2019/07/16/kotlin之协程（一）/">kotlin之协程（一）</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 海晨忆 的个人博客">海晨忆</a></p>
+  <p><span>发布时间:</span>2019年07月16日 - 18:07</p>
+  <p><span>最后更新:</span>2019年07月16日 - 18:07</p>
+  <p><span>原始链接:</span><a href="/2019/07/16/kotlin之协程（一）/" title="kotlin之协程（一）">http://haichenyi.com/2019/07/16/kotlin之协程（一）/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://haichenyi.com/2019/07/16/kotlin之协程（一）/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
+      
+</div>
+	</div>
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/uploads/wechat_reward.png" alt="海晨忆 WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/uploads/alipay_reward.jpg" alt="海晨忆 Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/14/kotlin之内部类，匿名内部类与伴生对象/" rel="next" title="kotlin之内部类，匿名内部类与伴生对象">
+                <i class="fa fa-chevron-left"></i> kotlin之内部类，匿名内部类与伴生对象
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2018/03/page/2/">2</a><a class="extend next" rel="next" href="/archives/2018/03/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -750,8 +672,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/artistic_image/head.jpg"
@@ -846,6 +777,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#依赖"><span class="nav-number">1.</span> <span class="nav-text">依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#runBlocking"><span class="nav-number">2.</span> <span class="nav-text">runBlocking</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GlobalScope-launch"><span class="nav-number">3.</span> <span class="nav-text">GlobalScope.launch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GlobalScope-async"><span class="nav-number">4.</span> <span class="nav-text">GlobalScope.async</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -976,11 +923,9 @@
 
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
 
 
   
