@@ -110,21 +110,17 @@
 
 
 
-<meta name="description" content="&amp;emsp;&amp;emsp;kotlin协程用于线程切换，kotlin里面不需要new Thread，并且，协程的开销小于new Thread。有三种写法：runBlocking，launch，async">
+<meta name="description" content="&amp;emsp;&amp;emsp;android开发中那些不为人知的小技巧">
 <meta property="og:type" content="article">
-<meta property="og:title" content="kotlin之协程一简单使用">
-<meta property="og:url" content="http://haichenyi.com/2019/07/16/kotlin之协程一简单使用/index.html">
+<meta property="og:title" content="Android开发中的小技巧（持续更新...）">
+<meta property="og:url" content="http://haichenyi.com/2019/07/25/Android开发中的小技巧（持续更新-）/index.html">
 <meta property="og:site_name" content="海晨忆的博客">
-<meta property="og:description" content="&amp;emsp;&amp;emsp;kotlin协程用于线程切换，kotlin里面不需要new Thread，并且，协程的开销小于new Thread。有三种写法：runBlocking，launch，async">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;android开发中那些不为人知的小技巧">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-e04c10bdd88c256f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-4a79c1067a2b3c15.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-4a79c1067a2b3c15.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2019-07-18T06:41:59.052Z">
+<meta property="og:updated_time" content="2019-07-25T12:54:32.183Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="kotlin之协程一简单使用">
-<meta name="twitter:description" content="&amp;emsp;&amp;emsp;kotlin协程用于线程切换，kotlin里面不需要new Thread，并且，协程的开销小于new Thread。有三种写法：runBlocking，launch，async">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/7041675-e04c10bdd88c256f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="Android开发中的小技巧（持续更新...）">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;android开发中那些不为人知的小技巧">
 
 
 
@@ -153,13 +149,13 @@
 
 
 
-  <link rel="canonical" href="http://haichenyi.com/2019/07/16/kotlin之协程一简单使用/"/>
+  <link rel="canonical" href="http://haichenyi.com/2019/07/25/Android开发中的小技巧（持续更新-）/"/>
 
 
 
 
 
-  <title>kotlin之协程一简单使用 | 海晨忆的博客</title>
+  <title>Android开发中的小技巧（持续更新...） | 海晨忆的博客</title>
   
 
 
@@ -338,7 +334,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haichenyi.com/2019/07/16/kotlin之协程一简单使用/">
+    <link itemprop="mainEntityOfPage" href="http://haichenyi.com/2019/07/25/Android开发中的小技巧（持续更新-）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海晨忆">
@@ -355,7 +351,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">kotlin之协程一简单使用</h1>
+          <h1 class="post-title" itemprop="name headline">Android开发中的小技巧（持续更新...）</h1>
         
 
         <div class="post-meta">
@@ -367,8 +363,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-16T18:17:14+08:00">
-                2019-07-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-25T20:22:29+08:00">
+                2019-07-25
               </time>
             
 
@@ -390,8 +386,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/kotlin/" itemprop="url" rel="index">
-                    <span itemprop="name">kotlin</span>
+                  <a href="/categories/Android-常用功能/" itemprop="url" rel="index">
+                    <span itemprop="name">Android -常用功能</span>
                   </a>
                 </span>
 
@@ -419,7 +415,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  909
+                  522
                 </span>
               
 
@@ -435,7 +431,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  4
+                  2
                 </span>
               
             </div>
@@ -456,47 +452,20 @@
       
 
       
-        <p>&emsp;&emsp;kotlin协程用于线程切换，kotlin里面不需要new Thread，并且，协程的开销小于new Thread。有三种写法：<strong><em>runBlocking，launch，async</em></strong></p>
+        <p>&emsp;&emsp;android开发中那些不为人知的小技巧</p>
 <a id="more"></a>
-<p>既然协程的出现可以取代Thread，我们这里想要验证的是：</p>
+<h3 id="1-不需要读写权限就可以操作的目录"><a href="#1-不需要读写权限就可以操作的目录" class="headerlink" title="1. 不需要读写权限就可以操作的目录"></a>1. 不需要读写权限就可以操作的目录</h3><p>&emsp;&emsp;一谈起要做文件的读写操作，应在脑海中的就是先申请读写权限，没有读写权限就不让对应的操作。那为什么SP也是把数据存本地，缺不需要读写权限呢？</p>
+<p>&emsp;&emsp;只要是存储在你的APP目录下面，就不需要读写权限。而，手机上面APP目录有两种：一种是手机内部，一种是SD卡目录。怎么获取呢？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//手机内部：APP目录下默认有两个文件夹，一个是cache，一个是files</span><br><span class="line">//cache目录</span><br><span class="line">cacheDir.absolutePath</span><br><span class="line">//files目录</span><br><span class="line">filesDir.absolutePath</span><br><span class="line">//手机内部的APP目录怎么获取呢？</span><br><span class="line">cacheDir.parent</span><br><span class="line">filesDir.parent</span><br><span class="line"></span><br><span class="line">//手机外部APP目录</span><br><span class="line">//cache目录</span><br><span class="line">externalCacheDir.absolutePath</span><br><span class="line">//APP目录</span><br><span class="line">externalCacheDir.parent</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;以上这些目录不需要存储权限就可以做操作。但是，在APP卸载的时候，这些数据都会被删除。其他的目录都是需要存储权限的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Environment.getDataDirectory():     /data</span><br><span class="line">Environment.getRootDirectory():    /system</span><br><span class="line">Environment.getDownloadCacheDirectory():     /cache</span><br><span class="line">Environment.getExternalStorageDirectory():   /storage/emulated/0</span><br><span class="line">--------------------- </span><br><span class="line">作者：海晨忆 </span><br><span class="line">来源：CSDN </span><br><span class="line">原文：https://blog.csdn.net/qq_27634797/article/details/49495611 </span><br><span class="line">版权声明：本文为博主原创文章，转载请附上博文链接！</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;以上这些目录都需要存储权限。我们可以这样理解：</p>
 <ol>
-<li>会不会阻塞主线程？</li>
-<li>协程里面的代码是怎么执行的？按顺序执行还是并行?</li>
-<li>协程里面能不能更新页面？</li>
+<li>只要是通过Context.get能获取到的目录，都不需要存储权限。</li>
+<li>只要是通过Environment.get能获取到的目录，都需要存储权限。</li>
 </ol>
-<h3 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h3><p>&emsp;&emsp;协程需要额外依赖一个库协程用于android的库，它会自动依赖官方提供的那个协程的代码库。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">implementation &apos;org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0-M2&apos;</span><br></pre></td></tr></table></figure></p>
-<h3 id="runBlocking"><a href="#runBlocking" class="headerlink" title="runBlocking"></a>runBlocking</h3><p>用法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">override fun onCreate(savedInstanceState: Bundle?) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState)</span><br><span class="line">        setContentView(R.layout.activity_main)</span><br><span class="line"></span><br><span class="line">        runBlocking &#123;</span><br><span class="line">            Log.e(&quot;wz&quot;, &quot;for_start&quot;)</span><br><span class="line">            for (i in 0..5) &#123;</span><br><span class="line">                Log.e(&quot;wz&quot;, i.toString())</span><br><span class="line">            &#125;</span><br><span class="line">            Log.e(&quot;wz&quot;, &quot;for_end&quot;)</span><br><span class="line">            tvName.text =  &quot;for_end&quot;</span><br><span class="line">        &#125;</span><br><span class="line">        Log.e(&quot;wz&quot;, &quot;runBocking外&quot;)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<p>结果：<br><img src="https://upload-images.jianshu.io/upload_images/7041675-e04c10bdd88c256f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="runBlocking.png"></p>
-<p>&emsp;&emsp;从打印顺序上看，runBlocking的执行顺序是从上往下执行的，并且能更新页面。回答上面的三个问题：</p>
-<ol>
-<li>会阻塞线程</li>
-<li>从上往下按顺序执行的</li>
-<li>可以更新页面</li>
-</ol>
-<p>&emsp;&emsp;java里面有Thread，所以线程休眠用Thread.sleep()。kotlin里面既然协程可以取代Thread，所以，kotlin也有自己的休眠方法，也就是上面的delay()，注意，这里delay只能用在协程里面，不能用在外面。</p>
-<h3 id="GlobalScope-launch"><a href="#GlobalScope-launch" class="headerlink" title="GlobalScope.launch"></a>GlobalScope.launch</h3><p>用法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">override fun onCreate(savedInstanceState: Bundle?) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState)</span><br><span class="line">        setContentView(R.layout.activity_main)</span><br><span class="line"></span><br><span class="line">        GlobalScope.launch &#123;</span><br><span class="line">            Log.e(&quot;wz&quot;, &quot;for_start&quot;)</span><br><span class="line">            for (i in 0..5) &#123;</span><br><span class="line">                Log.e(&quot;wz&quot;, i.toString())</span><br><span class="line">            &#125;</span><br><span class="line">            Log.e(&quot;wz&quot;, &quot;for_end&quot;)</span><br><span class="line">            tvName.text =  &quot;for_end&quot;</span><br><span class="line">        &#125;</span><br><span class="line">        Log.e(&quot;wz&quot;, &quot;协程外&quot;)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>结果：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/7041675-4a79c1067a2b3c15.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="launch.png"></p>
-<p>&emsp;&emsp;从打印顺序上面看，launch是先执行外面的代码，然后执行协程里面的代码，并且更新了页面。回答上面的三个问题:</p>
-<ol>
-<li>不会阻塞线程</li>
-<li>既然不会阻塞线程，那就是并行的</li>
-<li>能更新页面</li>
-</ol>
-<h3 id="GlobalScope-async"><a href="#GlobalScope-async" class="headerlink" title="GlobalScope.async"></a>GlobalScope.async</h3><p>用法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">override fun onCreate(savedInstanceState: Bundle?) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState)</span><br><span class="line">        setContentView(R.layout.activity_main)</span><br><span class="line"></span><br><span class="line">        GlobalScope.async &#123;</span><br><span class="line">            Log.e(&quot;wz&quot;, &quot;for_start&quot;)</span><br><span class="line">            for (i in 0..5) &#123;</span><br><span class="line">                Log.e(&quot;wz&quot;, i.toString())</span><br><span class="line">            &#125;</span><br><span class="line">            Log.e(&quot;wz&quot;, &quot;for_end&quot;)</span><br><span class="line">            tvName.text =  &quot;for_end&quot;</span><br><span class="line">        &#125;</span><br><span class="line">        Log.e(&quot;wz&quot;, &quot;协程外&quot;)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>结果：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/7041675-4a79c1067a2b3c15.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="async.png"></p>
-<p>&emsp;&emsp;从打印顺序上看，跟launch是一样的，并且也更新了页面。所以结论更launch是一样的。</p>
-<p>&emsp;&emsp;都一样的话，那么launch和async有什么区别呢？他们俩的返回值不一样。launch的返回值：Job，而async的返回值：Deferred<t>。async与await()联用。</t></p>
-<p>&emsp;&emsp;Job是一个接口，有join，cancel，cancelAndJoin等等方法，Deferred实现了Job接口。</p>
-<p>&emsp;&emsp;launch和async的区别：launch返回值是job，而async的返回值是：把async的最后一行封装成Deferred返回。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">val job = GlobalScope.launch &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        Log.e(&quot;wz&quot;, job.toString())</span><br><span class="line"></span><br><span class="line">        runBlocking &#123;</span><br><span class="line">            val b = GlobalScope.async &#123;</span><br><span class="line">                1111</span><br><span class="line">            &#125;.await()</span><br><span class="line">            Log.e(&quot;wz&quot;, b.toString())</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="async并发"><a href="#async并发" class="headerlink" title="async并发"></a>async并发</h3><p>&emsp;&emsp;我们项目里面有时候会碰到，我们做某个功能的时候，需要拿到两个数据A,B。我们要先算出A，接着算出B，最后，拿到这两个数据再做处理。那么，time(总) = time(A)+time(B)。</p>
-<p>&emsp;&emsp;用async，我们可以怎么处理呢？</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">runBlocking &#123;</span><br><span class="line">            measureTimeMillis &#123;</span><br><span class="line">                val n1 = GlobalScope.async &#123; doA() &#125;</span><br><span class="line">                val n2 = GlobalScope.async &#123; doB() &#125;</span><br><span class="line">                val time = n1.await() + n2.await()</span><br><span class="line">                Log.e(&quot;wz&quot;, time.toString())</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">suspend fun doA(): Int &#123;</span><br><span class="line">        //做其他操作花费2秒钟</span><br><span class="line">        return 3</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">suspend fun doB(): Int &#123;</span><br><span class="line">        //做其他操作花费4秒钟</span><br><span class="line">        return 4</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;前面，我们得到结论async是不阻塞线程的，所以，doA和doB是同时进行的。当同时获取到A,B的结果所花费的时间，是doA和doB中花费时间长的那一个，所以，这里花费的总时间是4秒钟，而不是6秒</p>
+<h3 id="2-dp转px不需要context也能转"><a href="#2-dp转px不需要context也能转" class="headerlink" title="2. dp转px不需要context也能转"></a>2. dp转px不需要context也能转</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 返回你需要的值：如：这里你传20，单位你传dp，返回值就是你这个手机对应的20dp</span><br><span class="line"> *</span><br><span class="line"> * @param value 数据</span><br><span class="line"> * @param unit  单位：dp为&#123;@link TypedValue#COMPLEX_UNIT_DIP&#125;,</span><br><span class="line"> *              sp为&#123;@link TypedValue#COMPLEX_UNIT_SP&#125;,</span><br><span class="line"> *              px为&#123;@link TypedValue#COMPLEX_UNIT_PX&#125;,</span><br><span class="line"> *              其它请看&#123;@link TypedValue#applyDimension(int, float, DisplayMetrics)&#125;</span><br><span class="line"> * @return 具体长度数值</span><br><span class="line"> */</span><br><span class="line">public static float digitValue(final float value, final int unit) &#123;</span><br><span class="line">    return TypedValue.applyDimension(unit, value, Resources.getSystem().getDisplayMetrics());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>持续更新…</p>
 
       
     </div>
@@ -520,12 +489,12 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2019/07/16/kotlin之协程一简单使用/">kotlin之协程一简单使用</a></p>
+  <p><span>本文标题:</span><a href="/2019/07/25/Android开发中的小技巧（持续更新-）/">Android开发中的小技巧（持续更新...）</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 海晨忆 的个人博客">海晨忆</a></p>
-  <p><span>发布时间:</span>2019年07月16日 - 18:07</p>
-  <p><span>最后更新:</span>2019年07月18日 - 14:07</p>
-  <p><span>原始链接:</span><a href="/2019/07/16/kotlin之协程一简单使用/" title="kotlin之协程一简单使用">http://haichenyi.com/2019/07/16/kotlin之协程一简单使用/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://haichenyi.com/2019/07/16/kotlin之协程一简单使用/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2019年07月25日 - 20:07</p>
+  <p><span>最后更新:</span>2019年07月25日 - 20:07</p>
+  <p><span>原始链接:</span><a href="/2019/07/25/Android开发中的小技巧（持续更新-）/" title="Android开发中的小技巧（持续更新...）">http://haichenyi.com/2019/07/25/Android开发中的小技巧（持续更新-）/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://haichenyi.com/2019/07/25/Android开发中的小技巧（持续更新-）/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -593,8 +562,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/14/kotlin之内部类，匿名内部类与伴生对象/" rel="next" title="kotlin之内部类，匿名内部类与伴生对象">
-                <i class="fa fa-chevron-left"></i> kotlin之内部类，匿名内部类与伴生对象
+              <a href="/2019/07/16/kotlin之协程一简单使用/" rel="next" title="kotlin之协程一简单使用">
+                <i class="fa fa-chevron-left"></i> kotlin之协程一简单使用
               </a>
             
           </div>
@@ -603,8 +572,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/07/25/Android开发中的小技巧（持续更新-）/" rel="prev" title="Android开发中的小技巧（持续更新...）">
-                Android开发中的小技巧（持续更新...） <i class="fa fa-chevron-right"></i>
+              <a href="/2019/07/25/Tomcat安装与启动/" rel="prev" title="Tomcat安装与启动">
+                Tomcat安装与启动 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -791,7 +760,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#依赖"><span class="nav-number">1.</span> <span class="nav-text">依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#runBlocking"><span class="nav-number">2.</span> <span class="nav-text">runBlocking</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GlobalScope-launch"><span class="nav-number">3.</span> <span class="nav-text">GlobalScope.launch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GlobalScope-async"><span class="nav-number">4.</span> <span class="nav-text">GlobalScope.async</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#async并发"><span class="nav-number">5.</span> <span class="nav-text">async并发</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-不需要读写权限就可以操作的目录"><span class="nav-number">1.</span> <span class="nav-text">1. 不需要读写权限就可以操作的目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-dp转px不需要context也能转"><span class="nav-number">2.</span> <span class="nav-text">2. dp转px不需要context也能转</span></a></li></ol></div>
             
 
           </div>
