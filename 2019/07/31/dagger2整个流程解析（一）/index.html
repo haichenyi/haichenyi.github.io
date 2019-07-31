@@ -110,17 +110,46 @@
 
 
 
-<meta name="description" content="&amp;emsp;&amp;emsp;kotlin的扩展方法类似于java工具类，但是又优于java的工具类。">
+<meta name="description" content="&amp;emsp;&amp;emsp;众所周知，dagger的入门是比较难的，在嵌入之前，我先说一下这个dagger必要的东西，也是比较常见的东西，几个注解 @Component，@Singleton，@Module，@Provides，@Inject">
 <meta property="og:type" content="article">
-<meta property="og:title" content="kotlin之扩展方法">
-<meta property="og:url" content="http://haichenyi.com/2019/06/14/kotlin之扩展方法/index.html">
+<meta property="og:title" content="dagger2整个流程解析（一）">
+<meta property="og:url" content="http://haichenyi.com/2019/07/31/dagger2整个流程解析（一）/index.html">
 <meta property="og:site_name" content="海晨忆的博客">
-<meta property="og:description" content="&amp;emsp;&amp;emsp;kotlin的扩展方法类似于java工具类，但是又优于java的工具类。">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;众所周知，dagger的入门是比较难的，在嵌入之前，我先说一下这个dagger必要的东西，也是比较常见的东西，几个注解 @Component，@Singleton，@Module，@Provides，@Inject">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-14T12:59:06.644Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-5848942509707b5f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-ee65722ac7acc82f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-f93a02df4c98209a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-19f754529d696ff4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-8557df97bc0e57f4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-b11fe1ea3fcb642b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-197b292b4a70e56f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-ba6cdeaaa4a2c6d8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-9e69d44dfd05c27b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-9e69d44dfd05c27b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-eb0d6d0c5c648f77.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-c3afc3041e959418.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-d570e9598aba5e14.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-9825f1f6dba4e603.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-c731742fe5d1aa48.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-a156ff943b621cfd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-1d5cc745a0c96bab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-1f317b639c2c6082.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-8d816d6035b16ecd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-89398696cffd1c02.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-8ef9ff91c7c700c9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-785da091381f46bb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-f791b0ac17b7937a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-d6f726948fd5d5dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-fcbdcca6f62275f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-37db29d8250698ff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-a638e6ef80bfdf05.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-96c53c9b44324478.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-07-31T12:18:30.985Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="kotlin之扩展方法">
-<meta name="twitter:description" content="&amp;emsp;&amp;emsp;kotlin的扩展方法类似于java工具类，但是又优于java的工具类。">
+<meta name="twitter:title" content="dagger2整个流程解析（一）">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;众所周知，dagger的入门是比较难的，在嵌入之前，我先说一下这个dagger必要的东西，也是比较常见的东西，几个注解 @Component，@Singleton，@Module，@Provides，@Inject">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/7041675-5848942509707b5f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -149,13 +178,13 @@
 
 
 
-  <link rel="canonical" href="http://haichenyi.com/2019/06/14/kotlin之扩展方法/"/>
+  <link rel="canonical" href="http://haichenyi.com/2019/07/31/dagger2整个流程解析（一）/"/>
 
 
 
 
 
-  <title>kotlin之扩展方法 | 海晨忆的博客</title>
+  <title>dagger2整个流程解析（一） | 海晨忆的博客</title>
   
 
 
@@ -334,7 +363,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haichenyi.com/2019/06/14/kotlin之扩展方法/">
+    <link itemprop="mainEntityOfPage" href="http://haichenyi.com/2019/07/31/dagger2整个流程解析（一）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海晨忆">
@@ -351,7 +380,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">kotlin之扩展方法</h1>
+          <h1 class="post-title" itemprop="name headline">dagger2整个流程解析（一）</h1>
         
 
         <div class="post-meta">
@@ -363,8 +392,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-14T20:57:34+08:00">
-                2019-06-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-31T20:17:33+08:00">
+                2019-07-31
               </time>
             
 
@@ -386,8 +415,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/kotlin/" itemprop="url" rel="index">
-                    <span itemprop="name">kotlin</span>
+                  <a href="/categories/Android-源码解析/" itemprop="url" rel="index">
+                    <span itemprop="name">Android -源码解析</span>
                   </a>
                 </span>
 
@@ -415,7 +444,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  915
+                  2,130
                 </span>
               
 
@@ -431,7 +460,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  4
+                  7
                 </span>
               
             </div>
@@ -452,30 +481,84 @@
       
 
       
-        <p>&emsp;&emsp;kotlin的扩展方法类似于java工具类，但是又优于java的工具类。</p>
+        <p>&emsp;&emsp;众所周知，dagger的入门是比较难的，在嵌入之前，我先说一下这个dagger必要的东西，也是比较常见的东西，几个注解 <strong>@Component</strong>，<strong>@Singleton</strong>，<strong>@Module</strong>，<strong>@Provides</strong>，<strong>@Inject</strong></p>
 <a id="more"></a>
-<h3 id="扩展方法"><a href="#扩展方法" class="headerlink" title="扩展方法"></a>扩展方法</h3><p>&emsp;&emsp;扩展方法的写法，<strong><em>新建一个File类型的kt文件，不是Class类型，不是Interface类型，不是枚举类型，不是Object类型，就是File类型</em></strong></p>
-<p>&emsp;&emsp;然后直接定义方法，跟kotlin定义方法相同，需要什么方法就定义什么方法，唯一的区别就是在方法名的前面可以加上”类型.”，格式如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//类型可以省略，即任意类型</span><br><span class="line">fun 类型.方法名(参数...):返回值&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>举个例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//两个数相加，任意类型都可以调用</span><br><span class="line">fun add(a: Int, b: Int): Int &#123;</span><br><span class="line">    return a + b</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//加载图片，只有ImageView类型可以调用</span><br><span class="line">fun ImageView.loadUrl(imgUrl: String) &#123;</span><br><span class="line">    Glide.with(this.context).load(imgUrl).into(this)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>调用的例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">package com.haichenyi.aloe.mykotlin</span><br><span class="line"></span><br><span class="line">import android.os.Bundle</span><br><span class="line">import android.support.v7.app.AppCompatActivity</span><br><span class="line">import kotlinx.android.synthetic.main.activity_second.*</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class SecondActivity : AppCompatActivity()&#123;</span><br><span class="line">    override fun onCreate(savedInstanceState: Bundle?) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState)</span><br><span class="line">        setContentView(R.layout.activity_second)</span><br><span class="line">        val a = 1</span><br><span class="line">        val b = 2</span><br><span class="line">        //调用两个数相加</span><br><span class="line">        add(a, b)</span><br><span class="line">        //调用加载图片</span><br><span class="line">        img.loadUrl(&quot;&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这里需要注意的是：</p>
+<p>&emsp;&emsp;<strong>大致的整个流程如下：</strong></p>
 <ol>
-<li>如果方法没有加类型，就是随便什么类型都能调用，就是只要是项目在内的其他任意地方都可以调用这个方法</li>
-<li>第二个是ImageView类型才能调用，要记得是变量调用，而不是类型调用，变量调用方法。就像我这里的img变量，就是ImageView类型的</li>
-<li>写法我们都知道用Glide加载图片，最后into方法传递的是一个ImageView类型的view，我上面写的this，这里的this就是指的是当前方法前面类型的变量，也就是这里的ImageView类型的变量，也就是我们调用的时候的img变量</li>
-<li>扩展方法，其实最后生成java文件的时候，就是在方法的前面加上了static final ，没什么神奇的，最后跟我们java里面工具类的原理是一样的。</li>
+<li>编译的时候，先找构造方法由@Inject标记的类，生成对应的Factory.class类，这个类里面通过new生成对应的对象</li>
+<li>然后，moudle里面，每一个由@Provider标记的方法，都会生成一个对应的Factory.class文件，这里返回的对象，就是刚才由new生成的对象</li>
+<li>最后，我们通过component获取对象的时候，就找moudle去取。moudle取的对象就是之前new生成的</li>
 </ol>
-<h3 id="Activity间的跳转"><a href="#Activity间的跳转" class="headerlink" title="Activity间的跳转"></a>Activity间的跳转</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">startActivity(Intent(this@MainActivity,SecondActivity::class.java))</span><br></pre></td></tr></table></figure>
-<h3 id="密封类sealed"><a href="#密封类sealed" class="headerlink" title="密封类sealed"></a>密封类sealed</h3><p>&emsp;&emsp;java中没有密封类的概念，这个是kotlin独有的，他能使我们的代码更加安全。</p>
-<p>&emsp;&emsp;kotlin的类默认是final，不能被继承，sealed修饰的类可以被继承，因为它修饰的是open，这里只是把open隐藏了。</p>
-<p>&emsp;&emsp;为什么说它能使我们的代码更加安全呐？举个例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">lateinit var obj : Any</span><br><span class="line">var b = when(obj)&#123;</span><br><span class="line">    1 -&gt; 2</span><br><span class="line">    is String -&gt; 3</span><br><span class="line">    3,4 -&gt; &quot;obj等于3或者等于4&quot;</span><br><span class="line">    in 10..20 -&gt; &quot;obj在10到20之间&quot;</span><br><span class="line">    else -&gt; true</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;这个是我们之前说过的when的表达式，我们之前讲过when表达式最后必须要加else，不然编译通过不了。或者你能保证else前面的条件语句包括else条件的情况，那就不用加。一般情况下，我们都加else。我们看一下下面这个写法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">sealed class AAA &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class BBB : AAA() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class CCC : AAA() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fun QQQ(aaa: AAA): Int =</span><br><span class="line">        when (aaa) &#123;</span><br><span class="line">            is BBB -&gt; 10</span><br><span class="line"></span><br><span class="line">            is CCC -&gt; 11</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;我们这里类AAA是用sealed标识的，类BBB,CCC都继承AAA。我们方法QQQ需要传递一个AAA对象，里面用when做判断，这里就不需要加else，因为这里的条件只有两种，一种是类BBB,一种是类CCC，没有第三种。如果AAA，没有用sealed标识，这里还可以加其他条件，编译都可以通过，因为判断不出来，所以，代码就不安全。</p>
+<p>&emsp;&emsp;<strong>也可以这样理解：</strong></p>
+<ol>
+<li>@Component直到桥梁的作用，告诉application,activity我能给你提供哪些对象</li>
+<li>当Component中返回对象时，它会到@Module中去找这个对象创建没</li>
+<li>@Module中的方法很多，它不可以每个方法的识别一次，它只找@Provider标记的方法</li>
+</ol>
+<p>&emsp;&emsp;<strong>后文的说明都是依赖于<a href="https://github.com/haichenyi/KotlinMvp" target="_blank" rel="noopener">kotlin框架</a></strong></p>
+<p>&emsp;&emsp;这里我拿如下方法来说明整个流程：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-5848942509707b5f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图一.png"></p>
+<p>如上图：在AppComponent里面的getSpHelper()方法，返回对象就是SpHelper，前面我们说了，component里面需要的对象要在moudle里面找，moudle里面需要的对象要在@Inject的地方生成，所以，moudle里面也要有对应的方法：如下图：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-ee65722ac7acc82f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图五.png"></p>
+<p>这里的，整个SpHelper是个什么东西呢？参数SpReal又是个什么东西呢？他就是一个sharePreference的接口。SpReal是SpHelper的实现类，如下图：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-f93a02df4c98209a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图二.png"></p>
+<p>这个就是一个普通的接口，与dagger2搭不上边。我们看他的实现类：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-19f754529d696ff4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图三.png"></p>
+<p>如上图：类SpReal实现SpHelper接口，并且，它的构造方法用@Inject标记了。这里就跟我们的dagger2搭上关系了，我们就需要找SpReal对应的Factory.clss文件。如下图：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-8557df97bc0e57f4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图四.png"></p>
+<p>如上图，SpReal_Factory类有三个方法，两个get()方法返回SpReal对象，静态的newInstance()方法也是返回SpReal对象，静态的create()方法，返回的是当前类的对象。那么，这里的调用顺序是什么呢？</p>
+<p>我们在转过头来看看moudle里面方法对应的Factory：如下图</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-b11fe1ea3fcb642b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图六.png"></p>
+<p>如上图，左边我们看到AppMoudle生成了三个对应的Factory文件，为什么会生成三个？因为，我们的AppMoudle里面有三个方法是用注解@Provides标记的，可以回过头去看一下AppMoudle的内容。</p>
+<p>我们仔细看一下，我们需要的这个类的内容AppModule_ProvideSpHelperFactory，一共有四个方法：一个构造方法，一个get方法，一个create方法，一个provideSpHelper方法。</p>
+<p>是不是很眼熟这个providerSpHelper方法，并且他的返回值也是SpHelper，没错，这个方法就是我们AppMoudle里面定义的方法，在这里生成的对应的方法，它只是参数多了一个AppModule，为什么会多了这个参数呢？带着这个问题，我们看这个方法的实现：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-197b292b4a70e56f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图七.png"></p>
+<p>可以点击跳转这个方法，你会发现，它跳转回我们的AppMoudle方法里面对应的provideSpHelper()方法。回过头来想，我们的AppMoudle就是一个类，里面的provideSpHelper()就是一个普通的方法，怎么调用这个方法呢？就只有用 <strong>对象.方法名()</strong> 调用，所以，这里参数就多加了一个AppMoudle。</p>
+<p>上面解释了为什么多了一个参数，我们再来看一下这个方法的实现。如下图：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-ba6cdeaaa4a2c6d8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图八.png"></p>
+<p>如上图，就是一个非空判断，如果为空就抛出空指针异常，如果不为空，就返回第一个参数。第一个参数是什么呢？第一个参数，不就是，我们上面说的对象调用方法名么？我们来看一下它这里是怎么实现的。如下图</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-9e69d44dfd05c27b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图九.png"></p>
+<p>咦，怎么又返回来了？回到AppMoudle类了，它没有给我们实现啊？我们再想想，首先这个方法，返回的是第一个参数的值，第一个参数又是一个调用我们AppMoudle里面的方法，我们AppMoudle这个方法的返回值，就是这里这个方法的返回值。我们看一下，我们方法的返回值是什么？</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-9e69d44dfd05c27b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图十.png"></p>
+<p>我们方法的返回值，不就是传进来的参数么？那我们再看看这里方法传进来的参数是什么？</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-eb0d6d0c5c648f77.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图十一.png"></p>
+<p>它这里的传的参数，就是这个方法的第二个参数。到这里，我们又断了，依然不知道，这个参数从哪来的。</p>
+<p>冷静下来想一想，调用方法，参数从哪里来？我们从方法里面实现怎么看的到，我们肯定是要在调用方法的地方看。所以，我们就要找到在哪调用这个方法的。既然是写在AppComponent里面，那我们就找他的编译后生成的文件，也就是DaggerAppComponent，如下图：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-c3afc3041e959418.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图十二.png"></p>
+<p>一眼看过去，这么多东西，怎么看？我又想到，这个DaggerAppComponent类是由AppComponent生成的类，通过上面的判断，这个类里面也应该有我在AppComponent定义的方法的实现才对，搜一下getSpHelper方法，果不其然。如下图：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-d570e9598aba5e14.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图十三.png"></p>
+<p>如上图，我们可以看到这个方法的实现，类点方法名，说明整个方法是静态的，我们点过去一看。如下图：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-9825f1f6dba4e603.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图十四.png"></p>
+<p>不就是，我们前面说的那个静态方法吗？这样就跟我们前面分析的都串起来了。我们前面的问题是什么？不就是不知道这个方法的第二个参数从哪来的吗？现在，我们看到了，就是在这里new出来的。</p>
+<p>至于第一个参数AppMoudle从哪来的？我们可以接着分析一下。如下图</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-c731742fe5d1aa48.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图十五.png"></p>
+<p>我们可以看到这个appMoudle定义的是一个全局的变量，我们就要找，在哪里初始化的？如下图：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-a156ff943b621cfd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图十六.png"></p>
+<p>我们发现它是在构造方法里面初始化的，我们就要找在哪里调用的这个构造方法。如下图</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-1d5cc745a0c96bab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图十七.png"></p>
+<p>我们发现，在这个Builder类里面的build()方法调用的这个构造方法，我们就找在哪里调用的这个build()方法。如下图：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-1f317b639c2c6082.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图十八.png"></p>
+<p>我们发现，是AndroidInjector这个接口里面的抽象Builder类，这个抽象Builder类实现的是AndroidInjector.Factory，我们要找的就是这个create()方法。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-8d816d6035b16ecd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图十九.png"></p>
+<p>所以，这里在我们的Application里面初始化的，也就是我这里的MyApp里面初始化的。这个参数怎么传递的？如下图：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-89398696cffd1c02.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图二十.png"></p>
+<p>在create方法里面调用build()之前还调用了seedInstance()方法，这里是抽象类的方法，要想知道这个方法是怎么实现的，那就得看他的实现类。这个Builder<t>的实现类是谁？想一想上面是怎么跳转过来的？不想这个，我们也可以点这个类进行跳转。如下图</t></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-8ef9ff91c7c700c9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图二十一.png"></p>
+<p>如上图，我们可以看到有两个地方调用，一个是ActComponent，一个是AppComponent，前面一个是activity相关的，我们还没有说到，我们现在一直说的都是Application相关的。所以，这里跳转的地方，肯定是Application。如下图</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-785da091381f46bb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图二十二.png"></p>
+<p>这个方法还过时了，正好，我们这个Builder<t>抽象类还用@Deprecated标记了。诶？那这里还是没有实现啊，这也是一个抽象类。这个是抽象类，AppComponent又是一个接口，所以，我们要找这个AppComponent接口的实现类。如下图：</t></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-f791b0ac17b7937a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图二十三.png"></p>
+<p>如上图，AppComponent的实现类，就是DaggerAppComponent类。我们在这个类里面找Builder<t>的实现类就可以了。找找找，如下图</t></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-d6f726948fd5d5dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图二十四.png"></p>
+<p>如上图，这里有seedInstance方法和build两个方法，而且都是@Override的，从父类继承过来的，我们在看看AndroidInjector类。如下图：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-fcbdcca6f62275f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图二十五.png"></p>
+<p>正好，它有这两个方法，并且还都是抽象方法。所以，这个类就是它的实现类。所以，调用的seedInstance方法，就是这里的这个方法。如下图：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-37db29d8250698ff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图二十六.png"></p>
+<p>这个方法就是做了一个赋值操作，赋值之前做了一个非空检验。所以，在执行build()的时候这个seedInstance对象已经赋值了，不是空。所以这里就走通了。如下图</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-a638e6ef80bfdf05.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图二十七.png"></p>
+<p>如上的构造方法就走通了，那么appMoudle就有值了，那么我们前面的问题。如下图：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-96c53c9b44324478.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图二十八.png"></p>
+<p>我们之前就是在这里，不知道这个appMoudle是怎么赋值的，这里已经走通了。这就是通过AppComponent过去getSpHelper()的整个流程了</p>
 
       
     </div>
@@ -499,12 +582,12 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2019/06/14/kotlin之扩展方法/">kotlin之扩展方法</a></p>
+  <p><span>本文标题:</span><a href="/2019/07/31/dagger2整个流程解析（一）/">dagger2整个流程解析（一）</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 海晨忆 的个人博客">海晨忆</a></p>
-  <p><span>发布时间:</span>2019年06月14日 - 20:06</p>
-  <p><span>最后更新:</span>2019年06月14日 - 20:06</p>
-  <p><span>原始链接:</span><a href="/2019/06/14/kotlin之扩展方法/" title="kotlin之扩展方法">http://haichenyi.com/2019/06/14/kotlin之扩展方法/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://haichenyi.com/2019/06/14/kotlin之扩展方法/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2019年07月31日 - 20:07</p>
+  <p><span>最后更新:</span>2019年07月31日 - 20:07</p>
+  <p><span>原始链接:</span><a href="/2019/07/31/dagger2整个流程解析（一）/" title="dagger2整个流程解析（一）">http://haichenyi.com/2019/07/31/dagger2整个流程解析（一）/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://haichenyi.com/2019/07/31/dagger2整个流程解析（一）/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -572,8 +655,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/12/kotlin之构造函数-constructor/" rel="next" title="kotlin之构造函数(constructor)">
-                <i class="fa fa-chevron-left"></i> kotlin之构造函数(constructor)
+              <a href="/2019/07/31/一场由dagger2引发的一些思考/" rel="next" title="一场由dagger2引发的一些思考">
+                <i class="fa fa-chevron-left"></i> 一场由dagger2引发的一些思考
               </a>
             
           </div>
@@ -581,10 +664,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/06/14/kotlin之内部类，匿名内部类与伴生对象/" rel="prev" title="kotlin之内部类，匿名内部类与伴生对象">
-                kotlin之内部类，匿名内部类与伴生对象 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -655,17 +734,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/artistic_image/head.jpg"
@@ -760,22 +830,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展方法"><span class="nav-number">1.</span> <span class="nav-text">扩展方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Activity间的跳转"><span class="nav-number">2.</span> <span class="nav-text">Activity间的跳转</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#密封类sealed"><span class="nav-number">3.</span> <span class="nav-text">密封类sealed</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
