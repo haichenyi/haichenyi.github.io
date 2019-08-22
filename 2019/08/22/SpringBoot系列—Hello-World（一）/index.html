@@ -110,17 +110,23 @@
 
 
 
-<meta name="description" content="&amp;emsp;&amp;emsp;kotlin的扩展方法类似于java工具类，但是又优于java的工具类。">
+<meta name="description" content="&amp;emsp;&amp;emsp;终于要正式开始了java后台之路，虽然，之前断断续续的看过过黑马的java web视频，但是，都是好几年前的视频，很老了，感觉用处比较大的就是MySQL数据库操作，之前也写过几篇关于MySQL数据库操作的博客。目前，java后台最火的框架就属Spring Boot了。它是spring家族的衍生框架，并不是加强某个功能，它是为了简化配置，提高开发效率。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="kotlin之扩展方法">
-<meta property="og:url" content="http://haichenyi.com/2019/06/14/kotlin之扩展方法/index.html">
+<meta property="og:title" content="SpringBoot系列—Hello World（一）">
+<meta property="og:url" content="http://haichenyi.com/2019/08/22/SpringBoot系列—Hello-World（一）/index.html">
 <meta property="og:site_name" content="海晨忆的博客">
-<meta property="og:description" content="&amp;emsp;&amp;emsp;kotlin的扩展方法类似于java工具类，但是又优于java的工具类。">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;终于要正式开始了java后台之路，虽然，之前断断续续的看过过黑马的java web视频，但是，都是好几年前的视频，很老了，感觉用处比较大的就是MySQL数据库操作，之前也写过几篇关于MySQL数据库操作的博客。目前，java后台最火的框架就属Spring Boot了。它是spring家族的衍生框架，并不是加强某个功能，它是为了简化配置，提高开发效率。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-14T12:59:06.644Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-ac898c5be4c55359.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-50d3df67f83f2ebe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-6344d27b06363891.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-91fbdbeb0444e048.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-178028b6d437ea14.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-08-22T06:05:33.296Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="kotlin之扩展方法">
-<meta name="twitter:description" content="&amp;emsp;&amp;emsp;kotlin的扩展方法类似于java工具类，但是又优于java的工具类。">
+<meta name="twitter:title" content="SpringBoot系列—Hello World（一）">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;终于要正式开始了java后台之路，虽然，之前断断续续的看过过黑马的java web视频，但是，都是好几年前的视频，很老了，感觉用处比较大的就是MySQL数据库操作，之前也写过几篇关于MySQL数据库操作的博客。目前，java后台最火的框架就属Spring Boot了。它是spring家族的衍生框架，并不是加强某个功能，它是为了简化配置，提高开发效率。">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/7041675-ac898c5be4c55359.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -149,13 +155,13 @@
 
 
 
-  <link rel="canonical" href="http://haichenyi.com/2019/06/14/kotlin之扩展方法/"/>
+  <link rel="canonical" href="http://haichenyi.com/2019/08/22/SpringBoot系列—Hello-World（一）/"/>
 
 
 
 
 
-  <title>kotlin之扩展方法 | 海晨忆的博客</title>
+  <title>SpringBoot系列—Hello World（一） | 海晨忆的博客</title>
   
 
 
@@ -334,7 +340,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haichenyi.com/2019/06/14/kotlin之扩展方法/">
+    <link itemprop="mainEntityOfPage" href="http://haichenyi.com/2019/08/22/SpringBoot系列—Hello-World（一）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海晨忆">
@@ -351,7 +357,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">kotlin之扩展方法</h1>
+          <h1 class="post-title" itemprop="name headline">SpringBoot系列—Hello World（一）</h1>
         
 
         <div class="post-meta">
@@ -363,8 +369,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-14T20:57:34+08:00">
-                2019-06-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-22T14:00:44+08:00">
+                2019-08-22
               </time>
             
 
@@ -386,8 +392,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/kotlin/" itemprop="url" rel="index">
-                    <span itemprop="name">kotlin</span>
+                  <a href="/categories/Java-SpringBoot/" itemprop="url" rel="index">
+                    <span itemprop="name">Java -SpringBoot</span>
                   </a>
                 </span>
 
@@ -415,7 +421,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  915
+                  1,680
                 </span>
               
 
@@ -431,7 +437,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  4
+                  7
                 </span>
               
             </div>
@@ -452,31 +458,57 @@
       
 
       
-        <p>&emsp;&emsp;kotlin的扩展方法类似于java工具类，但是又优于java的工具类。</p>
+        <p>&emsp;&emsp;终于要正式开始了java后台之路，虽然，之前断断续续的看过过黑马的java web视频，但是，都是好几年前的视频，很老了，感觉用处比较大的就是MySQL数据库操作，之前也写过几篇关于<a href="https://blog.csdn.net/qq_27634797/article/category/8050256" target="_blank" rel="noopener">MySQL数据库操作的博客</a>。目前，java后台最火的框架就属<a href="https://spring.io/projects/spring-boot" target="_blank" rel="noopener">Spring Boot</a>了。它是<a href="https://spring.io/" target="_blank" rel="noopener">spring</a>家族的衍生框架，并不是加强某个功能，它是为了简化配置，提高开发效率。</p>
 <a id="more"></a>
-<h3 id="扩展方法"><a href="#扩展方法" class="headerlink" title="扩展方法"></a>扩展方法</h3><p>&emsp;&emsp;扩展方法的写法，<strong><em>新建一个File类型的kt文件，不是Class类型，不是Interface类型，不是枚举类型，不是Object类型，就是File类型</em></strong></p>
-<p>&emsp;&emsp;然后直接定义方法，跟kotlin定义方法相同，需要什么方法就定义什么方法，唯一的区别就是在方法名的前面可以加上”类型.”，格式如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//类型可以省略，即任意类型</span><br><span class="line">fun 类型.方法名(参数...):返回值&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>举个例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//两个数相加，任意类型都可以调用</span><br><span class="line">fun add(a: Int, b: Int): Int &#123;</span><br><span class="line">    return a + b</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//加载图片，只有ImageView类型可以调用</span><br><span class="line">fun ImageView.loadUrl(imgUrl: String) &#123;</span><br><span class="line">    Glide.with(this.context).load(imgUrl).into(this)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>调用的例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">package com.haichenyi.aloe.mykotlin</span><br><span class="line"></span><br><span class="line">import android.os.Bundle</span><br><span class="line">import android.support.v7.app.AppCompatActivity</span><br><span class="line">import kotlinx.android.synthetic.main.activity_second.*</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class SecondActivity : AppCompatActivity()&#123;</span><br><span class="line">    override fun onCreate(savedInstanceState: Bundle?) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState)</span><br><span class="line">        setContentView(R.layout.activity_second)</span><br><span class="line">        val a = 1</span><br><span class="line">        val b = 2</span><br><span class="line">        //调用两个数相加</span><br><span class="line">        add(a, b)</span><br><span class="line">        //调用加载图片</span><br><span class="line">        img.loadUrl(&quot;&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这里需要注意的是：</p>
-<ol>
-<li>如果方法没有加类型，就是随便什么类型都能调用，就是只要是项目在内的其他任意地方都可以调用这个方法</li>
-<li>第二个是ImageView类型才能调用，要记得是变量调用，而不是类型调用，变量调用方法。就像我这里的img变量，就是ImageView类型的</li>
-<li>写法我们都知道用Glide加载图片，最后into方法传递的是一个ImageView类型的view，我上面写的this，这里的this就是指的是当前方法前面类型的变量，也就是这里的ImageView类型的变量，也就是我们调用的时候的img变量</li>
-<li>扩展方法，其实最后生成java文件的时候，就是在方法的前面加上了static final ，没什么神奇的，最后跟我们java里面工具类的原理是一样的。</li>
+<h3 id="Spring-Boot概要"><a href="#Spring-Boot概要" class="headerlink" title="Spring Boot概要"></a>Spring Boot概要</h3><h4 id="Spring-Boot-介绍"><a href="#Spring-Boot-介绍" class="headerlink" title="Spring Boot 介绍"></a>Spring Boot 介绍</h4><p>&emsp;&emsp;随着动态语言的流行(Ruby,Node.js等等)，java作为静态语言，他的开发显得格外的笨重；繁多的配置、低效的开发效率、复杂的部署流程以及第三方技术整合难度大。</p>
+<p>&emsp;&emsp;在上述环境下，Spring Boot由此诞生，它的设计是为了尽快的启动和运行。它使用”习惯优于配置”(就是Spring Boot初始化了大量的配置，让你可以无需配置就能直接运行，当然，你也可以更改)的理念让你的项目快速的运行起来。并且，使用Spring Boot可以让你很容易创建一个独立运行(运行jar，内嵌servlet容器即Tomcat)、准生产力强的基于spring的项目。</p>
+<h4 id="Spring-Boot-优点"><a href="#Spring-Boot-优点" class="headerlink" title="Spring Boot 优点"></a>Spring Boot 优点</h4><ol>
+<li>快速构建spring项目</li>
+<li>无需依赖外部servlet容器即Tomcat，应用无需打成WAR包；项目可以打成Jar包直接运行</li>
+<li>提供一系列的 start pom来简化maven的依赖加载</li>
+<li>无需配置XML，开箱即用，简化开发，同时也可以修改默认值来满足特定需求</li>
+<li>Spring Boot并不是对Spring功能上的加强，而是提供了一种快速使用Spring的方式</li>
+<li>极大的提高了开发和部署效率</li>
 </ol>
-<h3 id="Activity间的跳转"><a href="#Activity间的跳转" class="headerlink" title="Activity间的跳转"></a>Activity间的跳转</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">startActivity(Intent(this@MainActivity,SecondActivity::class.java))</span><br></pre></td></tr></table></figure>
-<h3 id="密封类sealed"><a href="#密封类sealed" class="headerlink" title="密封类sealed"></a>密封类sealed</h3><p>&emsp;&emsp;java中没有密封类的概念，这个是kotlin独有的，他能使我们的代码更加安全。</p>
-<p>&emsp;&emsp;kotlin的类默认是final，不能被继承，sealed修饰的类可以被继承，因为它修饰的是open，这里只是把open隐藏了。</p>
-<p>&emsp;&emsp;为什么说它能使我们的代码更加安全呐？举个例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">lateinit var obj : Any</span><br><span class="line">var b = when(obj)&#123;</span><br><span class="line">    1 -&gt; 2</span><br><span class="line">    is String -&gt; 3</span><br><span class="line">    3,4 -&gt; &quot;obj等于3或者等于4&quot;</span><br><span class="line">    in 10..20 -&gt; &quot;obj在10到20之间&quot;</span><br><span class="line">    else -&gt; true</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;这个是我们之前说过的when的表达式，我们之前讲过when表达式最后必须要加else，不然编译通过不了。或者你能保证else前面的条件语句包括else条件的情况，那就不用加。一般情况下，我们都加else。我们看一下下面这个写法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">sealed class AAA &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class BBB : AAA() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class CCC : AAA() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fun QQQ(aaa: AAA): Int =</span><br><span class="line">        when (aaa) &#123;</span><br><span class="line">            is BBB -&gt; 10</span><br><span class="line"></span><br><span class="line">            is CCC -&gt; 11</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;我们这里类AAA是用sealed标识的，类BBB,CCC都继承AAA。我们方法QQQ需要传递一个AAA对象，里面用when做判断，这里就不需要加else，因为这里的条件只有两种，一种是类BBB,一种是类CCC，没有第三种。如果AAA，没有用sealed标识，这里还可以加其他条件，编译都可以通过，因为判断不出来，所以，代码就不安全。</p>
-
+<h3 id="Spring-Boot-入门开发"><a href="#Spring-Boot-入门开发" class="headerlink" title="Spring Boot 入门开发"></a>Spring Boot 入门开发</h3><h4 id="环境要求"><a href="#环境要求" class="headerlink" title="环境要求"></a>环境要求</h4><p>&emsp;&emsp;每一个版本的Spring Boot，对系统的环境要求都不一样。我这里用的<a href="https://spring.io/projects/spring-boot#learn" target="_blank" rel="noopener">Spring Boot 2.1.7版本</a>，它需要的</p>
+<ul>
+<li>jdk8，兼容12</li>
+<li>Maven 3.3+</li>
+</ul>
+<h4 id="修改Maven配置文件"><a href="#修改Maven配置文件" class="headerlink" title="修改Maven配置文件"></a>修改Maven配置文件</h4><p>&emsp;&emsp;首先，你需要先下载<a href="http://maven.apache.org/download.cgi" target="_blank" rel="noopener">Maven</a>，然后安装。找到安装目录下的config文件夹，点进去找到setting.xml配置文件，进行如下修改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--开始处更改下载依赖的存放路径， 以下目录需要已经创建--&gt;</span><br><span class="line">&lt;localRepository&gt;D:\apache-maven-3.6.1\repository&lt;/localRepository&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--在 mirrors 标签下 添加阿里云maven私服库--&gt;</span><br><span class="line">  &lt;mirrors&gt;</span><br><span class="line">	&lt;id&gt;nexus-aliyun&lt;/id&gt;    </span><br><span class="line">	&lt;name&gt;nexus-aliyun&lt;/name&gt;  </span><br><span class="line">	&lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public&lt;/url&gt;    </span><br><span class="line">	&lt;mirrorOf&gt;central&lt;/mirrorOf&gt;  </span><br><span class="line">  &lt;/mirrors&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;!--在 profiles 标签下指定jdk版本--&gt;</span><br><span class="line">&lt;profiles&gt;  </span><br><span class="line">    &lt;profile&gt;</span><br><span class="line">		&lt;id&gt;jdk-1.8&lt;/id&gt;</span><br><span class="line"></span><br><span class="line">		&lt;activation&gt;</span><br><span class="line">			&lt;activeByDefault&gt;true&lt;/activeByDefault&gt; </span><br><span class="line">			&lt;jdk&gt;1.8&lt;/jdk&gt;</span><br><span class="line">		&lt;/activation&gt;</span><br><span class="line"></span><br><span class="line">		&lt;properties&gt;</span><br><span class="line">			&lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;</span><br><span class="line">			&lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;</span><br><span class="line">			&lt;maven.compiler.compilerVersion&gt;1.8&lt;/maven.compiler.compilerVersion&gt;</span><br><span class="line">		&lt;/properties&gt;</span><br><span class="line">    &lt;/profile&gt;</span><br><span class="line">&lt;/profiles&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="修改IDEA配置"><a href="#修改IDEA配置" class="headerlink" title="修改IDEA配置"></a>修改IDEA配置</h4><p><img src="https://upload-images.jianshu.io/upload_images/7041675-ac898c5be4c55359.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="IDEA配置.png"></p>
+<p>&emsp;&emsp;如上图，我们打开IDEA的setting界面，找到MAVEN，在Maven Home Directory这一栏选择，我们刚才Maven安装的路径，当这一栏选好之后，第三栏的本地仓库路径会自动修改，然后，我们修改第二栏，选择我们上面修改的setting.xml文件。这样修改完成之后，我们maven项目在线依赖的库都存放在我们自己定义的存放文件夹下面。</p>
+<h4 id="创建SpringBoot项目"><a href="#创建SpringBoot项目" class="headerlink" title="创建SpringBoot项目"></a>创建SpringBoot项目</h4><p>&emsp;&emsp;这里创建的是Maven项目，然后嵌入SpringBoot框架，这样你就不会因为直接创建SpringBoot项目生成的文件不知道是干什么用的造成的困惑。创建Maven项目之后的项目结构，如下图：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-50d3df67f83f2ebe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Maven项目结构图.png"></p>
+<p>&emsp;&emsp;如上图，有三个文件夹和一个pom.xml文件。</p>
+<ul>
+<li>java文件夹：存放java代码</li>
+<li>resources文件夹：存放资源文件</li>
+<li>test文件夹：单元测试</li>
+<li>pom.xml：依赖库</li>
+</ul>
+<p>&emsp;&emsp;Maven项目会自动帮我们<a href="https://docs.spring.io/spring-boot/docs/2.1.7.RELEASE/reference/html/getting-started-first-application.html#getting-started-first-application-pom" target="_blank" rel="noopener">创建pom.xml文件</a>，不用我们手动创建，我们先在pom.xml文件下添加如下依赖：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;parent&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;2.1.7.RELEASE&lt;/version&gt;</span><br><span class="line">    &lt;/parent&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dependencies&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">    &lt;/dependencies&gt;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;关于这个我想说的就是，spring-boot-starter-parent是一个父级依赖，它是一个特殊的starter，这个依赖提供了常用的SpringBoot依赖库，使用它之后，我们SpringBoot常用库就不需要指定Version，这样，我们就避免了冲突，不兼容等问题。之前Android项目总是碰到依赖包冲突，这一点SpringBoot很nice。</p>
+<p>&emsp;&emsp;添加完成这两个之后，我们就可以创建controller，也就是接口了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">package com.haichenyi.controller;</span><br><span class="line"></span><br><span class="line">import org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line">import org.springframework.web.bind.annotation.RequestMethod;</span><br><span class="line">import org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line">@RestController</span><br><span class="line">public class HelloController &#123;</span><br><span class="line">    @RequestMapping(value = &quot;/hello&quot;, method = RequestMethod.POST)</span><br><span class="line">    public String hello() &#123;</span><br><span class="line">        return &quot;hello world!&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;我这里类用@RestController注解标明，你也可以用@Controller，当你用@Controller的时候，你的方法上面还要加另外一个注解@ResponseBody。</p>
+<p>&emsp;&emsp;再就是方法名称，在你的方法上面加@RequestMapping，里面的value值就是你的接口名称，后面的method就是你需要访问接口的方式。</p>
+<p>&emsp;&emsp;再就是最后一步，创建一个引导类，它的主要作用就是启动我们的SpringBoot项目。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">package com.haichenyi;</span><br><span class="line"></span><br><span class="line">import org.springframework.boot.SpringApplication;</span><br><span class="line">import org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"></span><br><span class="line">@SpringBootApplication</span><br><span class="line">public class HelloApplication &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SpringApplication.run(HelloApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;到这里，我们就完成了，我们最后看一下项目结构图：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-6344d27b06363891.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="项目结构图.png"></p>
+<p>PS:在这里，我们需要注意的是我们这个启动类最好放在最外层的包下面，因为这个启动类在启动的时候，会加载它这个包下面极其子包下面所有配置类，你如果把这个启动类写在其它包下面，有可能就加载不到有的配置类。</p>
+<p>&emsp;&emsp;启动项目，不用我们手动部署到Tomcat，我们直接点击这个启动类的main方法，左边的启动按钮，run application就可以了。</p>
+<p>&emsp;&emsp;最后，请求接口，因为，我这里定义的方式是post请求，所以，不能直接浏览器访问，你也可以把这个方式去掉，就可以了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//http协议+ip+port+接口名</span><br><span class="line">http://localhost:8080/hello</span><br></pre></td></tr></table></figure>
+<h4 id="项目打jar包"><a href="#项目打jar包" class="headerlink" title="项目打jar包"></a>项目打jar包</h4><p>添加依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;build&gt;</span><br><span class="line">        &lt;plugins&gt;</span><br><span class="line">            &lt;plugin&gt;</span><br><span class="line">                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">            &lt;/plugin&gt;</span><br><span class="line">        &lt;/plugins&gt;</span><br><span class="line">&lt;/build&gt;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;选择项目右边的Maven—moudle名称—Lifecycle—package—run maven build即可。如下图：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-91fbdbeb0444e048.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="打jar包.png"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-178028b6d437ea14.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="jar包路径.png"></p>
+<p>&emsp;&emsp;然后，在控制台找到这个jar的路径，在我们的DOS命令界面用如下命令运行，即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar 刚才打好的jar包全名称包括后缀名</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -499,12 +531,12 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2019/06/14/kotlin之扩展方法/">kotlin之扩展方法</a></p>
+  <p><span>本文标题:</span><a href="/2019/08/22/SpringBoot系列—Hello-World（一）/">SpringBoot系列—Hello World（一）</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 海晨忆 的个人博客">海晨忆</a></p>
-  <p><span>发布时间:</span>2019年06月14日 - 20:06</p>
-  <p><span>最后更新:</span>2019年06月14日 - 20:06</p>
-  <p><span>原始链接:</span><a href="/2019/06/14/kotlin之扩展方法/" title="kotlin之扩展方法">http://haichenyi.com/2019/06/14/kotlin之扩展方法/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://haichenyi.com/2019/06/14/kotlin之扩展方法/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2019年08月22日 - 14:08</p>
+  <p><span>最后更新:</span>2019年08月22日 - 14:08</p>
+  <p><span>原始链接:</span><a href="/2019/08/22/SpringBoot系列—Hello-World（一）/" title="SpringBoot系列—Hello World（一）">http://haichenyi.com/2019/08/22/SpringBoot系列—Hello-World（一）/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://haichenyi.com/2019/08/22/SpringBoot系列—Hello-World（一）/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -572,8 +604,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/12/kotlin之构造函数-constructor/" rel="next" title="kotlin之构造函数(constructor)">
-                <i class="fa fa-chevron-left"></i> kotlin之构造函数(constructor)
+              <a href="/2019/07/31/dagger2整个流程解析（一）/" rel="next" title="dagger2整个流程解析（一）">
+                <i class="fa fa-chevron-left"></i> dagger2整个流程解析（一）
               </a>
             
           </div>
@@ -581,10 +613,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/06/14/kotlin之内部类，匿名内部类与伴生对象/" rel="prev" title="kotlin之内部类，匿名内部类与伴生对象">
-                kotlin之内部类，匿名内部类与伴生对象 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -770,7 +798,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展方法"><span class="nav-number">1.</span> <span class="nav-text">扩展方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Activity间的跳转"><span class="nav-number">2.</span> <span class="nav-text">Activity间的跳转</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#密封类sealed"><span class="nav-number">3.</span> <span class="nav-text">密封类sealed</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Boot概要"><span class="nav-number">1.</span> <span class="nav-text">Spring Boot概要</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring-Boot-介绍"><span class="nav-number">1.1.</span> <span class="nav-text">Spring Boot 介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring-Boot-优点"><span class="nav-number">1.2.</span> <span class="nav-text">Spring Boot 优点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Boot-入门开发"><span class="nav-number">2.</span> <span class="nav-text">Spring Boot 入门开发</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#环境要求"><span class="nav-number">2.1.</span> <span class="nav-text">环境要求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改Maven配置文件"><span class="nav-number">2.2.</span> <span class="nav-text">修改Maven配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改IDEA配置"><span class="nav-number">2.3.</span> <span class="nav-text">修改IDEA配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建SpringBoot项目"><span class="nav-number">2.4.</span> <span class="nav-text">创建SpringBoot项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#项目打jar包"><span class="nav-number">2.5.</span> <span class="nav-text">项目打jar包</span></a></li></ol></li></ol></div>
             
 
           </div>
