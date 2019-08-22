@@ -110,17 +110,20 @@
 
 
 
-<meta name="description" content="&amp;emsp;&amp;emsp;kotlin的扩展方法类似于java工具类，但是又优于java的工具类。">
+<meta name="description" content="&amp;emsp;&amp;emsp;上一篇，内容很少，说了一下SpringBoot的底层是怎么依赖的。这一篇讲一下SpringBoot底层源码是怎么实现的。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="kotlin之扩展方法">
-<meta property="og:url" content="http://haichenyi.com/2019/06/14/kotlin之扩展方法/index.html">
+<meta property="og:title" content="SpringBoot系列—@SpringBootApplication源码解析（三）">
+<meta property="og:url" content="http://haichenyi.com/2019/08/22/SpringBoot系列—-SpringBootApplication源码解析（三）/index.html">
 <meta property="og:site_name" content="海晨忆的博客">
-<meta property="og:description" content="&amp;emsp;&amp;emsp;kotlin的扩展方法类似于java工具类，但是又优于java的工具类。">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;上一篇，内容很少，说了一下SpringBoot的底层是怎么依赖的。这一篇讲一下SpringBoot底层源码是怎么实现的。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-14T12:59:06.644Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-a3f5cc4478dcff2c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-041b65a5da3b0aec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-08-22T08:21:25.307Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="kotlin之扩展方法">
-<meta name="twitter:description" content="&amp;emsp;&amp;emsp;kotlin的扩展方法类似于java工具类，但是又优于java的工具类。">
+<meta name="twitter:title" content="SpringBoot系列—@SpringBootApplication源码解析（三）">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;上一篇，内容很少，说了一下SpringBoot的底层是怎么依赖的。这一篇讲一下SpringBoot底层源码是怎么实现的。">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/7041675-a3f5cc4478dcff2c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -149,13 +152,13 @@
 
 
 
-  <link rel="canonical" href="http://haichenyi.com/2019/06/14/kotlin之扩展方法/"/>
+  <link rel="canonical" href="http://haichenyi.com/2019/08/22/SpringBoot系列—-SpringBootApplication源码解析（三）/"/>
 
 
 
 
 
-  <title>kotlin之扩展方法 | 海晨忆的博客</title>
+  <title>SpringBoot系列—@SpringBootApplication源码解析（三） | 海晨忆的博客</title>
   
 
 
@@ -334,7 +337,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haichenyi.com/2019/06/14/kotlin之扩展方法/">
+    <link itemprop="mainEntityOfPage" href="http://haichenyi.com/2019/08/22/SpringBoot系列—-SpringBootApplication源码解析（三）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海晨忆">
@@ -351,7 +354,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">kotlin之扩展方法</h1>
+          <h1 class="post-title" itemprop="name headline">SpringBoot系列—@SpringBootApplication源码解析（三）</h1>
         
 
         <div class="post-meta">
@@ -363,8 +366,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-14T20:57:34+08:00">
-                2019-06-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-22T16:20:22+08:00">
+                2019-08-22
               </time>
             
 
@@ -386,8 +389,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/kotlin/" itemprop="url" rel="index">
-                    <span itemprop="name">kotlin</span>
+                  <a href="/categories/Java-SpringBoot/" itemprop="url" rel="index">
+                    <span itemprop="name">Java -SpringBoot</span>
                   </a>
                 </span>
 
@@ -415,7 +418,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  915
+                  762
                 </span>
               
 
@@ -431,7 +434,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  4
+                  3
                 </span>
               
             </div>
@@ -452,30 +455,43 @@
       
 
       
-        <p>&emsp;&emsp;kotlin的扩展方法类似于java工具类，但是又优于java的工具类。</p>
+        <p>&emsp;&emsp;上一篇，内容很少，说了一下SpringBoot的底层是怎么依赖的。这一篇讲一下SpringBoot底层源码是怎么实现的。</p>
 <a id="more"></a>
-<h3 id="扩展方法"><a href="#扩展方法" class="headerlink" title="扩展方法"></a>扩展方法</h3><p>&emsp;&emsp;扩展方法的写法，<strong><em>新建一个File类型的kt文件，不是Class类型，不是Interface类型，不是枚举类型，不是Object类型，就是File类型</em></strong></p>
-<p>&emsp;&emsp;然后直接定义方法，跟kotlin定义方法相同，需要什么方法就定义什么方法，唯一的区别就是在方法名的前面可以加上”类型.”，格式如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//类型可以省略，即任意类型</span><br><span class="line">fun 类型.方法名(参数...):返回值&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>举个例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//两个数相加，任意类型都可以调用</span><br><span class="line">fun add(a: Int, b: Int): Int &#123;</span><br><span class="line">    return a + b</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//加载图片，只有ImageView类型可以调用</span><br><span class="line">fun ImageView.loadUrl(imgUrl: String) &#123;</span><br><span class="line">    Glide.with(this.context).load(imgUrl).into(this)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>调用的例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">package com.haichenyi.aloe.mykotlin</span><br><span class="line"></span><br><span class="line">import android.os.Bundle</span><br><span class="line">import android.support.v7.app.AppCompatActivity</span><br><span class="line">import kotlinx.android.synthetic.main.activity_second.*</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class SecondActivity : AppCompatActivity()&#123;</span><br><span class="line">    override fun onCreate(savedInstanceState: Bundle?) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState)</span><br><span class="line">        setContentView(R.layout.activity_second)</span><br><span class="line">        val a = 1</span><br><span class="line">        val b = 2</span><br><span class="line">        //调用两个数相加</span><br><span class="line">        add(a, b)</span><br><span class="line">        //调用加载图片</span><br><span class="line">        img.loadUrl(&quot;&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这里需要注意的是：</p>
+<p>&emsp;&emsp;从SpringBoot的入口开始。第一篇的时候说过了，最好把入口文件放在最外层的包下面，至于原因就不多阐述了。</p>
+<p>&emsp;&emsp;说说这个 <strong>@SpringBootApplication</strong>注解的原理,点进去看一下：</p>
+<p>如下图：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-a3f5cc4478dcff2c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="springbootapplication注解.png"></p>
+<p>主要就是这三个注解：</p>
+<ul>
+<li>@SpringBootConfiguration</li>
+<li>@EnableAutoConfiguration</li>
+<li>@ComponentScan</li>
+</ul>
+<h3 id="SpringBootConfiguration"><a href="#SpringBootConfiguration" class="headerlink" title="@SpringBootConfiguration"></a>@SpringBootConfiguration</h3><p>&emsp;&emsp;SpringBootConfiguration这个注解是由Configuration注解实现的。</p>
+<h4 id="Configuration"><a href="#Configuration" class="headerlink" title="@Configuration"></a>@Configuration</h4><p>&emsp;&emsp;从名字上就可以判断出，这个注解是跟SpringBoot配置相关的，<strong>@Configuration</strong>，这个注解是Spring底层的一个注解，之前都是配置xml，SpringBoot推荐我们用配置类来描述配置，配置类是什么呢？就用@Configuration标记的类。</p>
+<p>&emsp;&emsp;Configuration这个注解是由Component注解实现。</p>
+<h5 id="Component"><a href="#Component" class="headerlink" title="@Component"></a>@Component</h5><p>&emsp;&emsp;这个注解的意义就是，把当前的配置类添加到spring容器中，表示是一个组件。</p>
+<h3 id="EnableAutoConfiguration"><a href="#EnableAutoConfiguration" class="headerlink" title="@EnableAutoConfiguration"></a>@EnableAutoConfiguration</h3><p>&emsp;&emsp;EnableAutoConfiguration这个注解是由<strong>AutoConfigurationPackage</strong>和<strong>@Import({AutoConfigurationImportSelector.class})</strong>注解实现</p>
+<h4 id="AutoConfigurationPackage"><a href="#AutoConfigurationPackage" class="headerlink" title="@AutoConfigurationPackage"></a>@AutoConfigurationPackage</h4><p>&emsp;&emsp;这个注解从名字上面看出来是自动配置包，这是什么意思呢？在第一篇我们就说过了入口要放在最外层的包，至于原因，已经讲过了，因为SpringBoot会自动将引导类 <strong>@SpringBootApplication标注的类</strong>所在的包以及下面所有子包里面所有的组件扫描到Spring容器中统一管理。就是这个注解实现的。那么，这个注解是怎么实现的呢？就是通过它的这个 <strong>@Import({Registrar.class})</strong>，下面就是Registrar类的源码了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">static class Registrar implements ImportBeanDefinitionRegistrar, DeterminableImports &#123;</span><br><span class="line">        Registrar() &#123;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public void registerBeanDefinitions(AnnotationMetadata metadata, BeanDefinitionRegistry registry) &#123;</span><br><span class="line">            AutoConfigurationPackages.register(registry, (new AutoConfigurationPackages.PackageImport(metadata)).getPackageName());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public Set&lt;Object&gt; determineImports(AnnotationMetadata metadata) &#123;</span><br><span class="line">            return Collections.singleton(new AutoConfigurationPackages.PackageImport(metadata));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;就是通过下面这个代码注册进去的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AutoConfigurationPackages.register(registry, (new AutoConfigurationPackages.PackageImport(metadata)).getPackageName());</span><br></pre></td></tr></table></figure>
+<h4 id="Import-AutoConfigurationImportSelector-class"><a href="#Import-AutoConfigurationImportSelector-class" class="headerlink" title="@Import({AutoConfigurationImportSelector.class})"></a>@Import({AutoConfigurationImportSelector.class})</h4><p>&emsp;&emsp;这个注解是干什么用的呢？</p>
 <ol>
-<li>如果方法没有加类型，就是随便什么类型都能调用，就是只要是项目在内的其他任意地方都可以调用这个方法</li>
-<li>第二个是ImageView类型才能调用，要记得是变量调用，而不是类型调用，变量调用方法。就像我这里的img变量，就是ImageView类型的</li>
-<li>写法我们都知道用Glide加载图片，最后into方法传递的是一个ImageView类型的view，我上面写的this，这里的this就是指的是当前方法前面类型的变量，也就是这里的ImageView类型的变量，也就是我们调用的时候的img变量</li>
-<li>扩展方法，其实最后生成java文件的时候，就是在方法的前面加上了static final ，没什么神奇的，最后跟我们java里面工具类的原理是一样的。</li>
+<li>它会把项目里面所有需要导入的组件以全类名的方式返回，将这些组件添加到容器中。</li>
+<li>会给容器中注入非常多的自动配置类，就是导入并配置好当前项目中<br>所需要的组件,省去我们手动编写配置去注入组件。</li>
 </ol>
-<h3 id="Activity间的跳转"><a href="#Activity间的跳转" class="headerlink" title="Activity间的跳转"></a>Activity间的跳转</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">startActivity(Intent(this@MainActivity,SecondActivity::class.java))</span><br></pre></td></tr></table></figure>
-<h3 id="密封类sealed"><a href="#密封类sealed" class="headerlink" title="密封类sealed"></a>密封类sealed</h3><p>&emsp;&emsp;java中没有密封类的概念，这个是kotlin独有的，他能使我们的代码更加安全。</p>
-<p>&emsp;&emsp;kotlin的类默认是final，不能被继承，sealed修饰的类可以被继承，因为它修饰的是open，这里只是把open隐藏了。</p>
-<p>&emsp;&emsp;为什么说它能使我们的代码更加安全呐？举个例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">lateinit var obj : Any</span><br><span class="line">var b = when(obj)&#123;</span><br><span class="line">    1 -&gt; 2</span><br><span class="line">    is String -&gt; 3</span><br><span class="line">    3,4 -&gt; &quot;obj等于3或者等于4&quot;</span><br><span class="line">    in 10..20 -&gt; &quot;obj在10到20之间&quot;</span><br><span class="line">    else -&gt; true</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;这个是我们之前说过的when的表达式，我们之前讲过when表达式最后必须要加else，不然编译通过不了。或者你能保证else前面的条件语句包括else条件的情况，那就不用加。一般情况下，我们都加else。我们看一下下面这个写法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">sealed class AAA &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class BBB : AAA() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class CCC : AAA() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fun QQQ(aaa: AAA): Int =</span><br><span class="line">        when (aaa) &#123;</span><br><span class="line">            is BBB -&gt; 10</span><br><span class="line"></span><br><span class="line">            is CCC -&gt; 11</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;我们这里类AAA是用sealed标识的，类BBB,CCC都继承AAA。我们方法QQQ需要传递一个AAA对象，里面用when做判断，这里就不需要加else，因为这里的条件只有两种，一种是类BBB,一种是类CCC，没有第三种。如果AAA，没有用sealed标识，这里还可以加其他条件，编译都可以通过，因为判断不出来，所以，代码就不安全。</p>
+<p>&emsp;&emsp;怎么实现的呢？打开AutoConfigurationImportSelector类，找到如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; configurations = this.getCandidateConfigurations(annotationMetadata, attributes);</span><br></pre></td></tr></table></figure>
+<p>找到getCandidateConfigurations方法，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">protected List&lt;String&gt; getCandidateConfigurations(AnnotationMetadata metadata, AnnotationAttributes attributes) &#123;</span><br><span class="line">        List&lt;String&gt; configurations = SpringFactoriesLoader.loadFactoryNames(this.getSpringFactoriesLoaderFactoryClass(), this.getBeanClassLoader());</span><br><span class="line">        Assert.notEmpty(configurations, &quot;No auto configuration classes found in META-INF/spring.factories. If you are using a custom packaging, make sure that file is correct.&quot;);</span><br><span class="line">        return configurations;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>找到loadFactoryNames方法，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public static List&lt;String&gt; loadFactoryNames(Class&lt;?&gt; factoryClass, @Nullable ClassLoader classLoader) &#123;</span><br><span class="line">        String factoryClassName = factoryClass.getName();</span><br><span class="line">        return (List)loadSpringFactories(classLoader).getOrDefault(factoryClassName, Collections.emptyList());</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>找到loadSpringFactories方法，里面有</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Enumeration&lt;URL&gt; urls = classLoader != null ? classLoader.getResources(&quot;META-INF/spring.factories&quot;) : ClassLoader.getSystemResources(&quot;META-INF/spring.factories&quot;);</span><br></pre></td></tr></table></figure>
+<p>这里就是我们的配置，我们这个配置具体是在哪呢？如下图</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-041b65a5da3b0aec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="autoConfigure.png"></p>
+<h3 id="ComponentScan"><a href="#ComponentScan" class="headerlink" title="@ComponentScan"></a>@ComponentScan</h3><p>&emsp;&emsp;这个注解的主要作用就是，被该注解标识的类会被Spring容器纳入管理。</p>
 
       
     </div>
@@ -499,12 +515,12 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2019/06/14/kotlin之扩展方法/">kotlin之扩展方法</a></p>
+  <p><span>本文标题:</span><a href="/2019/08/22/SpringBoot系列—-SpringBootApplication源码解析（三）/">SpringBoot系列—@SpringBootApplication源码解析（三）</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 海晨忆 的个人博客">海晨忆</a></p>
-  <p><span>发布时间:</span>2019年06月14日 - 20:06</p>
-  <p><span>最后更新:</span>2019年06月14日 - 20:06</p>
-  <p><span>原始链接:</span><a href="/2019/06/14/kotlin之扩展方法/" title="kotlin之扩展方法">http://haichenyi.com/2019/06/14/kotlin之扩展方法/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://haichenyi.com/2019/06/14/kotlin之扩展方法/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2019年08月22日 - 16:08</p>
+  <p><span>最后更新:</span>2019年08月22日 - 16:08</p>
+  <p><span>原始链接:</span><a href="/2019/08/22/SpringBoot系列—-SpringBootApplication源码解析（三）/" title="SpringBoot系列—@SpringBootApplication源码解析（三）">http://haichenyi.com/2019/08/22/SpringBoot系列—-SpringBootApplication源码解析（三）/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://haichenyi.com/2019/08/22/SpringBoot系列—-SpringBootApplication源码解析（三）/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -572,8 +588,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/12/kotlin之构造函数-constructor/" rel="next" title="kotlin之构造函数(constructor)">
-                <i class="fa fa-chevron-left"></i> kotlin之构造函数(constructor)
+              <a href="/2019/08/22/SpringBoot系列—底层依赖（二）/" rel="next" title="SpringBoot系列—底层依赖（二）">
+                <i class="fa fa-chevron-left"></i> SpringBoot系列—底层依赖（二）
               </a>
             
           </div>
@@ -581,10 +597,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/06/14/kotlin之内部类，匿名内部类与伴生对象/" rel="prev" title="kotlin之内部类，匿名内部类与伴生对象">
-                kotlin之内部类，匿名内部类与伴生对象 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -770,7 +782,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展方法"><span class="nav-number">1.</span> <span class="nav-text">扩展方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Activity间的跳转"><span class="nav-number">2.</span> <span class="nav-text">Activity间的跳转</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#密封类sealed"><span class="nav-number">3.</span> <span class="nav-text">密封类sealed</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#SpringBootConfiguration"><span class="nav-number">1.</span> <span class="nav-text">@SpringBootConfiguration</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Configuration"><span class="nav-number">1.1.</span> <span class="nav-text">@Configuration</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Component"><span class="nav-number">1.1.1.</span> <span class="nav-text">@Component</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EnableAutoConfiguration"><span class="nav-number">2.</span> <span class="nav-text">@EnableAutoConfiguration</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#AutoConfigurationPackage"><span class="nav-number">2.1.</span> <span class="nav-text">@AutoConfigurationPackage</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Import-AutoConfigurationImportSelector-class"><span class="nav-number">2.2.</span> <span class="nav-text">@Import({AutoConfigurationImportSelector.class})</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ComponentScan"><span class="nav-number">3.</span> <span class="nav-text">@ComponentScan</span></a></li></ol></div>
             
 
           </div>

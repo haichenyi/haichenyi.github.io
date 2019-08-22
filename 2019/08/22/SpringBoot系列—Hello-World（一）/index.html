@@ -122,7 +122,7 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-6344d27b06363891.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-91fbdbeb0444e048.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-178028b6d437ea14.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2019-08-22T06:05:33.296Z">
+<meta property="og:updated_time" content="2019-08-22T07:44:38.671Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot系列—Hello World（一）">
 <meta name="twitter:description" content="&amp;emsp;&amp;emsp;终于要正式开始了java后台之路，虽然，之前断断续续的看过过黑马的java web视频，但是，都是好几年前的视频，很老了，感觉用处比较大的就是MySQL数据库操作，之前也写过几篇关于MySQL数据库操作的博客。目前，java后台最火的框架就属Spring Boot了。它是spring家族的衍生框架，并不是加强某个功能，它是为了简化配置，提高开发效率。">
@@ -421,7 +421,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1,680
+                  1,689
                 </span>
               
 
@@ -498,7 +498,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">package com.haichenyi;</span><br><span class="line"></span><br><span class="line">import org.springframework.boot.SpringApplication;</span><br><span class="line">import org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"></span><br><span class="line">@SpringBootApplication</span><br><span class="line">public class HelloApplication &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SpringApplication.run(HelloApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>&emsp;&emsp;到这里，我们就完成了，我们最后看一下项目结构图：</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/7041675-6344d27b06363891.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="项目结构图.png"></p>
-<p>PS:在这里，我们需要注意的是我们这个启动类最好放在最外层的包下面，因为这个启动类在启动的时候，会加载它这个包下面极其子包下面所有配置类，你如果把这个启动类写在其它包下面，有可能就加载不到有的配置类。</p>
+<p>PS:在这里，我们需要注意的是我们这个启动类最好放在最外层的包下面，因为这个启动类在启动的时候，会加载它这个包下面及其所有子包下面所有组件到spring容器中统一管理，你如果把这个启动类写在其它包下面，有可能就加载不到有的组件。</p>
 <p>&emsp;&emsp;启动项目，不用我们手动部署到Tomcat，我们直接点击这个启动类的main方法，左边的启动按钮，run application就可以了。</p>
 <p>&emsp;&emsp;最后，请求接口，因为，我这里定义的方式是post请求，所以，不能直接浏览器访问，你也可以把这个方式去掉，就可以了。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//http协议+ip+port+接口名</span><br><span class="line">http://localhost:8080/hello</span><br></pre></td></tr></table></figure>
@@ -534,7 +534,7 @@
   <p><span>本文标题:</span><a href="/2019/08/22/SpringBoot系列—Hello-World（一）/">SpringBoot系列—Hello World（一）</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 海晨忆 的个人博客">海晨忆</a></p>
   <p><span>发布时间:</span>2019年08月22日 - 14:08</p>
-  <p><span>最后更新:</span>2019年08月22日 - 14:08</p>
+  <p><span>最后更新:</span>2019年08月22日 - 15:08</p>
   <p><span>原始链接:</span><a href="/2019/08/22/SpringBoot系列—Hello-World（一）/" title="SpringBoot系列—Hello World（一）">http://haichenyi.com/2019/08/22/SpringBoot系列—Hello-World（一）/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://haichenyi.com/2019/08/22/SpringBoot系列—Hello-World（一）/"  aria-label="复制成功！"></i></span>
   </p>
@@ -613,6 +613,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/22/SpringBoot系列—底层依赖（二）/" rel="prev" title="SpringBoot系列—底层依赖（二）">
+                SpringBoot系列—底层依赖（二） <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -708,7 +712,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">53</span>
+                <span class="site-state-item-count">55</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -838,7 +842,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共80.7k字</span>
+  <span class="post-count">博客全站共81.8k字</span>
 </div>
 
 
