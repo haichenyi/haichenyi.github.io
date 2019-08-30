@@ -110,17 +110,17 @@
 
 
 
-<meta name="description" content="&amp;emsp;&amp;emsp;自从18年上一家公司用kotlin做了项目之后，新公司就没有用过kotlin了，都快要忘完了，最近又想起来了，再捡了一下吧。">
+<meta name="description" content="热部署&amp;emsp;&amp;emsp;默认情况下，在开发中我们修改一个项目文件后，想看到效果不得不重启应用，这会导致浪费大量时间，我们希望不重启应用的情况下，程序可以自动部署（热部署）。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="kotlin之基础">
-<meta property="og:url" content="http://haichenyi.com/2019/06/11/kotlin之基础/index.html">
+<meta property="og:title" content="SpringBoot系列—热部署与SpringMVC扩展功能（七）">
+<meta property="og:url" content="http://haichenyi.com/2019/08/30/SpringBoot系列—热部署与SpringMVC扩展功能（七）/index.html">
 <meta property="og:site_name" content="海晨忆的博客">
-<meta property="og:description" content="&amp;emsp;&amp;emsp;自从18年上一家公司用kotlin做了项目之后，新公司就没有用过kotlin了，都快要忘完了，最近又想起来了，再捡了一下吧。">
+<meta property="og:description" content="热部署&amp;emsp;&amp;emsp;默认情况下，在开发中我们修改一个项目文件后，想看到效果不得不重启应用，这会导致浪费大量时间，我们希望不重启应用的情况下，程序可以自动部署（热部署）。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-11T14:43:21.986Z">
+<meta property="og:updated_time" content="2019-08-30T02:44:40.411Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="kotlin之基础">
-<meta name="twitter:description" content="&amp;emsp;&amp;emsp;自从18年上一家公司用kotlin做了项目之后，新公司就没有用过kotlin了，都快要忘完了，最近又想起来了，再捡了一下吧。">
+<meta name="twitter:title" content="SpringBoot系列—热部署与SpringMVC扩展功能（七）">
+<meta name="twitter:description" content="热部署&amp;emsp;&amp;emsp;默认情况下，在开发中我们修改一个项目文件后，想看到效果不得不重启应用，这会导致浪费大量时间，我们希望不重启应用的情况下，程序可以自动部署（热部署）。">
 
 
 
@@ -149,13 +149,13 @@
 
 
 
-  <link rel="canonical" href="http://haichenyi.com/2019/06/11/kotlin之基础/"/>
+  <link rel="canonical" href="http://haichenyi.com/2019/08/30/SpringBoot系列—热部署与SpringMVC扩展功能（七）/"/>
 
 
 
 
 
-  <title>kotlin之基础 | 海晨忆的博客</title>
+  <title>SpringBoot系列—热部署与SpringMVC扩展功能（七） | 海晨忆的博客</title>
   
 
 
@@ -334,7 +334,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haichenyi.com/2019/06/11/kotlin之基础/">
+    <link itemprop="mainEntityOfPage" href="http://haichenyi.com/2019/08/30/SpringBoot系列—热部署与SpringMVC扩展功能（七）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海晨忆">
@@ -351,7 +351,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">kotlin之基础</h1>
+          <h1 class="post-title" itemprop="name headline">SpringBoot系列—热部署与SpringMVC扩展功能（七）</h1>
         
 
         <div class="post-meta">
@@ -363,8 +363,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-11T22:33:36+08:00">
-                2019-06-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-30T10:43:40+08:00">
+                2019-08-30
               </time>
             
 
@@ -386,8 +386,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/kotlin/" itemprop="url" rel="index">
-                    <span itemprop="name">kotlin</span>
+                  <a href="/categories/Java-SpringBoot/" itemprop="url" rel="index">
+                    <span itemprop="name">Java -SpringBoot</span>
                   </a>
                 </span>
 
@@ -415,7 +415,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1,335
+                  398
                 </span>
               
 
@@ -431,7 +431,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  6
+                  2
                 </span>
               
             </div>
@@ -452,38 +452,21 @@
       
 
       
-        <p>&emsp;&emsp;自从18年上一家公司用kotlin做了项目之后，新公司就没有用过kotlin了，都快要忘完了，最近又想起来了，再捡了一下吧。</p>
+        <h3 id="热部署"><a href="#热部署" class="headerlink" title="热部署"></a>热部署</h3><p>&emsp;&emsp;默认情况下，在开发中我们修改一个项目文件后，想看到效果不得不重启应用，这会导致浪费大量时间，我们希望不重启应用的情况下，程序可以自动部署（热部署）。</p>
 <a id="more"></a>
-<h3 id="定义变量的方式"><a href="#定义变量的方式" class="headerlink" title="定义变量的方式"></a>定义变量的方式</h3><p>&emsp;&emsp;java：类型+变量名+值+逗号<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int a = 5;</span><br></pre></td></tr></table></figure></p>
-<p>&emsp;&emsp;kotlin：var/val+变量名+(:类型)+值(ps:类型可省略)</p>
-<p>&emsp;&emsp;var：可变变量（可以重新分配值）</p>
-<p>&emsp;&emsp;val：只读变量（初始化的时候必须赋值，不能修改）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var c:int</span><br><span class="line">    c = 5</span><br><span class="line">var c = 5    </span><br><span class="line">val b = 5</span><br></pre></td></tr></table></figure>
-<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p>&emsp;&emsp;java：public/private/protected+返回类型+方法名+括号参数+大括号方法体</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public void add(int a ,int b)&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line">public int add1(int a,int b)&#123;</span><br><span class="line">    return a+b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;kotlin：fun+方法名+括号参数+(:返回类型)+大括号方法体</p>
-<p>&emsp;&emsp;返回类型Unit类型，对应java的void，即无返回值，可省略</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">fun add(a:int,b:int):Unit&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fun add(a:int,b:int)&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fun add1(a:int,b:int):int&#123;</span><br><span class="line">  return a+b  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="if表达式-java中三目运算符"><a href="#if表达式-java中三目运算符" class="headerlink" title="if表达式(java中三目运算符)"></a>if表达式(java中三目运算符)</h3><p>&emsp;&emsp;把a和b两个数中值大的赋值给c<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">java：三目运算符</span><br><span class="line">int c = a &gt; b ? a : b</span><br><span class="line">kotlin：if表达式</span><br><span class="line">val c = if( a &gt; b) a else b</span><br></pre></td></tr></table></figure></p>
-<h3 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">//java</span><br><span class="line">List&lt;String&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">list.add(&quot;a&quot;);</span><br><span class="line">list.add(&quot;b&quot;);</span><br><span class="line">list.add(&quot;c&quot;);</span><br><span class="line">list.add(&quot;d&quot;);</span><br><span class="line">for (int j = 0; j &lt;= list.size(); j++) &#123;</span><br><span class="line">    Log.v(&quot;wz&quot;, list.get(j));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//kotlin</span><br><span class="line">val list = listOf(&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;)</span><br><span class="line">for(item in list)&#123;</span><br><span class="line">    Log.v(&quot;wz&quot;,item)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//上面这个for循环等同于forEach</span><br><span class="line"></span><br><span class="line">list.forEach&#123;</span><br><span class="line">    Log.v(&quot;wz&quot;,it)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//上面两种循环拿不到下标</span><br><span class="line"></span><br><span class="line">for(index in list.indices)&#123;</span><br><span class="line">    //美元符号的用法见后面</span><br><span class="line">    Log.v(&quot;wz&quot;,&quot;第$index 个item的值是$&#123;list[index]&#125;&quot;)</span><br><span class="line">&#125;</span><br><span class="line">//上面这种就可以拿到for循环的下标</span><br><span class="line">//kotlin中String类型的变量也可以for循环遍历每一个char的值</span><br></pre></td></tr></table></figure>
-<h3 id="美元符号"><a href="#美元符号" class="headerlink" title="美元符号($)"></a>美元符号($)</h3><p>&emsp;&emsp;把$符号放在变量前面，输出的就是变量的值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">val i = 3</span><br><span class="line">Log.v(&quot;wz&quot;,&quot;i的值是：$i&quot;)</span><br><span class="line">//输出的是：i的值是：3</span><br><span class="line"></span><br><span class="line">Log.v(&quot;wz&quot;,&quot;i的值是：$3&quot;)</span><br><span class="line">//输出的是：i的值是：$3</span><br></pre></td></tr></table></figure></p>
-<h3 id="和-的区别"><a href="#和-的区别" class="headerlink" title="== 和 ===的区别"></a>== 和 ===的区别</h3><p>&emsp;&emsp;类似于java中的==和equals的区别</p>
-<p>&emsp;&emsp;java：==判断值是否相等，equals判断物理地址是否相等</p>
-<p>&emsp;&emsp;kotlin：==判断物理地址是否相等，===判断值是否相等</p>
-<h3 id="数据类型的转换-toInt-toBoolean-等等"><a href="#数据类型的转换-toInt-toBoolean-等等" class="headerlink" title="数据类型的转换:toInt(),toBoolean()等等"></a>数据类型的转换:toInt(),toBoolean()等等</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//java中不同数据类型的相互转换是强转</span><br><span class="line">String s = &quot;1&quot;;</span><br><span class="line">int a = (int)s;</span><br><span class="line"></span><br><span class="line">//kotlin中没有强转提供了转换的方法</span><br><span class="line">var s = &quot;1&quot;</span><br><span class="line">var a = s.toInt()</span><br><span class="line">var a1 = s.toBoolean()</span><br></pre></td></tr></table></figure>
-<h3 id="is运算符"><a href="#is运算符" class="headerlink" title="is运算符"></a>is运算符</h3><p>&emsp;&emsp;个人觉得is运算符类似于java中的instanceof关键字<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//java：判断某个变量是否是某个类型的</span><br><span class="line">String s = &quot;1&quot;;</span><br><span class="line">if(s instanceof String)&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//kotlin：判断某个变量是否是某个类型</span><br><span class="line">var s = &quot;1&quot;</span><br><span class="line">if(s is String)&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//既然上面说了is是个运算符，运算符当然可以加非</span><br><span class="line">if(s !is String)&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="空指针和lateinit"><a href="#空指针和lateinit" class="headerlink" title="空指针和lateinit"></a>空指针和lateinit</h3><p>&emsp;&emsp;要明确一点：java中才会有空指针异常，kotlin中不存在空指针异常，因为它有非空判断机制</p>
-<p>&emsp;&emsp;比方说，我们如果要在kotlin定义一个Bitmap变量，我们知道Bitmap是非常占内存的，用完之后我们要手动置空</p>
-<p>&emsp;&emsp;在类型的后面加上问号，用的时候也要加问号才能用，表示不为空的时候才会往下走，如果为空就不会往下走了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var bitmap:Bitmap? = null</span><br><span class="line">var w = bitmap?.width</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;那么，我们如果要定义一个不可能为空的对象怎么定义呢？</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lateinit var bitmap:Bitmap</span><br><span class="line">bitmap.width</span><br></pre></td></tr></table></figure>
-<h3 id="黑科技：when表达式和Any-任意类型"><a href="#黑科技：when表达式和Any-任意类型" class="headerlink" title="黑科技：when表达式和Any(任意类型)"></a>黑科技：when表达式和Any(任意类型)</h3><p>&emsp;&emsp;when表达式取代java中的switch，when的返回值依据每一个条件的返回值来定，可以返回任意类型，从上往下按顺序执行，else不能少</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">lateinit var obj : Any</span><br><span class="line">var b = when(obj)&#123;</span><br><span class="line">    1 -&gt; 2</span><br><span class="line">    is String -&gt; 3</span><br><span class="line">    3,4 -&gt; &quot;obj等于3或者等于4&quot;</span><br><span class="line">    in 10..20 -&gt; &quot;obj在10到20之间&quot;</span><br><span class="line">    else -&gt; true</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;比方说这里，先定义个可以是任意类型变量的的obj，如果传进来的是Int类型的1，则返回int类型的2。如果传进来的是String类型的变量，则返回int类型的3。其他，则返回boolean类型的true</p>
-<p>&emsp;&emsp;when可以取代 if-else if链。如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">val x = 10</span><br><span class="line">when &#123;</span><br><span class="line">    x &lt; 10 -&gt; &quot;x小于10&quot;</span><br><span class="line">    x in 10..20 -&gt; &quot;x在10到20之间&quot;</span><br><span class="line">    x in 21..40 -&gt; &quot;x在21到40之间&quot;</span><br><span class="line">    else -&gt; &quot;x大于40&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="区间"><a href="#区间" class="headerlink" title="区间"></a>区间</h3><p>&emsp;&emsp;顾名思义：在某个范围内<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//等同于 x &gt;= 1 &amp;&amp; x &lt;= 4(包括1，包括4)，从1到4</span><br><span class="line">x in 1..4 //1，2，3，4</span><br><span class="line"></span><br><span class="line">//等同于 x &gt;= 1 &amp;&amp; x &lt; 4(包括1，不包括4)，从1到4</span><br><span class="line">x in 1 until 4 //1，2，3</span><br><span class="line"></span><br><span class="line">//包括1，包括4 ，从4到1</span><br><span class="line">x in 4 downTo 1 //4，3，2，1</span><br><span class="line"></span><br><span class="line">//从1到8，每隔两个循环一次，也就是1，3，5，7</span><br><span class="line">i in 1..8 step 2</span><br><span class="line"></span><br><span class="line">//从8到1，每隔两个循环一次，也就是8，6，4，2</span><br><span class="line">i in 8 downTo 1 step 2</span><br><span class="line"></span><br><span class="line">//从8到1，每隔两个，并且要满足能整除3的，这里就是6</span><br><span class="line">i in (8 downTo 1 step 2).filter &#123; it % 3 == 0 &#125;</span><br><span class="line">//上面的关键字filter，还有map等，用过RxJava的应该很眼熟</span><br></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;<strong>第一步：禁用缓存</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#开发环境下关闭thymeleaf模板缓存，thymeleaf默认是开启状态。记得发布的时候要打开</span><br><span class="line">spring.thymeleaf.cache=false</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;<strong>第二步：添加热部署依赖</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--热部署--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;<strong>第三步：手动编译文件</strong></p>
+<p>&emsp;&emsp;IDEA中，修改文件后都是自动保存的，并不会手动编译，所以，需要手动编译一下。Ctrl + F9 （推荐使用）或 Build -&gt; Build Project。</p>
+<h3 id="SpringMVC-扩展功能"><a href="#SpringMVC-扩展功能" class="headerlink" title="SpringMVC 扩展功能"></a>SpringMVC 扩展功能</h3><p>举个栗子：我要访问前面都是在controller里面，写方法，方法里面可以写逻辑，跳转某一个页面。我现在不需要写逻辑，就直接跳转就行了。我可以这样写。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">package com.haichenyi.springbootwebthymeleaf.config;</span><br><span class="line"></span><br><span class="line">import org.springframework.context.annotation.Configuration;</span><br><span class="line">import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;</span><br><span class="line">import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;</span><br><span class="line"></span><br><span class="line">@Configuration</span><br><span class="line">public class MyMvcConfig implements WebMvcConfigurer &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void addViewControllers(ViewControllerRegistry registry) &#123;</span><br><span class="line">        registry.addViewController(&quot;/success&quot;).setViewName(&quot;success&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>新建一个类，继承WebMvcConfigurer，并用@Configuration标识</li>
+<li>实现addViewControllers方法，里面registry里面像上面添加就行了，前面传链接名字，后面传视图名字即可。</li>
+</ul>
+<p>&emsp;&emsp;这只是添加控制层，还有其他的功能。可以看WebMvcConfigurer接口的方法。需要什么功能，实现什么方法就行了。</p>
 
       
     </div>
@@ -507,12 +490,12 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2019/06/11/kotlin之基础/">kotlin之基础</a></p>
+  <p><span>本文标题:</span><a href="/2019/08/30/SpringBoot系列—热部署与SpringMVC扩展功能（七）/">SpringBoot系列—热部署与SpringMVC扩展功能（七）</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 海晨忆 的个人博客">海晨忆</a></p>
-  <p><span>发布时间:</span>2019年06月11日 - 22:06</p>
-  <p><span>最后更新:</span>2019年06月11日 - 22:06</p>
-  <p><span>原始链接:</span><a href="/2019/06/11/kotlin之基础/" title="kotlin之基础">http://haichenyi.com/2019/06/11/kotlin之基础/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://haichenyi.com/2019/06/11/kotlin之基础/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2019年08月30日 - 10:08</p>
+  <p><span>最后更新:</span>2019年08月30日 - 10:08</p>
+  <p><span>原始链接:</span><a href="/2019/08/30/SpringBoot系列—热部署与SpringMVC扩展功能（七）/" title="SpringBoot系列—热部署与SpringMVC扩展功能（七）">http://haichenyi.com/2019/08/30/SpringBoot系列—热部署与SpringMVC扩展功能（七）/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://haichenyi.com/2019/08/30/SpringBoot系列—热部署与SpringMVC扩展功能（七）/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -580,8 +563,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/11/Android——Tensorflow-Lite简单使用/" rel="next" title="Android——Tensorflow-Lite简单使用">
-                <i class="fa fa-chevron-left"></i> Android——Tensorflow-Lite简单使用
+              <a href="/2019/08/29/SpringBoot系列—Thymeleaf（六）/" rel="next" title="SpringBoot系列—Thymeleaf（六）">
+                <i class="fa fa-chevron-left"></i> SpringBoot系列—Thymeleaf（六）
               </a>
             
           </div>
@@ -589,10 +572,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/06/11/kotlin之扩展函数let，run，also，apply/" rel="prev" title="kotlin之扩展函数let，run，also，apply">
-                kotlin之扩展函数let，run，also，apply <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -778,7 +757,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义变量的方式"><span class="nav-number">1.</span> <span class="nav-text">定义变量的方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数"><span class="nav-number">2.</span> <span class="nav-text">函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#if表达式-java中三目运算符"><span class="nav-number">3.</span> <span class="nav-text">if表达式(java中三目运算符)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for循环"><span class="nav-number">4.</span> <span class="nav-text">for循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#美元符号"><span class="nav-number">5.</span> <span class="nav-text">美元符号($)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#和-的区别"><span class="nav-number">6.</span> <span class="nav-text">== 和 ===的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据类型的转换-toInt-toBoolean-等等"><span class="nav-number">7.</span> <span class="nav-text">数据类型的转换:toInt(),toBoolean()等等</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#is运算符"><span class="nav-number">8.</span> <span class="nav-text">is运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#空指针和lateinit"><span class="nav-number">9.</span> <span class="nav-text">空指针和lateinit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#黑科技：when表达式和Any-任意类型"><span class="nav-number">10.</span> <span class="nav-text">黑科技：when表达式和Any(任意类型)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#区间"><span class="nav-number">11.</span> <span class="nav-text">区间</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#热部署"><span class="nav-number">1.</span> <span class="nav-text">热部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SpringMVC-扩展功能"><span class="nav-number">2.</span> <span class="nav-text">SpringMVC 扩展功能</span></a></li></ol></div>
             
 
           </div>

@@ -110,17 +110,20 @@
 
 
 
-<meta name="description" content="&amp;emsp;&amp;emsp;自从18年上一家公司用kotlin做了项目之后，新公司就没有用过kotlin了，都快要忘完了，最近又想起来了，再捡了一下吧。">
+<meta name="description" content="引用公共片段 th:fragment,th:replace,th:insert&amp;emsp;&amp;emsp;很多页面有很多相同的内容，比方说header和foot，这样的内容就需要公共片段引用了，修改一个地方就全部都改了。类似于android里面提取公共方法一样的道理。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="kotlin之基础">
-<meta property="og:url" content="http://haichenyi.com/2019/06/11/kotlin之基础/index.html">
+<meta property="og:title" content="SpringBoot系列—Thymeleaf（六）">
+<meta property="og:url" content="http://haichenyi.com/2019/08/29/SpringBoot系列—Thymeleaf（六）/index.html">
 <meta property="og:site_name" content="海晨忆的博客">
-<meta property="og:description" content="&amp;emsp;&amp;emsp;自从18年上一家公司用kotlin做了项目之后，新公司就没有用过kotlin了，都快要忘完了，最近又想起来了，再捡了一下吧。">
+<meta property="og:description" content="引用公共片段 th:fragment,th:replace,th:insert&amp;emsp;&amp;emsp;很多页面有很多相同的内容，比方说header和foot，这样的内容就需要公共片段引用了，修改一个地方就全部都改了。类似于android里面提取公共方法一样的道理。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-11T14:43:21.986Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-b3e215305db81084.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-6a45b164e8f2d1ca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-08-29T03:09:04.060Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="kotlin之基础">
-<meta name="twitter:description" content="&amp;emsp;&amp;emsp;自从18年上一家公司用kotlin做了项目之后，新公司就没有用过kotlin了，都快要忘完了，最近又想起来了，再捡了一下吧。">
+<meta name="twitter:title" content="SpringBoot系列—Thymeleaf（六）">
+<meta name="twitter:description" content="引用公共片段 th:fragment,th:replace,th:insert&amp;emsp;&amp;emsp;很多页面有很多相同的内容，比方说header和foot，这样的内容就需要公共片段引用了，修改一个地方就全部都改了。类似于android里面提取公共方法一样的道理。">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/7041675-b3e215305db81084.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -149,13 +152,13 @@
 
 
 
-  <link rel="canonical" href="http://haichenyi.com/2019/06/11/kotlin之基础/"/>
+  <link rel="canonical" href="http://haichenyi.com/2019/08/29/SpringBoot系列—Thymeleaf（六）/"/>
 
 
 
 
 
-  <title>kotlin之基础 | 海晨忆的博客</title>
+  <title>SpringBoot系列—Thymeleaf（六） | 海晨忆的博客</title>
   
 
 
@@ -334,7 +337,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haichenyi.com/2019/06/11/kotlin之基础/">
+    <link itemprop="mainEntityOfPage" href="http://haichenyi.com/2019/08/29/SpringBoot系列—Thymeleaf（六）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海晨忆">
@@ -351,7 +354,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">kotlin之基础</h1>
+          <h1 class="post-title" itemprop="name headline">SpringBoot系列—Thymeleaf（六）</h1>
         
 
         <div class="post-meta">
@@ -363,8 +366,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-11T22:33:36+08:00">
-                2019-06-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-29T11:07:39+08:00">
+                2019-08-29
               </time>
             
 
@@ -386,8 +389,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/kotlin/" itemprop="url" rel="index">
-                    <span itemprop="name">kotlin</span>
+                  <a href="/categories/Java-SpringBoot/" itemprop="url" rel="index">
+                    <span itemprop="name">Java -SpringBoot</span>
                   </a>
                 </span>
 
@@ -415,7 +418,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1,335
+                  1,143
                 </span>
               
 
@@ -431,7 +434,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  6
+                  5
                 </span>
               
             </div>
@@ -452,39 +455,33 @@
       
 
       
-        <p>&emsp;&emsp;自从18年上一家公司用kotlin做了项目之后，新公司就没有用过kotlin了，都快要忘完了，最近又想起来了，再捡了一下吧。</p>
+        <h3 id="引用公共片段-th-fragment-th-replace-th-insert"><a href="#引用公共片段-th-fragment-th-replace-th-insert" class="headerlink" title="引用公共片段 th:fragment,th:replace,th:insert"></a>引用公共片段 th:fragment,th:replace,th:insert</h3><p>&emsp;&emsp;很多页面有很多相同的内容，比方说header和foot，这样的内容就需要公共片段引用了，修改一个地方就全部都改了。类似于android里面提取公共方法一样的道理。</p>
 <a id="more"></a>
-<h3 id="定义变量的方式"><a href="#定义变量的方式" class="headerlink" title="定义变量的方式"></a>定义变量的方式</h3><p>&emsp;&emsp;java：类型+变量名+值+逗号<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int a = 5;</span><br></pre></td></tr></table></figure></p>
-<p>&emsp;&emsp;kotlin：var/val+变量名+(:类型)+值(ps:类型可省略)</p>
-<p>&emsp;&emsp;var：可变变量（可以重新分配值）</p>
-<p>&emsp;&emsp;val：只读变量（初始化的时候必须赋值，不能修改）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var c:int</span><br><span class="line">    c = 5</span><br><span class="line">var c = 5    </span><br><span class="line">val b = 5</span><br></pre></td></tr></table></figure>
-<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p>&emsp;&emsp;java：public/private/protected+返回类型+方法名+括号参数+大括号方法体</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public void add(int a ,int b)&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line">public int add1(int a,int b)&#123;</span><br><span class="line">    return a+b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;kotlin：fun+方法名+括号参数+(:返回类型)+大括号方法体</p>
-<p>&emsp;&emsp;返回类型Unit类型，对应java的void，即无返回值，可省略</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">fun add(a:int,b:int):Unit&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fun add(a:int,b:int)&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fun add1(a:int,b:int):int&#123;</span><br><span class="line">  return a+b  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="if表达式-java中三目运算符"><a href="#if表达式-java中三目运算符" class="headerlink" title="if表达式(java中三目运算符)"></a>if表达式(java中三目运算符)</h3><p>&emsp;&emsp;把a和b两个数中值大的赋值给c<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">java：三目运算符</span><br><span class="line">int c = a &gt; b ? a : b</span><br><span class="line">kotlin：if表达式</span><br><span class="line">val c = if( a &gt; b) a else b</span><br></pre></td></tr></table></figure></p>
-<h3 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">//java</span><br><span class="line">List&lt;String&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">list.add(&quot;a&quot;);</span><br><span class="line">list.add(&quot;b&quot;);</span><br><span class="line">list.add(&quot;c&quot;);</span><br><span class="line">list.add(&quot;d&quot;);</span><br><span class="line">for (int j = 0; j &lt;= list.size(); j++) &#123;</span><br><span class="line">    Log.v(&quot;wz&quot;, list.get(j));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//kotlin</span><br><span class="line">val list = listOf(&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;)</span><br><span class="line">for(item in list)&#123;</span><br><span class="line">    Log.v(&quot;wz&quot;,item)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//上面这个for循环等同于forEach</span><br><span class="line"></span><br><span class="line">list.forEach&#123;</span><br><span class="line">    Log.v(&quot;wz&quot;,it)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//上面两种循环拿不到下标</span><br><span class="line"></span><br><span class="line">for(index in list.indices)&#123;</span><br><span class="line">    //美元符号的用法见后面</span><br><span class="line">    Log.v(&quot;wz&quot;,&quot;第$index 个item的值是$&#123;list[index]&#125;&quot;)</span><br><span class="line">&#125;</span><br><span class="line">//上面这种就可以拿到for循环的下标</span><br><span class="line">//kotlin中String类型的变量也可以for循环遍历每一个char的值</span><br></pre></td></tr></table></figure>
-<h3 id="美元符号"><a href="#美元符号" class="headerlink" title="美元符号($)"></a>美元符号($)</h3><p>&emsp;&emsp;把$符号放在变量前面，输出的就是变量的值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">val i = 3</span><br><span class="line">Log.v(&quot;wz&quot;,&quot;i的值是：$i&quot;)</span><br><span class="line">//输出的是：i的值是：3</span><br><span class="line"></span><br><span class="line">Log.v(&quot;wz&quot;,&quot;i的值是：$3&quot;)</span><br><span class="line">//输出的是：i的值是：$3</span><br></pre></td></tr></table></figure></p>
-<h3 id="和-的区别"><a href="#和-的区别" class="headerlink" title="== 和 ===的区别"></a>== 和 ===的区别</h3><p>&emsp;&emsp;类似于java中的==和equals的区别</p>
-<p>&emsp;&emsp;java：==判断值是否相等，equals判断物理地址是否相等</p>
-<p>&emsp;&emsp;kotlin：==判断物理地址是否相等，===判断值是否相等</p>
-<h3 id="数据类型的转换-toInt-toBoolean-等等"><a href="#数据类型的转换-toInt-toBoolean-等等" class="headerlink" title="数据类型的转换:toInt(),toBoolean()等等"></a>数据类型的转换:toInt(),toBoolean()等等</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//java中不同数据类型的相互转换是强转</span><br><span class="line">String s = &quot;1&quot;;</span><br><span class="line">int a = (int)s;</span><br><span class="line"></span><br><span class="line">//kotlin中没有强转提供了转换的方法</span><br><span class="line">var s = &quot;1&quot;</span><br><span class="line">var a = s.toInt()</span><br><span class="line">var a1 = s.toBoolean()</span><br></pre></td></tr></table></figure>
-<h3 id="is运算符"><a href="#is运算符" class="headerlink" title="is运算符"></a>is运算符</h3><p>&emsp;&emsp;个人觉得is运算符类似于java中的instanceof关键字<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//java：判断某个变量是否是某个类型的</span><br><span class="line">String s = &quot;1&quot;;</span><br><span class="line">if(s instanceof String)&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//kotlin：判断某个变量是否是某个类型</span><br><span class="line">var s = &quot;1&quot;</span><br><span class="line">if(s is String)&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//既然上面说了is是个运算符，运算符当然可以加非</span><br><span class="line">if(s !is String)&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="空指针和lateinit"><a href="#空指针和lateinit" class="headerlink" title="空指针和lateinit"></a>空指针和lateinit</h3><p>&emsp;&emsp;要明确一点：java中才会有空指针异常，kotlin中不存在空指针异常，因为它有非空判断机制</p>
-<p>&emsp;&emsp;比方说，我们如果要在kotlin定义一个Bitmap变量，我们知道Bitmap是非常占内存的，用完之后我们要手动置空</p>
-<p>&emsp;&emsp;在类型的后面加上问号，用的时候也要加问号才能用，表示不为空的时候才会往下走，如果为空就不会往下走了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var bitmap:Bitmap? = null</span><br><span class="line">var w = bitmap?.width</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;那么，我们如果要定义一个不可能为空的对象怎么定义呢？</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lateinit var bitmap:Bitmap</span><br><span class="line">bitmap.width</span><br></pre></td></tr></table></figure>
-<h3 id="黑科技：when表达式和Any-任意类型"><a href="#黑科技：when表达式和Any-任意类型" class="headerlink" title="黑科技：when表达式和Any(任意类型)"></a>黑科技：when表达式和Any(任意类型)</h3><p>&emsp;&emsp;when表达式取代java中的switch，when的返回值依据每一个条件的返回值来定，可以返回任意类型，从上往下按顺序执行，else不能少</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">lateinit var obj : Any</span><br><span class="line">var b = when(obj)&#123;</span><br><span class="line">    1 -&gt; 2</span><br><span class="line">    is String -&gt; 3</span><br><span class="line">    3,4 -&gt; &quot;obj等于3或者等于4&quot;</span><br><span class="line">    in 10..20 -&gt; &quot;obj在10到20之间&quot;</span><br><span class="line">    else -&gt; true</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;比方说这里，先定义个可以是任意类型变量的的obj，如果传进来的是Int类型的1，则返回int类型的2。如果传进来的是String类型的变量，则返回int类型的3。其他，则返回boolean类型的true</p>
-<p>&emsp;&emsp;when可以取代 if-else if链。如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">val x = 10</span><br><span class="line">when &#123;</span><br><span class="line">    x &lt; 10 -&gt; &quot;x小于10&quot;</span><br><span class="line">    x in 10..20 -&gt; &quot;x在10到20之间&quot;</span><br><span class="line">    x in 21..40 -&gt; &quot;x在21到40之间&quot;</span><br><span class="line">    else -&gt; &quot;x大于40&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="区间"><a href="#区间" class="headerlink" title="区间"></a>区间</h3><p>&emsp;&emsp;顾名思义：在某个范围内<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//等同于 x &gt;= 1 &amp;&amp; x &lt;= 4(包括1，包括4)，从1到4</span><br><span class="line">x in 1..4 //1，2，3，4</span><br><span class="line"></span><br><span class="line">//等同于 x &gt;= 1 &amp;&amp; x &lt; 4(包括1，不包括4)，从1到4</span><br><span class="line">x in 1 until 4 //1，2，3</span><br><span class="line"></span><br><span class="line">//包括1，包括4 ，从4到1</span><br><span class="line">x in 4 downTo 1 //4，3，2，1</span><br><span class="line"></span><br><span class="line">//从1到8，每隔两个循环一次，也就是1，3，5，7</span><br><span class="line">i in 1..8 step 2</span><br><span class="line"></span><br><span class="line">//从8到1，每隔两个循环一次，也就是8，6，4，2</span><br><span class="line">i in 8 downTo 1 step 2</span><br><span class="line"></span><br><span class="line">//从8到1，每隔两个，并且要满足能整除3的，这里就是6</span><br><span class="line">i in (8 downTo 1 step 2).filter &#123; it % 3 == 0 &#125;</span><br><span class="line">//上面的关键字filter，还有map等，用过RxJava的应该很眼熟</span><br></pre></td></tr></table></figure></p>
-
+<p>方式如下图：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-b3e215305db81084.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="公共片段1.png"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-6a45b164e8f2d1ca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="公共片段2.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot; xmlns:th=&quot;http://www.thymeleaf.org&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;公共片段&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;!--通过th:fragment申明公共片段--&gt;</span><br><span class="line">&lt;div th:fragment=&quot;header_common&quot;&gt;这里是公共片段的内容&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--通过id申明公共片段--&gt;</span><br><span class="line">&lt;div id=&quot;header_common_id&quot;&gt;这里是公共片段的内容&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;!--引入公共片段--&gt;</span><br><span class="line">&lt;div th:replace=&quot;header :: header_common&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;div th:replace=&quot;header :: #header_common_id&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>总共分为两步：</p>
+<ol>
+<li>创建header.html的文件，里面定义公共片段的内容，用th:fragment标明，值为header_common</li>
+<li>在你需要用到这个公共部分的位置，通过th:fragment申明的片段用th:relpace引入，值为 文件名 空格 双冒号 空格 th:fragment的值。也就是这里的 <strong>header :: header_common</strong></li>
+<li>通过id申明的片段用th:replace引入，值为 文件名 空格 双冒号 空格 # th:fragment的值。也就是这里的 <strong>header :: #header_common_id</strong></li>
+</ol>
+<p><strong><em>th:insert 和 th:replace的区别</em></strong></p>
+<p>&emsp;&emsp;th:insert和th:replace都可以引入片段，用的方式是一样的，两者的区别在于 th:insert： 保留引入时使用的标签 th:replace：不保留引入时使用的标签, 将声明片段直接覆盖当前引用标签 </p>
+<h3 id="迭代器-th-each"><a href="#迭代器-th-each" class="headerlink" title="迭代器 th:each"></a>迭代器 th:each</h3><p>&emsp;&emsp; 首先，创建一个实体类User。如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">package com.haichenyi.springbootwebthymeleaf.pojo;</span><br><span class="line"></span><br><span class="line">public class User &#123;</span><br><span class="line">    private String username;</span><br><span class="line">    private Integer age;</span><br><span class="line">    //1:女，2:男</span><br><span class="line">    private Integer sex;</span><br><span class="line"></span><br><span class="line">    public String getUsername() &#123;</span><br><span class="line">        return username;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Integer getAge() &#123;</span><br><span class="line">        return age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Integer getSex() &#123;</span><br><span class="line">        return sex;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public User(String username, Integer age, Integer sex) &#123;</span><br><span class="line">        this.username = username;</span><br><span class="line">        this.age = age;</span><br><span class="line">        this.sex = sex;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;其次，在controller创建一个获取User的方法。如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(&quot;/userInfo&quot;)</span><br><span class="line">public String getUserInfo(Model model) &#123;</span><br><span class="line">    List&lt;User&gt; userList = new ArrayList&lt;&gt;();</span><br><span class="line">    userList.add(new User(&quot;小雪&quot;, 18, 1));</span><br><span class="line">    userList.add(new User(&quot;小红&quot;, 18, 1));</span><br><span class="line">    userList.add(new User(&quot;小东&quot;, 18, 2));</span><br><span class="line">    model.addAttribute(&quot;userList&quot;, userList);</span><br><span class="line">    return &quot;userInfo&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;这里，我用的model返回的数据，添加了一个属性以”userList”为键。页面直接获取这个键，就能拿到对应的值。之后返回userInfo页面。</p>
+<p>&emsp;&emsp;最后页面的使用，如下，创建userInfo.html专门使用这个：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot; xmlns:th=&quot;http://www.thymeleaf.org&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;用户信息&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;table&gt;</span><br><span class="line">    &lt;tr&gt;</span><br><span class="line">        &lt;th&gt;姓名&lt;/th&gt;</span><br><span class="line">        &lt;th&gt;年龄&lt;/th&gt;</span><br><span class="line">        &lt;th&gt;性别&lt;/th&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">    &lt;tr th:each=&quot;user:$&#123;userList&#125;&quot;&gt;</span><br><span class="line">        &lt;td th:text=&quot;$&#123;user.username&#125;&quot;&gt;&lt;/td&gt;</span><br><span class="line">        &lt;td th:text=&quot;$&#123;user.age&#125;&quot;&gt;&lt;/td&gt;</span><br><span class="line">        &lt;td th:text=&quot;$&#123;user.sex==1?&apos;女&apos;:&apos;男&apos;&#125;&quot;&gt;&lt;/td&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line"></span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">        &lt;li th:each=&quot;user:$&#123;userList&#125;&quot; th:text=&quot;$&#123;user.username&#125;&quot;&gt;&lt;/li&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">    &lt;!--</span><br><span class="line">    user : 第1个值,代表每次迭代出对象,名字任意取</span><br><span class="line">    iterStat : 第2个值,代表每次迭代器内置对象, 名字任意取, 并有如下属性:</span><br><span class="line">        index : 当前迭代下标 0 开始</span><br><span class="line">        count : 当前迭代下标 1 开始</span><br><span class="line">        size : 获取总记录数</span><br><span class="line">        current : 当前迭代出的对象</span><br><span class="line">        even/odd : 当前迭代是偶数还是奇数 (1开始算,返回布尔值)</span><br><span class="line">        first : 当前是否为第一个元素</span><br><span class="line">        last : 当前是否为最后一个元素</span><br><span class="line">     --&gt;</span><br><span class="line">    &lt;tr th:each=&quot;user,iterStat:$&#123;userList&#125;&quot;&gt;</span><br><span class="line">        &lt;td th:text=&quot;$&#123;user.username&#125;&quot;&gt;&lt;/td&gt;</span><br><span class="line">        &lt;td th:text=&quot;$&#123;user.age&#125;&quot;&gt;&lt;/td&gt;</span><br><span class="line">        &lt;td th:text=&quot;$&#123;user.sex==1?&apos;女&apos;:&apos;男&apos;&#125;&quot;&gt;&lt;/td&gt;</span><br><span class="line">        &lt;td th:text=&quot;$&#123;iterStat.index&#125;&quot;&gt;&lt;/td&gt;</span><br><span class="line">        &lt;td th:text=&quot;$&#123;iterStat.count&#125;&quot;&gt;&lt;/td&gt;</span><br><span class="line">        &lt;td th:text=&quot;$&#123;iterStat.size&#125;&quot;&gt;&lt;/td&gt;</span><br><span class="line">        &lt;td th:text=&quot;$&#123;iterStat.current&#125;&quot;&gt;&lt;/td&gt;</span><br><span class="line">        &lt;td th:text=&quot;$&#123;iterStat.even&#125;&quot;&gt;&lt;/td&gt;</span><br><span class="line">        &lt;td th:text=&quot;$&#123;iterStat.first&#125;&quot;&gt;&lt;/td&gt;</span><br><span class="line">        &lt;td th:text=&quot;$&#123;iterStat.last&#125;&quot;&gt;&lt;/td&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">&lt;/table&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;注意的地方就是：</p>
+<ul>
+<li><strong>th:each=”user:${userList}”</strong>，这里可以参考java里面的foreach循环，冒号前面是当前循环的变量(冒号前面可以有两个值)，冒号后面是集合。这个集合怎么获取到的？就是通过userList这个键。第二步存的。</li>
+<li>拿到这个集合中的每一个变量值了，用就很简单了。</li>
+</ul>
+<h3 id="条件判断"><a href="#条件判断" class="headerlink" title="条件判断"></a>条件判断</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;h3 th:if=&quot;not $&#123;#lists.isEmpty(userList)&#125;&quot;&gt;th:if判断,如果此文字显示说明有值&lt;/h3&gt;</span><br><span class="line"></span><br><span class="line">&lt;h3 th:unless=&quot;$&#123;#lists.isEmpty(userList)&#125;&quot;&gt;th:unless判断,如果此文字显示说明有值&lt;/h3&gt;</span><br><span class="line"></span><br><span class="line">&lt;div th:switch=&quot;$&#123;flag&#125;&quot;&gt;</span><br><span class="line">        &lt;p th:case=&quot;1&quot; th:text=&quot;女&quot;&gt;&lt;/p&gt;</span><br><span class="line">        &lt;p th:case=&quot;2&quot; th:text=&quot;男&quot;&gt;&lt;/p&gt;</span><br><span class="line">        &lt;!--上面两条都不生效，则下面th:case=&quot;*&quot;生效，类似于default--&gt;</span><br><span class="line">        &lt;p th:case=&quot;*&quot; th:text=&quot;未知&quot;&gt;&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -507,12 +504,12 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2019/06/11/kotlin之基础/">kotlin之基础</a></p>
+  <p><span>本文标题:</span><a href="/2019/08/29/SpringBoot系列—Thymeleaf（六）/">SpringBoot系列—Thymeleaf（六）</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 海晨忆 的个人博客">海晨忆</a></p>
-  <p><span>发布时间:</span>2019年06月11日 - 22:06</p>
-  <p><span>最后更新:</span>2019年06月11日 - 22:06</p>
-  <p><span>原始链接:</span><a href="/2019/06/11/kotlin之基础/" title="kotlin之基础">http://haichenyi.com/2019/06/11/kotlin之基础/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://haichenyi.com/2019/06/11/kotlin之基础/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2019年08月29日 - 11:08</p>
+  <p><span>最后更新:</span>2019年08月29日 - 11:08</p>
+  <p><span>原始链接:</span><a href="/2019/08/29/SpringBoot系列—Thymeleaf（六）/" title="SpringBoot系列—Thymeleaf（六）">http://haichenyi.com/2019/08/29/SpringBoot系列—Thymeleaf（六）/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://haichenyi.com/2019/08/29/SpringBoot系列—Thymeleaf（六）/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -580,8 +577,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/11/Android——Tensorflow-Lite简单使用/" rel="next" title="Android——Tensorflow-Lite简单使用">
-                <i class="fa fa-chevron-left"></i> Android——Tensorflow-Lite简单使用
+              <a href="/2019/08/27/SpringBoot系列—Thymeleaf（五）/" rel="next" title="SpringBoot系列—Thymeleaf（五）">
+                <i class="fa fa-chevron-left"></i> SpringBoot系列—Thymeleaf（五）
               </a>
             
           </div>
@@ -590,8 +587,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/06/11/kotlin之扩展函数let，run，also，apply/" rel="prev" title="kotlin之扩展函数let，run，also，apply">
-                kotlin之扩展函数let，run，also，apply <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/30/SpringBoot系列—热部署与SpringMVC扩展功能（七）/" rel="prev" title="SpringBoot系列—热部署与SpringMVC扩展功能（七）">
+                SpringBoot系列—热部署与SpringMVC扩展功能（七） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -778,7 +775,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义变量的方式"><span class="nav-number">1.</span> <span class="nav-text">定义变量的方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数"><span class="nav-number">2.</span> <span class="nav-text">函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#if表达式-java中三目运算符"><span class="nav-number">3.</span> <span class="nav-text">if表达式(java中三目运算符)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for循环"><span class="nav-number">4.</span> <span class="nav-text">for循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#美元符号"><span class="nav-number">5.</span> <span class="nav-text">美元符号($)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#和-的区别"><span class="nav-number">6.</span> <span class="nav-text">== 和 ===的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据类型的转换-toInt-toBoolean-等等"><span class="nav-number">7.</span> <span class="nav-text">数据类型的转换:toInt(),toBoolean()等等</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#is运算符"><span class="nav-number">8.</span> <span class="nav-text">is运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#空指针和lateinit"><span class="nav-number">9.</span> <span class="nav-text">空指针和lateinit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#黑科技：when表达式和Any-任意类型"><span class="nav-number">10.</span> <span class="nav-text">黑科技：when表达式和Any(任意类型)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#区间"><span class="nav-number">11.</span> <span class="nav-text">区间</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#引用公共片段-th-fragment-th-replace-th-insert"><span class="nav-number">1.</span> <span class="nav-text">引用公共片段 th:fragment,th:replace,th:insert</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代器-th-each"><span class="nav-number">2.</span> <span class="nav-text">迭代器 th:each</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条件判断"><span class="nav-number">3.</span> <span class="nav-text">条件判断</span></a></li></ol></div>
             
 
           </div>
