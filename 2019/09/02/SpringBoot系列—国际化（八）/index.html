@@ -110,19 +110,24 @@
 
 
 
-<meta name="description" content="推荐：非著名程序员的安卓自定义View教程目录，我的自定义view就是看他的这个系列学会的 &amp;emsp;&amp;emsp;首先，我们需要确认的是android的事件传递机制是责任链模式，如果自己能处理就拦截下来自己处理，如果自己处理不了或者不确定就传递给下一个对象">
+<meta name="description" content="&amp;emsp;&amp;emsp;所谓的国际化就是语言切换。中文切换到其他语种。 &amp;emsp;&amp;emsp;国际化的信息，这些都是需要开发人员在配置类中配置好的。SpringBoot会自动加载这些配置类。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android事件分发机制原理">
-<meta property="og:url" content="http://haichenyi.com/2018/02/22/Android事件分发机制原理/index.html">
+<meta property="og:title" content="SpringBoot系列—国际化（八）">
+<meta property="og:url" content="http://haichenyi.com/2019/09/02/SpringBoot系列—国际化（八）/index.html">
 <meta property="og:site_name" content="海晨忆的博客">
-<meta property="og:description" content="推荐：非著名程序员的安卓自定义View教程目录，我的自定义view就是看他的这个系列学会的 &amp;emsp;&amp;emsp;首先，我们需要确认的是android的事件传递机制是责任链模式，如果自己能处理就拦截下来自己处理，如果自己处理不了或者不确定就传递给下一个对象">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;所谓的国际化就是语言切换。中文切换到其他语种。 &amp;emsp;&amp;emsp;国际化的信息，这些都是需要开发人员在配置类中配置好的。SpringBoot会自动加载这些配置类。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7041675-9b8401bc04e365de.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-02-22T13:51:55.865Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-255a3a0ff8446f2f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-e1de577b76bc0c69.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-53656dc0c2eff9f3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-6a80accf3ee735cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-6e4ec6138b44e98a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-e9881dc3e5e21bbf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-09-02T08:17:26.887Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android事件分发机制原理">
-<meta name="twitter:description" content="推荐：非著名程序员的安卓自定义View教程目录，我的自定义view就是看他的这个系列学会的 &amp;emsp;&amp;emsp;首先，我们需要确认的是android的事件传递机制是责任链模式，如果自己能处理就拦截下来自己处理，如果自己处理不了或者不确定就传递给下一个对象">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/7041675-9b8401bc04e365de.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="SpringBoot系列—国际化（八）">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;所谓的国际化就是语言切换。中文切换到其他语种。 &amp;emsp;&amp;emsp;国际化的信息，这些都是需要开发人员在配置类中配置好的。SpringBoot会自动加载这些配置类。">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/7041675-255a3a0ff8446f2f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -151,13 +156,13 @@
 
 
 
-  <link rel="canonical" href="http://haichenyi.com/2018/02/22/Android事件分发机制原理/"/>
+  <link rel="canonical" href="http://haichenyi.com/2019/09/02/SpringBoot系列—国际化（八）/"/>
 
 
 
 
 
-  <title>Android事件分发机制原理 | 海晨忆的博客</title>
+  <title>SpringBoot系列—国际化（八） | 海晨忆的博客</title>
   
 
 
@@ -336,7 +341,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haichenyi.com/2018/02/22/Android事件分发机制原理/">
+    <link itemprop="mainEntityOfPage" href="http://haichenyi.com/2019/09/02/SpringBoot系列—国际化（八）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海晨忆">
@@ -353,7 +358,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Android事件分发机制原理</h1>
+          <h1 class="post-title" itemprop="name headline">SpringBoot系列—国际化（八）</h1>
         
 
         <div class="post-meta">
@@ -365,8 +370,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-22T21:30:11+08:00">
-                2018-02-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-02T16:14:09+08:00">
+                2019-09-02
               </time>
             
 
@@ -388,8 +393,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android-自定义view/" itemprop="url" rel="index">
-                    <span itemprop="name">Android -自定义view</span>
+                  <a href="/categories/Java-SpringBoot/" itemprop="url" rel="index">
+                    <span itemprop="name">Java -SpringBoot</span>
                   </a>
                 </span>
 
@@ -417,7 +422,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1,125
+                  615
                 </span>
               
 
@@ -433,7 +438,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  4
+                  3
                 </span>
               
             </div>
@@ -454,73 +459,27 @@
       
 
       
-        <p>推荐：<a href="http://www.gcssloop.com/#blog" target="_blank" rel="noopener">非著名程序员</a>的<a href="http://www.gcssloop.com/customview/CustomViewIndex" target="_blank" rel="noopener">安卓自定义View教程目录</a>，我的自定义view就是看他的这个系列学会的</p>
-<p>&emsp;&emsp;首先，我们需要确认的是android的事件传递机制是<strong>责任链模式</strong>，如果自己能处理就拦截下来自己处理，如果自己处理不了或者不确定就传递给下一个对象</p>
+        <p>&emsp;&emsp;所谓的国际化就是语言切换。中文切换到其他语种。</p>
+<p>&emsp;&emsp;国际化的信息，这些都是需要开发人员在配置类中配置好的。SpringBoot会自动加载这些配置类。</p>
 <a id="more"></a>
-<h2 id="事件的拦截、分发、消费"><a href="#事件的拦截、分发、消费" class="headerlink" title="事件的拦截、分发、消费"></a>事件的拦截、分发、消费</h2><p>&emsp;&emsp;我们要知道三个方法，控制事件反而拦截，分发与消费。如下表：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">类型</th>
-<th style="text-align:center">相关方法</th>
-<th style="text-align:center">Activity</th>
-<th style="text-align:center">ViewGroup</th>
-<th style="text-align:center">View</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">事件分发</td>
-<td style="text-align:center">dispatchTouchEvent</td>
-<td style="text-align:center">有</td>
-<td style="text-align:center">有</td>
-<td style="text-align:center">无</td>
-</tr>
-<tr>
-<td style="text-align:center">事件拦截</td>
-<td style="text-align:center">onInterceptTouchEvent</td>
-<td style="text-align:center">无</td>
-<td style="text-align:center">有</td>
-<td style="text-align:center">无</td>
-</tr>
-<tr>
-<td style="text-align:center">事件处理</td>
-<td style="text-align:center">onTouchEvent</td>
-<td style="text-align:center">有</td>
-<td style="text-align:center">有</td>
-<td style="text-align:center">有</td>
-</tr>
-</tbody>
-</table>
-<p>以上三个方法，均有boolean类型的返回值，通过设置true，false来控制事件传递的流程</p>
-<p>Activity和View均没有事件拦截方法，是因为</p>
-<ol>
-<li><p>Activity作为事件响应起点，如果，Activity把事件拦截了，辣么将为导致整个屏幕都无法点击</p>
-</li>
-<li><p>View作为事件响应的最末端，要么消费事件，要么不处理回传，没必要拦截事件</p>
-</li>
-</ol>
-<h2 id="事件分发流程"><a href="#事件分发流程" class="headerlink" title="事件分发流程"></a>事件分发流程</h2><p>&emsp;&emsp;先给出一张图<img src="http://upload-images.jianshu.io/upload_images/7041675-9b8401bc04e365de.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="分发流程"></p>
-<p>&emsp;&emsp;这里，我们看到多了两个东西，一个是PhoneWindow，一个是DecorView，我们平时写的布局，最外层的父布局就是这里的RootView，有过几个app开发经验的程序员都应该知道，app的状态栏颜色的修改，还有那个主题的内容修改，修改后显示在哪呢？没错，就是DecorView里面。</p>
-<p>&emsp;&emsp;再有就是phoneWindow，其实，知不知道没什么用，phonewindow是Window的唯一实现类，Window是干嘛的呢？Window是一个抽象类，所有的视图，事件传递都归它管理，所以，phonewindow管理视图，上面说的DecorView就是phonewindow的一个内部实现类，除了自己的功能外，还负责消息传递。</p>
-<p>&emsp;&emsp;说了这么多，该来讲讲事件传递的流程了。android的view是树形结构的，基于这样的结构，我们的事件可以有序的分发。事件收集之后，起点是Activity，然后有序的向下传递，大致如下：</p>
-<p><code>Activity －&gt; PhoneWindow －&gt; DecorView －&gt; ViewGroup －&gt; ... －&gt; View</code></p>
-<p>如果这个事件没有对象处理，辣么，它会依次往回传递，如果还是没有人处理，辣么就会被Activity抛弃掉</p>
-<p><code>Activity &lt;－ PhoneWindow &lt;－ DecorView &lt;－ ViewGroup &lt;－ ... &lt;－ View</code></p>
-<p>这就是文章开头我们提到的，责任链模式</p>
-<p>下面我给出ViewGroup的事件分发机制的伪代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public boolean dispatchTouchEvent(MotionEvent ev) &#123;</span><br><span class="line">    boolean result = false;             // 默认状态为没有消费过</span><br><span class="line"></span><br><span class="line">    if (!onInterceptTouchEvent(ev)) &#123;   // 如果没有拦截交给子View</span><br><span class="line">        result = child.dispatchTouchEvent(ev);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (!result) &#123;                      // 如果事件没有被消费,询问自身onTouchEvent</span><br><span class="line">        result = onTouchEvent(ev);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;情景：老板: 我看公司最近业务不咋地，准备发展一下电商业务，下周之前做个淘宝出来试试怎么样。<br>&emsp;&emsp;事件顺序，老板(MainActivity)要做淘宝，这个事件通过各个部门(ViewGroup)一层一层的往下传，传到最底层的时候，码农小王(View1)发现做不了，于是消息又一层一层的回传到老板那里。<br>&emsp;&emsp;可以看到整个事件传递路线非常有序。从Activity开始，最后回传给Activity结束(由于我们无法操作Phone Window和DecorView，所以没有它们的信息)。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">MainActivity [老板]: dispatchTouchEvent     经理,我准备发展一下电商业务,下周之前做一个淘宝出来.</span><br><span class="line">RootView     [经理]: dispatchTouchEvent     呼叫技术部,老板要做淘宝,下周上线.</span><br><span class="line">RootView     [经理]: onInterceptTouchEvent  (老板可能疯了,但又不是我做.)</span><br><span class="line">ViewGroupA   [组长]: dispatchTouchEvent     老板要做淘宝,下周上线?</span><br><span class="line">ViewGroupA   [组长]: onInterceptTouchEvent  (看着不太靠谱,先问问小王怎么看)</span><br><span class="line">View1        [码农]: dispatchTouchEvent     做淘宝???</span><br><span class="line">View1        [码农]: onTouchEvent           这个真心做不了啊.</span><br><span class="line">ViewGroupA   [组长]: onTouchEvent           小王说做不了.</span><br><span class="line">RootView     [经理]: onTouchEvent           报告老板, 技术部说做不了.</span><br><span class="line">MainActivity [老板]: onTouchEvent           这么简单都做不了,你们都是干啥的(愤怒).</span><br></pre></td></tr></table></figure>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>事件分发机制设计到到情形非常多，这里就不一一列举了，记住以下几条原则就行了。</p>
-<ol>
-<li><p>如果事件被消费，就意味着事件信息传递终止。</p>
-</li>
-<li><p>如果事件一直没有被消费，最后会传给Activity，如果Activity也不需要就被抛弃。</p>
-</li>
-<li><p>判断事件是否被消费是根据返回值，而不是根据你是否使用了事件。</p>
-</li>
-</ol>
+<p>举个栗子：以登录界面为例，我们的登录界面输入账号、密码框的左边，会有这两个提示，我们就自动修改这两个提示。</p>
+<h3 id="创建配置文件"><a href="#创建配置文件" class="headerlink" title="创建配置文件"></a>创建配置文件</h3><p>&emsp;&emsp;首先，你要在你的resources目录下面新建i18n目录，当然，不是必须的，可以不创建，直接创建文件。之所以创建这个目录，只是便于管理。</p>
+<p>&emsp;&emsp;然后，在i18n目录下面创建配置文件，操作如下：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-255a3a0ff8446f2f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="创建配置文件1.png"></p>
+<p>&emsp;&emsp;在i18n的目录下面，新建一个Resources Bundle类型的文件，名字叫login</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-e1de577b76bc0c69.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="创建配置文件2.png"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-53656dc0c2eff9f3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="创建配置文件3.png"></p>
+<p>&emsp;&emsp;点击+号，创建中文，英文两种语言的配置文件。中文叫 <strong>zh_CN</strong>，英文叫 <strong>en_US</strong>，这两种类型是写死的。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-6a80accf3ee735cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="创建配置文件4.png"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-6e4ec6138b44e98a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="创建配置文件5.png"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-e9881dc3e5e21bbf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="创建配置文件6.png"></p>
+<p>&emsp;&emsp;根据如上操作，分别创建key为login.username，login.password，并且分别创建好对应的内容。这个key，页面会用到。</p>
+<p>PS：不要忘记了，在全局配置文件中配置好，<strong>spring.messages.basename=i18n.login</strong>，这里现在是只有一个登陆页面需要国际化，如果有多个页面需要，比方说注册页面，就在后面添加。如：spring.messages.basename=i18n.login,i19n.register这样的方式，中间用逗号隔开即可。</p>
+<h3 id="修改页面显示内容"><a href="#修改页面显示内容" class="headerlink" title="修改页面显示内容"></a>修改页面显示内容</h3><p>&emsp;&emsp;按照上面的步骤，创建好了之后，在你页面需要国际化的view，分别按如下的方式获取值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--th:text=&quot;#&#123;上面命名的key&#125;&quot;--&gt;</span><br><span class="line">&lt;div class=&quot;inputbox&quot;&gt;</span><br><span class="line">                &lt;label for=&quot;user&quot; th:text=&quot;#&#123;login.username&#125;&quot;&gt;Username&lt;/label&gt;</span><br><span class="line">                &lt;input id=&quot;user&quot; type=&quot;text&quot; name=&quot;username&quot; required/&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;inputbox&quot;&gt;</span><br><span class="line">                &lt;label for=&quot;mima&quot; th:text=&quot;#&#123;login.password&#125;&quot;&gt;Password&lt;/label&gt;</span><br><span class="line">                &lt;input id=&quot;mima&quot; type=&quot;password&quot; name=&quot;password&quot; required/&gt;</span><br><span class="line">            &lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="自定义区域解析器"><a href="#自定义区域解析器" class="headerlink" title="自定义区域解析器"></a>自定义区域解析器</h3><p>&emsp;&emsp;区域解析器LocaleResolver，按如下的方式实现即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">package com.haichenyi.springbootbill.component;</span><br><span class="line"></span><br><span class="line">import org.springframework.util.StringUtils;</span><br><span class="line">import org.springframework.web.servlet.LocaleResolver;</span><br><span class="line"></span><br><span class="line">import javax.servlet.http.HttpServletRequest;</span><br><span class="line">import javax.servlet.http.HttpServletResponse;</span><br><span class="line">import java.util.Locale;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 自定义区域解析器</span><br><span class="line"> */</span><br><span class="line">public class MyLocalResolver implements LocaleResolver &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public Locale resolveLocale(HttpServletRequest httpServletRequest) &#123;</span><br><span class="line">        String l = httpServletRequest.getParameter(&quot;l&quot;);</span><br><span class="line">        Locale locale = Locale.getDefault();</span><br><span class="line">        if (!StringUtils.isEmpty(l)) &#123;</span><br><span class="line">            String[] s = l.split(&quot;_&quot;);</span><br><span class="line">            locale = new Locale(s[0], s[1]);</span><br><span class="line">        &#125;</span><br><span class="line">        return locale;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void setLocale(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Locale locale) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;最后，在你对应的超链接的地方传 <strong>zh_CN</strong> 和 <strong>en_US</strong> 即可实现。</p>
 
       
     </div>
@@ -544,12 +503,12 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2018/02/22/Android事件分发机制原理/">Android事件分发机制原理</a></p>
+  <p><span>本文标题:</span><a href="/2019/09/02/SpringBoot系列—国际化（八）/">SpringBoot系列—国际化（八）</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 海晨忆 的个人博客">海晨忆</a></p>
-  <p><span>发布时间:</span>2018年02月22日 - 21:02</p>
-  <p><span>最后更新:</span>2018年02月22日 - 21:02</p>
-  <p><span>原始链接:</span><a href="/2018/02/22/Android事件分发机制原理/" title="Android事件分发机制原理">http://haichenyi.com/2018/02/22/Android事件分发机制原理/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://haichenyi.com/2018/02/22/Android事件分发机制原理/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2019年09月02日 - 16:09</p>
+  <p><span>最后更新:</span>2019年09月02日 - 16:09</p>
+  <p><span>原始链接:</span><a href="/2019/09/02/SpringBoot系列—国际化（八）/" title="SpringBoot系列—国际化（八）">http://haichenyi.com/2019/09/02/SpringBoot系列—国际化（八）/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://haichenyi.com/2019/09/02/SpringBoot系列—国际化（八）/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -617,8 +576,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/08/Android自定义View/" rel="next" title="Android自定义View">
-                <i class="fa fa-chevron-left"></i> Android自定义View
+              <a href="/2019/08/30/SpringBoot系列—热部署与SpringMVC扩展功能（七）/" rel="next" title="SpringBoot系列—热部署与SpringMVC扩展功能（七）">
+                <i class="fa fa-chevron-left"></i> SpringBoot系列—热部署与SpringMVC扩展功能（七）
               </a>
             
           </div>
@@ -626,10 +585,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/22/MVC、MVP、MVVM比较/" rel="prev" title="MVC、MVP、MVVM比较">
-                MVC、MVP、MVVM比较 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -815,7 +770,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#事件的拦截、分发、消费"><span class="nav-number">1.</span> <span class="nav-text">事件的拦截、分发、消费</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件分发流程"><span class="nav-number">2.</span> <span class="nav-text">事件分发流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建配置文件"><span class="nav-number">1.</span> <span class="nav-text">创建配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改页面显示内容"><span class="nav-number">2.</span> <span class="nav-text">修改页面显示内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义区域解析器"><span class="nav-number">3.</span> <span class="nav-text">自定义区域解析器</span></a></li></ol></div>
             
 
           </div>
