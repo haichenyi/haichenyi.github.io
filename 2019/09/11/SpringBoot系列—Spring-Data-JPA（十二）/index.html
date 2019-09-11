@@ -110,17 +110,20 @@
 
 
 
-<meta name="description" content="&amp;emsp;&amp;emsp;拦截器拦截请求做额外的处理。">
+<meta name="description" content="什么是 Spring Data&amp;emsp;&amp;emsp;Spring Data 是 Spring Boot 底层默认进行数据访问的技术 , 为了简化构建基于 Spring 框架应用的数据访问技术，包括非关系数据库、Map-Reduce 框架、云数据服务等；另外也包含对关系数据库的访问支持。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SpringBoot系列—自定义拦截器（九）">
-<meta property="og:url" content="http://haichenyi.com/2019/09/05/SpringBoot系列—自定义拦截器（九）/index.html">
+<meta property="og:title" content="SpringBoot系列—Spring Data JPA（十二）">
+<meta property="og:url" content="http://haichenyi.com/2019/09/11/SpringBoot系列—Spring-Data-JPA（十二）/index.html">
 <meta property="og:site_name" content="海晨忆的博客">
-<meta property="og:description" content="&amp;emsp;&amp;emsp;拦截器拦截请求做额外的处理。">
+<meta property="og:description" content="什么是 Spring Data&amp;emsp;&amp;emsp;Spring Data 是 Spring Boot 底层默认进行数据访问的技术 , 为了简化构建基于 Spring 框架应用的数据访问技术，包括非关系数据库、Map-Reduce 框架、云数据服务等；另外也包含对关系数据库的访问支持。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-05T08:07:12.816Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-1ce93a435bc0d30b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-d701cf2c06085ea6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-09-11T09:04:34.011Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SpringBoot系列—自定义拦截器（九）">
-<meta name="twitter:description" content="&amp;emsp;&amp;emsp;拦截器拦截请求做额外的处理。">
+<meta name="twitter:title" content="SpringBoot系列—Spring Data JPA（十二）">
+<meta name="twitter:description" content="什么是 Spring Data&amp;emsp;&amp;emsp;Spring Data 是 Spring Boot 底层默认进行数据访问的技术 , 为了简化构建基于 Spring 框架应用的数据访问技术，包括非关系数据库、Map-Reduce 框架、云数据服务等；另外也包含对关系数据库的访问支持。">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/7041675-1ce93a435bc0d30b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -149,13 +152,13 @@
 
 
 
-  <link rel="canonical" href="http://haichenyi.com/2019/09/05/SpringBoot系列—自定义拦截器（九）/"/>
+  <link rel="canonical" href="http://haichenyi.com/2019/09/11/SpringBoot系列—Spring-Data-JPA（十二）/"/>
 
 
 
 
 
-  <title>SpringBoot系列—自定义拦截器（九） | 海晨忆的博客</title>
+  <title>SpringBoot系列—Spring Data JPA（十二） | 海晨忆的博客</title>
   
 
 
@@ -334,7 +337,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haichenyi.com/2019/09/05/SpringBoot系列—自定义拦截器（九）/">
+    <link itemprop="mainEntityOfPage" href="http://haichenyi.com/2019/09/11/SpringBoot系列—Spring-Data-JPA（十二）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="海晨忆">
@@ -351,7 +354,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">SpringBoot系列—自定义拦截器（九）</h1>
+          <h1 class="post-title" itemprop="name headline">SpringBoot系列—Spring Data JPA（十二）</h1>
         
 
         <div class="post-meta">
@@ -363,8 +366,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-05T16:05:12+08:00">
-                2019-09-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-11T17:03:36+08:00">
+                2019-09-11
               </time>
             
 
@@ -415,7 +418,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  502
+                  1,204
                 </span>
               
 
@@ -431,7 +434,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  2
+                  6
                 </span>
               
             </div>
@@ -452,15 +455,55 @@
       
 
       
-        <p>&emsp;&emsp;拦截器拦截请求做额外的处理。</p>
+        <h3 id="什么是-Spring-Data"><a href="#什么是-Spring-Data" class="headerlink" title="什么是 Spring Data"></a>什么是 Spring Data</h3><p>&emsp;&emsp;Spring Data 是 Spring Boot 底层默认进行数据访问的技术 , 为了简化构建基于 Spring 框架应用的数据访问技术，包<br>括非关系数据库、Map-Reduce 框架、云数据服务等；另外也包含对关系数据库的访问支持。</p>
 <a id="more"></a>
-<p><strong>举个栗子：登录拦截器，拦截所有的请求，必须登录之后才能访问。</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">package com.haichenyi.springbootbill.interceptors;</span><br><span class="line"></span><br><span class="line">import org.springframework.web.servlet.HandlerInterceptor;</span><br><span class="line"></span><br><span class="line">import javax.servlet.http.HttpServletRequest;</span><br><span class="line">import javax.servlet.http.HttpServletResponse;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 登录拦截器</span><br><span class="line"> */</span><br><span class="line">public class LoginInterceptor implements HandlerInterceptor &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception &#123;</span><br><span class="line">        Object user = request.getSession().getAttribute(&quot;user&quot;);</span><br><span class="line">        if (user != null) &#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">        request.setAttribute(&quot;msg&quot;, &quot;您还没有登录，请先登录！&quot;);</span><br><span class="line">        request.getRequestDispatcher(&quot;/index.html&quot;).forward(request, response);</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;新建LoginInterceptor实现HandlerInterceptor接口。这个接口有三个方法，<strong>pre，post，after，</strong>  看这个名字就可以想到这三个方法是怎么调用的，发送请求前，发送过程中，发送请求成功之后，所以，根据自己的需求，实现对应的方法即可。</p>
-<p>&emsp;&emsp;我这里是登录拦截器，所以，在发送请求之前就要拦截，走自己的逻辑，如果，没有登陆过，就跳转登录界面，所以，我这里就实现了发送请求之前的回调，即preHandle方法。</p>
-<p>&emsp;&emsp;然后，在你的SpringMvcConfiguration里面加上拦截器即可。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">package com.haichenyi.springbootbill.config;</span><br><span class="line"></span><br><span class="line">import com.haichenyi.springbootbill.component.MyLocalResolver;</span><br><span class="line">import com.haichenyi.springbootbill.interceptors.LoginInterceptor;</span><br><span class="line">import org.springframework.context.annotation.Bean;</span><br><span class="line">import org.springframework.context.annotation.Configuration;</span><br><span class="line">import org.springframework.web.servlet.LocaleResolver;</span><br><span class="line">import org.springframework.web.servlet.config.annotation.InterceptorRegistry;</span><br><span class="line">import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;</span><br><span class="line">import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;</span><br><span class="line"></span><br><span class="line">@Configuration</span><br><span class="line">public class MySpringMvcConfig &#123;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public WebMvcConfigurer webMvcConfigurer() &#123;</span><br><span class="line">        return new WebMvcConfigurer() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void addViewControllers(ViewControllerRegistry registry) &#123;</span><br><span class="line">                registry.addViewController(&quot;/&quot;).setViewName(&quot;main/login&quot;);</span><br><span class="line">                registry.addViewController(&quot;/index.html&quot;).setViewName(&quot;main/login&quot;);</span><br><span class="line">                registry.addViewController(&quot;/main/index.html&quot;).setViewName(&quot;main/index&quot;);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            @Override</span><br><span class="line">            public void addInterceptors(InterceptorRegistry registry) &#123;</span><br><span class="line">                registry.addInterceptor(new LoginInterceptor())</span><br><span class="line">                        .addPathPatterns(&quot;/**&quot;)</span><br><span class="line">                        .excludePathPatterns(&quot;/&quot;, &quot;/index.html&quot;, &quot;/login&quot;)</span><br><span class="line">                        .excludePathPatterns(&quot;/css/*&quot;,&quot;/img/*&quot;,&quot;/images/*&quot;,&quot;/js/*&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public LocaleResolver localeResolver() &#123;</span><br><span class="line">        return new MyLocalResolver();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;实现addInterceptors方法，添加拦截器，然后添加了  <strong>addPathPatterns</strong> 拦截所有带这个参数的请求。接着，又添加了 <strong>excludePathPatterns</strong> 不拦截所有带这个参数的请求。</p>
+<p>&emsp;&emsp;Spring Data 包含多个模块：</p>
+<ul>
+<li>Spring Data Commons 提供共享的基础框架，适合各个子项目使用，支持跨数据库持久化</li>
+<li>Spring Data JPA</li>
+<li>Spring Data KeyValue</li>
+<li>Spring Data LDAP</li>
+<li>Spring Data MongoDB</li>
+<li>Spring Data Redis</li>
+<li>Spring Data REST</li>
+<li>Spring Data for Apache Cassandra</li>
+<li>Spring Data for Apache Geode</li>
+<li>Spring Data for Apache Solr</li>
+<li>Spring Data for Pivotal GemFire</li>
+<li>Spring Data Couchbase (community module)</li>
+<li>Spring Data Elasticsearch (community module)</li>
+<li>Spring Data Neo4j (community module)</li>
+</ul>
+<h3 id="Spring-Data统一的核心接口"><a href="#Spring-Data统一的核心接口" class="headerlink" title="Spring Data统一的核心接口"></a>Spring Data统一的核心接口</h3><p>&emsp;&emsp;Spring Data项目为大家提供统一的API来对不同的数据访问层进行操作。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-1ce93a435bc0d30b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Repository继承图.png"></p>
+<ul>
+<li>Repository<t, id="">：统一的根接口即所有接口的父接口，其他接口继承该接口</t,></li>
+<li>CrudRepository<t, id="">：基本的增删改查接口,提供了最基本的对实体类CRUD操作</t,></li>
+<li>PagingAndSortingRepository<t, id="">：增加了分页和排序操作</t,></li>
+<li>JpaRepository<t, id="">：增加了批量操作，并重写了父接口一些方法的返回类型</t,></li>
+</ul>
+<p>&emsp;&emsp;Spring Data JPA、JPA与Hibernate 关系</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7041675-d701cf2c06085ea6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="关系图.png"></p>
+<p>&emsp;&emsp;JPA是一种规范，而Hibernate是实现这种规范的底层实现，SpringData JPA对持久化接口JPA再抽象一层，针对持久化业务再进一步统一简化。</p>
+<h3 id="SpringData-JPA的简单使用"><a href="#SpringData-JPA的简单使用" class="headerlink" title="SpringData JPA的简单使用"></a>SpringData JPA的简单使用</h3><p>&emsp;&emsp;JPA的底层遵守是ORM(对象关系映射)规范，因此JPA其实也就是java实体对象和关系型数据库建立起映射关系，通过<br>面向对象编程的思想操作关系型数据库的规范。</p>
+<p><strong>首先，导包</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">         xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;</span><br><span class="line">    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;</span><br><span class="line">    &lt;parent&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;2.1.8.RELEASE&lt;/version&gt;</span><br><span class="line">        &lt;relativePath/&gt; &lt;!-- lookup parent from repository --&gt;</span><br><span class="line">    &lt;/parent&gt;</span><br><span class="line">    &lt;groupId&gt;com.haichenyi&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-jpa&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;</span><br><span class="line">    &lt;name&gt;spring-boot-jpa&lt;/name&gt;</span><br><span class="line">    &lt;description&gt;Demo project for Spring Boot&lt;/description&gt;</span><br><span class="line"></span><br><span class="line">    &lt;properties&gt;</span><br><span class="line">        &lt;java.version&gt;1.8&lt;/java.version&gt;</span><br><span class="line">    &lt;/properties&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dependencies&gt;</span><br><span class="line">        &lt;!--jdbc的包--&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-boot-starter-data-jdbc&lt;/artifactId&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;!--jpa的包--&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-boot-starter-data-jpa&lt;/artifactId&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;!--web项目的包--&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;!--mysql的包--&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">            &lt;scope&gt;runtime&lt;/scope&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;!--简化set/get的包--&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;lombok&lt;/artifactId&gt;</span><br><span class="line">            &lt;optional&gt;true&lt;/optional&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;</span><br><span class="line">            &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">    &lt;/dependencies&gt;</span><br><span class="line"></span><br><span class="line">    &lt;build&gt;</span><br><span class="line">        &lt;plugins&gt;</span><br><span class="line">            &lt;plugin&gt;</span><br><span class="line">                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">            &lt;/plugin&gt;</span><br><span class="line">        &lt;/plugins&gt;</span><br><span class="line">    &lt;/build&gt;</span><br><span class="line"></span><br><span class="line">&lt;/project&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>其次，创建映射bean类</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">package com.haichenyi.springbootjpa.entity;</span><br><span class="line"></span><br><span class="line">import lombok.Data;</span><br><span class="line"></span><br><span class="line">import javax.persistence.*;</span><br><span class="line"></span><br><span class="line">//使用JPA注解配置映射关系</span><br><span class="line">@Entity//说明它是和数据表映射的类</span><br><span class="line">@Table(name = &quot;tbl_hobby&quot;)//指定对应映射的表名，省略默认表名就是类名</span><br><span class="line">@Data</span><br><span class="line">public class Hobby &#123;</span><br><span class="line">    @Id//标识主键</span><br><span class="line">    @GeneratedValue(strategy = GenerationType.IDENTITY)////标识自增长主键</span><br><span class="line">    private Integer id;</span><br><span class="line">    @Column(name = &quot;name&quot;, length = 10)//这是和数据表对应的一个列即字段名</span><br><span class="line">    private String name;</span><br><span class="line">    @Column//没有写，表字段名与这里的字段名相同</span><br><span class="line">    private Integer time;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;需要注意的是，这里需要写set/get方法，不然，数据存不进去。这里我用了 <strong>@Data</strong> 注解，所以，就不需要写了。注释写的很清楚了，就不一一解释了。</p>
+<p><strong>接着，写Repository</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">package com.haichenyi.springbootjpa.repository;</span><br><span class="line"></span><br><span class="line">import com.haichenyi.springbootjpa.entity.Hobby;</span><br><span class="line">import org.springframework.data.jpa.repository.JpaRepository;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 自定义接口继承JpaRepository，就会crud及分页等基本功能</span><br><span class="line"> */</span><br><span class="line">//指定的泛型&lt;操作的实体类，主键的类型&gt;</span><br><span class="line">public interface HobbyRepository extends JpaRepository&lt;Hobby, Integer&gt; &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>再然后，就是Controller，跟之前写的一样</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">package com.haichenyi.springbootjpa.controller;</span><br><span class="line"></span><br><span class="line">import com.haichenyi.springbootjpa.entity.Hobby;</span><br><span class="line">import com.haichenyi.springbootjpa.repository.HobbyRepository;</span><br><span class="line">import org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line">import org.springframework.web.bind.annotation.*;</span><br><span class="line"></span><br><span class="line">import java.util.Optional;</span><br><span class="line"></span><br><span class="line">@RestController</span><br><span class="line">public class HobbyController &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    HobbyRepository hobbyRepository;</span><br><span class="line"></span><br><span class="line">    @GetMapping(&quot;/hobby/&#123;id&#125;&quot;)</span><br><span class="line">    public Hobby getHobbyInfo(@PathVariable(&quot;id&quot;) Integer id) &#123;</span><br><span class="line">        Optional&lt;Hobby&gt; hobbyOptional = hobbyRepository.findById(id);</span><br><span class="line">        return hobbyOptional.get();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @GetMapping(&quot;/save&quot;)</span><br><span class="line">    public Hobby saveHobby(Hobby hobby) &#123;</span><br><span class="line">        System.out.println(hobby);</span><br><span class="line">        return hobbyRepository.save(hobby);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>最后，就只配置了</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  datasource:</span><br><span class="line">    username: root</span><br><span class="line">    password: 123456</span><br><span class="line">    url: jdbc:mysql://localhost:3306/company?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=GMT%2B8</span><br><span class="line">    driver-class-name: com.mysql.cj.jdbc.Driver</span><br><span class="line"></span><br><span class="line">  jpa:</span><br><span class="line">    show-sql: true</span><br><span class="line">    hibernate:</span><br><span class="line">      ddl-auto: update</span><br><span class="line">    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect</span><br><span class="line">  main:</span><br><span class="line">    allow-bean-definition-overriding: true</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;这样写完就行了。就这四步：</p>
+<ol>
+<li>映射表</li>
+<li>Repository接口</li>
+<li>Controller</li>
+<li>配置文件</li>
+</ol>
 
       
     </div>
@@ -484,12 +527,12 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2019/09/05/SpringBoot系列—自定义拦截器（九）/">SpringBoot系列—自定义拦截器（九）</a></p>
+  <p><span>本文标题:</span><a href="/2019/09/11/SpringBoot系列—Spring-Data-JPA（十二）/">SpringBoot系列—Spring Data JPA（十二）</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 海晨忆 的个人博客">海晨忆</a></p>
-  <p><span>发布时间:</span>2019年09月05日 - 16:09</p>
-  <p><span>最后更新:</span>2019年09月05日 - 16:09</p>
-  <p><span>原始链接:</span><a href="/2019/09/05/SpringBoot系列—自定义拦截器（九）/" title="SpringBoot系列—自定义拦截器（九）">http://haichenyi.com/2019/09/05/SpringBoot系列—自定义拦截器（九）/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://haichenyi.com/2019/09/05/SpringBoot系列—自定义拦截器（九）/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2019年09月11日 - 17:09</p>
+  <p><span>最后更新:</span>2019年09月11日 - 17:09</p>
+  <p><span>原始链接:</span><a href="/2019/09/11/SpringBoot系列—Spring-Data-JPA（十二）/" title="SpringBoot系列—Spring Data JPA（十二）">http://haichenyi.com/2019/09/11/SpringBoot系列—Spring-Data-JPA（十二）/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://haichenyi.com/2019/09/11/SpringBoot系列—Spring-Data-JPA（十二）/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -557,8 +600,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/09/02/SpringBoot系列—国际化（八）/" rel="next" title="SpringBoot系列—国际化（八）">
-                <i class="fa fa-chevron-left"></i> SpringBoot系列—国际化（八）
+              <a href="/2019/09/07/SpringBoot系列—MyBatis（十一）/" rel="next" title="SpringBoot系列—MyBatis（十一）">
+                <i class="fa fa-chevron-left"></i> SpringBoot系列—MyBatis（十一）
               </a>
             
           </div>
@@ -566,10 +609,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/09/05/SpringBoot系列—Druid（十）/" rel="prev" title="SpringBoot系列—Druid（十）">
-                SpringBoot系列—Druid（十） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -640,8 +679,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/artistic_image/head.jpg"
@@ -736,6 +784,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是-Spring-Data"><span class="nav-number">1.</span> <span class="nav-text">什么是 Spring Data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Data统一的核心接口"><span class="nav-number">2.</span> <span class="nav-text">Spring Data统一的核心接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SpringData-JPA的简单使用"><span class="nav-number">3.</span> <span class="nav-text">SpringData JPA的简单使用</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
