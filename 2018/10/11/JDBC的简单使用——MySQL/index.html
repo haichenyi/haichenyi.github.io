@@ -1,116 +1,16 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="zh-Hans">
+<html>
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
-<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet"><style>
-    .pace .pace-progress {
-        background: #1E92FB; /*进度条颜色*/
-        height: 3px;
-    }
-    .pace .pace-progress-inner {
-         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
-    }
-    .pace .pace-activity {
-        border-top-color: #1E92FB;    /*上边框颜色*/
-        border-left-color: #1E92FB;    /*左边框颜色*/
-    }
-</style>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
+  <meta charset="utf-8">
   
 
   
-    
-    
+  <title>JDBC的简单使用——MySQL | 海晨忆的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-
   
-
   
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="海晨忆的博客" type="application/atom+xml" />
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
-
-
-
-
-
-
-<meta name="description" content="&amp;emsp;&amp;emsp;前面几篇学了基本的SQL语句和用工具操作数据库，今天讲一下用代码操作数据库。 连接MySQL&amp;emsp;&amp;emsp;首先记得需要导包，jdbc连接MySQL数据库的jar包，名字：mysql-connector-java &amp;emsp;&amp;emsp;首先记得需要导包，jdbc连接MySQL数据库的jar包，名字：mysql-connector-java &amp;emsp;&amp;emsp;">
+  <meta name="description" content="&amp;emsp;&amp;emsp;前面几篇学了基本的SQL语句和用工具操作数据库，今天讲一下用代码操作数据库。 连接MySQL&amp;emsp;&amp;emsp;首先记得需要导包，jdbc连接MySQL数据库的jar包，名字：mysql-connector-java &amp;emsp;&amp;emsp;首先记得需要导包，jdbc连接MySQL数据库的jar包，名字：mysql-connector-java &amp;emsp;&amp;emsp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JDBC的简单使用——MySQL">
 <meta property="og:url" content="http://haichenyi.com/2018/10/11/JDBC的简单使用——MySQL/index.html">
@@ -121,336 +21,86 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JDBC的简单使用——MySQL">
 <meta name="twitter:description" content="&amp;emsp;&amp;emsp;前面几篇学了基本的SQL语句和用工具操作数据库，今天讲一下用代码操作数据库。 连接MySQL&amp;emsp;&amp;emsp;首先记得需要导包，jdbc连接MySQL数据库的jar包，名字：mysql-connector-java &amp;emsp;&amp;emsp;首先记得需要导包，jdbc连接MySQL数据库的jar包，名字：mysql-connector-java &amp;emsp;&amp;emsp;">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://haichenyi.com/2018/10/11/JDBC的简单使用——MySQL/"/>
-
-
-
-
-
-  <title>JDBC的简单使用——MySQL | 海晨忆的博客</title>
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <link rel="alternate" href="/atom.xml" title="海晨忆的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/uploads/artistic_image/head.jpg">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/highlight.css">
+  <script>
+  let antiquityStorage = window.sessionStorage.getItem('antiquitySessionStorage');
+  if (antiquityStorage == '' || antiquityStorage == null) {
+    var antiquityLoader = '<div id="loaderbox"><div class="loader"><div class="load-roll"><div class="load-top"></div><div class="load-right"></div><div class="load-bottom"></div></div></div></div>';
+    document.write(antiquityLoader);
+    document.body.style.overflow = 'hidden'
+  }
+  </script>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-  
+<body>
+  <div id="fullpage" class="mobile-nav-right">
     
-  
-
-  <div class="container sidebar-position-left page-post-detail ">
-    <div class="headband"></div>
-		<a href="https://github.com/haichenyi"><img style="position: absolute; top: 0; right: 0; border: 0;" 
-		src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" 
-		alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+      <div id="wrapper" style="background-image: url(/uploads/artistic_image/bg.jpg)" title="背景图片来自网络">
     
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">海晨忆的博客</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
+    
+      <header id="header">
+  <div id="nav-toggle" class="nav-toggle"></div>
+  <div class="head-box global-width">
+    <nav class="nav-box nav-right">
       
-        <p class="site-subtitle">技术源于生活！</p>
+        <a class="nav-item" href="/" title
+        
+        >首页</a>
       
+        <a class="nav-item" href="/archives" title
+        
+        >归档</a>
+      
+        <a class="nav-item" href="/about" title
+        
+        >简历</a>
+      
+    </nav>
   </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-<nav class="site-nav">
+</header>
+      <div id="middlecontent" title class="global-width sidebar-left">
+        <section id="main"><article id="post-JDBC的简单使用——MySQL" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 class="article-title" itemprop="name">
+      JDBC的简单使用——MySQL
+    </h1>
   
 
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
-            
-            搜索
-          </a>
-        </li>
-      
-    </ul>
-  
-
-  
-    <div class="site-search">
-      
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
-    </div>
-  </div>
-  <div id="local-search-result"></div>
-</div>
-
-
-
-    </div>
-  
-</nav>
-
-
-
- </div>
     </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
+  
+  <div class="article-meta">
+    <a href="/2018/10/11/JDBC的简单使用——MySQL/" class="article-date">
+  <time datetime="2018-10-11T14:51:00.000Z" itemprop="datePublished">2018-10-11</time>
+</a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/数据库-JDBC/">数据库 -JDBC</a>
+  </div>
 
+    
+  </div>
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haichenyi.com/2018/10/11/JDBC的简单使用——MySQL/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="海晨忆">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/artistic_image/head.jpg">
+    <span id="busuanzi_container_page_pv">
+      本文总阅读量<span id="busuanzi_value_page_pv"></span>次
     </span>
+  
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="海晨忆的博客">
-    </span>
-
+  <div class="article-inner">
     
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">JDBC的简单使用——MySQL</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-11T22:51:00+08:00">
-                2018-10-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据库-JDBC/" itemprop="url" rel="index">
-                    <span itemprop="name">数据库 -JDBC</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  1,625
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  8
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
+    <div class="article-content article-content-cloud doorframe mac" itemprop="articleBody">
       
         <p>&emsp;&emsp;前面几篇学了基本的SQL语句和用工具操作数据库，今天讲一下用代码操作数据库。</p>
 <h4 id="连接MySQL"><a href="#连接MySQL" class="headerlink" title="连接MySQL"></a>连接MySQL</h4><p>&emsp;&emsp;<strong><em>首先记得需要导包，jdbc连接MySQL数据库的jar包，名字：mysql-connector-java</em></strong></p>
@@ -458,11 +108,11 @@
 <p>&emsp;&emsp;<strong><em>首先记得需要导包，jdbc连接MySQL数据库的jar包，名字：mysql-connector-java</em></strong></p>
 <a id="more"></a>
 <p>代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//1、获取驱动类,路动类路径：com.mysql.jdbc.Driver</span><br><span class="line">Class.forName(&quot;com.mysql.jdbc.Driver&quot;);</span><br><span class="line">//获取url：jdbc:mysql://ip:端口号/数据库名称</span><br><span class="line">String url = &quot;jdbc:mysql://localhost:3306/test4&quot;;</span><br><span class="line">//用户名</span><br><span class="line">String username = &quot;root&quot;;</span><br><span class="line">//密码</span><br><span class="line">String password = &quot;123&quot;;</span><br><span class="line">//获取Connection对象</span><br><span class="line">Connection connection = DriverManager.getConnection(url, username, password);</span><br><span class="line">System.out.print(connection);</span><br></pre></td></tr></table></figure>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//1、获取驱动类,路动类路径：com.mysql.jdbc.Driver</span><br><span class="line">Class.forName(&quot;com.mysql.jdbc.Driver&quot;);</span><br><span class="line">//获取url：jdbc:mysql://ip:端口号/数据库名称</span><br><span class="line">String url = &quot;jdbc:mysql://localhost:3306/test4&quot;;</span><br><span class="line">//用户名</span><br><span class="line">String username = &quot;root&quot;;</span><br><span class="line">//密码</span><br><span class="line">String password = &quot;123&quot;;</span><br><span class="line">//获取Connection对象</span><br><span class="line">Connection connection = DriverManager.getConnection(url, username, password);</span><br><span class="line">System.out.print(connection);</span><br></pre></td></tr></table></figure></div>
 <p>&emsp;&emsp;总的来说，先要获取驱动类，然后就是获取Connection对象，就是一行代码<code>DriverManager.getConnection(url, username, password);</code>能走通，就说明连接上了。</p>
-<h4 id="修改数据库"><a href="#修改数据库" class="headerlink" title="修改数据库"></a>修改数据库</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">    public void test1() throws ClassNotFoundException, SQLException &#123;</span><br><span class="line">        //获取驱动类</span><br><span class="line">        Class.forName(&quot;com.mysql.jdbc.Driver&quot;);</span><br><span class="line">        //获取url</span><br><span class="line">        String url = &quot;jdbc:mysql://localhost:3306/test4&quot;;</span><br><span class="line">        //用户名</span><br><span class="line">        String username = &quot;root&quot;;</span><br><span class="line">        //密码</span><br><span class="line">        String password = &quot;123&quot;;</span><br><span class="line">        //获取Connection对象</span><br><span class="line">        Connection connection = DriverManager.getConnection(url, username, password);</span><br><span class="line">        System.out.print(connection);</span><br><span class="line">        //获取Statement对象</span><br><span class="line">        Statement statement = connection.createStatement();</span><br><span class="line">        //String sql=&quot;INSERT INTO employee (eid,ename,edid) VALUES(null,&apos;小红&apos;,2)&quot;;</span><br><span class="line">        String sql = &quot;UPDATE employee SET edid=1 WHERE ename=&apos;小红&apos;&quot;;</span><br><span class="line">        statement.executeUpdate(sql);</span><br><span class="line">        statement.close();</span><br><span class="line">        connection.close();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="修改数据库"><a href="#修改数据库" class="headerlink" title="修改数据库"></a>修改数据库</h4><div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">    public void test1() throws ClassNotFoundException, SQLException &#123;</span><br><span class="line">        //获取驱动类</span><br><span class="line">        Class.forName(&quot;com.mysql.jdbc.Driver&quot;);</span><br><span class="line">        //获取url</span><br><span class="line">        String url = &quot;jdbc:mysql://localhost:3306/test4&quot;;</span><br><span class="line">        //用户名</span><br><span class="line">        String username = &quot;root&quot;;</span><br><span class="line">        //密码</span><br><span class="line">        String password = &quot;123&quot;;</span><br><span class="line">        //获取Connection对象</span><br><span class="line">        Connection connection = DriverManager.getConnection(url, username, password);</span><br><span class="line">        System.out.print(connection);</span><br><span class="line">        //获取Statement对象</span><br><span class="line">        Statement statement = connection.createStatement();</span><br><span class="line">        //String sql=&quot;INSERT INTO employee (eid,ename,edid) VALUES(null,&apos;小红&apos;,2)&quot;;</span><br><span class="line">        String sql = &quot;UPDATE employee SET edid=1 WHERE ename=&apos;小红&apos;&quot;;</span><br><span class="line">        statement.executeUpdate(sql);</span><br><span class="line">        statement.close();</span><br><span class="line">        connection.close();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
 <p>&emsp;&emsp;就是在连接数据库之后，通过Connection对象获取Statement对象，通过Statement对象的execute方法执行对应的SQL语句，最后记得关闭</p>
-<h4 id="查询数据库"><a href="#查询数据库" class="headerlink" title="查询数据库"></a>查询数据库</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">    public void test3() &#123;</span><br><span class="line">        Connection con = null;</span><br><span class="line">        Statement state = null;</span><br><span class="line">        ResultSet resultSet = null;</span><br><span class="line">        try &#123;</span><br><span class="line">            String driverClassName = &quot;com.mysql.jdbc.Driver&quot;;</span><br><span class="line">            String url = &quot;jdbc:mysql://localhost:3306/test4&quot;;</span><br><span class="line">            String username = &quot;root&quot;;</span><br><span class="line">            String password = &quot;123&quot;;</span><br><span class="line">            Class.forName(driverClassName);</span><br><span class="line">            con = DriverManager.getConnection(url, username, password);</span><br><span class="line">            state = con.createStatement();</span><br><span class="line">            String querySQL = &quot;SELECT * FROM employee&quot;;</span><br><span class="line">            resultSet = state.executeQuery(querySQL);</span><br><span class="line">            List&lt;Map&lt;String, String&gt;&gt; mapList = new ArrayList&lt;&gt;();</span><br><span class="line">            while (resultSet.next()) &#123;</span><br><span class="line">                Map&lt;String, String&gt; map = new HashMap&lt;&gt;();</span><br><span class="line">                map.put(&quot;ename&quot;, resultSet.getString(&quot;ename&quot;));</span><br><span class="line">                map.put(&quot;edid&quot;, String.valueOf(resultSet.getInt(&quot;edid&quot;)));</span><br><span class="line">                mapList.add(map);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.print(mapList.size());</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            throw new RuntimeException(e);</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            try &#123;</span><br><span class="line">                if (resultSet != null) &#123;</span><br><span class="line">                    resultSet.close();</span><br><span class="line">                &#125;</span><br><span class="line">                if (state != null) &#123;</span><br><span class="line">                    state.close();</span><br><span class="line">                &#125;</span><br><span class="line">                if (con != null) &#123;</span><br><span class="line">                    con.close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; catch (Exception e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="查询数据库"><a href="#查询数据库" class="headerlink" title="查询数据库"></a>查询数据库</h4><div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">    public void test3() &#123;</span><br><span class="line">        Connection con = null;</span><br><span class="line">        Statement state = null;</span><br><span class="line">        ResultSet resultSet = null;</span><br><span class="line">        try &#123;</span><br><span class="line">            String driverClassName = &quot;com.mysql.jdbc.Driver&quot;;</span><br><span class="line">            String url = &quot;jdbc:mysql://localhost:3306/test4&quot;;</span><br><span class="line">            String username = &quot;root&quot;;</span><br><span class="line">            String password = &quot;123&quot;;</span><br><span class="line">            Class.forName(driverClassName);</span><br><span class="line">            con = DriverManager.getConnection(url, username, password);</span><br><span class="line">            state = con.createStatement();</span><br><span class="line">            String querySQL = &quot;SELECT * FROM employee&quot;;</span><br><span class="line">            resultSet = state.executeQuery(querySQL);</span><br><span class="line">            List&lt;Map&lt;String, String&gt;&gt; mapList = new ArrayList&lt;&gt;();</span><br><span class="line">            while (resultSet.next()) &#123;</span><br><span class="line">                Map&lt;String, String&gt; map = new HashMap&lt;&gt;();</span><br><span class="line">                map.put(&quot;ename&quot;, resultSet.getString(&quot;ename&quot;));</span><br><span class="line">                map.put(&quot;edid&quot;, String.valueOf(resultSet.getInt(&quot;edid&quot;)));</span><br><span class="line">                mapList.add(map);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.print(mapList.size());</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            throw new RuntimeException(e);</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            try &#123;</span><br><span class="line">                if (resultSet != null) &#123;</span><br><span class="line">                    resultSet.close();</span><br><span class="line">                &#125;</span><br><span class="line">                if (state != null) &#123;</span><br><span class="line">                    state.close();</span><br><span class="line">                &#125;</span><br><span class="line">                if (con != null) &#123;</span><br><span class="line">                    con.close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; catch (Exception e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
 <p>&emsp;&emsp;查询数据库需要注意的地方就是：</p>
 <ol>
 <li><p>执行SQL语句的方法是<code>executeQuery()</code>，只能执行查询语句。</p>
@@ -475,15 +125,15 @@
 </li>
 </ol>
 <h4 id="PreparedStatement"><a href="#PreparedStatement" class="headerlink" title="PreparedStatement"></a>PreparedStatement</h4><p>&emsp;&emsp;上面用自己拼接sql语句的方式查询数据库，会容易被sql攻击。所以，我们需要用<code>PreparedStatement</code>来防止被sql攻击，具体方式如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public boolean login(String username, String password) throws Exception &#123;</span><br><span class="line">        Connection connection = null;</span><br><span class="line">        PreparedStatement pstat = null;</span><br><span class="line">        ResultSet rs = null;</span><br><span class="line">        try &#123;</span><br><span class="line">            Class.forName(&quot;com.mysql.jdbc.Driver&quot;);</span><br><span class="line">            String url = &quot;jdbc:mysql://localhost:3306/test4&quot;;</span><br><span class="line">            String user = &quot;root&quot;;</span><br><span class="line">            String psw = &quot;123&quot;;</span><br><span class="line">            connection = DriverManager.getConnection(url, user, psw);</span><br><span class="line">            String sql = &quot;select * from t_user where username=? and psw=?&quot;;</span><br><span class="line">            pstat = connection.prepareStatement(sql);</span><br><span class="line">            pstat.setString(1, username);</span><br><span class="line">            pstat.setString(2, password);</span><br><span class="line">            rs = pstat.executeQuery();</span><br><span class="line">            return rs.next();</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            throw new RuntimeException(e);</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            if (rs != null) rs.close();</span><br><span class="line">            if (pstat != null) pstat.close();</span><br><span class="line">            if (connection != null) connection.close();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public boolean login(String username, String password) throws Exception &#123;</span><br><span class="line">        Connection connection = null;</span><br><span class="line">        PreparedStatement pstat = null;</span><br><span class="line">        ResultSet rs = null;</span><br><span class="line">        try &#123;</span><br><span class="line">            Class.forName(&quot;com.mysql.jdbc.Driver&quot;);</span><br><span class="line">            String url = &quot;jdbc:mysql://localhost:3306/test4&quot;;</span><br><span class="line">            String user = &quot;root&quot;;</span><br><span class="line">            String psw = &quot;123&quot;;</span><br><span class="line">            connection = DriverManager.getConnection(url, user, psw);</span><br><span class="line">            String sql = &quot;select * from t_user where username=? and psw=?&quot;;</span><br><span class="line">            pstat = connection.prepareStatement(sql);</span><br><span class="line">            pstat.setString(1, username);</span><br><span class="line">            pstat.setString(2, password);</span><br><span class="line">            rs = pstat.executeQuery();</span><br><span class="line">            return rs.next();</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            throw new RuntimeException(e);</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            if (rs != null) rs.close();</span><br><span class="line">            if (pstat != null) pstat.close();</span><br><span class="line">            if (connection != null) connection.close();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
 <p>&emsp;&emsp;如上，是一个登录接口，传用户名，密码给后台，后台查询数据库，我们在获取了connection之后，通过connection调用prepareStatement方法，需要传一个sql模板。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String sql = &quot;select * from t_user where username=? and psw=?&quot;;</span><br></pre></td></tr></table></figure>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String sql = &quot;select * from t_user where username=? and psw=?&quot;;</span><br></pre></td></tr></table></figure></div>
 <p>&emsp;&emsp;什么是sql模板呢？就是吧需要动态传的参数用问好代替。我们上面这个查询语句，需要动态变化的就是username和psw。然后，我们调用PreparedStatement的setXxx方法，去设置值，第一个参数表示给第几个值赋值，第二个参数就是需要赋值的值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//给第一个参数赋值为username</span><br><span class="line">pstat.setString(1, username);</span><br><span class="line">//给第二个参数赋值为password</span><br><span class="line">pstat.setString(2, password);</span><br></pre></td></tr></table></figure>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//给第一个参数赋值为username</span><br><span class="line">pstat.setString(1, username);</span><br><span class="line">//给第二个参数赋值为password</span><br><span class="line">pstat.setString(2, password);</span><br></pre></td></tr></table></figure></div>
 <h4 id="大数据存储"><a href="#大数据存储" class="headerlink" title="大数据存储"></a>大数据存储</h4><p>&emsp;&emsp;这里以存mp3为例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE t_binary(</span><br><span class="line">	id INT PRIMARY KEY AUTO_INCREMENT,</span><br><span class="line">	NAME VARCHAR(50),</span><br><span class="line">	DATA MEDIUMBLOB</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE t_binary(</span><br><span class="line">	id INT PRIMARY KEY AUTO_INCREMENT,</span><br><span class="line">	NAME VARCHAR(50),</span><br><span class="line">	DATA MEDIUMBLOB</span><br><span class="line">)</span><br></pre></td></tr></table></figure></div>
 <p>&emsp;&emsp;如上，首先创建一张表去存数据，数据类型不要错了，BLOB类型。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">    public void test1() throws SQLException, IOException &#123;</span><br><span class="line">        Connection connection = JDBCUtils.getConnection();</span><br><span class="line">        String sql=&quot;INSERT INTO t_binary VALUE(?,?,?)&quot;;</span><br><span class="line">        PreparedStatement pstat = connection.prepareStatement(sql);</span><br><span class="line">        pstat.setInt(1,1);</span><br><span class="line">        pstat.setString(2,&quot;KenT - 唱给谁听.mp3&quot;);</span><br><span class="line">        byte[] bytes= IOUtils.toByteArray(new FileInputStream(&quot;D:/CloudMusic/KenT - 唱给谁听.mp3&quot;));</span><br><span class="line">        Blob blob=new SerialBlob(bytes);</span><br><span class="line">        pstat.setBlob(3,blob);</span><br><span class="line">        pstat.executeLargeUpdate();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">    public void test1() throws SQLException, IOException &#123;</span><br><span class="line">        Connection connection = JDBCUtils.getConnection();</span><br><span class="line">        String sql=&quot;INSERT INTO t_binary VALUE(?,?,?)&quot;;</span><br><span class="line">        PreparedStatement pstat = connection.prepareStatement(sql);</span><br><span class="line">        pstat.setInt(1,1);</span><br><span class="line">        pstat.setString(2,&quot;KenT - 唱给谁听.mp3&quot;);</span><br><span class="line">        byte[] bytes= IOUtils.toByteArray(new FileInputStream(&quot;D:/CloudMusic/KenT - 唱给谁听.mp3&quot;));</span><br><span class="line">        Blob blob=new SerialBlob(bytes);</span><br><span class="line">        pstat.setBlob(3,blob);</span><br><span class="line">        pstat.executeLargeUpdate();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
 <p>&emsp;&emsp;上面test1就是存的方法，步骤：</p>
 <ol>
 <li><p>先连接数据库，获取Connection对象</p>
@@ -493,12 +143,12 @@
 <li><p>最后，执行sql语句就可以了</p>
 </li>
 </ol>
-<p>这里需要注意的是，要在my.ini服务器配置文件中设置最大存储<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//这个大小大于你的存储文件即可</span><br><span class="line">max_allowed_packet=20M</span><br></pre></td></tr></table></figure></p>
+<p>这里需要注意的是，要在my.ini服务器配置文件中设置最大存储<br><div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//这个大小大于你的存储文件即可</span><br><span class="line">max_allowed_packet=20M</span><br></pre></td></tr></table></figure></div></p>
 <p>&emsp;&emsp;[mysqld]下边的是服务器配置，[mysql]下边的是客户端配置</p>
 <p>&emsp;&emsp;接下来就是怎么取文件了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">    public void test2() throws SQLException, IOException &#123;</span><br><span class="line">        Connection connection = JDBCUtils.getConnection();</span><br><span class="line">        String sql=&quot;SELECT * FROM t_binary WHERE name=?&quot;;</span><br><span class="line">        PreparedStatement pstat = connection.prepareStatement(sql);</span><br><span class="line">        pstat.setString(1,&quot;KenT - 唱给谁听.mp3&quot;);</span><br><span class="line">        ResultSet rs = pstat.executeQuery();</span><br><span class="line">        if (rs.next())&#123;</span><br><span class="line">            Blob blob = rs.getBlob(&quot;data&quot;);</span><br><span class="line">            InputStream in = blob.getBinaryStream();</span><br><span class="line">            FileOutputStream out = new FileOutputStream(&quot;D:/cgst.mp3&quot;);</span><br><span class="line">            IOUtils.copy(in,out);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">    public void test2() throws SQLException, IOException &#123;</span><br><span class="line">        Connection connection = JDBCUtils.getConnection();</span><br><span class="line">        String sql=&quot;SELECT * FROM t_binary WHERE name=?&quot;;</span><br><span class="line">        PreparedStatement pstat = connection.prepareStatement(sql);</span><br><span class="line">        pstat.setString(1,&quot;KenT - 唱给谁听.mp3&quot;);</span><br><span class="line">        ResultSet rs = pstat.executeQuery();</span><br><span class="line">        if (rs.next())&#123;</span><br><span class="line">            Blob blob = rs.getBlob(&quot;data&quot;);</span><br><span class="line">            InputStream in = blob.getBinaryStream();</span><br><span class="line">            FileOutputStream out = new FileOutputStream(&quot;D:/cgst.mp3&quot;);</span><br><span class="line">            IOUtils.copy(in,out);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
 <p>&emsp;&emsp;需要说的就是获取到ResultSet之后，获取到Blob，通过他的getBinaryStream()方法，转成输入流，拿到输入流之后，转成File即可</p>
-<h4 id="批处理"><a href="#批处理" class="headerlink" title="批处理"></a>批处理</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">    public void test6() throws SQLException &#123;</span><br><span class="line">        Connection connection = JDBCUtils.getConnection();</span><br><span class="line">        String sql = &quot;INSERT INTO t_user VALUE(?,?,?)&quot;;</span><br><span class="line">        PreparedStatement pstat = connection.prepareStatement(sql);</span><br><span class="line">        for (int i = 0; i &lt; 10000; i++) &#123;</span><br><span class="line">            pstat.setInt(1, i + 1);</span><br><span class="line">            pstat.setString(2, &quot;user&quot; + i);</span><br><span class="line">            pstat.setString(3, i % 2 == 0 ? &quot;男&quot; : &quot;女&quot;);</span><br><span class="line">            pstat.addBatch();</span><br><span class="line">        &#125;</span><br><span class="line">        long start = System.currentTimeMillis();</span><br><span class="line">        pstat.executeBatch();</span><br><span class="line">        long end = System.currentTimeMillis();</span><br><span class="line">        System.out.print(end - start);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="批处理"><a href="#批处理" class="headerlink" title="批处理"></a>批处理</h4><div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">    public void test6() throws SQLException &#123;</span><br><span class="line">        Connection connection = JDBCUtils.getConnection();</span><br><span class="line">        String sql = &quot;INSERT INTO t_user VALUE(?,?,?)&quot;;</span><br><span class="line">        PreparedStatement pstat = connection.prepareStatement(sql);</span><br><span class="line">        for (int i = 0; i &lt; 10000; i++) &#123;</span><br><span class="line">            pstat.setInt(1, i + 1);</span><br><span class="line">            pstat.setString(2, &quot;user&quot; + i);</span><br><span class="line">            pstat.setString(3, i % 2 == 0 ? &quot;男&quot; : &quot;女&quot;);</span><br><span class="line">            pstat.addBatch();</span><br><span class="line">        &#125;</span><br><span class="line">        long start = System.currentTimeMillis();</span><br><span class="line">        pstat.executeBatch();</span><br><span class="line">        long end = System.currentTimeMillis();</span><br><span class="line">        System.out.print(end - start);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
 <p>&emsp;&emsp;注意点：</p>
 <ol>
 <li>每添加一条数据，调用一遍pstat.addBatch();</li>
@@ -509,842 +159,169 @@
       
     </div>
     
+      <footer class="article-footer">
+        完
+      </footer>
     
-    
-	<div>
-  
-    <div>
-    
-        <div style="text-align:center;color: #ccc;font-size:14px;">---------------------END---------------------</div>
-    
-</div>
-  
-  <div>
-      
-        
-<div class="my_post_copyright">
-  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
-  
-  <!-- JS库 sweetalert 可修改路径 -->
-  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2018/10/11/JDBC的简单使用——MySQL/">JDBC的简单使用——MySQL</a></p>
-  <p><span>文章作者:</span><a href="/" title="访问 海晨忆 的个人博客">海晨忆</a></p>
-  <p><span>发布时间:</span>2018年10月11日 - 22:10</p>
-  <p><span>最后更新:</span>2018年10月11日 - 23:10</p>
-  <p><span>原始链接:</span><a href="/2018/10/11/JDBC的简单使用——MySQL/" title="JDBC的简单使用——MySQL">http://haichenyi.com/2018/10/11/JDBC的简单使用——MySQL/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://haichenyi.com/2018/10/11/JDBC的简单使用——MySQL/"  aria-label="复制成功！"></i></span>
-  </p>
-  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
-</div>
-<script> 
-    var clipboard = new Clipboard('.fa-clipboard');
-      $(".fa-clipboard").click(function(){
-      clipboard.on('success', function(){
-        swal({   
-          title: "",   
-          text: '复制成功',
-          icon: "success", 
-          showConfirmButton: true
-          });
-        });
-    });  
-</script>
-
-      
-</div>
-	</div>
-
-    
-
-    
-      <div>
-        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
-  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>Donate</span>
-  </button>
-  <div id="QR" style="display: none;">
-
-    
-      <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/uploads/wechat_reward.png" alt="海晨忆 WeChat Pay"/>
-        <p>WeChat Pay</p>
-      </div>
-    
-
-    
-      <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/uploads/alipay_reward.jpg" alt="海晨忆 Alipay"/>
-        <p>Alipay</p>
-      </div>
-    
-
-    
-
   </div>
-</div>
-
-      </div>
+  
     
-
+<nav id="article-nav">
+  <div class="article-nav-block">
     
-
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/10/11/MySQL数据库操作（五）——多表查询/" rel="next" title="MySQL数据库操作（五）——多表查询">
-                <i class="fa fa-chevron-left"></i> MySQL数据库操作（五）——多表查询
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/06/11/图片滤镜——GPUImage/" rel="prev" title="图片滤镜——GPUImage">
-                图片滤镜——GPUImage <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
+      <a href="/2019/06/11/图片滤镜——GPUImage/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption"></strong>
+        <div class="article-nav-title">
+          
+            图片滤镜——GPUImage
+          
         </div>
-      
-
-      
-      
-    </footer>
+      </a>
+    
   </div>
+  <div class="article-nav-block">
+    
+      <a href="/2018/10/11/MySQL数据库操作（五）——多表查询/" id="article-nav-older" class="article-nav-link-wrap">
+        <div class="article-nav-title">MySQL数据库操作（五）——多表查询</div>
+        <strong class="article-nav-caption"></strong>
+      </a>
+    
+  </div>
+</nav>
+
+    
   
   
+</article>
+</section>
+        <aside id="sidebar">
   
-  </article>
-
-
-
-    <div class="post-spread">
+    <div class="widget-box">
+  <div class="avatar-box avatar-item">
+    <img class="avatar" src="/uploads/artistic_image/head.jpg" title="头像来自网络"></img>
+    <h3 class="avatar-name">
       
-        <!-- JiaThis Button BEGIN -->
-<div class="jiathis_style">
-  <a class="jiathis_button_tsina"></a>
-  <a class="jiathis_button_tqq"></a>
-  <a class="jiathis_button_weixin"></a>
-  <a class="jiathis_button_cqq"></a>
-  <a class="jiathis_button_douban"></a>
-  <a class="jiathis_button_renren"></a>
-  <a class="jiathis_button_qzone"></a>
-  <a class="jiathis_button_kaixin001"></a>
-  <a class="jiathis_button_copy"></a>
-  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
-  <a class="jiathis_counter_style"></a>
+        海晨忆
+      
+    </h3>
+    <p class="avatar-slogan">
+      先谋生，再谋爱。人间值得，未来可期。
+    </p>
+  </div>
 </div>
-<script type="text/javascript" >
-  var jiathis_config={
-    hideMore:false
-  }
-</script>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
-<!-- JiaThis Button END -->
 
-      
+
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android-Socket/">Android -Socket</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-加密算法/">Android -加密算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-常用功能/">Android -常用功能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-框架/">Android -框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-源码解析/">Android -源码解析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-自定义view/">Android -自定义view</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-设计模式/">Android -设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-SpringBoot/">Java -SpringBoot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/kotlin/">kotlin</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库-JDBC/">数据库 -JDBC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库-MySQL/">数据库 -MySQL</a></li></ul>
     </div>
   </div>
 
 
-          </div>
-          
-
-
-          
-
-        </div>
-        
-          
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    
+
+  
+    
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
     </div>
   </div>
 
-  <aside id="sidebar" class="sidebar">
+  
     
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
+  <div class="widget-box">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/09/17/SpringBoot系列—事务管理（十三）/">SpringBoot系列—事务管理（十三）</a>
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
+        
+          <li>
+            <a href="/2019/09/11/SpringBoot系列—Spring-Data-JPA（十二）/">SpringBoot系列—Spring Data JPA（十二）</a>
           </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/artistic_image/head.jpg"
-               alt="海晨忆" />
-          <p class="site-author-name" itemprop="name">海晨忆</p>
-           
-              <p class="site-description motion-element" itemprop="description">我负责征战天下，你负责貌美如花！</p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">65</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">12</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-
-        </nav>
-
         
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
+          <li>
+            <a href="/2019/09/07/SpringBoot系列—MyBatis（十一）/">SpringBoot系列—MyBatis（十一）</a>
+          </li>
         
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://www.jianshu.com/u/6077ee440c37" target="_blank" title="简书">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                    
-                      简书
-                    
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://blog.csdn.net/qq_27634797" target="_blank" title="CSDN">
-                  
-                    <i class="fa fa-fw fa-github-square"></i>
-                  
-                    
-                      CSDN
-                    
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/haichenyi" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github-alt"></i>
-                  
-                    
-                      GitHub
-                    
-                </a>
-              </span>
-            
-          
-        </div>
-
+          <li>
+            <a href="/2019/09/05/SpringBoot系列—Druid（十）/">SpringBoot系列—Druid（十）</a>
+          </li>
         
+          <li>
+            <a href="/2019/09/05/SpringBoot系列—自定义拦截器（九）/">SpringBoot系列—自定义拦截器（九）</a>
+          </li>
         
-
-        
-        
-
-        
-
-
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#连接MySQL"><span class="nav-number">1.</span> <span class="nav-text">连接MySQL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改数据库"><span class="nav-number">2.</span> <span class="nav-text">修改数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询数据库"><span class="nav-number">3.</span> <span class="nav-text">查询数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PreparedStatement"><span class="nav-number">4.</span> <span class="nav-text">PreparedStatement</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#大数据存储"><span class="nav-number">5.</span> <span class="nav-text">大数据存储</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#批处理"><span class="nav-number">6.</span> <span class="nav-text">批处理</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
+      </ul>
     </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div class="copyright" >
-  
-  &copy;  2017 - 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">海晨忆</span>
-</div>
-
-
-<div class="powered-by">
-<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
-  本站访客数:<span id="busuanzi_value_site_uv"></span>
-</span>
-</div>
-
-<div class="theme-info">
-  <div class="powered-by"></div>
-  <span class="post-count">博客全站共94.1k字</span>
-</div>
-
-
-        
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
   </div>
 
   
+      <div class="widget-box">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      
+        <a class="hrf" style="display: block;" href="https://github.com/haichenyi" title target='_blank'
+        >Github</a>
+      
+        <a class="hrf" style="display: block;" href="https://www.jianshu.com/u/6077ee440c37" title target='_blank'
+        >简书</a>
+      
+        <a class="hrf" style="display: block;" href="https://blog.csdn.net/qq_27634797" title target='_blank'
+        >CSDN</a>
+      
+    </div>
+  </div>
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
+  
+</aside>
+      </div>
+      <footer id="footer">
+  <div class="foot-box footers global-width">
+    &copy;2017-2019 海晨忆 &nbsp;&nbsp;
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">阁下是第<span id="busuanzi_value_site_pv"></span>个访客</span>
+  </div>
+</footer>
+      <script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script>
+if (!window.jQuery) {
+var script = document.createElement('script');
+script.src = "/js/jquery-2.0.3.min.js";
+document.body.write(script);
+}
 </script>
 
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
 
 
 
-
-
-
-
-
+    </div>
+    <nav id="mobile-nav" class="mobile-nav-box">
+  <div class="mobile-nav-img mobile-nav-top"></div>
   
-
-
-
-
+    <a href="/" class="mobile-nav-link">首页</a>
   
+    <a href="/archives" class="mobile-nav-link">归档</a>
   
-
-
-
-
-
-
-
-
-
+    <a href="/about" class="mobile-nav-link">简历</a>
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-  
-  <script type="text/javascript" src="/lib/three/three.min.js"></script>
-
-  
-  <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-  
-
-  <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    }
-
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
-
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
-
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('1');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  <!-- 页面点击小红心 -->
-<script type="text/javascript" src="/js/src/love.js"></script>
-
-<div id="hexo-helper-live2d">
-  <canvas id="live2dcanvas" width="150" height="300"></canvas>
-</div>
-<style>
-  #live2dcanvas{
-    position: fixed;
-    width: 150px;
-    height: 300px;
-    opacity:0.7;
-    right: 0px;
-    z-index: 999;
-    pointer-events: none;
-    bottom: -20px;
-  }
-</style>
-<script type="text/javascript" src="/live2d/device.min.js"></script>
-<script type="text/javascript">
-const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
-(function(){
-  if((typeof(device) != 'undefined') && (device.mobile())){
-    var trElement = document.getElementById('hexo-helper-live2d');
-    trElement.parentNode.removeChild(trElement);
-    return;
-  }else
-    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
-  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/wanko.model.json", 0.5);});
-})();
-</script>
-
-
-   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
-   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
-   <script type="text/javascript" src="/js/src/fireworks.js"></script>
-
+  <div class="mobile-nav-img  mobile-nav-bottom"></div>
+</nav>    
+  </div>
 </body>
 </html>

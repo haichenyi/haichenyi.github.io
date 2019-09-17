@@ -1,116 +1,16 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="zh-Hans">
+<html>
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
-<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet"><style>
-    .pace .pace-progress {
-        background: #1E92FB; /*进度条颜色*/
-        height: 3px;
-    }
-    .pace .pace-progress-inner {
-         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
-    }
-    .pace .pace-activity {
-        border-top-color: #1E92FB;    /*上边框颜色*/
-        border-left-color: #1E92FB;    /*左边框颜色*/
-    }
-</style>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
+  <meta charset="utf-8">
   
 
   
-    
-    
+  <title>Android图片压缩——Luban鲁班压缩 | 海晨忆的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-
   
-
   
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="海晨忆的博客" type="application/atom+xml" />
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
-
-
-
-
-
-
-<meta name="description" content="&amp;emsp;&amp;emsp;Android让人头疼的OOM，造成OOM的原因之一就是图片，现在的手机像素越来越高，随便一张图片都是好几M，甚至几十M，这样的照片加载到app，可想而知，随便加载几张图片，手机内存就不够用了，自然而然就造成了OOM，所以，Android的图片压缩异常重要。这里，我推荐一款开源框架——Luban">
+  <meta name="description" content="&amp;emsp;&amp;emsp;Android让人头疼的OOM，造成OOM的原因之一就是图片，现在的手机像素越来越高，随便一张图片都是好几M，甚至几十M，这样的照片加载到app，可想而知，随便加载几张图片，手机内存就不够用了，自然而然就造成了OOM，所以，Android的图片压缩异常重要。这里，我推荐一款开源框架——Luban">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android图片压缩——Luban鲁班压缩">
 <meta property="og:url" content="http://haichenyi.com/2018/03/02/Android图片压缩——Luban鲁班压缩/index.html">
@@ -121,336 +21,86 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android图片压缩——Luban鲁班压缩">
 <meta name="twitter:description" content="&amp;emsp;&amp;emsp;Android让人头疼的OOM，造成OOM的原因之一就是图片，现在的手机像素越来越高，随便一张图片都是好几M，甚至几十M，这样的照片加载到app，可想而知，随便加载几张图片，手机内存就不够用了，自然而然就造成了OOM，所以，Android的图片压缩异常重要。这里，我推荐一款开源框架——Luban">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://haichenyi.com/2018/03/02/Android图片压缩——Luban鲁班压缩/"/>
-
-
-
-
-
-  <title>Android图片压缩——Luban鲁班压缩 | 海晨忆的博客</title>
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <link rel="alternate" href="/atom.xml" title="海晨忆的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/uploads/artistic_image/head.jpg">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/highlight.css">
+  <script>
+  let antiquityStorage = window.sessionStorage.getItem('antiquitySessionStorage');
+  if (antiquityStorage == '' || antiquityStorage == null) {
+    var antiquityLoader = '<div id="loaderbox"><div class="loader"><div class="load-roll"><div class="load-top"></div><div class="load-right"></div><div class="load-bottom"></div></div></div></div>';
+    document.write(antiquityLoader);
+    document.body.style.overflow = 'hidden'
+  }
+  </script>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-  
+<body>
+  <div id="fullpage" class="mobile-nav-right">
     
-  
-
-  <div class="container sidebar-position-left page-post-detail ">
-    <div class="headband"></div>
-		<a href="https://github.com/haichenyi"><img style="position: absolute; top: 0; right: 0; border: 0;" 
-		src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" 
-		alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+      <div id="wrapper" style="background-image: url(/uploads/artistic_image/bg.jpg)" title="背景图片来自网络">
     
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">海晨忆的博客</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
+    
+      <header id="header">
+  <div id="nav-toggle" class="nav-toggle"></div>
+  <div class="head-box global-width">
+    <nav class="nav-box nav-right">
       
-        <p class="site-subtitle">技术源于生活！</p>
+        <a class="nav-item" href="/" title
+        
+        >首页</a>
       
+        <a class="nav-item" href="/archives" title
+        
+        >归档</a>
+      
+        <a class="nav-item" href="/about" title
+        
+        >简历</a>
+      
+    </nav>
   </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-<nav class="site-nav">
+</header>
+      <div id="middlecontent" title class="global-width sidebar-left">
+        <section id="main"><article id="post-Android图片压缩——Luban鲁班压缩" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 class="article-title" itemprop="name">
+      Android图片压缩——Luban鲁班压缩
+    </h1>
   
 
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
-            
-            搜索
-          </a>
-        </li>
-      
-    </ul>
-  
-
-  
-    <div class="site-search">
-      
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
-    </div>
-  </div>
-  <div id="local-search-result"></div>
-</div>
-
-
-
-    </div>
-  
-</nav>
-
-
-
- </div>
     </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
+  
+  <div class="article-meta">
+    <a href="/2018/03/02/Android图片压缩——Luban鲁班压缩/" class="article-date">
+  <time datetime="2018-03-02T12:14:04.000Z" itemprop="datePublished">2018-03-02</time>
+</a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android-源码解析/">Android -源码解析</a>
+  </div>
 
+    
+  </div>
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haichenyi.com/2018/03/02/Android图片压缩——Luban鲁班压缩/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="海晨忆">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/artistic_image/head.jpg">
+    <span id="busuanzi_container_page_pv">
+      本文总阅读量<span id="busuanzi_value_page_pv"></span>次
     </span>
+  
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="海晨忆的博客">
-    </span>
-
+  <div class="article-inner">
     
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">Android图片压缩——Luban鲁班压缩</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-02T20:14:04+08:00">
-                2018-03-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android-源码解析/" itemprop="url" rel="index">
-                    <span itemprop="name">Android -源码解析</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  3,245
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  14
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
+    <div class="article-content article-content-cloud doorframe mac" itemprop="articleBody">
       
         <p>&emsp;&emsp;Android让人头疼的OOM，造成OOM的原因之一就是图片，现在的手机像素越来越高，随便一张图片都是好几M，甚至几十M，这样的照片加载到app，可想而知，随便加载几张图片，手机内存就不够用了，自然而然就造成了OOM，所以，Android的图片压缩异常重要。这里，我推荐一款开源框架——<a href="https://github.com/Curzibn/Luban" target="_blank" rel="noopener">Luban</a></p>
 <a id="more"></a>
@@ -498,33 +148,33 @@
 </tbody>
 </table>
 <p>从这里就能看出，效果还是非常不错的</p>
-<h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">implementation &apos;top.zibin:Luban:1.1.3&apos;</span><br></pre></td></tr></table></figure>
+<h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">implementation &apos;top.zibin:Luban:1.1.3&apos;</span><br></pre></td></tr></table></figure></div>
 <h2 id="调用方式"><a href="#调用方式" class="headerlink" title="调用方式"></a>调用方式</h2><h3 id="异步调用"><a href="#异步调用" class="headerlink" title="异步调用"></a>异步调用</h3><p>&emsp;&emsp;Luban内部采用IO线程进行图片压缩，外部调用只需设置好结果监听即可：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Luban.with(this)</span><br><span class="line">        .load(photos)                                   // 传人要压缩的图片列表</span><br><span class="line">        .ignoreBy(100)                                  // 忽略不压缩图片的大小</span><br><span class="line">        .setTargetDir(getPath())                        // 设置压缩后文件存储位置</span><br><span class="line">        .setCompressListener(new OnCompressListener() &#123; //设置回调</span><br><span class="line">          @Override</span><br><span class="line">          public void onStart() &#123;</span><br><span class="line">            // TODO 压缩开始前调用，可以在方法内启动 loading UI</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          @Override</span><br><span class="line">          public void onSuccess(File file) &#123;</span><br><span class="line">            // TODO 压缩成功后调用，返回压缩后的图片文件</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          @Override</span><br><span class="line">          public void onError(Throwable e) &#123;</span><br><span class="line">            // TODO 当压缩过程出现问题时调用</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;).launch();    //启动压缩</span><br></pre></td></tr></table></figure>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Luban.with(this)</span><br><span class="line">        .load(photos)                                   // 传人要压缩的图片列表</span><br><span class="line">        .ignoreBy(100)                                  // 忽略不压缩图片的大小</span><br><span class="line">        .setTargetDir(getPath())                        // 设置压缩后文件存储位置</span><br><span class="line">        .setCompressListener(new OnCompressListener() &#123; //设置回调</span><br><span class="line">          @Override</span><br><span class="line">          public void onStart() &#123;</span><br><span class="line">            // TODO 压缩开始前调用，可以在方法内启动 loading UI</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          @Override</span><br><span class="line">          public void onSuccess(File file) &#123;</span><br><span class="line">            // TODO 压缩成功后调用，返回压缩后的图片文件</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          @Override</span><br><span class="line">          public void onError(Throwable e) &#123;</span><br><span class="line">            // TODO 当压缩过程出现问题时调用</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;).launch();    //启动压缩</span><br></pre></td></tr></table></figure></div>
 <h3 id="同步调用"><a href="#同步调用" class="headerlink" title="同步调用"></a>同步调用</h3><p>&emsp;&emsp;同步方法请尽量避免在主线程调用以免阻塞主线程，下面以rxJava调用为例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Flowable.just(photos)</span><br><span class="line">    .observeOn(Schedulers.io())</span><br><span class="line">    .map(new Function&lt;List&lt;String&gt;, List&lt;File&gt;&gt;() &#123;</span><br><span class="line">      @Override public List&lt;File&gt; apply(@NonNull List&lt;String&gt; list) throws Exception &#123;</span><br><span class="line">        // 同步方法直接返回压缩后的文件</span><br><span class="line">        return Luban.with(MainActivity.this).load(list).get();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">    .subscribe();</span><br></pre></td></tr></table></figure>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Flowable.just(photos)</span><br><span class="line">    .observeOn(Schedulers.io())</span><br><span class="line">    .map(new Function&lt;List&lt;String&gt;, List&lt;File&gt;&gt;() &#123;</span><br><span class="line">      @Override public List&lt;File&gt; apply(@NonNull List&lt;String&gt; list) throws Exception &#123;</span><br><span class="line">        // 同步方法直接返回压缩后的文件</span><br><span class="line">        return Luban.with(MainActivity.this).load(list).get();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">    .subscribe();</span><br></pre></td></tr></table></figure></div>
 <p>&emsp;&emsp;以上，均是它github上面说明都有的，我这里就是copy过来了而已。重点要说的是，他是怎么实现的，源码分析。</p>
 <h2 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h2><h3 id="第一步：Luban-with"><a href="#第一步：Luban-with" class="headerlink" title="第一步：Luban.with()"></a>第一步：<strong><em>Luban.with()</em></strong></h3><p>点击去看到源码为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public static Builder with(Context context) &#123;</span><br><span class="line">    return new Builder(context);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public static Builder with(Context context) &#123;</span><br><span class="line">    return new Builder(context);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></div>
 <p>&emsp;&emsp;这里是一个静态的with方法，返回值是Builder，一般对设计模式比较熟悉的人，看到这里就应该懂了，他这里使用的是建造者模式。什么是建造者模式呢？建造者模式和工厂模式很相似，比工厂模式多了一个控制类，其实说白了，就是在创建对象的时候，减少初始化数据的代码，怎么理解呢？我们接着往下看。我们点到Builder里面看到如下代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public static class Builder &#123;</span><br><span class="line">    private Context context;//上下文对象</span><br><span class="line">    private String mTargetDir;//压缩后图片存放位置</span><br><span class="line">    private List&lt;String&gt; mPaths;//多个文件的list</span><br><span class="line">    private int mLeastCompressSize = 100;//忽略100kb以下的图片，不压缩</span><br><span class="line">    private OnCompressListener mCompressListener;//回调方法</span><br><span class="line"></span><br><span class="line">    Builder(Context context) &#123;</span><br><span class="line">      this.context = context;</span><br><span class="line">      this.mPaths = new ArrayList&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    private Luban build() &#123;</span><br><span class="line">      return new Luban(this);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public static class Builder &#123;</span><br><span class="line">    private Context context;//上下文对象</span><br><span class="line">    private String mTargetDir;//压缩后图片存放位置</span><br><span class="line">    private List&lt;String&gt; mPaths;//多个文件的list</span><br><span class="line">    private int mLeastCompressSize = 100;//忽略100kb以下的图片，不压缩</span><br><span class="line">    private OnCompressListener mCompressListener;//回调方法</span><br><span class="line"></span><br><span class="line">    Builder(Context context) &#123;</span><br><span class="line">      this.context = context;</span><br><span class="line">      this.mPaths = new ArrayList&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    private Luban build() &#123;</span><br><span class="line">      return new Luban(this);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 <p>&emsp;&emsp;我们看到了是一个静态的内部类Builder，我们这里看到了有5个变量，上面我们说道了，为了减少初始化数据的代码，就拿这个举例子说明，我如果有4个地方调用这个鲁班压缩，其中这4个地方，mTargetDir，mLeastCompressSize这2个变量的值都是一样的，其他3个不一样，按照我们以往的写法都得一个一个的赋值，要写4遍，那如果使用建造者模式了，这里就只用写一遍赋值，这2个变量。其他3个不一样，就得写多遍。当然，这是我个人对于建造者模式的理解。</p>
 <p>&emsp;&emsp;我上面多粘贴了一个<strong><em>build()</em></strong>方法，为什么会多粘贴一个呢？就是为了更好的说明建造者模式，我们可以看到他这个方法，返回的是Luban对象，调用的是需要传Builder的构造方法，我们点进去看</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">private Luban(Builder builder) &#123;</span><br><span class="line">    this.mPaths = builder.mPaths;</span><br><span class="line">    this.mTargetDir = builder.mTargetDir;</span><br><span class="line">    this.mCompressListener = builder.mCompressListener;</span><br><span class="line">    this.mLeastCompressSize = builder.mLeastCompressSize;</span><br><span class="line">    mHandler = new Handler(Looper.getMainLooper(), this);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">private Luban(Builder builder) &#123;</span><br><span class="line">    this.mPaths = builder.mPaths;</span><br><span class="line">    this.mTargetDir = builder.mTargetDir;</span><br><span class="line">    this.mCompressListener = builder.mCompressListener;</span><br><span class="line">    this.mLeastCompressSize = builder.mLeastCompressSize;</span><br><span class="line">    mHandler = new Handler(Looper.getMainLooper(), this);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></div>
 <p>&emsp;&emsp;他这里就是赋值，他这个值就是Builder里面默认的，我们不论在哪里调用这个方法，都不用去一个一个赋值，因为，他已经处理好了。</p>
 <h3 id="第二步：load"><a href="#第二步：load" class="headerlink" title="第二步：load()"></a>第二步：<strong><em>load()</em></strong></h3><p>点击去看到源码为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public Builder load(File file) &#123;</span><br><span class="line">      this.mPaths.add(file.getAbsolutePath());</span><br><span class="line">      return this;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Builder load(String string) &#123;</span><br><span class="line">      this.mPaths.add(string);</span><br><span class="line">      return this;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Builder load(List&lt;String&gt; list) &#123;</span><br><span class="line">      this.mPaths.addAll(list);</span><br><span class="line">      return this;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public Builder load(File file) &#123;</span><br><span class="line">      this.mPaths.add(file.getAbsolutePath());</span><br><span class="line">      return this;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Builder load(String string) &#123;</span><br><span class="line">      this.mPaths.add(string);</span><br><span class="line">      return this;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Builder load(List&lt;String&gt; list) &#123;</span><br><span class="line">      this.mPaths.addAll(list);</span><br><span class="line">      return this;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
 <p>&emsp;&emsp;这里，我们会看到三个重载方法，一个传文件，他会获取到文件的绝对路径存进去，实际上还是存的字符串，中间那个存的是字符串，最后面那个传String类型的list，它调用的addAll方法，最后还是存的String在mPaths里面。我们点击mPaths，他就是一个String类型的list，在Builder的构造方法里面初始化的。他就是存放你的图片路径的集合</p>
 <h3 id="第三步：ignoreBy-和-setTargetDir"><a href="#第三步：ignoreBy-和-setTargetDir" class="headerlink" title="第三步：ignoreBy() 和 setTargetDir()"></a>第三步：<strong><em>ignoreBy()</em></strong> 和 <strong><em>setTargetDir()</em></strong></h3><p>点击去看到源码为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * do not compress when the origin image file size less than one value</span><br><span class="line"> *</span><br><span class="line"> * @param size</span><br><span class="line"> *     the value of file size, unit KB, default 100K</span><br><span class="line"> */</span><br><span class="line">public Builder ignoreBy(int size) &#123;</span><br><span class="line">  this.mLeastCompressSize = size;</span><br><span class="line">  return this;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public Builder setTargetDir(String targetDir) &#123;</span><br><span class="line">  this.mTargetDir = targetDir;</span><br><span class="line">  return this;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * do not compress when the origin image file size less than one value</span><br><span class="line"> *</span><br><span class="line"> * @param size</span><br><span class="line"> *     the value of file size, unit KB, default 100K</span><br><span class="line"> */</span><br><span class="line">public Builder ignoreBy(int size) &#123;</span><br><span class="line">  this.mLeastCompressSize = size;</span><br><span class="line">  return this;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public Builder setTargetDir(String targetDir) &#123;</span><br><span class="line">  this.mTargetDir = targetDir;</span><br><span class="line">  return this;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 <p>&emsp;&emsp;这两个我为啥要放在一起讲呢？因为这两个没啥好说的，都是设置值，跟我们平时写的set方法的作用是一样的。没啥好说的</p>
 <h3 id="第四步：setCompressListener-OnCompressListener-listener"><a href="#第四步：setCompressListener-OnCompressListener-listener" class="headerlink" title="第四步：setCompressListener(OnCompressListener listener)"></a>第四步：<strong><em>setCompressListener(OnCompressListener listener)</em></strong></h3><p>点击去看到源码为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public Builder setCompressListener(OnCompressListener listener) &#123;</span><br><span class="line">      this.mCompressListener = listener;</span><br><span class="line">      return this;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public Builder setCompressListener(OnCompressListener listener) &#123;</span><br><span class="line">      this.mCompressListener = listener;</span><br><span class="line">      return this;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
 <p>&emsp;&emsp;这个就是我们平时写自定义view的时候，要写回调方法，是一样的道理，他这里就是压缩方法的回调</p>
 <h3 id="第五步：launch"><a href="#第五步：launch" class="headerlink" title="第五步：launch()"></a>第五步：<strong><em>launch()</em></strong></h3><p>点击去看到源码为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * begin compress image with asynchronous</span><br><span class="line"> */</span><br><span class="line">public void launch() &#123;</span><br><span class="line">  build().launch(context);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * begin compress image with asynchronous</span><br><span class="line"> */</span><br><span class="line">public void launch() &#123;</span><br><span class="line">  build().launch(context);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 <p>&emsp;&emsp;这里，我们看到他先调用了build(),我们前面讲了，他这个方法就是赋值，然后调用了launch(context)方法，我们点进去看：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">   * start asynchronous compress thread</span><br><span class="line">   */</span><br><span class="line">  @UiThread private void launch(final Context context) &#123;</span><br><span class="line">    if (mPaths == null || mPaths.size() == 0 &amp;&amp; mCompressListener != null) &#123;</span><br><span class="line">      mCompressListener.onError(new NullPointerException(&quot;image file cannot be null&quot;));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Iterator&lt;String&gt; iterator = mPaths.iterator();</span><br><span class="line">    while (iterator.hasNext()) &#123;</span><br><span class="line">      final String path = iterator.next();</span><br><span class="line">      if (Checker.isImage(path)) &#123;</span><br><span class="line">        AsyncTask.SERIAL_EXECUTOR.execute(new Runnable() &#123;</span><br><span class="line">          @Override public void run() &#123;</span><br><span class="line">            try &#123;</span><br><span class="line">              mHandler.sendMessage(mHandler.obtainMessage(MSG_COMPRESS_START));</span><br><span class="line"></span><br><span class="line">              File result = Checker.isNeedCompress(mLeastCompressSize, path) ?</span><br><span class="line">                  new Engine(path, getImageCacheFile(context, Checker.checkSuffix(path))).compress() :</span><br><span class="line">                  new File(path);</span><br><span class="line"></span><br><span class="line">              mHandler.sendMessage(mHandler.obtainMessage(MSG_COMPRESS_SUCCESS, result));</span><br><span class="line">            &#125; catch (IOException e) &#123;</span><br><span class="line">              mHandler.sendMessage(mHandler.obtainMessage(MSG_COMPRESS_ERROR, e));</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        Log.e(TAG, &quot;can not read the path : &quot; + path);</span><br><span class="line">      &#125;</span><br><span class="line">      iterator.remove();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">   * start asynchronous compress thread</span><br><span class="line">   */</span><br><span class="line">  @UiThread private void launch(final Context context) &#123;</span><br><span class="line">    if (mPaths == null || mPaths.size() == 0 &amp;&amp; mCompressListener != null) &#123;</span><br><span class="line">      mCompressListener.onError(new NullPointerException(&quot;image file cannot be null&quot;));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Iterator&lt;String&gt; iterator = mPaths.iterator();</span><br><span class="line">    while (iterator.hasNext()) &#123;</span><br><span class="line">      final String path = iterator.next();</span><br><span class="line">      if (Checker.isImage(path)) &#123;</span><br><span class="line">        AsyncTask.SERIAL_EXECUTOR.execute(new Runnable() &#123;</span><br><span class="line">          @Override public void run() &#123;</span><br><span class="line">            try &#123;</span><br><span class="line">              mHandler.sendMessage(mHandler.obtainMessage(MSG_COMPRESS_START));</span><br><span class="line"></span><br><span class="line">              File result = Checker.isNeedCompress(mLeastCompressSize, path) ?</span><br><span class="line">                  new Engine(path, getImageCacheFile(context, Checker.checkSuffix(path))).compress() :</span><br><span class="line">                  new File(path);</span><br><span class="line"></span><br><span class="line">              mHandler.sendMessage(mHandler.obtainMessage(MSG_COMPRESS_SUCCESS, result));</span><br><span class="line">            &#125; catch (IOException e) &#123;</span><br><span class="line">              mHandler.sendMessage(mHandler.obtainMessage(MSG_COMPRESS_ERROR, e));</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        Log.e(TAG, &quot;can not read the path : &quot; + path);</span><br><span class="line">      &#125;</span><br><span class="line">      iterator.remove();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></div>
 <p>&emsp;&emsp;这个方法就是最后，执行压缩的方法，前面都是初始化，我们可以看到，他这个方法是在主线程调用的，所以，我们不用考虑切换线程的问题，直接可以操作UI变化。我一步一步的讲：</p>
 <ol>
 <li>首先，他这个是用的迭代器，循环遍历，遍历一个就移除一个</li>
@@ -532,22 +182,22 @@
 <li>具体压缩代码。最重要的就是第三点，我把第三点，提到下面讲</li>
 </ol>
 <p>接着上面的第三点，具体压缩</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">File result = Checker.isNeedCompress(mLeastCompressSize, path) ?</span><br><span class="line">                  new Engine(path, getImageCacheFile(context, Checker.checkSuffix(path))).compress() :</span><br><span class="line">                  new File(path);</span><br></pre></td></tr></table></figure>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">File result = Checker.isNeedCompress(mLeastCompressSize, path) ?</span><br><span class="line">                  new Engine(path, getImageCacheFile(context, Checker.checkSuffix(path))).compress() :</span><br><span class="line">                  new File(path);</span><br></pre></td></tr></table></figure></div>
 <p>首先，他整体是一个三目运算符，我们点isNeedCompress()方法看一下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">static boolean isNeedCompress(int leastCompressSize, String path) &#123;</span><br><span class="line">    if (leastCompressSize &gt; 0) &#123;</span><br><span class="line">      File source = new File(path);</span><br><span class="line">      if (!source.exists()) &#123;</span><br><span class="line">        return false;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      if (source.length() &lt;= (leastCompressSize &lt;&lt; 10)) &#123;</span><br><span class="line">        return false;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return true;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">static boolean isNeedCompress(int leastCompressSize, String path) &#123;</span><br><span class="line">    if (leastCompressSize &gt; 0) &#123;</span><br><span class="line">      File source = new File(path);</span><br><span class="line">      if (!source.exists()) &#123;</span><br><span class="line">        return false;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      if (source.length() &lt;= (leastCompressSize &lt;&lt; 10)) &#123;</span><br><span class="line">        return false;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return true;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></div>
 <p>&emsp;&emsp;这个方法就是用来判断，你给定路径的图片大小和你规定的忽略文件大小比较，他这里先做了你给定的最小值判断，要大于0，不大于0就返回ture。然后做了文件是否存在的判断，如果文件不存在，就返回fals。最后，给定文件大小是不是小于等于最小值左移10位的值，小于就返回false。</p>
 <p>然后，如果返回的是true，就去压缩，如果，返回的是false，就直接返回file文件。压缩的方法点进去：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Engine(String srcImg, File tagImg) throws IOException &#123;</span><br><span class="line">    if (Checker.isJPG(srcImg)) &#123;</span><br><span class="line">      this.srcExif = new ExifInterface(srcImg);</span><br><span class="line">    &#125;</span><br><span class="line">    this.tagImg = tagImg;</span><br><span class="line">    this.srcImg = srcImg;</span><br><span class="line"></span><br><span class="line">    BitmapFactory.Options options = new BitmapFactory.Options();</span><br><span class="line">    options.inJustDecodeBounds = true;</span><br><span class="line">    options.inSampleSize = 1;</span><br><span class="line"></span><br><span class="line">    BitmapFactory.decodeFile(srcImg, options);</span><br><span class="line">    this.srcWidth = options.outWidth;</span><br><span class="line">    this.srcHeight = options.outHeight;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Engine(String srcImg, File tagImg) throws IOException &#123;</span><br><span class="line">    if (Checker.isJPG(srcImg)) &#123;</span><br><span class="line">      this.srcExif = new ExifInterface(srcImg);</span><br><span class="line">    &#125;</span><br><span class="line">    this.tagImg = tagImg;</span><br><span class="line">    this.srcImg = srcImg;</span><br><span class="line"></span><br><span class="line">    BitmapFactory.Options options = new BitmapFactory.Options();</span><br><span class="line">    options.inJustDecodeBounds = true;</span><br><span class="line">    options.inSampleSize = 1;</span><br><span class="line"></span><br><span class="line">    BitmapFactory.decodeFile(srcImg, options);</span><br><span class="line">    this.srcWidth = options.outWidth;</span><br><span class="line">    this.srcHeight = options.outHeight;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></div>
 <p>&emsp;&emsp;这就又要说道另一个类了Engine类，它的类注释就是：用于操作，开始压缩，管理活动，缓存资源的类。他这里传原文件，也就是你需要压缩的图片，还有一个就是目标文件，也就是你压缩之后，要保存的文件。</p>
 <p>&emsp;&emsp;我们先看第二个参数是什么怎么传的，有的人看不懂</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">   * Returns a mFile with a cache audio name in the private cache directory.</span><br><span class="line">   *</span><br><span class="line">   * @param context</span><br><span class="line">   *     A context.</span><br><span class="line">   */</span><br><span class="line">  private File getImageCacheFile(Context context, String suffix) &#123;</span><br><span class="line">    if (TextUtils.isEmpty(mTargetDir)) &#123;</span><br><span class="line">      mTargetDir = getImageCacheDir(context).getAbsolutePath();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    String cacheBuilder = mTargetDir + &quot;/&quot; +</span><br><span class="line">        System.currentTimeMillis() +</span><br><span class="line">        (int) (Math.random() * 1000) +</span><br><span class="line">        (TextUtils.isEmpty(suffix) ? &quot;.jpg&quot; : suffix);</span><br><span class="line"></span><br><span class="line">    return new File(cacheBuilder);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">   * Returns a mFile with a cache audio name in the private cache directory.</span><br><span class="line">   *</span><br><span class="line">   * @param context</span><br><span class="line">   *     A context.</span><br><span class="line">   */</span><br><span class="line">  private File getImageCacheFile(Context context, String suffix) &#123;</span><br><span class="line">    if (TextUtils.isEmpty(mTargetDir)) &#123;</span><br><span class="line">      mTargetDir = getImageCacheDir(context).getAbsolutePath();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    String cacheBuilder = mTargetDir + &quot;/&quot; +</span><br><span class="line">        System.currentTimeMillis() +</span><br><span class="line">        (int) (Math.random() * 1000) +</span><br><span class="line">        (TextUtils.isEmpty(suffix) ? &quot;.jpg&quot; : suffix);</span><br><span class="line"></span><br><span class="line">    return new File(cacheBuilder);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></div>
 <p>&emsp;&emsp;他这里就是新建一个文件，设置路径，设置名称，然后返回文件</p>
 <p>&emsp;&emsp;再掉回去看Engine的构造方法，我们这里获取到了源文件和目标文件，我们只用把压缩后的流存到目标文件就行了。我之前写过一篇关于图片压缩的博客。它这里的option就是设置压缩的参数，不懂的可以看一下我之前的博客，或者用google百度一下就知道了。具体压缩就是用的bitmap的工厂类，调用的decodeFile方法。没错就是这一句 <strong><em>BitmapFactory.decodeFile(srcImg, options);</em></strong></p>
 <p>最后，辣么一切都准备就绪了，怎么样开始压缩呢？<strong><em>compress()</em></strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">File compress() throws IOException &#123;</span><br><span class="line">    BitmapFactory.Options options = new BitmapFactory.Options();</span><br><span class="line">    options.inSampleSize = computeSize();</span><br><span class="line"></span><br><span class="line">    Bitmap tagBitmap = BitmapFactory.decodeFile(srcImg, options);</span><br><span class="line">    ByteArrayOutputStream stream = new ByteArrayOutputStream();</span><br><span class="line"></span><br><span class="line">    tagBitmap = rotatingImage(tagBitmap);</span><br><span class="line">    tagBitmap.compress(Bitmap.CompressFormat.JPEG, 60, stream);</span><br><span class="line">    tagBitmap.recycle();</span><br><span class="line"></span><br><span class="line">    FileOutputStream fos = new FileOutputStream(tagImg);</span><br><span class="line">    fos.write(stream.toByteArray());</span><br><span class="line">    fos.flush();</span><br><span class="line">    fos.close();</span><br><span class="line">    stream.close();</span><br><span class="line"></span><br><span class="line">    return tagImg;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">File compress() throws IOException &#123;</span><br><span class="line">    BitmapFactory.Options options = new BitmapFactory.Options();</span><br><span class="line">    options.inSampleSize = computeSize();</span><br><span class="line"></span><br><span class="line">    Bitmap tagBitmap = BitmapFactory.decodeFile(srcImg, options);</span><br><span class="line">    ByteArrayOutputStream stream = new ByteArrayOutputStream();</span><br><span class="line"></span><br><span class="line">    tagBitmap = rotatingImage(tagBitmap);</span><br><span class="line">    tagBitmap.compress(Bitmap.CompressFormat.JPEG, 60, stream);</span><br><span class="line">    tagBitmap.recycle();</span><br><span class="line"></span><br><span class="line">    FileOutputStream fos = new FileOutputStream(tagImg);</span><br><span class="line">    fos.write(stream.toByteArray());</span><br><span class="line">    fos.flush();</span><br><span class="line">    fos.close();</span><br><span class="line">    stream.close();</span><br><span class="line"></span><br><span class="line">    return tagImg;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></div>
 <p>&emsp;&emsp;这里面就是常规的压缩，存储的逻辑了，最最重要的压缩算法呢？就是这里的<strong><em>computeSize()</em></strong>方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">private int computeSize() &#123;</span><br><span class="line">    srcWidth = srcWidth % 2 == 1 ? srcWidth + 1 : srcWidth;</span><br><span class="line">    srcHeight = srcHeight % 2 == 1 ? srcHeight + 1 : srcHeight;</span><br><span class="line"></span><br><span class="line">    int longSide = Math.max(srcWidth, srcHeight);</span><br><span class="line">    int shortSide = Math.min(srcWidth, srcHeight);</span><br><span class="line"></span><br><span class="line">    float scale = ((float) shortSide / longSide);</span><br><span class="line">    if (scale &lt;= 1 &amp;&amp; scale &gt; 0.5625) &#123;</span><br><span class="line">      if (longSide &lt; 1664) &#123;</span><br><span class="line">        return 1;</span><br><span class="line">      &#125; else if (longSide &gt;= 1664 &amp;&amp; longSide &lt; 4990) &#123;</span><br><span class="line">        return 2;</span><br><span class="line">      &#125; else if (longSide &gt; 4990 &amp;&amp; longSide &lt; 10240) &#123;</span><br><span class="line">        return 4;</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        return longSide / 1280 == 0 ? 1 : longSide / 1280;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; else if (scale &lt;= 0.5625 &amp;&amp; scale &gt; 0.5) &#123;</span><br><span class="line">      return longSide / 1280 == 0 ? 1 : longSide / 1280;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      return (int) Math.ceil(longSide / (1280.0 / scale));</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">private Bitmap rotatingImage(Bitmap bitmap) &#123;</span><br><span class="line">    if (srcExif == null) return bitmap;</span><br><span class="line"></span><br><span class="line">    Matrix matrix = new Matrix();</span><br><span class="line">    int angle = 0;</span><br><span class="line">    int orientation = srcExif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);</span><br><span class="line">    switch (orientation) &#123;</span><br><span class="line">      case ExifInterface.ORIENTATION_ROTATE_90:</span><br><span class="line">        angle = 90;</span><br><span class="line">        break;</span><br><span class="line">      case ExifInterface.ORIENTATION_ROTATE_180:</span><br><span class="line">        angle = 180;</span><br><span class="line">        break;</span><br><span class="line">      case ExifInterface.ORIENTATION_ROTATE_270:</span><br><span class="line">        angle = 270;</span><br><span class="line">        break;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    matrix.postRotate(angle);</span><br><span class="line"></span><br><span class="line">    return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">private int computeSize() &#123;</span><br><span class="line">    srcWidth = srcWidth % 2 == 1 ? srcWidth + 1 : srcWidth;</span><br><span class="line">    srcHeight = srcHeight % 2 == 1 ? srcHeight + 1 : srcHeight;</span><br><span class="line"></span><br><span class="line">    int longSide = Math.max(srcWidth, srcHeight);</span><br><span class="line">    int shortSide = Math.min(srcWidth, srcHeight);</span><br><span class="line"></span><br><span class="line">    float scale = ((float) shortSide / longSide);</span><br><span class="line">    if (scale &lt;= 1 &amp;&amp; scale &gt; 0.5625) &#123;</span><br><span class="line">      if (longSide &lt; 1664) &#123;</span><br><span class="line">        return 1;</span><br><span class="line">      &#125; else if (longSide &gt;= 1664 &amp;&amp; longSide &lt; 4990) &#123;</span><br><span class="line">        return 2;</span><br><span class="line">      &#125; else if (longSide &gt; 4990 &amp;&amp; longSide &lt; 10240) &#123;</span><br><span class="line">        return 4;</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        return longSide / 1280 == 0 ? 1 : longSide / 1280;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; else if (scale &lt;= 0.5625 &amp;&amp; scale &gt; 0.5) &#123;</span><br><span class="line">      return longSide / 1280 == 0 ? 1 : longSide / 1280;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      return (int) Math.ceil(longSide / (1280.0 / scale));</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">private Bitmap rotatingImage(Bitmap bitmap) &#123;</span><br><span class="line">    if (srcExif == null) return bitmap;</span><br><span class="line"></span><br><span class="line">    Matrix matrix = new Matrix();</span><br><span class="line">    int angle = 0;</span><br><span class="line">    int orientation = srcExif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);</span><br><span class="line">    switch (orientation) &#123;</span><br><span class="line">      case ExifInterface.ORIENTATION_ROTATE_90:</span><br><span class="line">        angle = 90;</span><br><span class="line">        break;</span><br><span class="line">      case ExifInterface.ORIENTATION_ROTATE_180:</span><br><span class="line">        angle = 180;</span><br><span class="line">        break;</span><br><span class="line">      case ExifInterface.ORIENTATION_ROTATE_270:</span><br><span class="line">        angle = 270;</span><br><span class="line">        break;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    matrix.postRotate(angle);</span><br><span class="line"></span><br><span class="line">    return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></div>
 <p>&emsp;&emsp;你以为我会一步一步给你讲<a href="https://github.com/Curzibn/Luban/blob/master/DESCRIPTION.md" target="_blank" rel="noopener">Luban算法逻辑</a>吗？那是不可能的，我特么都不会，怎么给你讲。我直接把他github上算法逻辑的介绍拷贝过来了：</p>
 <ol>
 <li>判断图片比例值，是否处于以下区间内；</li>
@@ -589,842 +239,169 @@
       
     </div>
     
+      <footer class="article-footer">
+        完
+      </footer>
     
-    
-	<div>
-  
-    <div>
-    
-        <div style="text-align:center;color: #ccc;font-size:14px;">---------------------END---------------------</div>
-    
-</div>
-  
-  <div>
-      
-        
-<div class="my_post_copyright">
-  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
-  
-  <!-- JS库 sweetalert 可修改路径 -->
-  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2018/03/02/Android图片压缩——Luban鲁班压缩/">Android图片压缩——Luban鲁班压缩</a></p>
-  <p><span>文章作者:</span><a href="/" title="访问 海晨忆 的个人博客">海晨忆</a></p>
-  <p><span>发布时间:</span>2018年03月02日 - 20:03</p>
-  <p><span>最后更新:</span>2018年03月02日 - 20:03</p>
-  <p><span>原始链接:</span><a href="/2018/03/02/Android图片压缩——Luban鲁班压缩/" title="Android图片压缩——Luban鲁班压缩">http://haichenyi.com/2018/03/02/Android图片压缩——Luban鲁班压缩/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://haichenyi.com/2018/03/02/Android图片压缩——Luban鲁班压缩/"  aria-label="复制成功！"></i></span>
-  </p>
-  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
-</div>
-<script> 
-    var clipboard = new Clipboard('.fa-clipboard');
-      $(".fa-clipboard").click(function(){
-      clipboard.on('success', function(){
-        swal({   
-          title: "",   
-          text: '复制成功',
-          icon: "success", 
-          showConfirmButton: true
-          });
-        });
-    });  
-</script>
-
-      
-</div>
-	</div>
-
-    
-
-    
-      <div>
-        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
-  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>Donate</span>
-  </button>
-  <div id="QR" style="display: none;">
-
-    
-      <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/uploads/wechat_reward.png" alt="海晨忆 WeChat Pay"/>
-        <p>WeChat Pay</p>
-      </div>
-    
-
-    
-      <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/uploads/alipay_reward.jpg" alt="海晨忆 Alipay"/>
-        <p>Alipay</p>
-      </div>
-    
-
-    
-
   </div>
-</div>
-
-      </div>
+  
     
-
+<nav id="article-nav">
+  <div class="article-nav-block">
     
-
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/03/01/从零开始搭建一个主流项目框架（八）—私有目录被限制访问-Android7.0/" rel="next" title="从零开始搭建一个主流项目框架（八）—— 私有目录被限制访问(Android 7.0)">
-                <i class="fa fa-chevron-left"></i> 从零开始搭建一个主流项目框架（八）—— 私有目录被限制访问(Android 7.0)
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/05/Android拍照功能——TakePhoto/" rel="prev" title="Android拍照功能——TakePhoto">
-                Android拍照功能——TakePhoto <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
+      <a href="/2018/03/05/Android拍照功能——TakePhoto/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption"></strong>
+        <div class="article-nav-title">
+          
+            Android拍照功能——TakePhoto
+          
         </div>
-      
-
-      
-      
-    </footer>
+      </a>
+    
   </div>
+  <div class="article-nav-block">
+    
+      <a href="/2018/03/01/从零开始搭建一个主流项目框架（八）—私有目录被限制访问-Android7.0/" id="article-nav-older" class="article-nav-link-wrap">
+        <div class="article-nav-title">从零开始搭建一个主流项目框架（八）—— 私有目录被限制访问(Android 7.0)</div>
+        <strong class="article-nav-caption"></strong>
+      </a>
+    
+  </div>
+</nav>
+
+    
   
   
+</article>
+</section>
+        <aside id="sidebar">
   
-  </article>
-
-
-
-    <div class="post-spread">
+    <div class="widget-box">
+  <div class="avatar-box avatar-item">
+    <img class="avatar" src="/uploads/artistic_image/head.jpg" title="头像来自网络"></img>
+    <h3 class="avatar-name">
       
-        <!-- JiaThis Button BEGIN -->
-<div class="jiathis_style">
-  <a class="jiathis_button_tsina"></a>
-  <a class="jiathis_button_tqq"></a>
-  <a class="jiathis_button_weixin"></a>
-  <a class="jiathis_button_cqq"></a>
-  <a class="jiathis_button_douban"></a>
-  <a class="jiathis_button_renren"></a>
-  <a class="jiathis_button_qzone"></a>
-  <a class="jiathis_button_kaixin001"></a>
-  <a class="jiathis_button_copy"></a>
-  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
-  <a class="jiathis_counter_style"></a>
+        海晨忆
+      
+    </h3>
+    <p class="avatar-slogan">
+      先谋生，再谋爱。人间值得，未来可期。
+    </p>
+  </div>
 </div>
-<script type="text/javascript" >
-  var jiathis_config={
-    hideMore:false
-  }
-</script>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
-<!-- JiaThis Button END -->
 
-      
+
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android-Socket/">Android -Socket</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-加密算法/">Android -加密算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-常用功能/">Android -常用功能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-框架/">Android -框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-源码解析/">Android -源码解析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-自定义view/">Android -自定义view</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-设计模式/">Android -设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-SpringBoot/">Java -SpringBoot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/kotlin/">kotlin</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库-JDBC/">数据库 -JDBC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库-MySQL/">数据库 -MySQL</a></li></ul>
     </div>
   </div>
 
 
-          </div>
-          
-
-
-          
-
-        </div>
-        
-          
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    
+
+  
+    
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
     </div>
   </div>
 
-  <aside id="sidebar" class="sidebar">
+  
     
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
+  <div class="widget-box">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/09/17/SpringBoot系列—事务管理（十三）/">SpringBoot系列—事务管理（十三）</a>
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
+        
+          <li>
+            <a href="/2019/09/11/SpringBoot系列—Spring-Data-JPA（十二）/">SpringBoot系列—Spring Data JPA（十二）</a>
           </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/artistic_image/head.jpg"
-               alt="海晨忆" />
-          <p class="site-author-name" itemprop="name">海晨忆</p>
-           
-              <p class="site-description motion-element" itemprop="description">我负责征战天下，你负责貌美如花！</p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">65</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">12</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-
-        </nav>
-
         
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
+          <li>
+            <a href="/2019/09/07/SpringBoot系列—MyBatis（十一）/">SpringBoot系列—MyBatis（十一）</a>
+          </li>
         
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://www.jianshu.com/u/6077ee440c37" target="_blank" title="简书">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                    
-                      简书
-                    
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://blog.csdn.net/qq_27634797" target="_blank" title="CSDN">
-                  
-                    <i class="fa fa-fw fa-github-square"></i>
-                  
-                    
-                      CSDN
-                    
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/haichenyi" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github-alt"></i>
-                  
-                    
-                      GitHub
-                    
-                </a>
-              </span>
-            
-          
-        </div>
-
+          <li>
+            <a href="/2019/09/05/SpringBoot系列—Druid（十）/">SpringBoot系列—Druid（十）</a>
+          </li>
         
+          <li>
+            <a href="/2019/09/05/SpringBoot系列—自定义拦截器（九）/">SpringBoot系列—自定义拦截器（九）</a>
+          </li>
         
-
-        
-        
-
-        
-
-
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#效果与对比"><span class="nav-number">1.</span> <span class="nav-text">效果与对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#依赖"><span class="nav-number">2.</span> <span class="nav-text">依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调用方式"><span class="nav-number">3.</span> <span class="nav-text">调用方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#异步调用"><span class="nav-number">3.1.</span> <span class="nav-text">异步调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同步调用"><span class="nav-number">3.2.</span> <span class="nav-text">同步调用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#源码分析"><span class="nav-number">4.</span> <span class="nav-text">源码分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一步：Luban-with"><span class="nav-number">4.1.</span> <span class="nav-text">第一步：Luban.with()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二步：load"><span class="nav-number">4.2.</span> <span class="nav-text">第二步：load()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三步：ignoreBy-和-setTargetDir"><span class="nav-number">4.3.</span> <span class="nav-text">第三步：ignoreBy() 和 setTargetDir()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第四步：setCompressListener-OnCompressListener-listener"><span class="nav-number">4.4.</span> <span class="nav-text">第四步：setCompressListener(OnCompressListener listener)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第五步：launch"><span class="nav-number">4.5.</span> <span class="nav-text">第五步：launch()</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
+      </ul>
     </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div class="copyright" >
-  
-  &copy;  2017 - 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">海晨忆</span>
-</div>
-
-
-<div class="powered-by">
-<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
-  本站访客数:<span id="busuanzi_value_site_uv"></span>
-</span>
-</div>
-
-<div class="theme-info">
-  <div class="powered-by"></div>
-  <span class="post-count">博客全站共94.1k字</span>
-</div>
-
-
-        
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
   </div>
 
   
+      <div class="widget-box">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      
+        <a class="hrf" style="display: block;" href="https://github.com/haichenyi" title target='_blank'
+        >Github</a>
+      
+        <a class="hrf" style="display: block;" href="https://www.jianshu.com/u/6077ee440c37" title target='_blank'
+        >简书</a>
+      
+        <a class="hrf" style="display: block;" href="https://blog.csdn.net/qq_27634797" title target='_blank'
+        >CSDN</a>
+      
+    </div>
+  </div>
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
+  
+</aside>
+      </div>
+      <footer id="footer">
+  <div class="foot-box footers global-width">
+    &copy;2017-2019 海晨忆 &nbsp;&nbsp;
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">阁下是第<span id="busuanzi_value_site_pv"></span>个访客</span>
+  </div>
+</footer>
+      <script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script>
+if (!window.jQuery) {
+var script = document.createElement('script');
+script.src = "/js/jquery-2.0.3.min.js";
+document.body.write(script);
+}
 </script>
 
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
 
 
 
-
-
-
-
-
+    </div>
+    <nav id="mobile-nav" class="mobile-nav-box">
+  <div class="mobile-nav-img mobile-nav-top"></div>
   
-
-
-
-
+    <a href="/" class="mobile-nav-link">首页</a>
   
+    <a href="/archives" class="mobile-nav-link">归档</a>
   
-
-
-
-
-
-
-
-
-
+    <a href="/about" class="mobile-nav-link">简历</a>
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-  
-  <script type="text/javascript" src="/lib/three/three.min.js"></script>
-
-  
-  <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-  
-
-  <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    }
-
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
-
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
-
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('1');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  <!-- 页面点击小红心 -->
-<script type="text/javascript" src="/js/src/love.js"></script>
-
-<div id="hexo-helper-live2d">
-  <canvas id="live2dcanvas" width="150" height="300"></canvas>
-</div>
-<style>
-  #live2dcanvas{
-    position: fixed;
-    width: 150px;
-    height: 300px;
-    opacity:0.7;
-    right: 0px;
-    z-index: 999;
-    pointer-events: none;
-    bottom: -20px;
-  }
-</style>
-<script type="text/javascript" src="/live2d/device.min.js"></script>
-<script type="text/javascript">
-const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
-(function(){
-  if((typeof(device) != 'undefined') && (device.mobile())){
-    var trElement = document.getElementById('hexo-helper-live2d');
-    trElement.parentNode.removeChild(trElement);
-    return;
-  }else
-    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
-  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/wanko.model.json", 0.5);});
-})();
-</script>
-
-
-   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
-   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
-   <script type="text/javascript" src="/js/src/fireworks.js"></script>
-
+  <div class="mobile-nav-img  mobile-nav-bottom"></div>
+</nav>    
+  </div>
 </body>
 </html>

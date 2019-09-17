@@ -1,116 +1,16 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="zh-Hans">
+<html>
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
-<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet"><style>
-    .pace .pace-progress {
-        background: #1E92FB; /*进度条颜色*/
-        height: 3px;
-    }
-    .pace .pace-progress-inner {
-         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
-    }
-    .pace .pace-activity {
-        border-top-color: #1E92FB;    /*上边框颜色*/
-        border-left-color: #1E92FB;    /*左边框颜色*/
-    }
-</style>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
+  <meta charset="utf-8">
   
 
   
-    
-    
+  <title>SpringBoot系列—Druid（十） | 海晨忆的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-
   
-
   
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="海晨忆的博客" type="application/atom+xml" />
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
-
-
-
-
-
-
-<meta name="description" content="&amp;emsp;&amp;emsp;一个企业项目中最重要的部分那就是数据库了，对数据库的连接，读写是重中之重。在SpringBoot中数据库怎么连接呢？">
+  <meta name="description" content="&amp;emsp;&amp;emsp;一个企业项目中最重要的部分那就是数据库了，对数据库的连接，读写是重中之重。在SpringBoot中数据库怎么连接呢？">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringBoot系列—Druid（十）">
 <meta property="og:url" content="http://haichenyi.com/2019/09/05/SpringBoot系列—Druid（十）/index.html">
@@ -124,353 +24,103 @@
 <meta name="twitter:title" content="SpringBoot系列—Druid（十）">
 <meta name="twitter:description" content="&amp;emsp;&amp;emsp;一个企业项目中最重要的部分那就是数据库了，对数据库的连接，读写是重中之重。在SpringBoot中数据库怎么连接呢？">
 <meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/7041675-d45a2867ff44d7f5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://haichenyi.com/2019/09/05/SpringBoot系列—Druid（十）/"/>
-
-
-
-
-
-  <title>SpringBoot系列—Druid（十） | 海晨忆的博客</title>
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <link rel="alternate" href="/atom.xml" title="海晨忆的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/uploads/artistic_image/head.jpg">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/highlight.css">
+  <script>
+  let antiquityStorage = window.sessionStorage.getItem('antiquitySessionStorage');
+  if (antiquityStorage == '' || antiquityStorage == null) {
+    var antiquityLoader = '<div id="loaderbox"><div class="loader"><div class="load-roll"><div class="load-top"></div><div class="load-right"></div><div class="load-bottom"></div></div></div></div>';
+    document.write(antiquityLoader);
+    document.body.style.overflow = 'hidden'
+  }
+  </script>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-  
+<body>
+  <div id="fullpage" class="mobile-nav-right">
     
-  
-
-  <div class="container sidebar-position-left page-post-detail ">
-    <div class="headband"></div>
-		<a href="https://github.com/haichenyi"><img style="position: absolute; top: 0; right: 0; border: 0;" 
-		src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" 
-		alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+      <div id="wrapper" style="background-image: url(/uploads/artistic_image/bg.jpg)" title="背景图片来自网络">
     
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">海晨忆的博客</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
+    
+      <header id="header">
+  <div id="nav-toggle" class="nav-toggle"></div>
+  <div class="head-box global-width">
+    <nav class="nav-box nav-right">
       
-        <p class="site-subtitle">技术源于生活！</p>
+        <a class="nav-item" href="/" title
+        
+        >首页</a>
       
+        <a class="nav-item" href="/archives" title
+        
+        >归档</a>
+      
+        <a class="nav-item" href="/about" title
+        
+        >简历</a>
+      
+    </nav>
   </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-<nav class="site-nav">
+</header>
+      <div id="middlecontent" title class="global-width sidebar-left">
+        <section id="main"><article id="post-SpringBoot系列—Druid（十）" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 class="article-title" itemprop="name">
+      SpringBoot系列—Druid（十）
+    </h1>
   
 
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
-            
-            搜索
-          </a>
-        </li>
-      
-    </ul>
-  
-
-  
-    <div class="site-search">
-      
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
-    </div>
-  </div>
-  <div id="local-search-result"></div>
-</div>
-
-
-
-    </div>
-  
-</nav>
-
-
-
- </div>
     </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
+  
+  <div class="article-meta">
+    <a href="/2019/09/05/SpringBoot系列—Druid（十）/" class="article-date">
+  <time datetime="2019-09-05T08:05:30.000Z" itemprop="datePublished">2019-09-05</time>
+</a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java-SpringBoot/">Java -SpringBoot</a>
+  </div>
 
+    
+  </div>
   
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haichenyi.com/2019/09/05/SpringBoot系列—Druid（十）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="海晨忆">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/artistic_image/head.jpg">
+    <span id="busuanzi_container_page_pv">
+      本文总阅读量<span id="busuanzi_value_page_pv"></span>次
     </span>
+  
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="海晨忆的博客">
-    </span>
-
+  <div class="article-inner">
     
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">SpringBoot系列—Druid（十）</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-05T16:05:30+08:00">
-                2019-09-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java-SpringBoot/" itemprop="url" rel="index">
-                    <span itemprop="name">Java -SpringBoot</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  2,477
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  11
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
+    <div class="article-content article-content-cloud doorframe mac" itemprop="articleBody">
       
         <p>&emsp;&emsp;一个企业项目中最重要的部分那就是数据库了，对数据库的连接，读写是重中之重。在SpringBoot中数据库怎么连接呢？</p>
 <a id="more"></a>
 <h3 id="数据库的连接"><a href="#数据库的连接" class="headerlink" title="数据库的连接"></a>数据库的连接</h3><p>&emsp;&emsp;这里以MySql为例，还不会用MySql数据库的童鞋，可以看我之前的博客，<a href="https://blog.csdn.net/qq_27634797/article/category/8050256" target="_blank" rel="noopener">数据库相关</a>。</p>
 <p>&emsp;&emsp; <strong>第一步，</strong> 我们首先在pom.xml中添加jdbc相关的启动器。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--jdbc启动器--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-jdbc&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;!--mysql驱动包--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">    &lt;scope&gt;runtime&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--jdbc启动器--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-jdbc&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;!--mysql驱动包--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">    &lt;scope&gt;runtime&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></div>
 <p>&emsp;&emsp; <strong>第二步，</strong> 在配置文件中配置连接数据库的信息：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  datasource:</span><br><span class="line">    #连接数据库的账号</span><br><span class="line">    username: root</span><br><span class="line">    #连接数据库的密码</span><br><span class="line">    password: 123456</span><br><span class="line">    #连接数据库的url</span><br><span class="line">    url: jdbc:mysql://localhost:3306/company?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=GMT%2B8</span><br><span class="line">    #连接数据库的驱动类</span><br><span class="line">    #mysql8之前用的是：com.mysql.jdbc.Driver。</span><br><span class="line">    #mysql8之后用的是：com.mysql.cj.jdbc.Driver</span><br><span class="line">    driver-class-name: com.mysql.cj.jdbc.Driver</span><br></pre></td></tr></table></figure>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  datasource:</span><br><span class="line">    #连接数据库的账号</span><br><span class="line">    username: root</span><br><span class="line">    #连接数据库的密码</span><br><span class="line">    password: 123456</span><br><span class="line">    #连接数据库的url</span><br><span class="line">    url: jdbc:mysql://localhost:3306/company?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=GMT%2B8</span><br><span class="line">    #连接数据库的驱动类</span><br><span class="line">    #mysql8之前用的是：com.mysql.jdbc.Driver。</span><br><span class="line">    #mysql8之后用的是：com.mysql.cj.jdbc.Driver</span><br><span class="line">    driver-class-name: com.mysql.cj.jdbc.Driver</span><br></pre></td></tr></table></figure></div>
 <p>&emsp;&emsp; 添加如上信息，就基本上完成了。测试一下连接就可以了。在我们的测试类中添加如下代码，看看打印的数据即可。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">package com.haichenyi.springbootjdbc;</span><br><span class="line"></span><br><span class="line">import org.junit.Test;</span><br><span class="line">import org.junit.runner.RunWith;</span><br><span class="line">import org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line">import org.springframework.boot.test.context.SpringBootTest;</span><br><span class="line">import org.springframework.test.context.junit4.SpringRunner;</span><br><span class="line"></span><br><span class="line">import javax.sql.DataSource;</span><br><span class="line">import java.sql.Connection;</span><br><span class="line">import java.sql.SQLException;</span><br><span class="line"></span><br><span class="line">@RunWith(SpringRunner.class)</span><br><span class="line">@SpringBootTest</span><br><span class="line">public class SpringBootJdbcApplicationTests &#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    DataSource dataSource;</span><br><span class="line"></span><br><span class="line">    @Test</span><br><span class="line">    public void contextLoads() throws SQLException &#123;</span><br><span class="line">        System.out.println(&quot;dataSource: &quot; + dataSource.getClass());</span><br><span class="line">        Connection connection = dataSource.getConnection();</span><br><span class="line">        System.out.println(&quot;connection: &quot; + connection);</span><br><span class="line">        connection.close();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">package com.haichenyi.springbootjdbc;</span><br><span class="line"></span><br><span class="line">import org.junit.Test;</span><br><span class="line">import org.junit.runner.RunWith;</span><br><span class="line">import org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line">import org.springframework.boot.test.context.SpringBootTest;</span><br><span class="line">import org.springframework.test.context.junit4.SpringRunner;</span><br><span class="line"></span><br><span class="line">import javax.sql.DataSource;</span><br><span class="line">import java.sql.Connection;</span><br><span class="line">import java.sql.SQLException;</span><br><span class="line"></span><br><span class="line">@RunWith(SpringRunner.class)</span><br><span class="line">@SpringBootTest</span><br><span class="line">public class SpringBootJdbcApplicationTests &#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    DataSource dataSource;</span><br><span class="line"></span><br><span class="line">    @Test</span><br><span class="line">    public void contextLoads() throws SQLException &#123;</span><br><span class="line">        System.out.println(&quot;dataSource: &quot; + dataSource.getClass());</span><br><span class="line">        Connection connection = dataSource.getConnection();</span><br><span class="line">        System.out.println(&quot;connection: &quot; + connection);</span><br><span class="line">        connection.close();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 <p>&emsp;&emsp; 我们这里是测试数据库是否连接成功，我们才获取的这个连接，打印出来，我们项目里面实际操作数据库的时候，不需要我们获取这个连接，然后通过这个连接再去操作数据库。这是不需要，MyBatis通过Mapping注解直接操作数据库，我们只用写sql语句就可以了。</p>
 <h3 id="Druid连接数据库"><a href="#Druid连接数据库" class="headerlink" title="Druid连接数据库"></a>Druid连接数据库</h3><p>&emsp;&emsp; DRUID是阿里巴巴开源平台上一个数据库连接池实现，它结合了C3P0、DBCP、PROXOOL等DB池的优点，同时加入了日志监控，可以很好的监控DB池连接和SQL的执行情况，可以说是针对监控而生的DB连接池，据说是目前最好的连接池。</p>
 <p>&emsp;&emsp; <strong>上面的配置继续保留。</strong></p>
 <p>&emsp;&emsp; <strong>第一步：</strong> 我们在pom.xml里面添加druid的依赖：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- https://mvnrepository.com/artifact/com.alibaba/druid --&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.alibaba&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;druid&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.1.20&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- https://mvnrepository.com/artifact/com.alibaba/druid --&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.alibaba&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;druid&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.1.20&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></div>
 <p>&emsp;&emsp; <strong>第二步：</strong> 在yml文件中添加如下代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  # 数据库访问配置</span><br><span class="line">  datasource:</span><br><span class="line">    #账号</span><br><span class="line">    username: root</span><br><span class="line">    #密码</span><br><span class="line">    password: 123456</span><br><span class="line">    #连接的url</span><br><span class="line">    url: jdbc:mysql://localhost:3306/company?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=GMT%2B8</span><br><span class="line">    #驱动类</span><br><span class="line">    driver-class-name: com.mysql.cj.jdbc.Driver</span><br><span class="line">    # 主数据源，默认的</span><br><span class="line">    type: com.alibaba.druid.pool.DruidDataSource</span><br><span class="line"></span><br><span class="line">    # 下面为连接池的补充设置，应用到上面所有数据源中</span><br><span class="line">    # 初始化大小，最小，最大</span><br><span class="line">    initialSize: 5</span><br><span class="line">    minIdle: 5</span><br><span class="line">    maxActive: 20</span><br><span class="line">    # 配置获取连接等待超时的时间</span><br><span class="line">    maxWait: 60000</span><br><span class="line">    # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒</span><br><span class="line">    timeBetweenEvictionRunsMillis: 60000</span><br><span class="line">    # 配置一个连接在池中最小生存的时间，单位是毫秒</span><br><span class="line">    minEvictableIdleTimeMillis: 300000</span><br><span class="line">    validationQuery: SELECT 1 FROM DUAL</span><br><span class="line">    testWhileIdle: true</span><br><span class="line">    testOnBorrow: false</span><br><span class="line">    testOnReturn: false</span><br><span class="line">    # 打开PSCache，并且指定每个连接上PSCache的大小</span><br><span class="line">    poolPreparedStatements: true</span><br><span class="line">    maxPoolPreparedStatementPerConnectionSize: 25</span><br><span class="line">    # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，&apos;wall&apos;用于防火墙</span><br><span class="line">    filters: stat,wall,logback</span><br><span class="line">    # 通过connectProperties属性来打开mergeSql功能；慢SQL记录</span><br><span class="line">    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500</span><br><span class="line">    # 合并多个DruidDataSource的监控数据</span><br><span class="line">    useGlobalDataSourceStat: true</span><br></pre></td></tr></table></figure>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  # 数据库访问配置</span><br><span class="line">  datasource:</span><br><span class="line">    #账号</span><br><span class="line">    username: root</span><br><span class="line">    #密码</span><br><span class="line">    password: 123456</span><br><span class="line">    #连接的url</span><br><span class="line">    url: jdbc:mysql://localhost:3306/company?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=GMT%2B8</span><br><span class="line">    #驱动类</span><br><span class="line">    driver-class-name: com.mysql.cj.jdbc.Driver</span><br><span class="line">    # 主数据源，默认的</span><br><span class="line">    type: com.alibaba.druid.pool.DruidDataSource</span><br><span class="line"></span><br><span class="line">    # 下面为连接池的补充设置，应用到上面所有数据源中</span><br><span class="line">    # 初始化大小，最小，最大</span><br><span class="line">    initialSize: 5</span><br><span class="line">    minIdle: 5</span><br><span class="line">    maxActive: 20</span><br><span class="line">    # 配置获取连接等待超时的时间</span><br><span class="line">    maxWait: 60000</span><br><span class="line">    # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒</span><br><span class="line">    timeBetweenEvictionRunsMillis: 60000</span><br><span class="line">    # 配置一个连接在池中最小生存的时间，单位是毫秒</span><br><span class="line">    minEvictableIdleTimeMillis: 300000</span><br><span class="line">    validationQuery: SELECT 1 FROM DUAL</span><br><span class="line">    testWhileIdle: true</span><br><span class="line">    testOnBorrow: false</span><br><span class="line">    testOnReturn: false</span><br><span class="line">    # 打开PSCache，并且指定每个连接上PSCache的大小</span><br><span class="line">    poolPreparedStatements: true</span><br><span class="line">    maxPoolPreparedStatementPerConnectionSize: 25</span><br><span class="line">    # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，&apos;wall&apos;用于防火墙</span><br><span class="line">    filters: stat,wall,logback</span><br><span class="line">    # 通过connectProperties属性来打开mergeSql功能；慢SQL记录</span><br><span class="line">    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500</span><br><span class="line">    # 合并多个DruidDataSource的监控数据</span><br><span class="line">    useGlobalDataSourceStat: true</span><br></pre></td></tr></table></figure></div>
 <p>&emsp;&emsp; 这样，就可以了。继续运行刚才的测试方法，你会发现，打印数据里面数据源已经变成了DruidDataSource。</p>
 <p>&emsp;&emsp; 你如果是debug运行的，并且，你的断点打在connection那里，你会发现，我们yml文件中的补充配置，没起作用，是为什么呢？</p>
 <p>&emsp;&emsp; 我们按住CTRL，鼠标左键点补充配置里面的任意一个变量，都点不动，我们点上面的type，url等等，都能点，我们点过去看，我们会发现跳到了 <strong>DataSourceProperties</strong> 。这个类，顾名思义这是数据源配置文件类。我们大致看一下这个类的代码：</p>
@@ -481,857 +131,184 @@
 <p>&emsp;&emsp; 如上图，上面的红色框框的内容，就由prefix决定，下面红色框框的内容，就由这个类的变量决定。我们上面的补充设置不起作用，就是因为这个配置文件里面没有这些变量，SpringBoot识别不了，所以，不起作用。SpringBoot不是万能的，它配置了的东西，可以识别，没有配置的，识别不了。</p>
 <p>&emsp;&emsp; 怎么样让上面的补充配置起作用呢？有多种方式：</p>
 <p>&emsp;&emsp; <strong>第一种方式如下：</strong> 简单粗暴，添加一个配置类即可</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">package com.haichenyi.springbootjdbc.config;</span><br><span class="line"></span><br><span class="line">import com.alibaba.druid.pool.DruidDataSource;</span><br><span class="line">import org.springframework.boot.context.properties.ConfigurationProperties;</span><br><span class="line">import org.springframework.context.annotation.Bean;</span><br><span class="line">import org.springframework.context.annotation.Configuration;</span><br><span class="line"></span><br><span class="line">import javax.sql.DataSource;</span><br><span class="line"></span><br><span class="line">@Configuration</span><br><span class="line">public class JdbcConfig &#123;</span><br><span class="line">    @ConfigurationProperties(prefix = &quot;spring.datasource&quot;)</span><br><span class="line">    @Bean</span><br><span class="line">    public DataSource dataSource()&#123;</span><br><span class="line">        return new DruidDataSource();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">package com.haichenyi.springbootjdbc.config;</span><br><span class="line"></span><br><span class="line">import com.alibaba.druid.pool.DruidDataSource;</span><br><span class="line">import org.springframework.boot.context.properties.ConfigurationProperties;</span><br><span class="line">import org.springframework.context.annotation.Bean;</span><br><span class="line">import org.springframework.context.annotation.Configuration;</span><br><span class="line"></span><br><span class="line">import javax.sql.DataSource;</span><br><span class="line"></span><br><span class="line">@Configuration</span><br><span class="line">public class JdbcConfig &#123;</span><br><span class="line">    @ConfigurationProperties(prefix = &quot;spring.datasource&quot;)</span><br><span class="line">    @Bean</span><br><span class="line">    public DataSource dataSource()&#123;</span><br><span class="line">        return new DruidDataSource();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 <p>&emsp;&emsp; 这个方式就相当于，把我们上面的这个 <strong>DataSourceProperties</strong>配置类，换成了 <strong>DruidDataSource</strong>类。</p>
 <p>&emsp;&emsp; <strong>第二种方式如下：</strong> 比较麻烦，也不算特别麻烦：说白了就是加载局部配置。</p>
 <p>&emsp;&emsp;首先，在resources目录下，新建一个jdbc.properties文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">#账号</span><br><span class="line">druid.datasource.username=root</span><br><span class="line">#密码</span><br><span class="line">druid.datasource.password=123456</span><br><span class="line">#连接的url</span><br><span class="line">druid.datasource.url=jdbc:mysql://localhost:3306/company?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=GMT%2B8</span><br><span class="line">#驱动类</span><br><span class="line">druid.datasource.driverClassName=com.mysql.cj.jdbc.Driver</span><br><span class="line"># 主数据源，默认的</span><br><span class="line"># druid.datasource.type=com.alibaba.druid.pool.DruidDataSource</span><br><span class="line"># 下面为连接池的补充设置，应用到上面所有数据源中</span><br><span class="line"># 初始化大小，最小，最大</span><br><span class="line">druid.datasource.initialSize=5</span><br><span class="line">druid.datasource.minIdle=5</span><br><span class="line">druid.datasource.maxActive=20</span><br><span class="line"># 配置获取连接等待超时的时间</span><br><span class="line">druid.datasource.maxWait=60000</span><br><span class="line"># 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒</span><br><span class="line">druid.datasource.timeBetweenEvictionRunsMillis=60000</span><br><span class="line"># 配置一个连接在池中最小生存的时间，单位是毫秒</span><br><span class="line">druid.datasource.minEvictableIdleTimeMillis=300000</span><br><span class="line">druid.datasource.validationQuery=SELECT 1 FROM DUAL</span><br><span class="line">druid.datasource.testWhileIdle=true</span><br><span class="line">druid.datasource.testOnBorrow=false</span><br><span class="line">druid.datasource.testOnReturn=false</span><br><span class="line"># 打开PSCache，并且指定每个连接上PSCache的大小</span><br><span class="line">druid.datasource.poolPreparedStatements=true</span><br><span class="line">druid.datasource.maxPoolPreparedStatementPerConnectionSize=25</span><br><span class="line"># 配置监控统计拦截的filters，去掉后监控界面sql无法统计，&apos;wall&apos;用于防火墙</span><br><span class="line">druid.datasource.filters=stat,wall,logback</span><br><span class="line"># 通过connectProperties属性来打开mergeSql功能；慢SQL记录</span><br><span class="line">druid.datasource.connectionProperties=druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500</span><br><span class="line"># 合并多个DruidDataSource的监控数据</span><br><span class="line">druid.datasource.useGlobalDataSourceStat=true</span><br></pre></td></tr></table></figure>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">#账号</span><br><span class="line">druid.datasource.username=root</span><br><span class="line">#密码</span><br><span class="line">druid.datasource.password=123456</span><br><span class="line">#连接的url</span><br><span class="line">druid.datasource.url=jdbc:mysql://localhost:3306/company?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=GMT%2B8</span><br><span class="line">#驱动类</span><br><span class="line">druid.datasource.driverClassName=com.mysql.cj.jdbc.Driver</span><br><span class="line"># 主数据源，默认的</span><br><span class="line"># druid.datasource.type=com.alibaba.druid.pool.DruidDataSource</span><br><span class="line"># 下面为连接池的补充设置，应用到上面所有数据源中</span><br><span class="line"># 初始化大小，最小，最大</span><br><span class="line">druid.datasource.initialSize=5</span><br><span class="line">druid.datasource.minIdle=5</span><br><span class="line">druid.datasource.maxActive=20</span><br><span class="line"># 配置获取连接等待超时的时间</span><br><span class="line">druid.datasource.maxWait=60000</span><br><span class="line"># 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒</span><br><span class="line">druid.datasource.timeBetweenEvictionRunsMillis=60000</span><br><span class="line"># 配置一个连接在池中最小生存的时间，单位是毫秒</span><br><span class="line">druid.datasource.minEvictableIdleTimeMillis=300000</span><br><span class="line">druid.datasource.validationQuery=SELECT 1 FROM DUAL</span><br><span class="line">druid.datasource.testWhileIdle=true</span><br><span class="line">druid.datasource.testOnBorrow=false</span><br><span class="line">druid.datasource.testOnReturn=false</span><br><span class="line"># 打开PSCache，并且指定每个连接上PSCache的大小</span><br><span class="line">druid.datasource.poolPreparedStatements=true</span><br><span class="line">druid.datasource.maxPoolPreparedStatementPerConnectionSize=25</span><br><span class="line"># 配置监控统计拦截的filters，去掉后监控界面sql无法统计，&apos;wall&apos;用于防火墙</span><br><span class="line">druid.datasource.filters=stat,wall,logback</span><br><span class="line"># 通过connectProperties属性来打开mergeSql功能；慢SQL记录</span><br><span class="line">druid.datasource.connectionProperties=druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500</span><br><span class="line"># 合并多个DruidDataSource的监控数据</span><br><span class="line">druid.datasource.useGlobalDataSourceStat=true</span><br></pre></td></tr></table></figure></div>
 <p>&emsp;&emsp;就是把我们刚才在全局配置中配置的信息，在专门的jdbc的配置文件中配置一遍。然后，修改我们的JdbcConfig类。如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">package com.haichenyi.springbootjdbc.config;</span><br><span class="line"></span><br><span class="line">import com.alibaba.druid.pool.DruidDataSource;</span><br><span class="line">import org.springframework.beans.factory.annotation.Value;</span><br><span class="line">import org.springframework.context.annotation.Bean;</span><br><span class="line">import org.springframework.context.annotation.Configuration;</span><br><span class="line">import org.springframework.context.annotation.PropertySource;</span><br><span class="line"></span><br><span class="line">import javax.sql.DataSource;</span><br><span class="line">import java.sql.SQLException;</span><br><span class="line"></span><br><span class="line">@Configuration</span><br><span class="line">@PropertySource(value = &quot;classpath:config/jdbc.properties&quot;, ignoreResourceNotFound = true)</span><br><span class="line">public class JdbcConfig &#123;</span><br><span class="line">    @Value(&quot;$&#123;druid.datasource.username&#125;&quot;)</span><br><span class="line">    private String username;</span><br><span class="line">    @Value(&quot;$&#123;druid.datasource.password&#125;&quot;)</span><br><span class="line">    private String password;</span><br><span class="line">    @Value(&quot;$&#123;druid.datasource.url&#125;&quot;)</span><br><span class="line">    private String url;</span><br><span class="line">    @Value(&quot;$&#123;druid.datasource.driverClassName&#125;&quot;)</span><br><span class="line">    private String driverClassName;</span><br><span class="line">    @Value(&quot;$&#123;druid.datasource.initialSize&#125;&quot;)</span><br><span class="line">    private Integer initialSize;</span><br><span class="line">    @Value(&quot;$&#123;druid.datasource.minIdle&#125;&quot;)</span><br><span class="line">    private Integer minIdle;</span><br><span class="line">    @Value(&quot;$&#123;druid.datasource.maxActive&#125;&quot;)</span><br><span class="line">    private Integer maxActive;</span><br><span class="line">    @Value(&quot;$&#123;druid.datasource.maxWait&#125;&quot;)</span><br><span class="line">    private Long maxWait;</span><br><span class="line">    @Value(&quot;$&#123;druid.datasource.timeBetweenEvictionRunsMillis&#125;&quot;)</span><br><span class="line">    private Long timeBetweenEvictionRunsMillis;</span><br><span class="line">    @Value(&quot;$&#123;druid.datasource.minEvictableIdleTimeMillis&#125;&quot;)</span><br><span class="line">    private Long minEvictableIdleTimeMillis;</span><br><span class="line">    @Value(&quot;$&#123;druid.datasource.validationQuery&#125;&quot;)</span><br><span class="line">    private String validationQuery;</span><br><span class="line">    @Value(&quot;$&#123;druid.datasource.testWhileIdle&#125;&quot;)</span><br><span class="line">    private Boolean testWhileIdle;</span><br><span class="line">    @Value(&quot;$&#123;druid.datasource.testOnBorrow&#125;&quot;)</span><br><span class="line">    private Boolean testOnBorrow;</span><br><span class="line">    @Value(&quot;$&#123;druid.datasource.testOnReturn&#125;&quot;)</span><br><span class="line">    private Boolean testOnReturn;</span><br><span class="line">    @Value(&quot;$&#123;druid.datasource.maxPoolPreparedStatementPerConnectionSize&#125;&quot;)</span><br><span class="line">    private Integer maxPoolPreparedStatementPerConnectionSize;</span><br><span class="line">    @Value(&quot;$&#123;druid.datasource.poolPreparedStatements&#125;&quot;)</span><br><span class="line">    private Boolean poolPreparedStatements;</span><br><span class="line">    @Value(&quot;$&#123;druid.datasource.filters&#125;&quot;)</span><br><span class="line">    private String filters;</span><br><span class="line">    @Value(&quot;$&#123;druid.datasource.connectionProperties&#125;&quot;)</span><br><span class="line">    private String connectionProperties;</span><br><span class="line">    @Value(&quot;$&#123;druid.datasource.useGlobalDataSourceStat&#125;&quot;)</span><br><span class="line">    private Boolean useGlobalDataSourceStat;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public DataSource dataSource() throws SQLException &#123;</span><br><span class="line">        DruidDataSource druidDataSource = new DruidDataSource();</span><br><span class="line">        druidDataSource.setUsername(username);</span><br><span class="line">        druidDataSource.setPassword(password);</span><br><span class="line">        druidDataSource.setUrl(url);</span><br><span class="line">        druidDataSource.setDriverClassName(driverClassName);</span><br><span class="line">        druidDataSource.setInitialSize(initialSize);</span><br><span class="line">        druidDataSource.setMinIdle(minIdle);</span><br><span class="line">        druidDataSource.setMaxActive(maxActive);</span><br><span class="line">        druidDataSource.setTimeBetweenEvictionRunsMillis(timeBetweenEvictionRunsMillis);</span><br><span class="line">        druidDataSource.setMinEvictableIdleTimeMillis(minEvictableIdleTimeMillis);</span><br><span class="line">        druidDataSource.setValidationQuery(validationQuery);</span><br><span class="line">        druidDataSource.setTestOnBorrow(testOnBorrow);</span><br><span class="line">        druidDataSource.setTestOnReturn(testOnReturn);</span><br><span class="line">        druidDataSource.setTestWhileIdle(testWhileIdle);</span><br><span class="line">        druidDataSource.setMaxPoolPreparedStatementPerConnectionSize(maxPoolPreparedStatementPerConnectionSize);</span><br><span class="line">        druidDataSource.setPoolPreparedStatements(poolPreparedStatements);</span><br><span class="line">        druidDataSource.setFilters(filters);</span><br><span class="line">        druidDataSource.setConnectionProperties(connectionProperties);</span><br><span class="line">        druidDataSource.setUseGlobalDataSourceStat(useGlobalDataSourceStat);</span><br><span class="line">        return druidDataSource;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">package com.haichenyi.springbootjdbc.config;</span><br><span class="line"></span><br><span class="line">import com.alibaba.druid.pool.DruidDataSource;</span><br><span class="line">import org.springframework.beans.factory.annotation.Value;</span><br><span class="line">import org.springframework.context.annotation.Bean;</span><br><span class="line">import org.springframework.context.annotation.Configuration;</span><br><span class="line">import org.springframework.context.annotation.PropertySource;</span><br><span class="line"></span><br><span class="line">import javax.sql.DataSource;</span><br><span class="line">import java.sql.SQLException;</span><br><span class="line"></span><br><span class="line">@Configuration</span><br><span class="line">@PropertySource(value = &quot;classpath:config/jdbc.properties&quot;, ignoreResourceNotFound = true)</span><br><span class="line">public class JdbcConfig &#123;</span><br><span class="line">    @Value(&quot;$&#123;druid.datasource.username&#125;&quot;)</span><br><span class="line">    private String username;</span><br><span class="line">    @Value(&quot;$&#123;druid.datasource.password&#125;&quot;)</span><br><span class="line">    private String password;</span><br><span class="line">    @Value(&quot;$&#123;druid.datasource.url&#125;&quot;)</span><br><span class="line">    private String url;</span><br><span class="line">    @Value(&quot;$&#123;druid.datasource.driverClassName&#125;&quot;)</span><br><span class="line">    private String driverClassName;</span><br><span class="line">    @Value(&quot;$&#123;druid.datasource.initialSize&#125;&quot;)</span><br><span class="line">    private Integer initialSize;</span><br><span class="line">    @Value(&quot;$&#123;druid.datasource.minIdle&#125;&quot;)</span><br><span class="line">    private Integer minIdle;</span><br><span class="line">    @Value(&quot;$&#123;druid.datasource.maxActive&#125;&quot;)</span><br><span class="line">    private Integer maxActive;</span><br><span class="line">    @Value(&quot;$&#123;druid.datasource.maxWait&#125;&quot;)</span><br><span class="line">    private Long maxWait;</span><br><span class="line">    @Value(&quot;$&#123;druid.datasource.timeBetweenEvictionRunsMillis&#125;&quot;)</span><br><span class="line">    private Long timeBetweenEvictionRunsMillis;</span><br><span class="line">    @Value(&quot;$&#123;druid.datasource.minEvictableIdleTimeMillis&#125;&quot;)</span><br><span class="line">    private Long minEvictableIdleTimeMillis;</span><br><span class="line">    @Value(&quot;$&#123;druid.datasource.validationQuery&#125;&quot;)</span><br><span class="line">    private String validationQuery;</span><br><span class="line">    @Value(&quot;$&#123;druid.datasource.testWhileIdle&#125;&quot;)</span><br><span class="line">    private Boolean testWhileIdle;</span><br><span class="line">    @Value(&quot;$&#123;druid.datasource.testOnBorrow&#125;&quot;)</span><br><span class="line">    private Boolean testOnBorrow;</span><br><span class="line">    @Value(&quot;$&#123;druid.datasource.testOnReturn&#125;&quot;)</span><br><span class="line">    private Boolean testOnReturn;</span><br><span class="line">    @Value(&quot;$&#123;druid.datasource.maxPoolPreparedStatementPerConnectionSize&#125;&quot;)</span><br><span class="line">    private Integer maxPoolPreparedStatementPerConnectionSize;</span><br><span class="line">    @Value(&quot;$&#123;druid.datasource.poolPreparedStatements&#125;&quot;)</span><br><span class="line">    private Boolean poolPreparedStatements;</span><br><span class="line">    @Value(&quot;$&#123;druid.datasource.filters&#125;&quot;)</span><br><span class="line">    private String filters;</span><br><span class="line">    @Value(&quot;$&#123;druid.datasource.connectionProperties&#125;&quot;)</span><br><span class="line">    private String connectionProperties;</span><br><span class="line">    @Value(&quot;$&#123;druid.datasource.useGlobalDataSourceStat&#125;&quot;)</span><br><span class="line">    private Boolean useGlobalDataSourceStat;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public DataSource dataSource() throws SQLException &#123;</span><br><span class="line">        DruidDataSource druidDataSource = new DruidDataSource();</span><br><span class="line">        druidDataSource.setUsername(username);</span><br><span class="line">        druidDataSource.setPassword(password);</span><br><span class="line">        druidDataSource.setUrl(url);</span><br><span class="line">        druidDataSource.setDriverClassName(driverClassName);</span><br><span class="line">        druidDataSource.setInitialSize(initialSize);</span><br><span class="line">        druidDataSource.setMinIdle(minIdle);</span><br><span class="line">        druidDataSource.setMaxActive(maxActive);</span><br><span class="line">        druidDataSource.setTimeBetweenEvictionRunsMillis(timeBetweenEvictionRunsMillis);</span><br><span class="line">        druidDataSource.setMinEvictableIdleTimeMillis(minEvictableIdleTimeMillis);</span><br><span class="line">        druidDataSource.setValidationQuery(validationQuery);</span><br><span class="line">        druidDataSource.setTestOnBorrow(testOnBorrow);</span><br><span class="line">        druidDataSource.setTestOnReturn(testOnReturn);</span><br><span class="line">        druidDataSource.setTestWhileIdle(testWhileIdle);</span><br><span class="line">        druidDataSource.setMaxPoolPreparedStatementPerConnectionSize(maxPoolPreparedStatementPerConnectionSize);</span><br><span class="line">        druidDataSource.setPoolPreparedStatements(poolPreparedStatements);</span><br><span class="line">        druidDataSource.setFilters(filters);</span><br><span class="line">        druidDataSource.setConnectionProperties(connectionProperties);</span><br><span class="line">        druidDataSource.setUseGlobalDataSourceStat(useGlobalDataSourceStat);</span><br><span class="line">        return druidDataSource;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 <p>&emsp;&emsp;就是加载配置文件，然后在DataSource里面赋值。这样，就可以了。</p>
 <h3 id="Druid后台监控"><a href="#Druid后台监控" class="headerlink" title="Druid后台监控"></a>Druid后台监控</h3><p>&emsp;&emsp;之所以用Druid连接池，还有很大一部分原因就是它的监控功能。它能很好的监控DB连接池和SQL语句的执行情况。在上面的JdbcConfig类中添加如下两个方法即可。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 配置Druid监控</span><br><span class="line"> *</span><br><span class="line"> * @return StatViewServlet</span><br><span class="line"> */</span><br><span class="line">@Bean</span><br><span class="line">public ServletRegistrationBean servletRegistrationBean() &#123;</span><br><span class="line">    ServletRegistrationBean&lt;StatViewServlet&gt; bean = new ServletRegistrationBean&lt;&gt;(new StatViewServlet(), &quot;/druid/*&quot;);</span><br><span class="line">    Map&lt;String, String&gt; map = new HashMap&lt;&gt;();</span><br><span class="line">    //访问的用户名密码</span><br><span class="line">    map.put(StatViewServlet.PARAM_NAME_USERNAME, &quot;haichenyi&quot;);</span><br><span class="line">    map.put(StatViewServlet.PARAM_NAME_PASSWORD, &quot;123456&quot;);</span><br><span class="line">    //允许访问的ip，默认是所有ip</span><br><span class="line">    map.put(StatViewServlet.PARAM_NAME_ALLOW, &quot;&quot;);</span><br><span class="line">    //禁止访问的ip</span><br><span class="line">    map.put(StatViewServlet.PARAM_NAME_DENY, &quot;192.168.1.1&quot;);</span><br><span class="line">    bean.setInitParameters(map);</span><br><span class="line">    return bean;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 配置一个监控的filter</span><br><span class="line"> *</span><br><span class="line"> * @return WebStatFilter</span><br><span class="line"> */</span><br><span class="line">@Bean</span><br><span class="line">public FilterRegistrationBean filterRegistrationBean() &#123;</span><br><span class="line">    FilterRegistrationBean&lt;WebStatFilter&gt; bean = new FilterRegistrationBean&lt;&gt;();</span><br><span class="line">    bean.setFilter(new WebStatFilter());</span><br><span class="line">    Map&lt;String, String&gt; map = new HashMap&lt;&gt;();</span><br><span class="line">    //移除这些监听</span><br><span class="line">    map.put(WebStatFilter.PARAM_NAME_EXCLUSIONS, &quot;*.js,*.css,/druid/*,*.gif,*.jpg,*.png&quot;);</span><br><span class="line">    bean.setInitParameters(map);</span><br><span class="line">    //拦截所有请求，全部都要走druid监听</span><br><span class="line">    bean.setUrlPatterns(Collections.singletonList(&quot;/*&quot;));</span><br><span class="line">    return bean;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 配置Druid监控</span><br><span class="line"> *</span><br><span class="line"> * @return StatViewServlet</span><br><span class="line"> */</span><br><span class="line">@Bean</span><br><span class="line">public ServletRegistrationBean servletRegistrationBean() &#123;</span><br><span class="line">    ServletRegistrationBean&lt;StatViewServlet&gt; bean = new ServletRegistrationBean&lt;&gt;(new StatViewServlet(), &quot;/druid/*&quot;);</span><br><span class="line">    Map&lt;String, String&gt; map = new HashMap&lt;&gt;();</span><br><span class="line">    //访问的用户名密码</span><br><span class="line">    map.put(StatViewServlet.PARAM_NAME_USERNAME, &quot;haichenyi&quot;);</span><br><span class="line">    map.put(StatViewServlet.PARAM_NAME_PASSWORD, &quot;123456&quot;);</span><br><span class="line">    //允许访问的ip，默认是所有ip</span><br><span class="line">    map.put(StatViewServlet.PARAM_NAME_ALLOW, &quot;&quot;);</span><br><span class="line">    //禁止访问的ip</span><br><span class="line">    map.put(StatViewServlet.PARAM_NAME_DENY, &quot;192.168.1.1&quot;);</span><br><span class="line">    bean.setInitParameters(map);</span><br><span class="line">    return bean;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 配置一个监控的filter</span><br><span class="line"> *</span><br><span class="line"> * @return WebStatFilter</span><br><span class="line"> */</span><br><span class="line">@Bean</span><br><span class="line">public FilterRegistrationBean filterRegistrationBean() &#123;</span><br><span class="line">    FilterRegistrationBean&lt;WebStatFilter&gt; bean = new FilterRegistrationBean&lt;&gt;();</span><br><span class="line">    bean.setFilter(new WebStatFilter());</span><br><span class="line">    Map&lt;String, String&gt; map = new HashMap&lt;&gt;();</span><br><span class="line">    //移除这些监听</span><br><span class="line">    map.put(WebStatFilter.PARAM_NAME_EXCLUSIONS, &quot;*.js,*.css,/druid/*,*.gif,*.jpg,*.png&quot;);</span><br><span class="line">    bean.setInitParameters(map);</span><br><span class="line">    //拦截所有请求，全部都要走druid监听</span><br><span class="line">    bean.setUrlPatterns(Collections.singletonList(&quot;/*&quot;));</span><br><span class="line">    return bean;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 <p>&emsp;&emsp;注释写的很清楚了，控制台怎么访问呢？ <strong><a href="http://localhost:8080/druid" target="_blank" rel="noopener">http://localhost:8080/druid</a></strong>。访问控制台</p>
 
       
     </div>
     
+      <footer class="article-footer">
+        完
+      </footer>
     
-    
-	<div>
-  
-    <div>
-    
-        <div style="text-align:center;color: #ccc;font-size:14px;">---------------------END---------------------</div>
-    
-</div>
-  
-  <div>
-      
-        
-<div class="my_post_copyright">
-  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
-  
-  <!-- JS库 sweetalert 可修改路径 -->
-  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2019/09/05/SpringBoot系列—Druid（十）/">SpringBoot系列—Druid（十）</a></p>
-  <p><span>文章作者:</span><a href="/" title="访问 海晨忆 的个人博客">海晨忆</a></p>
-  <p><span>发布时间:</span>2019年09月05日 - 16:09</p>
-  <p><span>最后更新:</span>2019年09月05日 - 16:09</p>
-  <p><span>原始链接:</span><a href="/2019/09/05/SpringBoot系列—Druid（十）/" title="SpringBoot系列—Druid（十）">http://haichenyi.com/2019/09/05/SpringBoot系列—Druid（十）/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://haichenyi.com/2019/09/05/SpringBoot系列—Druid（十）/"  aria-label="复制成功！"></i></span>
-  </p>
-  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
-</div>
-<script> 
-    var clipboard = new Clipboard('.fa-clipboard');
-      $(".fa-clipboard").click(function(){
-      clipboard.on('success', function(){
-        swal({   
-          title: "",   
-          text: '复制成功',
-          icon: "success", 
-          showConfirmButton: true
-          });
-        });
-    });  
-</script>
-
-      
-</div>
-	</div>
-
-    
-
-    
-      <div>
-        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
-  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>Donate</span>
-  </button>
-  <div id="QR" style="display: none;">
-
-    
-      <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/uploads/wechat_reward.png" alt="海晨忆 WeChat Pay"/>
-        <p>WeChat Pay</p>
-      </div>
-    
-
-    
-      <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/uploads/alipay_reward.jpg" alt="海晨忆 Alipay"/>
-        <p>Alipay</p>
-      </div>
-    
-
-    
-
   </div>
-</div>
-
-      </div>
+  
     
-
+<nav id="article-nav">
+  <div class="article-nav-block">
     
-
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/09/05/SpringBoot系列—自定义拦截器（九）/" rel="next" title="SpringBoot系列—自定义拦截器（九）">
-                <i class="fa fa-chevron-left"></i> SpringBoot系列—自定义拦截器（九）
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/09/07/SpringBoot系列—MyBatis（十一）/" rel="prev" title="SpringBoot系列—MyBatis（十一）">
-                SpringBoot系列—MyBatis（十一） <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
+      <a href="/2019/09/07/SpringBoot系列—MyBatis（十一）/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption"></strong>
+        <div class="article-nav-title">
+          
+            SpringBoot系列—MyBatis（十一）
+          
         </div>
-      
-
-      
-      
-    </footer>
+      </a>
+    
   </div>
+  <div class="article-nav-block">
+    
+      <a href="/2019/09/05/SpringBoot系列—自定义拦截器（九）/" id="article-nav-older" class="article-nav-link-wrap">
+        <div class="article-nav-title">SpringBoot系列—自定义拦截器（九）</div>
+        <strong class="article-nav-caption"></strong>
+      </a>
+    
+  </div>
+</nav>
+
+    
   
   
+</article>
+</section>
+        <aside id="sidebar">
   
-  </article>
-
-
-
-    <div class="post-spread">
+    <div class="widget-box">
+  <div class="avatar-box avatar-item">
+    <img class="avatar" src="/uploads/artistic_image/head.jpg" title="头像来自网络"></img>
+    <h3 class="avatar-name">
       
-        <!-- JiaThis Button BEGIN -->
-<div class="jiathis_style">
-  <a class="jiathis_button_tsina"></a>
-  <a class="jiathis_button_tqq"></a>
-  <a class="jiathis_button_weixin"></a>
-  <a class="jiathis_button_cqq"></a>
-  <a class="jiathis_button_douban"></a>
-  <a class="jiathis_button_renren"></a>
-  <a class="jiathis_button_qzone"></a>
-  <a class="jiathis_button_kaixin001"></a>
-  <a class="jiathis_button_copy"></a>
-  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
-  <a class="jiathis_counter_style"></a>
+        海晨忆
+      
+    </h3>
+    <p class="avatar-slogan">
+      先谋生，再谋爱。人间值得，未来可期。
+    </p>
+  </div>
 </div>
-<script type="text/javascript" >
-  var jiathis_config={
-    hideMore:false
-  }
-</script>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
-<!-- JiaThis Button END -->
 
-      
+
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android-Socket/">Android -Socket</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-加密算法/">Android -加密算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-常用功能/">Android -常用功能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-框架/">Android -框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-源码解析/">Android -源码解析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-自定义view/">Android -自定义view</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-设计模式/">Android -设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-SpringBoot/">Java -SpringBoot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/kotlin/">kotlin</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库-JDBC/">数据库 -JDBC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库-MySQL/">数据库 -MySQL</a></li></ul>
     </div>
   </div>
 
 
-          </div>
-          
-
-
-          
-
-        </div>
-        
-          
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    
+
+  
+    
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
     </div>
   </div>
 
-  <aside id="sidebar" class="sidebar">
+  
     
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
+  <div class="widget-box">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/09/17/SpringBoot系列—事务管理（十三）/">SpringBoot系列—事务管理（十三）</a>
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
+        
+          <li>
+            <a href="/2019/09/11/SpringBoot系列—Spring-Data-JPA（十二）/">SpringBoot系列—Spring Data JPA（十二）</a>
           </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/artistic_image/head.jpg"
-               alt="海晨忆" />
-          <p class="site-author-name" itemprop="name">海晨忆</p>
-           
-              <p class="site-description motion-element" itemprop="description">我负责征战天下，你负责貌美如花！</p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">65</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">12</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-
-        </nav>
-
         
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
+          <li>
+            <a href="/2019/09/07/SpringBoot系列—MyBatis（十一）/">SpringBoot系列—MyBatis（十一）</a>
+          </li>
         
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://www.jianshu.com/u/6077ee440c37" target="_blank" title="简书">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                    
-                      简书
-                    
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://blog.csdn.net/qq_27634797" target="_blank" title="CSDN">
-                  
-                    <i class="fa fa-fw fa-github-square"></i>
-                  
-                    
-                      CSDN
-                    
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/haichenyi" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github-alt"></i>
-                  
-                    
-                      GitHub
-                    
-                </a>
-              </span>
-            
-          
-        </div>
-
+          <li>
+            <a href="/2019/09/05/SpringBoot系列—Druid（十）/">SpringBoot系列—Druid（十）</a>
+          </li>
         
+          <li>
+            <a href="/2019/09/05/SpringBoot系列—自定义拦截器（九）/">SpringBoot系列—自定义拦截器（九）</a>
+          </li>
         
-
-        
-        
-
-        
-
-
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库的连接"><span class="nav-number">1.</span> <span class="nav-text">数据库的连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Druid连接数据库"><span class="nav-number">2.</span> <span class="nav-text">Druid连接数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Druid后台监控"><span class="nav-number">3.</span> <span class="nav-text">Druid后台监控</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
+      </ul>
     </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div class="copyright" >
-  
-  &copy;  2017 - 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">海晨忆</span>
-</div>
-
-
-<div class="powered-by">
-<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
-  本站访客数:<span id="busuanzi_value_site_uv"></span>
-</span>
-</div>
-
-<div class="theme-info">
-  <div class="powered-by"></div>
-  <span class="post-count">博客全站共94.1k字</span>
-</div>
-
-
-        
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
   </div>
 
   
+      <div class="widget-box">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      
+        <a class="hrf" style="display: block;" href="https://github.com/haichenyi" title target='_blank'
+        >Github</a>
+      
+        <a class="hrf" style="display: block;" href="https://www.jianshu.com/u/6077ee440c37" title target='_blank'
+        >简书</a>
+      
+        <a class="hrf" style="display: block;" href="https://blog.csdn.net/qq_27634797" title target='_blank'
+        >CSDN</a>
+      
+    </div>
+  </div>
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
+  
+</aside>
+      </div>
+      <footer id="footer">
+  <div class="foot-box footers global-width">
+    &copy;2017-2019 海晨忆 &nbsp;&nbsp;
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">阁下是第<span id="busuanzi_value_site_pv"></span>个访客</span>
+  </div>
+</footer>
+      <script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script>
+if (!window.jQuery) {
+var script = document.createElement('script');
+script.src = "/js/jquery-2.0.3.min.js";
+document.body.write(script);
+}
 </script>
 
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
 
 
 
-
-
-
-
-
+    </div>
+    <nav id="mobile-nav" class="mobile-nav-box">
+  <div class="mobile-nav-img mobile-nav-top"></div>
   
-
-
-
-
+    <a href="/" class="mobile-nav-link">首页</a>
   
+    <a href="/archives" class="mobile-nav-link">归档</a>
   
-
-
-
-
-
-
-
-
-
+    <a href="/about" class="mobile-nav-link">简历</a>
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-  
-  <script type="text/javascript" src="/lib/three/three.min.js"></script>
-
-  
-  <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-  
-
-  <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    }
-
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
-
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
-
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('1');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  <!-- 页面点击小红心 -->
-<script type="text/javascript" src="/js/src/love.js"></script>
-
-<div id="hexo-helper-live2d">
-  <canvas id="live2dcanvas" width="150" height="300"></canvas>
-</div>
-<style>
-  #live2dcanvas{
-    position: fixed;
-    width: 150px;
-    height: 300px;
-    opacity:0.7;
-    right: 0px;
-    z-index: 999;
-    pointer-events: none;
-    bottom: -20px;
-  }
-</style>
-<script type="text/javascript" src="/live2d/device.min.js"></script>
-<script type="text/javascript">
-const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
-(function(){
-  if((typeof(device) != 'undefined') && (device.mobile())){
-    var trElement = document.getElementById('hexo-helper-live2d');
-    trElement.parentNode.removeChild(trElement);
-    return;
-  }else
-    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
-  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/wanko.model.json", 0.5);});
-})();
-</script>
-
-
-   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
-   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
-   <script type="text/javascript" src="/js/src/fireworks.js"></script>
-
+  <div class="mobile-nav-img  mobile-nav-bottom"></div>
+</nav>    
+  </div>
 </body>
 </html>
