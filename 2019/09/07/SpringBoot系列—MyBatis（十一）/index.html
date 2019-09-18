@@ -17,12 +17,12 @@
 <meta property="og:site_name" content="海晨忆的博客">
 <meta property="og:description" content="&amp;emsp;&amp;emsp;上一篇，Druid是用于处理数据库连接池与后台监控。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-010a61ea5cbc26cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2019-09-07T10:57:38.055Z">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-09-07/项目结构图.png">
+<meta property="og:updated_time" content="2019-09-18T08:48:38.542Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot系列—MyBatis（十一）">
 <meta name="twitter:description" content="&amp;emsp;&amp;emsp;上一篇，Druid是用于处理数据库连接池与后台监控。">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/7041675-010a61ea5cbc26cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:image" content="http://haichenyi.com/uploads/article/2019-09-07/项目结构图.png">
   
     <link rel="alternate" href="/atom.xml" title="海晨忆的博客" type="application/atom+xml">
   
@@ -110,7 +110,7 @@
 <h3 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h3><div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mybatis-spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.1.0&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></div>
 <p>&emsp;&emsp;MyBatis添加依赖跟SpringBoot的其他启动器不一样，MyBatis需要写版本号，因为，SpringBoot并没有MyBatis的启动器。</p>
 <h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><h4 id="注解的方式"><a href="#注解的方式" class="headerlink" title="注解的方式"></a>注解的方式</h4><p>&emsp;&emsp;先看一下项目结构：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/7041675-010a61ea5cbc26cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="项目结构图.png"></p>
+<p><img src="/uploads/article/2019-09-07/项目结构图.png" alt="项目结构图.png"></p>
 <p>&emsp;&emsp;首先，我们先在连接的数据库里面创建表，添加几条数据。</p>
 <p>&emsp;&emsp;然后，创建pojo类User，对应我的表</p>
 <div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">package com.haichenyi.springbootjdbc.pojo;</span><br><span class="line"></span><br><span class="line">import lombok.Data;</span><br><span class="line"></span><br><span class="line">@Data</span><br><span class="line">public class User &#123;</span><br><span class="line">    public Long UserId;</span><br><span class="line">    public String Username;</span><br><span class="line">    public String password;</span><br><span class="line">    public String nickName;</span><br><span class="line">    public String headImg;</span><br><span class="line">    public Integer age;</span><br><span class="line">    public Integer sex;</span><br><span class="line">    public String address;</span><br><span class="line">    public String desc;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>

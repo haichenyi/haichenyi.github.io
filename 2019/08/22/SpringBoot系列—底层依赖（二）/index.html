@@ -17,16 +17,16 @@
 <meta property="og:site_name" content="海晨忆的博客">
 <meta property="og:description" content="&amp;emsp;&amp;emsp;前面，我们创建了一个Spring Boot的hello world，我们仅仅添加了一个spring-boot-starter-parent，它是怎么帮我们实现这个依赖的呢？我们可以点进去看一下Ctrl+鼠标左键，如下图：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-ab0e7668fd2e1a0e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-4a0a4fe1b86f57de.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-ef877b011a93bb32.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-6988d693f665a4da.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-b5f299b5d6676a64.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2019-08-22T07:05:28.913Z">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-08-22/parent的pom文件1.png">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-08-22/parent的pom文件2.png">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-08-22/dependencies的pom文件.png">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-08-22/web场景启动器.png">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-08-22/场景启动器.png">
+<meta property="og:updated_time" content="2019-09-18T09:10:16.941Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot系列—底层依赖（二）">
 <meta name="twitter:description" content="&amp;emsp;&amp;emsp;前面，我们创建了一个Spring Boot的hello world，我们仅仅添加了一个spring-boot-starter-parent，它是怎么帮我们实现这个依赖的呢？我们可以点进去看一下Ctrl+鼠标左键，如下图：">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/7041675-ab0e7668fd2e1a0e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:image" content="http://haichenyi.com/uploads/article/2019-08-22/parent的pom文件1.png">
   
     <link rel="alternate" href="/atom.xml" title="海晨忆的博客" type="application/atom+xml">
   
@@ -110,10 +110,10 @@
       
         <p>&emsp;&emsp;前面，我们创建了一个Spring Boot的hello world，我们仅仅添加了一个<strong>spring-boot-starter-parent</strong>，它是怎么帮我们实现这个依赖的呢？我们可以点进去看一下<strong>Ctrl+鼠标左键</strong>，如下图：</p>
 <a id="more"></a>
-<p><img src="https://upload-images.jianshu.io/upload_images/7041675-ab0e7668fd2e1a0e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="parent的pom文件1.png"></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/7041675-4a0a4fe1b86f57de.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="parent的pom文件2.png"></p>
+<p><img src="/uploads/article/2019-08-22/parent的pom文件1.png" alt="parent的pom文件1.png"></p>
+<p><img src="/uploads/article/2019-08-22/parent的pom文件2.png" alt="parent的pom文件2.png"></p>
 <p>&emsp;&emsp;我们发现它，还有一个父级依赖<strong>spring-boot-dependencies</strong>，我们继续点进去看，如下图：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/7041675-ef877b011a93bb32.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="dependencies的pom文件.png"></p>
+<p><img src="/uploads/article/2019-08-22/dependencies的pom文件.png" alt="dependencies的pom文件.png"></p>
 <p>&emsp;&emsp;在这个pom文件里面，我们发现了，它定义很多个框架的版本号，这里就是，我们在自己项目里面引入框架不需要加版本号的原因。因为，它帮我们定义好了，它会自动依赖这里定义的版本。spring测试通过的，不会有冲突。</p>
 <p>&emsp;&emsp;我们后面还依赖了一个<strong>spring-boot-starter-web</strong>这个框架，这里分两部分：</p>
 <ul>
@@ -121,10 +121,10 @@
 <li>web：web相关的如：Tomcat、springMVC等等</li>
 </ul>
 <p>&emsp;&emsp;我们可以看一下，我们这里的web启动器的内容是什么。如下图：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/7041675-6988d693f665a4da.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="web场景启动器.png"></p>
+<p><img src="/uploads/article/2019-08-22/web场景启动器.png" alt="web场景启动器.png"></p>
 <p>&emsp;&emsp;我们可以看到，它帮我们依赖了很多框架，这就是为什么，我们只添加了一个依赖，我们的项目就依赖的很多个框架的原因，这些都是spring boot帮我们依赖好的。所以，没什么特殊的，一切都是从最简单的开始的。</p>
 <p>&emsp;&emsp;spring boot有很多的<a href="https://docs.spring.io/spring-boot/docs/2.1.7.RELEASE/reference/html/using-boot-build-systems.html#using-boot-starter" target="_blank" rel="noopener">场景启动器</a>，如下图：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/7041675-b5f299b5d6676a64.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="场景启动器.png"></p>
+<p><img src="/uploads/article/2019-08-22/场景启动器.png" alt="场景启动器.png"></p>
 <p>&emsp;&emsp;你需要用到什么样的功能，依赖响应的场景启动器即可。</p>
 
       

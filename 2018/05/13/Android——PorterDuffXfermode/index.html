@@ -17,27 +17,27 @@
 <meta property="og:site_name" content="海晨忆的博客">
 <meta property="og:description" content="简介&amp;emsp;&amp;emsp;PorterDuffXfermode是什么鬼？个人理解，简单的来讲就是做两个Bitmap操作的，什么操作呢？有裁剪，合并等等，有16种图形混合模式。先举一个简单的例子，我们在慢慢讲：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-a473668793539882.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-eae7b8c745ec218e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-f1b34b7fb8df357e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-e8ad2cf4229095fc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-85a4080bc042c63c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-0b1c817304fec954.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-38b1242793a0807b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-5a78edd1ea287820.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-efa828311c86ebcb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-d715a0025e2c1baa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-7e2826c64c63d907.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-4bea3004d59f8260.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-306477eebd6a23d6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-05650d7d10021591.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2018-05-13/简介demo图.png">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2018-05-13/注意点1.png">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2018-05-13/注意点2.png">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2018-05-13/注意点3.png">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2018-05-13/去掉saveLayer(">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2018-05-13/saveLayer.png">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2018-05-13/no_saveLayer.png">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2018-05-13/DST.png">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2018-05-13/SRC_OVER.png">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2018-05-13/DST_OVER.png">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2018-05-13/SRC_IN.png">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2018-05-13/DST_IN.png">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2018-05-13/SRC_OUT.png">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2018-05-13/DST_OUT.png">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-dcdb3859d8e4fbf8.gif?imageMogr2/auto-orient/strip">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-946eca2d7f94cdcf.gif?imageMogr2/auto-orient/strip">
-<meta property="og:updated_time" content="2018-05-13T14:35:37.735Z">
+<meta property="og:updated_time" content="2019-09-18T08:51:58.242Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android——PorterDuffXfermode">
 <meta name="twitter:description" content="简介&amp;emsp;&amp;emsp;PorterDuffXfermode是什么鬼？个人理解，简单的来讲就是做两个Bitmap操作的，什么操作呢？有裁剪，合并等等，有16种图形混合模式。先举一个简单的例子，我们在慢慢讲：">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/7041675-a473668793539882.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:image" content="http://haichenyi.com/uploads/article/2018-05-13/简介demo图.png">
   
     <link rel="alternate" href="/atom.xml" title="海晨忆的博客" type="application/atom+xml">
   
@@ -122,7 +122,7 @@
         <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>&emsp;&emsp;PorterDuffXfermode是什么鬼？个人理解，简单的来讲就是做两个Bitmap操作的，什么操作呢？有裁剪，合并等等，有16种图形混合模式。先举一个简单的例子，我们在慢慢讲：</p>
  <a id="more"></a>
 <div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Author: 海晨忆</span><br><span class="line"> * Date: 2018/3/28</span><br><span class="line"> * Desc:</span><br><span class="line"> */</span><br><span class="line">public class MyCustomView extends View &#123;</span><br><span class="line">  private int width = 300;</span><br><span class="line">  private int height = 300;</span><br><span class="line">  private Bitmap dstBmp;</span><br><span class="line">  private Bitmap srcBmp;</span><br><span class="line">  private Paint mPaint;</span><br><span class="line"></span><br><span class="line">  public MyCustomView(Context context) &#123;</span><br><span class="line">    this(context, null);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public MyCustomView(Context context, @Nullable AttributeSet attrs) &#123;</span><br><span class="line">    this(context, attrs, 0);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public MyCustomView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) &#123;</span><br><span class="line">    super(context, attrs, defStyleAttr);</span><br><span class="line">    initView();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  private void initView() &#123;</span><br><span class="line">    setLayerType(View.LAYER_TYPE_SOFTWARE, null);</span><br><span class="line">    srcBmp = makeSrc(width, height);</span><br><span class="line">    dstBmp = makeDst(width, height);</span><br><span class="line">    mPaint = new Paint();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  protected void onDraw(Canvas canvas) &#123;</span><br><span class="line">    super.onDraw(canvas);</span><br><span class="line">    canvas.translate(getWidth() / 2 - width / 2, getHeight() / 2 - height / 2);</span><br><span class="line">    canvas.drawColor(Color.BLUE);</span><br><span class="line">    int layerID = canvas.saveLayer(0, 0, width * 2, height * 2, mPaint, Canvas.ALL_SAVE_FLAG);</span><br><span class="line">    canvas.drawBitmap(dstBmp, 0, 0, mPaint);</span><br><span class="line">    @SuppressLint(&quot;DrawAllocation&quot;) PorterDuffXfermode xfermode = new PorterDuffXfermode(PorterDuff.Mode.SRC_IN);</span><br><span class="line">    mPaint.setXfermode(xfermode);</span><br><span class="line">    canvas.drawBitmap(srcBmp, width / 2, height / 2, mPaint);</span><br><span class="line">    mPaint.setXfermode(null);</span><br><span class="line">    canvas.restoreToCount(layerID);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  private Bitmap makeDst(int w, int h) &#123;</span><br><span class="line">    Bitmap dst = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);</span><br><span class="line">    Canvas mCanvas = new Canvas(dst);</span><br><span class="line">    Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);</span><br><span class="line">    mPaint.setColor(Color.RED);</span><br><span class="line">    mCanvas.drawOval(new RectF(0, 0, w, h), mPaint);</span><br><span class="line">    return dst;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  private Bitmap makeSrc(int w, int h) &#123;</span><br><span class="line">    Bitmap src = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);</span><br><span class="line">    Canvas mCanvas = new Canvas(src);</span><br><span class="line">    Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);</span><br><span class="line">    mPaint.setColor(Color.YELLOW);</span><br><span class="line">    mCanvas.drawRect(0, 0, w, h, mPaint);</span><br><span class="line">    return src;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-<p>效果图如下：<br><img src="https://upload-images.jianshu.io/upload_images/7041675-a473668793539882.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="简介demo图.png"></p>
+<p>效果图如下：<br><img src="/uploads/article/2018-05-13/简介demo图.png" alt="简介demo图.png"></p>
 <p>&emsp;&emsp;上面画了一个圆形bitmap，画了一个矩形bitmap，设置了一个模式 <strong><em>PorterDuff.Mode.SRC_IN</em></strong> 就变成了上面的形状，这是怎么做到的呢？带着我们的问题，进入我们的主题。</p>
 <h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a><strong><em>注意点</em></strong></h2><p>&emsp;&emsp;为什么我要拿一个大标题来写这个呢？因为，我当时卡在这里很久，然后踩着巨人的肩膀，我才踏过去的。</p>
 <ol>
@@ -141,13 +141,13 @@
 <p>&emsp;&emsp;我们如果不用这个xfermode模式，我们的代码应该是这样的：</p>
 <div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">  protected void onDraw(Canvas canvas) &#123;</span><br><span class="line">    super.onDraw(canvas);</span><br><span class="line">    canvas.translate(getWidth() / 2 - width / 2, getHeight() / 2 - height / 2);</span><br><span class="line">    canvas.drawColor(Color.BLUE);</span><br><span class="line">    canvas.drawBitmap(dstBmp, 0, 0, mPaint);</span><br><span class="line">    canvas.drawBitmap(srcBmp, width / 2, height / 2, mPaint);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></div>
 <p>&emsp;&emsp;很简单的几行代码，把画布移到正中间，给画布加一个背景蓝色，先画dst，后画src，跑出来的效果图应该是下面这样的：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/7041675-eae7b8c745ec218e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="注意点1.png"></p>
+<p><img src="/uploads/article/2018-05-13/注意点1.png" alt="注意点1.png"></p>
 <p>&emsp;&emsp;我们如果加上这个xfermode模式里面的 <strong><em>PorterDuff.Mode.SRC_IN</em></strong>模式，代码如下：</p>
 <div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">  protected void onDraw(Canvas canvas) &#123;</span><br><span class="line">    super.onDraw(canvas);</span><br><span class="line">    canvas.translate(getWidth() / 2 - width / 2, getHeight() / 2 - height / 2);</span><br><span class="line">    canvas.drawColor(Color.BLUE);</span><br><span class="line">    int layerID = canvas.saveLayer(0, 0, width * 2, height * 2, mPaint, Canvas.ALL_SAVE_FLAG);</span><br><span class="line">    canvas.drawBitmap(dstBmp, 0, 0, mPaint);</span><br><span class="line">    @SuppressLint(&quot;DrawAllocation&quot;) PorterDuffXfermode xfermode = new PorterDuffXfermode(PorterDuff.Mode.SRC_IN);</span><br><span class="line">    mPaint.setXfermode(xfermode);</span><br><span class="line">    canvas.drawBitmap(srcBmp, width / 2, height / 2, mPaint);</span><br><span class="line">    mPaint.setXfermode(null);</span><br><span class="line">    canvas.restoreToCount(layerID);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></div>
 <p>&emsp;&emsp;比上面的代码，就多加了一个xfermode模式，他们要是同一个画笔，用完之后，记得要把这个模式置null这个saveLayer等会讲，先不说。跑出来的效果图，如下：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/7041675-f1b34b7fb8df357e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="注意点2.png"></p>
+<p><img src="/uploads/article/2018-05-13/注意点2.png" alt="注意点2.png"></p>
 <p>&emsp;&emsp;前面，我们一直都在强调dst先画，src后画，如果调换一下，会是什么样的结果呢？代码我就不贴出来了，就把那两个drawBitmap调换一个位置，跑出来的效果图，如下：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/7041675-e8ad2cf4229095fc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="注意点3.png"></p>
+<p><img src="/uploads/article/2018-05-13/注意点3.png" alt="注意点3.png"></p>
 <p>&emsp;&emsp;很明显，跟我们的预期结果不一样。这是为什么呢？带着我们的问题进入下一节。</p>
 <h2 id="十六种模式和saveLayer"><a href="#十六种模式和saveLayer" class="headerlink" title="十六种模式和saveLayer()"></a>十六种模式和saveLayer()</h2><h3 id="十六种模式"><a href="#十六种模式" class="headerlink" title="十六种模式"></a>十六种模式</h3><table>
 <thead>
@@ -214,7 +214,7 @@
 <h3 id="saveLayer"><a href="#saveLayer" class="headerlink" title="saveLayer()"></a>saveLayer()</h3><p>&emsp;&emsp;这个方法是干嘛用的？保存指定区域内画布的内容。</p>
 <div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public int saveLayer(RectF bounds, Paint paint, int saveFlags)  </span><br><span class="line">public int saveLayer(float left, float top, float right, float bottom,Paint paint, int saveFlags)</span><br></pre></td></tr></table></figure></div>
 <p>&emsp;&emsp;后面的saveFlags，有6个值，我们这里用到的 <strong><em>Canvas.ALL_SAVE_FLAG</em></strong>，很明显，表示保存所有内容。我们这里如果把这个方法去掉，会是什么样的结果呢？代码就不贴出来了，就直接注释掉saveLayer的两行代码。还是先画dst，后画src，跑出来的效果图如下：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/7041675-85a4080bc042c63c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="去掉saveLayer().png"></p>
+<p><img src="/uploads/article/2018-05-13/去掉saveLayer(" alt="去掉saveLayer().png">.png)</p>
 <p>我们先规定两点：</p>
 <ol>
 <li>先画dst，也就是目标图像，是一个圆形。</li>
@@ -245,29 +245,29 @@
 </tbody>
 </table>
 <p>&emsp;&emsp;规定好之后，我们再来说一说这个 <strong><em>SRC_IN</em></strong>，我们前面说了：取两层绘制交集。显示上层。首先IN是取交集部分，OUT是取非交集部分。这个就是说最后显示的图形，他们的交集部分，显示src，也就是矩形的颜色，也就是黄色。先画的dst，他自然在src的上层。所以，显示dst的形状，两者交集部分显示src的颜色。可以看下图：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/7041675-0b1c817304fec954.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="saveLayer.png"></p>
+<p><img src="/uploads/article/2018-05-13/saveLayer.png" alt="saveLayer.png"></p>
 <p>&emsp;&emsp;我们再来说说saveLayer的绘制流程：如上图所示，它会创建一个全新图名的bitmap，大小跟你前面指定的保存区域相同，然后，绘制的图形会保存在这个全新透明的bitmap上面，最后把这个透明的bitmap画在画布上面。</p>
 <p>&emsp;&emsp;辣么，没有savelayer()方法的绘制流程呢？如下图：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/7041675-38b1242793a0807b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="no_saveLayer.png"></p>
+<p><img src="/uploads/article/2018-05-13/no_saveLayer.png" alt="no_saveLayer.png"></p>
 <p>他是直接作用在画布上面的。</p>
 <h2 id="常用的PorterDuffXfermode模式介绍"><a href="#常用的PorterDuffXfermode模式介绍" class="headerlink" title="常用的PorterDuffXfermode模式介绍"></a>常用的PorterDuffXfermode模式介绍</h2><h3 id="SRC模式"><a href="#SRC模式" class="headerlink" title="SRC模式"></a>SRC模式</h3><p>&emsp;&emsp;只保留源图像的 alpha 和 color ，所以绘制出来只有源图，有时候会感觉分不清先绘制的是源图还是后绘制的是源图，这个时候可以这么记，先绘制的是目标图，不管任何时候，一定要做一个有目标的人，目标在前！（未达到我们的预期效果，感觉有问题）</p>
 <h3 id="DST模式"><a href="#DST模式" class="headerlink" title="DST模式"></a>DST模式</h3><p>&emsp;&emsp;只显示目标图片，也就是只显示红色的圆形。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/7041675-5a78edd1ea287820.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="DST.png"></p>
+<p><img src="/uploads/article/2018-05-13/DST.png" alt="DST.png"></p>
 <h3 id="SRC-OVER模式"><a href="#SRC-OVER模式" class="headerlink" title="SRC_OVER模式"></a>SRC_OVER模式</h3><p>&emsp;&emsp;在目标图片顶部绘制源图像,从命名上也可以看出来就是把源图像绘制在上方，也就是把黄色长方形，画在红色圆形的上面。效果图如下：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/7041675-efa828311c86ebcb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="SRC_OVER.png"></p>
+<p><img src="/uploads/article/2018-05-13/SRC_OVER.png" alt="SRC_OVER.png"></p>
 <h3 id="DST-OVER模式"><a href="#DST-OVER模式" class="headerlink" title="DST_OVER模式"></a>DST_OVER模式</h3><p>&emsp;&emsp;把目标图像绘制在上方。与前一个相反，把红色圆形画在长方形上面。效果图如下：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/7041675-d715a0025e2c1baa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="DST_OVER.png"></p>
+<p><img src="/uploads/article/2018-05-13/DST_OVER.png" alt="DST_OVER.png"></p>
 <h3 id="SRC-IN模式"><a href="#SRC-IN模式" class="headerlink" title="SRC_IN模式"></a>SRC_IN模式</h3><p>&emsp;&emsp;在两者相交的地方绘制源图像，并且绘制的效果会受到目标图像对应地方透明度的影响。</p>
 <p>&emsp;&emsp;有点绕，我分成几段讲出来：</p>
 <p>&emsp;&emsp;也就是说，两者相交的位置，显示源图像，也就是黄色的矩形，目标图像的透明度为0，然后，&emsp;源图像的其他位置的透明度&emsp;&emsp;会跟源图像与目标图像相交的地方&emsp;&emsp;的目标图像的透明度一样。</p>
 <p>&emsp;&emsp;有点绕。其实，就是说源图像的其他地方隐藏，就显示相交的位置。效果图如下：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/7041675-7e2826c64c63d907.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="SRC_IN.png"></p>
+<p><img src="/uploads/article/2018-05-13/SRC_IN.png" alt="SRC_IN.png"></p>
 <h3 id="DST-IN模式"><a href="#DST-IN模式" class="headerlink" title="DST_IN模式"></a>DST_IN模式</h3><p>&emsp;&emsp;跟前面刚好对应，在两者相交的地方绘制目标图像，并且，绘制效果会受到源图像对应地方透明度的影响。我们最是绘制目标图像。效果图如下：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/7041675-4bea3004d59f8260.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="DST_IN.png"></p>
+<p><img src="/uploads/article/2018-05-13/DST_IN.png" alt="DST_IN.png"></p>
 <h3 id="SRC-OUT模式"><a href="#SRC-OUT模式" class="headerlink" title="SRC_OUT模式"></a>SRC_OUT模式</h3><p>&emsp;&emsp;在不相交的地方绘制源图像，相交处根据目标alpha进行过滤，目标色完全不透明时则完全过滤，完全透明则不过滤；</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/7041675-306477eebd6a23d6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="SRC_OUT.png"></p>
+<p><img src="/uploads/article/2018-05-13/SRC_OUT.png" alt="SRC_OUT.png"></p>
 <h3 id="DST-OUT模式"><a href="#DST-OUT模式" class="headerlink" title="DST_OUT模式"></a>DST_OUT模式</h3><p>&emsp;&emsp;同样，可以类比SRC_OUT , 在不相交的地方绘制目标图像，相交处根据源图像alpha进行过滤，完全不透明处则完全过滤，完全透明则不过滤；</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/7041675-05650d7d10021591.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="DST_OUT.png"></p>
+<p><img src="/uploads/article/2018-05-13/DST_OUT.png" alt="DST_OUT.png"></p>
 <p>太多了，后面就不写了，用的也比较少。</p>
 <p>用途，加上上一篇的贝赛尔曲线的水波纹。很明显，我就想做如下效果：</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/7041675-dcdb3859d8e4fbf8.gif?imageMogr2/auto-orient/strip" alt="圆形水波纹.gif"></p>

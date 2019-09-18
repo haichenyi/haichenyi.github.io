@@ -17,12 +17,12 @@
 <meta property="og:site_name" content="海晨忆的博客">
 <meta property="og:description" content="&amp;emsp;&amp;emsp;用了好几年的dagger2，从dagger2.android。就只有当时刚开始用dagger的时候深入的了解过，后来就再也没有深入的时候研究过。这几天又研究了一下，做个总结。 &amp;emsp;&amp;emsp;就拿之前写的kotlin的框架来说，它用的是dagger2.android。从dagger2.android。最明显的就是，需要我们自己写的东西越来越少了，框架帮我们做的事情越">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-73a4d29d6483e6c4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2019-07-31T09:42:37.760Z">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-07-31/内存分配1.png">
+<meta property="og:updated_time" content="2019-09-18T09:09:44.039Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一场由dagger2引发的一些思考">
 <meta name="twitter:description" content="&amp;emsp;&amp;emsp;用了好几年的dagger2，从dagger2.android。就只有当时刚开始用dagger的时候深入的了解过，后来就再也没有深入的时候研究过。这几天又研究了一下，做个总结。 &amp;emsp;&amp;emsp;就拿之前写的kotlin的框架来说，它用的是dagger2.android。从dagger2.android。最明显的就是，需要我们自己写的东西越来越少了，框架帮我们做的事情越">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/7041675-73a4d29d6483e6c4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:image" content="http://haichenyi.com/uploads/article/2019-07-31/内存分配1.png">
   
     <link rel="alternate" href="/atom.xml" title="海晨忆的博客" type="application/atom+xml">
   
@@ -137,7 +137,7 @@
 <li>方法区：存储字节码信息(类，方法等等字节码)，常量，静态变量等等。常量池在方法区中</li>
 </ol>
 <p>举个栗子：<strong>String b = new String(“a”)</strong> 和 <strong>String c = “a”</strong>，他们内存是怎么分配的？如图：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/7041675-73a4d29d6483e6c4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="内存分配1.png"></p>
+<p><img src="/uploads/article/2019-07-31/内存分配1.png" alt="内存分配1.png"></p>
 <ol>
 <li>等于号左边 <strong>String b，String c</strong>这里的b，c都是引用，所以放在栈中。栈存放引用</li>
 <li>等于号右边，new的过程，就是在堆中创建内存的过程，这里的0x123456789就是我们常说的内存地址</li>

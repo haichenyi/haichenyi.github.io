@@ -17,12 +17,12 @@
 <meta property="og:site_name" content="海晨忆的博客">
 <meta property="og:description" content="推荐：非著名程序员的安卓自定义View教程目录，我的自定义view就是看他的这个系列学会的 &amp;emsp;&amp;emsp;首先，我们需要确认的是android的事件传递机制是责任链模式，如果自己能处理就拦截下来自己处理，如果自己处理不了或者不确定就传递给下一个对象">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7041675-9b8401bc04e365de.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-02-22T13:51:55.865Z">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2018-02-22/分发流程.png">
+<meta property="og:updated_time" content="2019-09-18T08:59:57.714Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android事件分发机制原理">
 <meta name="twitter:description" content="推荐：非著名程序员的安卓自定义View教程目录，我的自定义view就是看他的这个系列学会的 &amp;emsp;&amp;emsp;首先，我们需要确认的是android的事件传递机制是责任链模式，如果自己能处理就拦截下来自己处理，如果自己处理不了或者不确定就传递给下一个对象">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/7041675-9b8401bc04e365de.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:image" content="http://haichenyi.com/uploads/article/2018-02-22/分发流程.png">
   
     <link rel="alternate" href="/atom.xml" title="海晨忆的博客" type="application/atom+xml">
   
@@ -150,7 +150,7 @@
 <li><p>View作为事件响应的最末端，要么消费事件，要么不处理回传，没必要拦截事件</p>
 </li>
 </ol>
-<h2 id="事件分发流程"><a href="#事件分发流程" class="headerlink" title="事件分发流程"></a>事件分发流程</h2><p>&emsp;&emsp;先给出一张图<img src="http://upload-images.jianshu.io/upload_images/7041675-9b8401bc04e365de.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="分发流程"></p>
+<h2 id="事件分发流程"><a href="#事件分发流程" class="headerlink" title="事件分发流程"></a>事件分发流程</h2><p>&emsp;&emsp;先给出一张图<img src="/uploads/article/2018-02-22/分发流程.png" alt="分发流程.jpg"></p>
 <p>&emsp;&emsp;这里，我们看到多了两个东西，一个是PhoneWindow，一个是DecorView，我们平时写的布局，最外层的父布局就是这里的RootView，有过几个app开发经验的程序员都应该知道，app的状态栏颜色的修改，还有那个主题的内容修改，修改后显示在哪呢？没错，就是DecorView里面。</p>
 <p>&emsp;&emsp;再有就是phoneWindow，其实，知不知道没什么用，phonewindow是Window的唯一实现类，Window是干嘛的呢？Window是一个抽象类，所有的视图，事件传递都归它管理，所以，phonewindow管理视图，上面说的DecorView就是phonewindow的一个内部实现类，除了自己的功能外，还负责消息传递。</p>
 <p>&emsp;&emsp;说了这么多，该来讲讲事件传递的流程了。android的view是树形结构的，基于这样的结构，我们的事件可以有序的分发。事件收集之后，起点是Activity，然后有序的向下传递，大致如下：</p>

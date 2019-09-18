@@ -17,16 +17,16 @@
 <meta property="og:site_name" content="海晨忆的博客">
 <meta property="og:description" content="&amp;emsp;&amp;emsp;搭建android框架的时候总是会遇到测试网络请求没有接口的问题，今天就自己搭建一个服务器Tomcat。不用写web项目就能直接获取到数据">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-00a048db46aed79e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-2843477983ad2d7a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-91cbbc3a3c2ef45d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-8258261aaa0caa19.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-8b6e28c8c5323a3a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2019-07-25T12:51:18.998Z">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-07-25/步骤1.png">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-07-25/步骤2.png">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-07-25/解压.png">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-07-25/新建环境变量.png">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-07-25/修改path.png">
+<meta property="og:updated_time" content="2019-09-18T09:10:07.155Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Tomcat安装与启动">
 <meta name="twitter:description" content="&amp;emsp;&amp;emsp;搭建android框架的时候总是会遇到测试网络请求没有接口的问题，今天就自己搭建一个服务器Tomcat。不用写web项目就能直接获取到数据">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/7041675-00a048db46aed79e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:image" content="http://haichenyi.com/uploads/article/2019-07-25/步骤1.png">
   
     <link rel="alternate" href="/atom.xml" title="海晨忆的博客" type="application/atom+xml">
   
@@ -112,15 +112,15 @@
 <a id="more"></a>
 <p>&emsp;&emsp;一.Tomcat主页跳转<a href="https://tomcat.apache.org/" target="_blank" rel="noopener">下载</a></p>
 <p>&emsp;&emsp;二.Download——版本(点击)——Binary Distributions——Core——zip(点击)，该版本是解压版，解压就可以用，无需安装。如下图</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/7041675-00a048db46aed79e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="步骤1.png"></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/7041675-2843477983ad2d7a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="步骤2.png"></p>
+<p><img src="/uploads/article/2019-07-25/步骤1.png" alt="步骤1.png"></p>
+<p><img src="/uploads/article/2019-07-25/步骤2.png" alt="步骤2.png"></p>
 <p>&emsp;&emsp;三.下载完成之后，我把zip放在Dpan根目录，解压到当前文件夹即可。如下图</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/7041675-91cbbc3a3c2ef45d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="解压.png"></p>
+<p><img src="/uploads/article/2019-07-25/解压.png" alt="解压.png"></p>
 <p>&emsp;&emsp;四.配置环境变量。两个地方要注意</p>
 <div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">新建环境变量：CATALINA_HOME=D:\apache-tomcat-9.0.22</span><br><span class="line">如下图：</span><br></pre></td></tr></table></figure></div>
-<p><img src="https://upload-images.jianshu.io/upload_images/7041675-8258261aaa0caa19.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="新建环境变量.png"></p>
+<p><img src="/uploads/article/2019-07-25/新建环境变量.png" alt="新建环境变量.png"></p>
 <div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">修改Path变量：</span><br><span class="line"></span><br><span class="line">%CATALINA_HOME%\lib</span><br><span class="line"></span><br><span class="line">%CATALINA_HOME%\lib\servlet-api.jar</span><br><span class="line"></span><br><span class="line">%CATALINA_HOME%\lib\jsp-api.jar</span><br><span class="line"></span><br><span class="line">把上面三个放在Path后面</span><br></pre></td></tr></table></figure></div>
-<p><img src="https://upload-images.jianshu.io/upload_images/7041675-8b6e28c8c5323a3a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="修改path.png"></p>
+<p><img src="/uploads/article/2019-07-25/修改path.png" alt="修改path.png"></p>
 <p>&emsp;&emsp;五.添加用户，进入config目录，我这里是D:\apache-tomcat-9.0.22\conf，找到tomcat-users.xml，新增如下用户，我这里把它的注释都去掉了</p>
 <div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line"></span><br><span class="line">&lt;tomcat-users xmlns=&quot;http://tomcat.apache.org/xml&quot;</span><br><span class="line">              xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">              xsi:schemaLocation=&quot;http://tomcat.apache.org/xml tomcat-users.xsd&quot;</span><br><span class="line">              version=&quot;1.0&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;role rolename=&quot;manager-wz&quot;/&gt; </span><br><span class="line"></span><br><span class="line">&lt;role rolename=&quot;admin-wz&quot;/&gt;  </span><br><span class="line"></span><br><span class="line">&lt;user username=&quot;admin&quot; password=&quot;admin&quot; roles=&quot;admin-wz&quot;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;user username=&quot;tomcat&quot; password=&quot;admin&quot; roles=&quot;manager-wz&quot;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;/tomcat-users&gt;</span><br></pre></td></tr></table></figure></div>
 <p>&emsp;&emsp;六.进入D:\apache-tomcat-9.0.22\bin目录下，双击<strong>startup.bat</strong>文件，即可启动Tomcat</p>

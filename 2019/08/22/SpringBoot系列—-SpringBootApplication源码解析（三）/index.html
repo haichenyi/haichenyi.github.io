@@ -17,13 +17,13 @@
 <meta property="og:site_name" content="海晨忆的博客">
 <meta property="og:description" content="&amp;emsp;&amp;emsp;上一篇，内容很少，说了一下SpringBoot的底层是怎么依赖的。这一篇讲一下SpringBoot底层源码是怎么实现的。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-a3f5cc4478dcff2c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-041b65a5da3b0aec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2019-08-22T08:21:25.307Z">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-08-22/springbootapplication注解.png">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-08-22/autoConfigure.png">
+<meta property="og:updated_time" content="2019-09-18T09:10:23.418Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot系列—@SpringBootApplication源码解析（三）">
 <meta name="twitter:description" content="&amp;emsp;&amp;emsp;上一篇，内容很少，说了一下SpringBoot的底层是怎么依赖的。这一篇讲一下SpringBoot底层源码是怎么实现的。">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/7041675-a3f5cc4478dcff2c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:image" content="http://haichenyi.com/uploads/article/2019-08-22/springbootapplication注解.png">
   
     <link rel="alternate" href="/atom.xml" title="海晨忆的博客" type="application/atom+xml">
   
@@ -110,7 +110,7 @@
 <p>&emsp;&emsp;从SpringBoot的入口开始。第一篇的时候说过了，最好把入口文件放在最外层的包下面，至于原因就不多阐述了。</p>
 <p>&emsp;&emsp;说说这个 <strong>@SpringBootApplication</strong>注解的原理,点进去看一下：</p>
 <p>如下图：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/7041675-a3f5cc4478dcff2c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="springbootapplication注解.png"></p>
+<p><img src="/uploads/article/2019-08-22/springbootapplication注解.png" alt="springbootapplication注解.png"></p>
 <p>主要就是这三个注解：</p>
 <ul>
 <li>@SpringBootConfiguration</li>
@@ -140,7 +140,7 @@
 <p>找到loadSpringFactories方法，里面有</p>
 <div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Enumeration&lt;URL&gt; urls = classLoader != null ? classLoader.getResources(&quot;META-INF/spring.factories&quot;) : ClassLoader.getSystemResources(&quot;META-INF/spring.factories&quot;);</span><br></pre></td></tr></table></figure></div>
 <p>这里就是我们的配置，我们这个配置具体是在哪呢？如下图</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/7041675-041b65a5da3b0aec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="autoConfigure.png"></p>
+<p><img src="/uploads/article/2019-08-22/autoConfigure.png" alt="autoConfigure.png"></p>
 <h3 id="ComponentScan"><a href="#ComponentScan" class="headerlink" title="@ComponentScan"></a>@ComponentScan</h3><p>&emsp;&emsp;这个注解的主要作用就是，被该注解标识的类会被Spring容器纳入管理。</p>
 
       

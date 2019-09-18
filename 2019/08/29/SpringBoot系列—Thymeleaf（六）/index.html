@@ -17,13 +17,13 @@
 <meta property="og:site_name" content="海晨忆的博客">
 <meta property="og:description" content="引用公共片段 th:fragment,th:replace,th:insert&amp;emsp;&amp;emsp;很多页面有很多相同的内容，比方说header和foot，这样的内容就需要公共片段引用了，修改一个地方就全部都改了。类似于android里面提取公共方法一样的道理。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-b3e215305db81084.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-6a45b164e8f2d1ca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2019-08-29T03:09:04.060Z">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-08-29/公共片段1.png">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-08-29/公共片段2.png">
+<meta property="og:updated_time" content="2019-09-18T09:10:19.730Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot系列—Thymeleaf（六）">
 <meta name="twitter:description" content="引用公共片段 th:fragment,th:replace,th:insert&amp;emsp;&amp;emsp;很多页面有很多相同的内容，比方说header和foot，这样的内容就需要公共片段引用了，修改一个地方就全部都改了。类似于android里面提取公共方法一样的道理。">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/7041675-b3e215305db81084.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:image" content="http://haichenyi.com/uploads/article/2019-08-29/公共片段1.png">
   
     <link rel="alternate" href="/atom.xml" title="海晨忆的博客" type="application/atom+xml">
   
@@ -108,8 +108,8 @@
         <h3 id="引用公共片段-th-fragment-th-replace-th-insert"><a href="#引用公共片段-th-fragment-th-replace-th-insert" class="headerlink" title="引用公共片段 th:fragment,th:replace,th:insert"></a>引用公共片段 th:fragment,th:replace,th:insert</h3><p>&emsp;&emsp;很多页面有很多相同的内容，比方说header和foot，这样的内容就需要公共片段引用了，修改一个地方就全部都改了。类似于android里面提取公共方法一样的道理。</p>
 <a id="more"></a>
 <p>方式如下图：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/7041675-b3e215305db81084.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="公共片段1.png"></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/7041675-6a45b164e8f2d1ca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="公共片段2.png"></p>
+<p><img src="/uploads/article/2019-08-29/公共片段1.png" alt="公共片段1.png"></p>
+<p><img src="/uploads/article/2019-08-29/公共片段2.png" alt="公共片段2.png"></p>
 <div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot; xmlns:th=&quot;http://www.thymeleaf.org&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;公共片段&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;!--通过th:fragment申明公共片段--&gt;</span><br><span class="line">&lt;div th:fragment=&quot;header_common&quot;&gt;这里是公共片段的内容&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--通过id申明公共片段--&gt;</span><br><span class="line">&lt;div id=&quot;header_common_id&quot;&gt;这里是公共片段的内容&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;!--引入公共片段--&gt;</span><br><span class="line">&lt;div th:replace=&quot;header :: header_common&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;div th:replace=&quot;header :: #header_common_id&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure></div>
 <p>总共分为两步：</p>
 <ol>

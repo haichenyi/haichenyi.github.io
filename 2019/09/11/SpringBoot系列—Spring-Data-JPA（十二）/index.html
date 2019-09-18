@@ -17,13 +17,13 @@
 <meta property="og:site_name" content="海晨忆的博客">
 <meta property="og:description" content="什么是 Spring Data&amp;emsp;&amp;emsp;Spring Data 是 Spring Boot 底层默认进行数据访问的技术 , 为了简化构建基于 Spring 框架应用的数据访问技术，包括非关系数据库、Map-Reduce 框架、云数据服务等；另外也包含对关系数据库的访问支持。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-1ce93a435bc0d30b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-d701cf2c06085ea6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2019-09-11T09:04:34.011Z">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-09-11/Repository.png">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-09-11/关系图.png">
+<meta property="og:updated_time" content="2019-09-18T08:47:57.328Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot系列—Spring Data JPA（十二）">
 <meta name="twitter:description" content="什么是 Spring Data&amp;emsp;&amp;emsp;Spring Data 是 Spring Boot 底层默认进行数据访问的技术 , 为了简化构建基于 Spring 框架应用的数据访问技术，包括非关系数据库、Map-Reduce 框架、云数据服务等；另外也包含对关系数据库的访问支持。">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/7041675-1ce93a435bc0d30b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:image" content="http://haichenyi.com/uploads/article/2019-09-11/Repository.png">
   
     <link rel="alternate" href="/atom.xml" title="海晨忆的博客" type="application/atom+xml">
   
@@ -125,7 +125,7 @@
 <li>Spring Data Neo4j (community module)</li>
 </ul>
 <h3 id="Spring-Data统一的核心接口"><a href="#Spring-Data统一的核心接口" class="headerlink" title="Spring Data统一的核心接口"></a>Spring Data统一的核心接口</h3><p>&emsp;&emsp;Spring Data项目为大家提供统一的API来对不同的数据访问层进行操作。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/7041675-1ce93a435bc0d30b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Repository继承图.png"></p>
+<p><img src="/uploads/article/2019-09-11/Repository.png" alt="Repository继承图.png"></p>
 <ul>
 <li>Repository<t, id="">：统一的根接口即所有接口的父接口，其他接口继承该接口</t,></li>
 <li>CrudRepository<t, id="">：基本的增删改查接口,提供了最基本的对实体类CRUD操作</t,></li>
@@ -133,7 +133,7 @@
 <li>JpaRepository<t, id="">：增加了批量操作，并重写了父接口一些方法的返回类型</t,></li>
 </ul>
 <p>&emsp;&emsp;Spring Data JPA、JPA与Hibernate 关系</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/7041675-d701cf2c06085ea6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="关系图.png"></p>
+<p><img src="/uploads/article/2019-09-11/关系图.png" alt="关系图.png"></p>
 <p>&emsp;&emsp;JPA是一种规范，而Hibernate是实现这种规范的底层实现，SpringData JPA对持久化接口JPA再抽象一层，针对持久化业务再进一步统一简化。</p>
 <h3 id="SpringData-JPA的简单使用"><a href="#SpringData-JPA的简单使用" class="headerlink" title="SpringData JPA的简单使用"></a>SpringData JPA的简单使用</h3><p>&emsp;&emsp;JPA的底层遵守是ORM(对象关系映射)规范，因此JPA其实也就是java实体对象和关系型数据库建立起映射关系，通过<br>面向对象编程的思想操作关系型数据库的规范。</p>
 <p><strong>首先，导包</strong></p>

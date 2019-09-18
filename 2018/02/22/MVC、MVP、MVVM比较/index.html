@@ -17,14 +17,14 @@
 <meta property="og:site_name" content="海晨忆的博客">
 <meta property="og:description" content="Android框架的最终目的，也是体现一个项目好坏的唯一标准——高类聚，低耦合">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7041675-e7fc3f5706296a96.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7041675-a146abe4db80cdf6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7041675-b41a65879e0e8d11.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-02-22T13:48:18.240Z">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2018-02-22/mvc流程图.png">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2018-02-22/MVP流程图.png">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2018-02-22/MVVM流程图.png">
+<meta property="og:updated_time" content="2019-09-18T09:10:38.806Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MVC、MVP、MVVM比较">
 <meta name="twitter:description" content="Android框架的最终目的，也是体现一个项目好坏的唯一标准——高类聚，低耦合">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/7041675-e7fc3f5706296a96.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:image" content="http://haichenyi.com/uploads/article/2018-02-22/mvc流程图.png">
   
     <link rel="alternate" href="/atom.xml" title="海晨忆的博客" type="application/atom+xml">
   
@@ -109,19 +109,19 @@
         <p>Android框架的最终目的，也是体现一个项目好坏的唯一标准——<strong>高类聚，低耦合</strong></p>
 <a id="more"></a>
 <h3 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h3><p>&emsp;&emsp;我们刚接触android写代码的时候基本上都是MVC架构。什么是MVC架构呢？</p>
-<p>&emsp;&emsp;MVC：Model View Controller的简称。流程图如下：<br><img src="http://upload-images.jianshu.io/upload_images/7041675-e7fc3f5706296a96.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="mvc流程图.png"></p>
+<p>&emsp;&emsp;MVC：Model View Controller的简称。流程图如下：<br><img src="/uploads/article/2018-02-22/mvc流程图.png" alt="mvc流程图.png"></p>
 <p>&emsp;&emsp;当用户发出事件的时候，首先通过V层，通知C层，然后C层通知Model层数据发生了变化，更新数据，M层直接显示数据到V层。</p>
 <p>&emsp;&emsp;通俗的讲，xml可以理解层View层，你封装的网络请求的帮助类理解成model层，activity，fragment理解成Controller层。这么理解是可以的，但是，你不能说xml就是view层，这样说是不对的</p>
 <p>&emsp;&emsp;举个例子，比方说一个登录的网络请求，首先，你需要点击按钮去触发网络请求的方法，你点击的这个button就是写在xml布局里面的，这就是V层。然后触发的网络请求帮助类去发送对应的登录请求方法，这就是model层。两者是怎么联系在一起的呢？就是我们在activity，fragment层里面写的onclick方法。activity，fragment就是Controller层。</p>
 <h3 id="MVP"><a href="#MVP" class="headerlink" title="MVP"></a>MVP</h3><p>&emsp;&emsp;所有的UI变化，网络请求等等业务逻辑之类的都写在Activity里面，Activity既要处理业务逻辑，又要处理UI变化，代码就显得非常臃肿。</p>
 <p>&emsp;&emsp;这个时候，MVP就顺势而生，什么是MVP架构呢？</p>
 <p>&emsp;&emsp;MVP：Model View Presenter的简称</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/7041675-a146abe4db80cdf6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="MVP流程图.png"></p>
+<p><img src="/uploads/article/2018-02-22/MVP流程图.png" alt="MVP流程图.png"></p>
 <p>&emsp;&emsp;MVP作为MVC的演化版本，解决了MVC不少的缺点，对于Android来说，MVP的M层，相对于MVC来说是一样的，而不一样的就是activity不再是controller，而是纯粹的V层，所有关于用户事件的转发，全都由P层去处理</p>
 <p>&emsp;&emsp;MVP和MVC最明显的差别就是，M层和V层完全解藕，两者的通信是通过P层，P层作为桥梁，用于操作View层发送的事件到P层，P层去操作M层，并且，讲数据返回给V层。整个过层M层和V层两者完全没有联系。辣么，就有好奇的宝宝就问了，这样做解决不了更本问题，你这样做P层和V层不一样耦合在一起了吗？我们并不能完全不耦合，只是尽可能减少耦合度。我们写程序最终目的就是高类聚，低耦合，不是说完全不耦合。并且，我们这里P层和V层是通过接口通信的，如果网络请求逻辑发生变化，直接修改P层里面的代码，就可以了。V层完全不用改。如果业务逻辑发生变化，我们直接重新定义接口也非常方便</p>
 <h3 id="MVVM"><a href="#MVVM" class="headerlink" title="MVVM"></a>MVVM</h3><p>&emsp;&emsp;由微软提出来的—MVVM。什么是MVVM架构呢？</p>
 <p>&emsp;&emsp;MVVM：Model View ViewModel</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/7041675-b41a65879e0e8d11.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="MVVM流程图.png"></p>
+<p><img src="/uploads/article/2018-02-22/MVVM流程图.png" alt="MVVM流程图.png"></p>
 <p>&emsp;&emsp;一眼看上去更MVP差不多，只是把P层换成了ViewModel层。还有一点就是View层和ViewModel层是相互绑定的关系，当你更新ViewMdel层数据的时候，View层的UI就要相应的发生变化。</p>
 <p>&emsp;&emsp;不管怎么说，三种模式的出现，或者说所有的开发模式，或者说是架构的出现，他们都有一个最终的目的，那就体现是一个项目架构好坏的：<strong>高类聚，低耦合</strong></p>
 <p>&emsp;&emsp;学习成本，MVC最简单，弊端也是最多的，学起来也是最快的。MVP和MVVM两者都是MVC的演化版本，两者没法评论优缺点，各有千秋。MVP是目前最火的架构（-.-）。</p>
