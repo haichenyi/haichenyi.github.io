@@ -312,6 +312,9 @@ html, body, #fullpage{
   width: 80%;
   margin: 0 auto;
 }
+.footers{
+  text-align: center;
+}
 #header {
   position: relative;
   height: 50px;
@@ -394,6 +397,7 @@ html, body, #fullpage{
   padding: 30px;
   background: rgba(255, 255, 255, .85)  
 }
+
 .widget-box::before, .widget-box::after {
   content: "";
   display: block;
@@ -422,11 +426,26 @@ html, body, #fullpage{
   z-index: 2;
   position: relative;
 }
-.avatar-box {
+.widget li, .widget .hrf{
+  margin: 5px 0;
+}
+/*.avatar-box {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}*/
+
+.avatar-item{
+  text-align: center;
 }
+/* .avatar-item .avatar{
+  margin: 0 auto;
+} */
+.avatar-item .avatar-name{
+  writing-mode: inherit;
+  margin: 10px 0;
+}
+
 .avatar {
   width: 80px;
   height: 80px;
@@ -438,6 +457,9 @@ html, body, #fullpage{
 .avatar-slogan {
   writing-mode: vertical-lr;
   max-height: 200px;
+}
+.avatar-item .avatar-slogan{
+  writing-mode: inherit;
 }
 .global-container {
   box-shadow: 1px 2px 3px #ddd;
