@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>SpringBoot系列—缓存及其源码分析（十六） | 海晨忆的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  <meta name="description" content="&amp;emsp;&amp;emsp;缓存是每个项目都用到的为了提高接口响应效率，降低数据库的查询压力，从而提高系统性能。所以，缓存对于一个项目来说是至关重要的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot系列—缓存及其源码分析（十六）">
+<meta property="og:url" content="http://haichenyi.com/2019/11/05/SpringBoot系列—缓存及其源码分析（十六）/index.html">
+<meta property="og:site_name" content="海晨忆的博客">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;缓存是每个项目都用到的为了提高接口响应效率，降低数据库的查询压力，从而提高系统性能。所以，缓存对于一个项目来说是至关重要的。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-11-05/缓存结构图.png">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-11-05/缓存配置类.png">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-11-05/缓存枚举类.png">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-11-05/默认导入的缓存.png">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-11-05/SimpleCacheConfiguration图.png">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-11-05/ConcurrentMapCacheManager图1.png">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-11-05/ConcurrentMapCacheManager图2.png">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-11-05/缓存图.png">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-11-05/ConcurrentMapCache图.png">
+<meta property="og:updated_time" content="2019-11-05T03:04:13.544Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SpringBoot系列—缓存及其源码分析（十六）">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;缓存是每个项目都用到的为了提高接口响应效率，降低数据库的查询压力，从而提高系统性能。所以，缓存对于一个项目来说是至关重要的。">
+<meta name="twitter:image" content="http://haichenyi.com/uploads/article/2019-11-05/缓存结构图.png">
+  
+    <link rel="alternate" href="/atom.xml" title="海晨忆的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/uploads/artistic_image/head.jpg">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/highlight.css">
+  <script>
+  let antiquityStorage = window.sessionStorage.getItem('antiquitySessionStorage');
+  if (antiquityStorage == '' || antiquityStorage == null) {
+    var antiquityLoader = '<div id="loaderbox"><div class="loader"><div class="load-roll"><div class="load-top"></div><div class="load-right"></div><div class="load-bottom"></div></div></div></div>';
+    document.write(antiquityLoader);
+    document.body.style.overflow = 'hidden'
+  }
+  </script>
+</head>
+
+<body>
+  <div id="fullpage" class="mobile-nav-right">
+    
+      <div id="wrapper" style="background-image: url(/uploads/artistic_image/bg.jpg)" title="背景图片来自网络">
+    
+    
+      <header id="header">
+  <div id="nav-toggle" class="nav-toggle"></div>
+  <div class="head-box global-width">
+    <nav class="nav-box nav-right">
+      
+        <a class="nav-item" href="/" title
+        
+        >首页</a>
+      
+        <a class="nav-item" href="/archives" title
+        
+        >归档</a>
+      
+        <a class="nav-item" href="/about" title
+        
+        >简历</a>
+      
+    </nav>
+  </div>
+</header>
+      <div id="middlecontent" title class="global-width sidebar-left">
+        <section id="main"><article id="post-SpringBoot系列—缓存及其源码分析（十六）" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 class="article-title" itemprop="name">
+      SpringBoot系列—缓存及其源码分析（十六）
+    </h1>
+  
+
+    </header>
+  
+  <div class="article-meta">
+    <a href="/2019/11/05/SpringBoot系列—缓存及其源码分析（十六）/" class="article-date">
+  <time datetime="2019-11-05T02:52:46.000Z" itemprop="datePublished">2019-11-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java-SpringBoot/">Java -SpringBoot</a>
+  </div>
+
+    
+  </div>
+  
+    <span id="busuanzi_container_page_pv">
+      本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+    </span>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud doorframe mac" itemprop="articleBody">
+      
+        <p>&emsp;&emsp;缓存是每个项目都用到的为了提高接口响应效率，降低数据库的查询压力，从而提高系统性能。所以，缓存对于一个项目来说是至关重要的。</p>
+<a id="more"></a>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>&emsp;&emsp;spring 3+之后，就定义了CacheManager和Cache接口来统一不同的缓存技术。</p>
+<ul>
+<li>CacheManager：缓存管理器，用于管理各种Cache缓存组件</li>
+<li>Cahce：定义了各种操作，Spring在Cache接口下提供了各种xxCache的实现；比如：ConcurrentMapCache，RedisCache，JCacheCache等等</li>
+</ul>
+<h3 id="源码解析"><a href="#源码解析" class="headerlink" title="源码解析"></a>源码解析</h3><p>&emsp;&emsp;这里我以默认缓存为例：ConcurrentMapCache</p>
+<p>&emsp;&emsp;上面说了，缓存只用配置就可以直接使用，所以，配置，一说到配置，我们就会想到之前说的自动配置类AutoConfigure。如下图：</p>
+<p><img src="/uploads/article/2019-11-05/缓存结构图.png" alt="缓存结构图.png"></p>
+<p>&emsp;&emsp;我们看到，自动配置类目录下面有一个cache包，这就是缓存自动配置的包，我们熟悉的类就有CacheProperties这个类，我们点进去看：</p>
+<p><img src="/uploads/article/2019-11-05/缓存配置类.png" alt="缓存配置类.png"></p>
+<p>&emsp;&emsp;我们熟悉的prefix就在这里了，也就是我们在全局配置类里面的键。</p>
+<p>&emsp;&emsp;这里，配置的一般都是这个类里面的全局变量，我把这个CacheType给框出来了（下面的cacheNames这个list变量也很重要），上面的注释的意思是说，缓存类型，默认情况下，是根据环境自动检测的。</p>
+<p>&emsp;&emsp;我们上面说到CacheManager和Cache接口是用来同意管理不同的缓存技术。不同的，也就是指的我们这里的缓存类型。所以，我们这里的缓存类型肯定有好几种，然后，这里又讲是根据环境自动检测的。也就是我们配置好的。也就是我们在全局配置类里面配置好的</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spring.cache.xxx=xxx</span><br></pre></td></tr></table></figure></div>
+<p>&emsp;&emsp;既然是配置，肯定是定义了之后才能配置的，没定义，怎么可能配置，spring又不是神。那，定义了那些种类的缓存技术呢？我们看一下CacheType类</p>
+<p><img src="/uploads/article/2019-11-05/缓存枚举类.png" alt="缓存枚举类.png"></p>
+<p>&emsp;&emsp;定义的，就这10种：GENERIC，JCACHE，EHCACHE，HAZELCAST，INFINISPAN，COUCHBASE，REDIS，CAFFEINE，SIMPLE，NONE。作为一个初学者，我想一眼看过去，我们能看到熟悉的Redis，学后天，Redis框架肯定要学。</p>
+<p>&emsp;&emsp;我们现在，什么都没有配置，默认的缓存类型就是这个Simple，可以在Cache目录下面的CacheAutoConfiguration类中看到selectImports方法，在这里打断点，我们debug模式运行，我们就能看到它导入的缓存类型，然后，每个进行检测，看匹配哪一个。</p>
+<p><img src="/uploads/article/2019-11-05/默认导入的缓存.png" alt="默认导入的缓存.png"></p>
+<p>&emsp;&emsp;我们就看一下SimpleCacheConfiguration是怎么实现的</p>
+<p><img src="/uploads/article/2019-11-05/SimpleCacheConfiguration图.png" alt="SimpleCacheConfiguration图.png"></p>
+<p>&emsp;&emsp;我们看到了，SimpleCacheConfiguration默认使用的是：ConcurrentMapCacheManager，我们，看一下这个Manager是怎么实现的</p>
+<p><img src="/uploads/article/2019-11-05/ConcurrentMapCacheManager图1.png" alt="ConcurrentMapCacheManager图1.png"></p>
+<p><img src="/uploads/article/2019-11-05/ConcurrentMapCacheManager图2.png" alt="ConcurrentMapCacheManager图2.png"></p>
+<p>&emsp;&emsp;这类，实现的就是CacheManager接口，而CacheManager接口就只有两个方法，就是上图中的两个方法<strong>setCacheNames</strong> 和 <strong>getCache</strong></p>
+<p>&emsp;&emsp;先说一下数据是怎么缓存的，缓存是一个容器，这个容器怎么获取的呢？就是通过这里的name，name是获取这个容器的key，然后里面的数据存放形式，都是key-value的形式存放的。这个key也是我们定义的，value就是数据库查询的数据。如下图。</p>
+<p><img src="/uploads/article/2019-11-05/缓存图.png" alt="缓存图.png"></p>
+<p>&emsp;&emsp;这个setCacheNames，就是，我们配置的cacheNames的值，它会获取好之后，将这些值封装成list，通过setCacheNames方法赋值给这里的变量cacheMap。我们可以看一下这个变量：</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">private final ConcurrentMap&lt;String, Cache&gt; cacheMap = new ConcurrentHashMap&lt;&gt;(16);</span><br></pre></td></tr></table></figure></div>
+<p>&emsp;&emsp;然后就是这个getCache方法，上面的setCacheNames以cacheName为键去存这个Cache，这个就是刚好相反，获取方法，通过cacheName去获取这个Cache。</p>
+<p>&emsp;&emsp;然后，我们现在是获取到了这个缓存容器，那么，我们要怎么从这个缓存容器中去获取我们对应的数据呢？</p>
+<p>&emsp;&emsp;我们看到上面那个变量是Map是以String为键，以Cache为值，我们最开始说过了，Cache和CacheManager是用来管理不同缓存技术的接口，所以，这里的值不可能是一个接口对象，肯定是它的实现类，我们再仔细看上面两个方法的实现类，我们会看到</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//setCacheNames方法</span><br><span class="line">this.cacheMap.put(name, createConcurrentMapCache(name));</span><br><span class="line"></span><br><span class="line">//getCache方法</span><br><span class="line">cache = createConcurrentMapCache(name);</span><br></pre></td></tr></table></figure></div>
+<p>&emsp;&emsp;很明显，这里就是Cache对象是怎么创建的，我们点到这个方法里面去看：</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">	 * Create a new ConcurrentMapCache instance for the specified cache name.</span><br><span class="line">	 * @param name the name of the cache</span><br><span class="line">	 * @return the ConcurrentMapCache (or a decorator thereof)</span><br><span class="line">	 */</span><br><span class="line">	protected Cache createConcurrentMapCache(String name) &#123;</span><br><span class="line">		SerializationDelegate actualSerialization = (isStoreByValue() ? this.serialization : null);</span><br><span class="line">		return new ConcurrentMapCache(name, new ConcurrentHashMap&lt;&gt;(256),</span><br><span class="line">				isAllowNullValues(), actualSerialization);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></div>
+<p>&emsp;&emsp;所以，它这里是new的ConcurrentMapCache肯定是Cache的实现类。我们看到这个构造方法，第二个参数是一个hashMap，而我们的缓存容器里面也是以键值对的方式存储数据的。我们再看这个ConcurrentMapCache</p>
+<p><img src="/uploads/article/2019-11-05/ConcurrentMapCache图.png" alt="ConcurrentMapCache图.png"></p>
+<p>&emsp;&emsp;一共就只有三个全局变量，第一个name，是我们前面传过来的cacheName，第二个是Map<object,object>类型，第三个是SerializationDelegate类型的变量，序列化的一个什么东西。排除法判断，只可能这个Map就是用来存放我们的缓存数据的。我们搜索这个变量，我们会看到如下几个方法：</object,object></p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">   //获取缓存数据</span><br><span class="line">   @Override</span><br><span class="line">@Nullable</span><br><span class="line">protected Object lookup(Object key) &#123;</span><br><span class="line">	return this.store.get(key);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">   //存放</span><br><span class="line">   @Override</span><br><span class="line">public void put(Object key, @Nullable Object value) &#123;</span><br><span class="line">	this.store.put(key, toStoreValue(value));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//通过key移除数据</span><br><span class="line">@Override</span><br><span class="line">public void evict(Object key) &#123;</span><br><span class="line">	this.store.remove(key);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//清空所有数据</span><br><span class="line">@Override</span><br><span class="line">public void clear() &#123;</span><br><span class="line">	this.store.clear();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">   //清空所有数据</span><br><span class="line">@Override</span><br><span class="line">public boolean invalidate() &#123;</span><br><span class="line">	boolean notEmpty = !this.store.isEmpty();</span><br><span class="line">	this.store.clear();</span><br><span class="line">	return notEmpty;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>&emsp;&emsp;至此，缓存怎么存放，怎么获取都说完了。</p>
+<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><p>&emsp;&emsp;与前面差不多，都是在启动类上面开启，在方法上面标记注解就行了</p>
+<ol>
+<li>@EnableCaching：在启动类上，开启基于注解的缓存</li>
+<li>@Cacheable：标在方法上，返回的结果会进行缓存(先查缓存中的结果，没有则调用方法并将结果放到缓存中)</li>
+<li>@CachePut：保证方法被调用后，又将对应缓存中的数据更新（先调用方法，调完方法再将结果放到缓存）</li>
+<li>@CacheEvict：清除缓存</li>
+</ol>
+<p>&emsp;&emsp;@Cacheable，@CachePut，@CacheEvict三个注解都有几个重要的属性：</p>
+<ul>
+<li>cacheNames：缓存的名字。</li>
+<li>key: 作为缓存中的Key值，可以使用SpEL表达式指定（不指定，key就是参数值），缓存结果是方法返回值</li>
+</ul>
+<p>&emsp;&emsp;上面两个属性是前面我们一直都在强调的比较重要的属性，然后，清除缓存的注解中还有两个属性需要了解:</p>
+<ul>
+<li>allEntries =true : 指定清除这个缓存中所有数据。</li>
+<li>beforeInvocation = true : true在方法之前执行；默认false在方法之后执行,出现一场则不会清除缓存</li>
+</ul>
+<p>&emsp;&emsp;我这里值贴出来缓存相关的类：</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">@Service</span><br><span class="line">public class UserService &#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    UserMapper userMapper;</span><br><span class="line"></span><br><span class="line">    @Cacheable(cacheNames = &quot;user&quot;, key = &quot;#id&quot;)</span><br><span class="line">    public User getUser(Integer id) &#123;</span><br><span class="line">        return userMapper.getUserById(id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @CachePut(cacheNames = &quot;user&quot;, key = &quot;#result.id&quot;)</span><br><span class="line">    public User updateUser(User user) &#123;</span><br><span class="line">        userMapper.updateUser(user);</span><br><span class="line">        return user;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @CacheEvict(cacheNames = &quot;user&quot;, key = &quot;#result&quot;)</span><br><span class="line">    public Integer deleteUser(Integer id) &#123;</span><br><span class="line">        userMapper.deleteUserById(id);</span><br><span class="line">        return id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>&emsp;&emsp;第一步：默认采用的是SimpleCacheConfiguration 使用 ConcurrentMapCacheManager</p>
+<p>&emsp;&emsp;第二步：getCache 获取的是 ConcurrentMapCache 缓存对象进行存取数据,它使用ConcurrentMap<object,object>对象进行缓存数据。</object,object></p>
+<p>@Cacheable(cacheNames = “user”, key = “#id”)</p>
+<p><strong>第一次请求时：</strong></p>
+<p>&emsp;&emsp;第三步：当发送第一次请求时，会从getCache(name)中获取，看有没有ConcurrentMapCache缓存对象,如果没有 则创建出来, 并且创建出来的key就是通过</p>
+<p>@Cacheable(cacheNames = “user”)标识的name值 </p>
+<p>&emsp;&emsp;第四步：接着会从ConcurrentMapCache里面调用lookup获取缓存数据,通过key值获取的, </p>
+<p>默认采用的是service方法中的参数值,如果缓存中没有获取到,则调用目标方法进行获取数据（即从数据库中查询）,获取之后则再将它 放到缓存中(key=参数值,value=返回值)</p>
+<p><strong>第二次请求时：</strong></p>
+<p>&emsp;&emsp;第五步：如果再次调用 则还是先ConcurrentMapCacheManager.getCache()获取缓存对象,如果有则直接返回, 如果没有则创建</p>
+<p>&emsp;&emsp;第六步：然后再调用 ConcurrentMapCache.lookup方法从缓存中获取数据, 如果缓存有数据则直接响应回去,不 会再去调用目标方法</p>
+<p><strong>第三次请求与第二次一样</strong></p>
+<p>如果缓存中没有缓存管理器,则与第一次请求一致</p>
+
+      
+    </div>
+    
+      <footer class="article-footer">
+        完
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  <div class="article-nav-block">
+    
+  </div>
+  <div class="article-nav-block">
+    
+      <a href="/2019/10/31/SpringBoot系列—邮件（十五）/" id="article-nav-older" class="article-nav-link-wrap">
+        <div class="article-nav-title">SpringBoot系列—邮件（十五）</div>
+        <strong class="article-nav-caption"></strong>
+      </a>
+    
+  </div>
+</nav>
+
+    
+  
+  
+</article>
+</section>
+        <aside id="sidebar">
+  
+    <div class="widget-box">
+  <div class="avatar-box avatar-item">
+    <img class="avatar" src="/uploads/artistic_image/head.jpg" title="头像来自网络"></img>
+    <h3 class="avatar-name">
+      
+        海晨忆
+      
+    </h3>
+    <p class="avatar-slogan">
+      先谋生，再谋爱。人间值得，未来可期。
+    </p>
+  </div>
+</div>
+
+
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android-Socket/">Android -Socket</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-加密算法/">Android -加密算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-常用功能/">Android -常用功能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-框架/">Android -框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-源码解析/">Android -源码解析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-自定义view/">Android -自定义view</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-设计模式/">Android -设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-SpringBoot/">Java -SpringBoot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/kotlin/">kotlin</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库-JDBC/">数据库 -JDBC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库-MySQL/">数据库 -MySQL</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/11/05/SpringBoot系列—缓存及其源码分析（十六）/">SpringBoot系列—缓存及其源码分析（十六）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/31/SpringBoot系列—邮件（十五）/">SpringBoot系列—邮件（十五）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/31/SpringBoot系列—异步任务与定时任务（十四）/">SpringBoot系列—异步任务与定时任务（十四）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/17/SpringBoot系列—事务管理（十三）/">SpringBoot系列—事务管理（十三）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/11/SpringBoot系列—Spring-Data-JPA（十二）/">SpringBoot系列—Spring Data JPA（十二）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+      <div class="widget-box">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      
+        <a class="hrf" style="display: block;" href="https://github.com/haichenyi" title target='_blank'
+        >Github</a>
+      
+        <a class="hrf" style="display: block;" href="https://www.jianshu.com/u/6077ee440c37" title target='_blank'
+        >简书</a>
+      
+        <a class="hrf" style="display: block;" href="https://blog.csdn.net/qq_27634797" title target='_blank'
+        >CSDN</a>
+      
+    </div>
+  </div>
+
+  
+</aside>
+      </div>
+      <footer id="footer">
+  <div class="foot-box footers global-width">
+    &copy;2017-2019 海晨忆 &nbsp;&nbsp;
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">阁下是第<span id="busuanzi_value_site_pv"></span>个访客</span>
+  </div>
+</footer>
+      <script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script>
+if (!window.jQuery) {
+var script = document.createElement('script');
+script.src = "/js/jquery-2.0.3.min.js";
+document.body.write(script);
+}
+</script>
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+    </div>
+    <nav id="mobile-nav" class="mobile-nav-box">
+  <div class="mobile-nav-img mobile-nav-top"></div>
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">简历</a>
+  
+  <div class="mobile-nav-img  mobile-nav-bottom"></div>
+</nav>    
+  </div>
+</body>
+</html>

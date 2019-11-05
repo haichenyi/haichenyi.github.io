@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>SpringBoot系列—异步任务与定时任务（十四） | 海晨忆的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  <meta name="description" content="异步任务&amp;emsp;&amp;emsp;什么时候用异步，就是耗时操作的时候就可以用到异步，比如：批量处理数据，批量发邮件等等。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot系列—异步任务与定时任务（十四）">
+<meta property="og:url" content="http://haichenyi.com/2019/10/31/SpringBoot系列—异步任务与定时任务（十四）/index.html">
+<meta property="og:site_name" content="海晨忆的博客">
+<meta property="og:description" content="异步任务&amp;emsp;&amp;emsp;什么时候用异步，就是耗时操作的时候就可以用到异步，比如：批量处理数据，批量发邮件等等。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-11-05T02:58:02.968Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SpringBoot系列—异步任务与定时任务（十四）">
+<meta name="twitter:description" content="异步任务&amp;emsp;&amp;emsp;什么时候用异步，就是耗时操作的时候就可以用到异步，比如：批量处理数据，批量发邮件等等。">
+  
+    <link rel="alternate" href="/atom.xml" title="海晨忆的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/uploads/artistic_image/head.jpg">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/highlight.css">
+  <script>
+  let antiquityStorage = window.sessionStorage.getItem('antiquitySessionStorage');
+  if (antiquityStorage == '' || antiquityStorage == null) {
+    var antiquityLoader = '<div id="loaderbox"><div class="loader"><div class="load-roll"><div class="load-top"></div><div class="load-right"></div><div class="load-bottom"></div></div></div></div>';
+    document.write(antiquityLoader);
+    document.body.style.overflow = 'hidden'
+  }
+  </script>
+</head>
+
+<body>
+  <div id="fullpage" class="mobile-nav-right">
+    
+      <div id="wrapper" style="background-image: url(/uploads/artistic_image/bg.jpg)" title="背景图片来自网络">
+    
+    
+      <header id="header">
+  <div id="nav-toggle" class="nav-toggle"></div>
+  <div class="head-box global-width">
+    <nav class="nav-box nav-right">
+      
+        <a class="nav-item" href="/" title
+        
+        >首页</a>
+      
+        <a class="nav-item" href="/archives" title
+        
+        >归档</a>
+      
+        <a class="nav-item" href="/about" title
+        
+        >简历</a>
+      
+    </nav>
+  </div>
+</header>
+      <div id="middlecontent" title class="global-width sidebar-left">
+        <section id="main"><article id="post-SpringBoot系列—异步任务与定时任务（十四）" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 class="article-title" itemprop="name">
+      SpringBoot系列—异步任务与定时任务（十四）
+    </h1>
+  
+
+    </header>
+  
+  <div class="article-meta">
+    <a href="/2019/10/31/SpringBoot系列—异步任务与定时任务（十四）/" class="article-date">
+  <time datetime="2019-10-31T06:32:20.000Z" itemprop="datePublished">2019-10-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java-SpringBoot/">Java -SpringBoot</a>
+  </div>
+
+    
+  </div>
+  
+    <span id="busuanzi_container_page_pv">
+      本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+    </span>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud doorframe mac" itemprop="articleBody">
+      
+        <h3 id="异步任务"><a href="#异步任务" class="headerlink" title="异步任务"></a>异步任务</h3><p>&emsp;&emsp;什么时候用异步，就是耗时操作的时候就可以用到异步，比如：批量处理数据，批量发邮件等等。</p>
+<a id="more"></a>
+<p>&emsp;&emsp;用法与前面的事务管理类似，spring 3+之后，就已经内置了 <strong>@Async</strong> 来处理异步任务。我们使用两个注解即可。</p>
+<ul>
+<li>@EnableAysnc 启动类上开启基于注解的异步任务</li>
+<li>@Aysnc 标识的方法会异步执行</li>
+</ul>
+<p>如：</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">@EnableAsync</span><br><span class="line">@SpringBootApplication</span><br><span class="line">public class SpringBootTaskApplication &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SpringApplication.run(SpringBootTaskApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Service</span><br><span class="line">public class HelloService &#123;</span><br><span class="line"></span><br><span class="line">    @Async</span><br><span class="line">    public void add() &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            Thread.sleep(3000);</span><br><span class="line">        &#125; catch (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(&quot;批量操作&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@RestController</span><br><span class="line">public class HelloController &#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    HelloService helloService;</span><br><span class="line"></span><br><span class="line">    @GetMapping(&quot;/hello&quot;)</span><br><span class="line">    public String hello() &#123;</span><br><span class="line">        helloService.add();</span><br><span class="line">        return &quot;success&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>&emsp;&emsp;当我们请求这个hello接口时，如果不使用@Async标记方法，那么，线程就会阻塞，我们会在add方法执行完之后，才会返回success。这显然不是我们想要的。</p>
+<p>&emsp;&emsp;如果用@Async标记方法，那么，线程就不会阻塞，我们请求hello接口，会立刻返回success，过了三秒钟，才会批量处理完成。这才是我们想要的。</p>
+<h3 id="定时任务"><a href="#定时任务" class="headerlink" title="定时任务"></a>定时任务</h3><p>&emsp;&emsp;定时定点的执行某个任务，就需要用到定时任务。比如，当服务器启动之后，比如，每天晚上23点上传日志，每个月1号给用户发送邮件等等。</p>
+<p>&emsp;&emsp;用法都类似：</p>
+<ul>
+<li>@EnableScheduling 启动类上开启基于注解的定时任务</li>
+<li>@Scheduled 标识的方法会进行定时处理</li>
+</ul>
+<p>唯一不一样的地方，也是个难点就是cron表达式</p>
+<p>先举个例子：在上面例子的基础上加上</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">@EnableScheduling</span><br><span class="line">@EnableAsync</span><br><span class="line">@SpringBootApplication</span><br><span class="line">public class SpringBootTaskApplication &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SpringApplication.run(SpringBootTaskApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Service</span><br><span class="line">public class HelloService &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Async</span><br><span class="line">    public void add() &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            Thread.sleep(3000);</span><br><span class="line">        &#125; catch (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(&quot;批量操作&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Scheduled(cron = &quot;1-5 * * * * *&quot;)</span><br><span class="line">    public void scheduledTaskt() &#123;</span><br><span class="line">        System.out.println(&quot;执行定时任务&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>&emsp;&emsp;这个定时任务就是,每分钟的1秒到5秒各执行一次，一共5次。</p>
+<p>&emsp;&emsp;cron表达式一共六个值，每个值都要有。一个都不能少，分别代表的含义是：秒 分 时 日 月 星期几</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">位置</th>
+<th style="text-align:center">取值范围</th>
+<th style="text-align:center">可指定的特殊字符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">秒</td>
+<td style="text-align:center">0-59</td>
+<td style="text-align:center">, - * /</td>
+</tr>
+<tr>
+<td style="text-align:center">分</td>
+<td style="text-align:center">0-59</td>
+<td style="text-align:center">, - * /</td>
+</tr>
+<tr>
+<td style="text-align:center">时</td>
+<td style="text-align:center">0-23</td>
+<td style="text-align:center">, - * /</td>
+</tr>
+<tr>
+<td style="text-align:center">日</td>
+<td style="text-align:center">1-31</td>
+<td style="text-align:center">, - * ? / L W C</td>
+</tr>
+<tr>
+<td style="text-align:center">月</td>
+<td style="text-align:center">1-12</td>
+<td style="text-align:center">, - * /</td>
+</tr>
+<tr>
+<td style="text-align:center">星期</td>
+<td style="text-align:center">0-7或SUN-SAT 0和7都是周日，1-6是周一到周六</td>
+<td style="text-align:center">, - * ? / L C #</td>
+</tr>
+</tbody>
+</table>
+<p>&emsp;&emsp;特殊字符的含义：<br>|特殊字符|代表含义|<br>|:-:|:-:|<br>|,|枚举，一个位置上指定多个值，以逗号 ， 分隔|<br>|-|区间|<br>|*|任意|<br>|/|步长，每隔多久执行一次|<br>|?|日/星期冲突匹配 ,指定哪个值,另外个就是?|<br>|L|最后|<br>|W|工作日|<br>|C|和calendar联系后计算过的值|<br>|#|这个月的第几个星期几，4#2，第2个星期四|</p>
+<p>比如：</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">1-5 * * * * 1到5秒，每秒都触发任务 */5 * * * * 每隔5秒执行一次</span><br><span class="line"></span><br><span class="line">0 */1 * * * 每隔1分钟执行一次 0 0 5-15 * * 每天5-15点整点触发</span><br><span class="line"></span><br><span class="line">0 0-5 14 * * 在每天下午2点到下午2:05期间的每1分钟触发</span><br><span class="line"></span><br><span class="line">0 0/5 14 * * 在每天下午2点到下午2:55期间的每5分钟触发</span><br><span class="line"></span><br><span class="line">0 0/5 14,18 * * 在每天下午2点到2:55期间和下午6点到6:55期间的每5分钟触发</span><br><span class="line"></span><br><span class="line">0 0/30 9-17 * * 朝九晚五工作时间内每半小时</span><br><span class="line"></span><br><span class="line">0 0 12 ? * WED 表示每个星期三中午12点</span><br><span class="line"></span><br><span class="line">0 10,44 14 ? 3 WED 每年三月的星期三的下午2:10和2:44触发</span><br><span class="line"></span><br><span class="line">0 0 23 L * ? 每月最后一天23点执行一次</span><br><span class="line"></span><br><span class="line">0 15 10 LW * ? 每个月最后一个工作日的10点15分0秒触发任务</span><br><span class="line"></span><br><span class="line">0 15 10 ? * 5#3 每个月第三周的星期五的10点15分0秒触发任务</span><br></pre></td></tr></table></figure></div>
+<p>最后附上在线生成cron表达式的链接： <a href="http://cron.qqe2.com" target="_blank" rel="noopener">http://cron.qqe2.com</a></p>
+
+      
+    </div>
+    
+      <footer class="article-footer">
+        完
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  <div class="article-nav-block">
+    
+      <a href="/2019/10/31/SpringBoot系列—邮件（十五）/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption"></strong>
+        <div class="article-nav-title">
+          
+            SpringBoot系列—邮件（十五）
+          
+        </div>
+      </a>
+    
+  </div>
+  <div class="article-nav-block">
+    
+      <a href="/2019/09/17/SpringBoot系列—事务管理（十三）/" id="article-nav-older" class="article-nav-link-wrap">
+        <div class="article-nav-title">SpringBoot系列—事务管理（十三）</div>
+        <strong class="article-nav-caption"></strong>
+      </a>
+    
+  </div>
+</nav>
+
+    
+  
+  
+</article>
+</section>
+        <aside id="sidebar">
+  
+    <div class="widget-box">
+  <div class="avatar-box avatar-item">
+    <img class="avatar" src="/uploads/artistic_image/head.jpg" title="头像来自网络"></img>
+    <h3 class="avatar-name">
+      
+        海晨忆
+      
+    </h3>
+    <p class="avatar-slogan">
+      先谋生，再谋爱。人间值得，未来可期。
+    </p>
+  </div>
+</div>
+
+
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android-Socket/">Android -Socket</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-加密算法/">Android -加密算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-常用功能/">Android -常用功能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-框架/">Android -框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-源码解析/">Android -源码解析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-自定义view/">Android -自定义view</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-设计模式/">Android -设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-SpringBoot/">Java -SpringBoot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/kotlin/">kotlin</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库-JDBC/">数据库 -JDBC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库-MySQL/">数据库 -MySQL</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/11/05/SpringBoot系列—缓存及其源码分析（十六）/">SpringBoot系列—缓存及其源码分析（十六）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/31/SpringBoot系列—邮件（十五）/">SpringBoot系列—邮件（十五）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/31/SpringBoot系列—异步任务与定时任务（十四）/">SpringBoot系列—异步任务与定时任务（十四）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/17/SpringBoot系列—事务管理（十三）/">SpringBoot系列—事务管理（十三）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/11/SpringBoot系列—Spring-Data-JPA（十二）/">SpringBoot系列—Spring Data JPA（十二）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+      <div class="widget-box">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      
+        <a class="hrf" style="display: block;" href="https://github.com/haichenyi" title target='_blank'
+        >Github</a>
+      
+        <a class="hrf" style="display: block;" href="https://www.jianshu.com/u/6077ee440c37" title target='_blank'
+        >简书</a>
+      
+        <a class="hrf" style="display: block;" href="https://blog.csdn.net/qq_27634797" title target='_blank'
+        >CSDN</a>
+      
+    </div>
+  </div>
+
+  
+</aside>
+      </div>
+      <footer id="footer">
+  <div class="foot-box footers global-width">
+    &copy;2017-2019 海晨忆 &nbsp;&nbsp;
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">阁下是第<span id="busuanzi_value_site_pv"></span>个访客</span>
+  </div>
+</footer>
+      <script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script>
+if (!window.jQuery) {
+var script = document.createElement('script');
+script.src = "/js/jquery-2.0.3.min.js";
+document.body.write(script);
+}
+</script>
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+    </div>
+    <nav id="mobile-nav" class="mobile-nav-box">
+  <div class="mobile-nav-img mobile-nav-top"></div>
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">简历</a>
+  
+  <div class="mobile-nav-img  mobile-nav-bottom"></div>
+</nav>    
+  </div>
+</body>
+</html>
