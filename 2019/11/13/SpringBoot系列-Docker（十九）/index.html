@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>SpringBoot系列-Docker（十九） | 海晨忆的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  <meta name="description" content="简介&amp;emsp;&amp;emsp;Docker 是一个开源的应用容器引擎，基于 Go 语言 并遵从Apache2.0协议开源。Docker 可以让开发者打包他们的应用以及依赖包到一个轻量级、可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot系列-Docker（十九）">
+<meta property="og:url" content="http://haichenyi.com/2019/11/13/SpringBoot系列-Docker（十九）/index.html">
+<meta property="og:site_name" content="海晨忆的博客">
+<meta property="og:description" content="简介&amp;emsp;&amp;emsp;Docker 是一个开源的应用容器引擎，基于 Go 语言 并遵从Apache2.0协议开源。Docker 可以让开发者打包他们的应用以及依赖包到一个轻量级、可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-11-13T06:45:42.615Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SpringBoot系列-Docker（十九）">
+<meta name="twitter:description" content="简介&amp;emsp;&amp;emsp;Docker 是一个开源的应用容器引擎，基于 Go 语言 并遵从Apache2.0协议开源。Docker 可以让开发者打包他们的应用以及依赖包到一个轻量级、可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。">
+  
+    <link rel="alternate" href="/atom.xml" title="海晨忆的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/uploads/artistic_image/head.jpg">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/highlight.css">
+  <script>
+  let antiquityStorage = window.sessionStorage.getItem('antiquitySessionStorage');
+  if (antiquityStorage == '' || antiquityStorage == null) {
+    var antiquityLoader = '<div id="loaderbox"><div class="loader"><div class="load-roll"><div class="load-top"></div><div class="load-right"></div><div class="load-bottom"></div></div></div></div>';
+    document.write(antiquityLoader);
+    document.body.style.overflow = 'hidden'
+  }
+  </script>
+</head>
+
+<body>
+  <div id="fullpage" class="mobile-nav-right">
+    
+      <div id="wrapper" style="background-image: url(/uploads/artistic_image/bg.jpg)" title="背景图片来自网络">
+    
+    
+      <header id="header">
+  <div id="nav-toggle" class="nav-toggle"></div>
+  <div class="head-box global-width">
+    <nav class="nav-box nav-right">
+      
+        <a class="nav-item" href="/" title
+        
+        >首页</a>
+      
+        <a class="nav-item" href="/archives" title
+        
+        >归档</a>
+      
+        <a class="nav-item" href="/about" title
+        
+        >简历</a>
+      
+    </nav>
+  </div>
+</header>
+      <div id="middlecontent" title class="global-width sidebar-left">
+        <section id="main"><article id="post-SpringBoot系列-Docker（十九）" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 class="article-title" itemprop="name">
+      SpringBoot系列-Docker（十九）
+    </h1>
+  
+
+    </header>
+  
+  <div class="article-meta">
+    <a href="/2019/11/13/SpringBoot系列-Docker（十九）/" class="article-date">
+  <time datetime="2019-11-13T06:44:37.000Z" itemprop="datePublished">2019-11-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java-SpringBoot/">Java -SpringBoot</a>
+  </div>
+
+    
+  </div>
+  
+    <span id="busuanzi_container_page_pv">
+      本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+    </span>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud doorframe mac" itemprop="articleBody">
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>&emsp;&emsp;Docker 是一个开源的应用容器引擎，基于 Go 语言 并遵从Apache2.0协议开源。<br>Docker 可以让开发者打包他们的应用以及依赖包到一个轻量级、可移植的容器中，<br>然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。</p>
+<a id="more"></a>
+<p>&emsp;&emsp;容器是完全使用沙箱机制，相互之间不会有任何接口,更重要的是容器性能开销极低。</p>
+<p>&emsp;&emsp;我们spring boot项目，什么地方需要用到dockers呢？我们最后项目发布，发到服务器上面，环境怎么搭建？如果就用Linux命令会很麻烦，用Docker，简单的几行命令就可以了。</p>
+<p>&emsp;&emsp;服务器其实就是一个操作系统，我们的项目跑在上面也是需要环境的，我们本地是windows系统，跑项目需要环境，服务器现在一般都是centOS系统，当然也需要环境。</p>
+<h2 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h2><ul>
+<li>docker镜像(images)：Docker镜像用于创建Docker容器的模板</li>
+<li>docker容器(container)：Docker容器是独立运行的一个或者一组应用</li>
+<li>docker客户端(client)：客户端通过命令或者其他工具一起使用docker api与docker守护进程</li>
+<li>docker主机(host)：一个物理或者虚拟的机器用于执行docker守护进程和容器</li>
+<li>docker仓库(registry)：docker仓库用来保存镜像，可以理解为代码控制中的代码仓库。docker hub提供了庞大的镜像集合供使用</li>
+</ul>
+<p>&emsp;&emsp;举个例子，我们一般操作流程是这样的：</p>
+<ol>
+<li>先用VirtualBox启动一个虚拟机，启动的是centOS系统，装上docker程序（docker主机）。这个对应的就是我们项目最后发布的服务器。</li>
+<li>然后，用SecureCRT连上我们这个虚拟机。（docker客户端）。</li>
+<li>接着，通过docker从docker 仓库中下载我们需要的镜像，比方说：mysql镜像，redis镜像等等。</li>
+<li>最后，启动这个镜像，就相当于创建一个容器。启动镜像，就相当于配置好了环境。比方说：启动一个mysql镜像，就相当于创建了一个mysql容器，就可以用mysql数据库了。可以启动的那个多个镜像，并且，每个镜像都是独立运行的，互不干扰（沙箱机制）。</li>
+</ol>
+<h2 id="Docker安装"><a href="#Docker安装" class="headerlink" title="Docker安装"></a>Docker安装</h2><p>查看centOS版本：</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//docker要求CentOS系统内核版本要高于3.10</span><br><span class="line">uname -r</span><br></pre></td></tr></table></figure></div>
+<p>升级软件包及内核：</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//因为，我们安装的docker是最新版本的</span><br><span class="line">//但是，内核版本低可能不兼容，所以，要更新</span><br><span class="line">//如果，后面安装成功之后，启动的时候出错，那么就先卸载docker，更新内核</span><br><span class="line">//重启之后，再重新安装docker就行了</span><br><span class="line">yum update</span><br></pre></td></tr></table></figure></div>
+<p>安装docker</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install docker</span><br></pre></td></tr></table></figure></div>
+<p>卸载docker</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum remove docker-*</span><br></pre></td></tr></table></figure></div>
+<p>启动docker</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start docker</span><br></pre></td></tr></table></figure></div>
+<p>将docker作为开机启动</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable docker</span><br></pre></td></tr></table></figure></div>
+<h2 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">名称</th>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">检索</td>
+<td style="text-align:left">docker search 关键字（eg：docker search redis）</td>
+<td style="text-align:left">我们经常去docker hub上检索镜像的详细信息，不用再本地敲命令搜索。如镜像的TAG</td>
+</tr>
+<tr>
+<td style="text-align:left">拉取</td>
+<td style="text-align:left">docker pull 镜像名:tag</td>
+<td style="text-align:left">:tag是可选的，tag表示标签，多为软件的版本，默认是latest版本</td>
+</tr>
+<tr>
+<td style="text-align:left">列表</td>
+<td style="text-align:left">docker images</td>
+<td style="text-align:left">查看所有本地镜像</td>
+</tr>
+<tr>
+<td style="text-align:left">删除</td>
+<td style="text-align:left">docker rmi image-id</td>
+<td style="text-align:left">删除指定的本地镜像，镜像id可以通过列表查看</td>
+</tr>
+<tr>
+<td style="text-align:left">运行</td>
+<td style="text-align:left">docker run -d –name 自定义名字  安装的容器名字（eg:docker run –d –name myredis redis）</td>
+<td style="text-align:left">–name：自定义容器名 -d：后台运行</td>
+</tr>
+<tr>
+<td style="text-align:left">列表</td>
+<td style="text-align:left">docker ps（查看运行中的容器）</td>
+<td style="text-align:left">加上-a；可以查看所有容器</td>
+</tr>
+<tr>
+<td style="text-align:left">停止</td>
+<td style="text-align:left">docker stop container-name/container-id</td>
+<td style="text-align:left">停止当前你运行的容器</td>
+</tr>
+<tr>
+<td style="text-align:left">启动</td>
+<td style="text-align:left">docker start container-name/container-id</td>
+<td style="text-align:left">启动容器</td>
+</tr>
+<tr>
+<td style="text-align:left">删除</td>
+<td style="text-align:left">docker rm container-id</td>
+<td style="text-align:left">删除指定容器</td>
+</tr>
+<tr>
+<td style="text-align:left">端口映射</td>
+<td style="text-align:left">-p 6379:6379</td>
+<td style="text-align:left">-p: 主机端口(映射到)容器内部的端口</td>
+</tr>
+<tr>
+<td style="text-align:left">容器日志</td>
+<td style="text-align:left">docker logs container-name/container-id</td>
+</tr>
+</tbody>
+</table>
+<p>PS:我们docker run的时候一般都是跟上端口映射，不然访问不到。</p>
+
+      
+    </div>
+    
+      <footer class="article-footer">
+        完
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  <div class="article-nav-block">
+    
+  </div>
+  <div class="article-nav-block">
+    
+      <a href="/2019/11/11/SpringBoot系列-Run启动原理（十八）/" id="article-nav-older" class="article-nav-link-wrap">
+        <div class="article-nav-title">SpringBoot系列—Run启动原理（十八）</div>
+        <strong class="article-nav-caption"></strong>
+      </a>
+    
+  </div>
+</nav>
+
+    
+  
+  
+</article>
+</section>
+        <aside id="sidebar">
+  
+    <div class="widget-box">
+  <div class="avatar-box avatar-item">
+    <img class="avatar" src="/uploads/artistic_image/head.jpg" title="头像来自网络"></img>
+    <h3 class="avatar-name">
+      
+        海晨忆
+      
+    </h3>
+    <p class="avatar-slogan">
+      先谋生，再谋爱。人间值得，未来可期。
+    </p>
+  </div>
+</div>
+
+
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android-Socket/">Android -Socket</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-加密算法/">Android -加密算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-常用功能/">Android -常用功能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-框架/">Android -框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-源码解析/">Android -源码解析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-自定义view/">Android -自定义view</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-设计模式/">Android -设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-SpringBoot/">Java -SpringBoot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/kotlin/">kotlin</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库-JDBC/">数据库 -JDBC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库-MySQL/">数据库 -MySQL</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/11/13/SpringBoot系列-Docker（十九）/">SpringBoot系列-Docker（十九）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/11/SpringBoot系列-Run启动原理（十八）/">SpringBoot系列—Run启动原理（十八）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/06/SpringBoot系列—Redis（十七）/">SpringBoot系列—Redis（十七）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/05/SpringBoot系列—缓存及其源码分析（十六）/">SpringBoot系列—缓存及其源码分析（十六）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/31/SpringBoot系列—邮件（十五）/">SpringBoot系列—邮件（十五）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+      <div class="widget-box">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      
+        <a class="hrf" style="display: block;" href="https://github.com/haichenyi" title target='_blank'
+        >Github</a>
+      
+        <a class="hrf" style="display: block;" href="https://www.jianshu.com/u/6077ee440c37" title target='_blank'
+        >简书</a>
+      
+        <a class="hrf" style="display: block;" href="https://blog.csdn.net/qq_27634797" title target='_blank'
+        >CSDN</a>
+      
+    </div>
+  </div>
+
+  
+</aside>
+      </div>
+      <footer id="footer">
+  <div class="foot-box footers global-width">
+    &copy;2017-2019 海晨忆 &nbsp;&nbsp;
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">阁下是第<span id="busuanzi_value_site_pv"></span>个访客</span>
+  </div>
+</footer>
+      <script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script>
+if (!window.jQuery) {
+var script = document.createElement('script');
+script.src = "/js/jquery-2.0.3.min.js";
+document.body.write(script);
+}
+</script>
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+    </div>
+    <nav id="mobile-nav" class="mobile-nav-box">
+  <div class="mobile-nav-img mobile-nav-top"></div>
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">简历</a>
+  
+  <div class="mobile-nav-img  mobile-nav-bottom"></div>
+</nav>    
+  </div>
+</body>
+</html>
