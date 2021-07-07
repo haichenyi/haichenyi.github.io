@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Android模拟点击 | 海晨忆的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  <meta name="description" content="&amp;emsp;&amp;emsp;本篇介绍实现模拟点击的两种方式：  performClick(); MotionEvent事件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android模拟点击">
+<meta property="og:url" content="http://haichenyi.com/2021/07/07/Android模拟点击/index.html">
+<meta property="og:site_name" content="海晨忆的博客">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;本篇介绍实现模拟点击的两种方式：  performClick(); MotionEvent事件">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2021-07-07T13:38:38.262Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android模拟点击">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;本篇介绍实现模拟点击的两种方式：  performClick(); MotionEvent事件">
+  
+    <link rel="alternate" href="/atom.xml" title="海晨忆的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/uploads/artistic_image/head.jpg">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/highlight.css">
+  <script>
+  let antiquityStorage = window.sessionStorage.getItem('antiquitySessionStorage');
+  if (antiquityStorage == '' || antiquityStorage == null) {
+    var antiquityLoader = '<div id="loaderbox"><div class="loader"><div class="load-roll"><div class="load-top"></div><div class="load-right"></div><div class="load-bottom"></div></div></div></div>';
+    document.write(antiquityLoader);
+    document.body.style.overflow = 'hidden'
+  }
+  </script>
+</head>
+
+<body>
+  <div id="fullpage" class="mobile-nav-right">
+    
+      <div id="wrapper" style="background-image: url(/uploads/artistic_image/bg.jpg)" title="背景图片来自网络">
+    
+    
+      <header id="header">
+  <div id="nav-toggle" class="nav-toggle"></div>
+  <div class="head-box global-width">
+    <nav class="nav-box nav-right">
+      
+        <a class="nav-item" href="/" title
+        
+        >首页</a>
+      
+        <a class="nav-item" href="/archives" title
+        
+        >归档</a>
+      
+        <a class="nav-item" href="/about" title
+        
+        >简历</a>
+      
+    </nav>
+  </div>
+</header>
+      <div id="middlecontent" title class="global-width sidebar-left">
+        <section id="main"><article id="post-Android模拟点击" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 class="article-title" itemprop="name">
+      Android模拟点击
+    </h1>
+  
+
+    </header>
+  
+  <div class="article-meta">
+    <a href="/2021/07/07/Android模拟点击/" class="article-date">
+  <time datetime="2021-07-07T13:32:21.000Z" itemprop="datePublished">2021-07-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android-常用功能/">Android -常用功能</a>
+  </div>
+
+    
+  </div>
+  
+    <span id="busuanzi_container_page_pv">
+      本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+    </span>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud doorframe mac" itemprop="articleBody">
+      
+        <p>&emsp;&emsp;本篇介绍实现模拟点击的两种方式：</p>
+<ol>
+<li>performClick();</li>
+<li><p>MotionEvent事件</p>
+<a id="more"></a>
+</li>
+</ol>
+<p>&emsp;&emsp;举个栗子：我们现在需要实现点击A按钮，触发B按钮点击事件的效果：两个按钮在布局里面随便创建就好了。</p>
+<p>&emsp;&emsp;<strong><em>第一种方式就是：调用performClick事件</em></strong></p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Button btn1 = findViewById(R.id.btn1);</span><br><span class="line">final Button btn2 = findViewById(R.id.btn2);</span><br><span class="line">btn1.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void onClick(View v) &#123;</span><br><span class="line">        Log.v(&quot;wz&quot;,&quot;btn1&quot;);</span><br><span class="line">        btn2.performClick();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">btn2.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void onClick(View v) &#123;</span><br><span class="line">        Log.v(&quot;wz&quot;,&quot;btn2&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></div>
+<p>&emsp;&emsp;这种方式很简单，但是有一个弊端，就是不会传递触摸点坐标，只是模拟一下btn2的点击事件。</p>
+<p>&emsp;&emsp;<strong><em>第二种方式就是：MotionEvent事件</em></strong><br><div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">Button btn1 = findViewById(R.id.btn1);</span><br><span class="line">final Button btn2 = findViewById(R.id.btn2);</span><br><span class="line">btn1.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void onClick(View v) &#123;</span><br><span class="line">        Log.v(&quot;wz&quot;,&quot;btn1&quot;);</span><br><span class="line">        long downTime = SystemClock.uptimeMillis();</span><br><span class="line">        long eventTime = SystemClock.uptimeMillis()+100;</span><br><span class="line">        float upX = btn2.getX()+50;</span><br><span class="line">        float upY = btn2.getY()+50;</span><br><span class="line">        MotionEvent obtainDown = MotionEvent.obtain(downTime, eventTime, ACTION_DOWN, upX, upY, 0);</span><br><span class="line"></span><br><span class="line">        long downTime1 = SystemClock.uptimeMillis();</span><br><span class="line">        long eventTime1 = SystemClock.uptimeMillis()+100;</span><br><span class="line">        float upX1 = btn2.getX()+50;</span><br><span class="line">        float upY1 = btn2.getY()+50;</span><br><span class="line">        MotionEvent obtainUp = MotionEvent.obtain(downTime1, eventTime1, MotionEvent.ACTION_UP, upX1, upY1, 0);</span><br><span class="line">        btn2.dispatchTouchEvent(obtainDown);</span><br><span class="line">        btn2.dispatchTouchEvent(obtainUp);</span><br><span class="line">        obtainDown.recycle();</span><br><span class="line">        obtainUp.recycle();</span><br><span class="line">        Log.v(&quot;wz&quot;,&quot;downTime:&quot;+downTime+&quot; ,eventTime:&quot;+eventTime+&quot; ,upX:&quot;+upX+&quot; ,upY:&quot;+upY+&quot; ,downTime1:&quot;+downTime1+&quot; ,eventTime1:&quot;+eventTime1+&quot; ,upX1:&quot;+upX1+&quot; ,upY1:&quot;+upY1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">btn2.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void onClick(View v) &#123;</span><br><span class="line">        Log.v(&quot;wz&quot;,&quot;btn2&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></div></p>
+<p>&emsp;&emsp;这种方式比较麻烦，用到的就是view的事件分发，一个简单的点击事件的触发就是down和up组成，当然还有平移我们这里不考虑。</p>
+<p>&emsp;&emsp;<strong>第一步</strong>，先用MotionEvent.obtain创建两个事件：一个down事件，一个up事件，创建的时候需要传递坐标点，传你目标view的范围内的坐标就行。</p>
+<p>&emsp;&emsp;<strong>第二步</strong>，通过目标view，也就是这里的btn2去把这两个事件分发出去，通过dispatchTouchEvent分发，这样就完成了一次模拟点击事件，分发完记得回收</p>
+<p>&emsp;&emsp;这样，就完成了一次模拟点击，并且坐标也传递了。因为，创建这两个事件的时候就传递了。解决了performClick的弊端。</p>
+
+      
+    </div>
+    
+      <footer class="article-footer">
+        完
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  <div class="article-nav-block">
+    
+  </div>
+  <div class="article-nav-block">
+    
+      <a href="/2019/11/27/SpringBoot系列-消息-RabbitMQ-（二十）/" id="article-nav-older" class="article-nav-link-wrap">
+        <div class="article-nav-title">SpringBoot系列-消息(RabbitMQ)（二十）</div>
+        <strong class="article-nav-caption"></strong>
+      </a>
+    
+  </div>
+</nav>
+
+    
+  
+  
+</article>
+</section>
+        <aside id="sidebar">
+  
+    <div class="widget-box">
+  <div class="avatar-box avatar-item">
+    <img class="avatar" src="/uploads/artistic_image/head.jpg" title="头像来自网络"></img>
+    <h3 class="avatar-name">
+      
+        海晨忆
+      
+    </h3>
+    <p class="avatar-slogan">
+      先谋生，再谋爱。人间值得，未来可期。
+    </p>
+  </div>
+</div>
+
+
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android-Socket/">Android -Socket</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-加密算法/">Android -加密算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-常用功能/">Android -常用功能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-框架/">Android -框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-源码解析/">Android -源码解析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-自定义view/">Android -自定义view</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-设计模式/">Android -设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-SpringBoot/">Java -SpringBoot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/kotlin/">kotlin</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库-JDBC/">数据库 -JDBC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库-MySQL/">数据库 -MySQL</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/07/07/Android模拟点击/">Android模拟点击</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/27/SpringBoot系列-消息-RabbitMQ-（二十）/">SpringBoot系列-消息(RabbitMQ)（二十）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/13/SpringBoot系列-Docker（十九）/">SpringBoot系列-Docker（十九）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/11/SpringBoot系列-Run启动原理（十八）/">SpringBoot系列—Run启动原理（十八）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/06/SpringBoot系列—Redis（十七）/">SpringBoot系列—Redis（十七）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+      <div class="widget-box">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      
+        <a class="hrf" style="display: block;" href="https://github.com/haichenyi" title target='_blank'
+        >Github</a>
+      
+        <a class="hrf" style="display: block;" href="https://www.jianshu.com/u/6077ee440c37" title target='_blank'
+        >简书</a>
+      
+        <a class="hrf" style="display: block;" href="https://blog.csdn.net/qq_27634797" title target='_blank'
+        >CSDN</a>
+      
+    </div>
+  </div>
+
+  
+</aside>
+      </div>
+      <footer id="footer">
+  <div class="foot-box footers global-width">
+    &copy;2017-2021 海晨忆 &nbsp;&nbsp;
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">阁下是第<span id="busuanzi_value_site_pv"></span>个访客</span>
+  </div>
+</footer>
+      <script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script>
+if (!window.jQuery) {
+var script = document.createElement('script');
+script.src = "/js/jquery-2.0.3.min.js";
+document.body.write(script);
+}
+</script>
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+    </div>
+    <nav id="mobile-nav" class="mobile-nav-box">
+  <div class="mobile-nav-img mobile-nav-top"></div>
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">简历</a>
+  
+  <div class="mobile-nav-img  mobile-nav-bottom"></div>
+</nav>    
+  </div>
+</body>
+</html>
