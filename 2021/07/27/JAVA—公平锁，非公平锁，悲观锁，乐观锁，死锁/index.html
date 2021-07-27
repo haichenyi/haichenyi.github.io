@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>JAVA—公平锁，非公平锁，悲观锁，乐观锁，死锁 | 海晨忆的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  <meta name="description" content="前言&amp;emsp;&amp;emsp;这几个锁都可以从前面一篇线程同步器AQS里面找到影子,我先把前面一篇的加锁流程图拿过来用一用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JAVA—公平锁，非公平锁，悲观锁，乐观锁，死锁">
+<meta property="og:url" content="http://haichenyi.com/2021/07/27/JAVA—公平锁，非公平锁，悲观锁，乐观锁，死锁/index.html">
+<meta property="og:site_name" content="海晨忆的博客">
+<meta property="og:description" content="前言&amp;emsp;&amp;emsp;这几个锁都可以从前面一篇线程同步器AQS里面找到影子,我先把前面一篇的加锁流程图拿过来用一用。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2021-07-19/加锁流程图.png">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2021-07-27/等待流程图1.png">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2021-07-27/等待流程图2.png">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2021-07-27/synchronized时间图.png">
+<meta property="og:image" content="http://haichenyi.com/uploads/article/2021-07-27/CAS时间图.png">
+<meta property="og:updated_time" content="2021-07-27T13:57:13.749Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JAVA—公平锁，非公平锁，悲观锁，乐观锁，死锁">
+<meta name="twitter:description" content="前言&amp;emsp;&amp;emsp;这几个锁都可以从前面一篇线程同步器AQS里面找到影子,我先把前面一篇的加锁流程图拿过来用一用。">
+<meta name="twitter:image" content="http://haichenyi.com/uploads/article/2021-07-19/加锁流程图.png">
+  
+    <link rel="alternate" href="/atom.xml" title="海晨忆的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/uploads/artistic_image/head.jpg">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/highlight.css">
+  <script>
+  let antiquityStorage = window.sessionStorage.getItem('antiquitySessionStorage');
+  if (antiquityStorage == '' || antiquityStorage == null) {
+    var antiquityLoader = '<div id="loaderbox"><div class="loader"><div class="load-roll"><div class="load-top"></div><div class="load-right"></div><div class="load-bottom"></div></div></div></div>';
+    document.write(antiquityLoader);
+    document.body.style.overflow = 'hidden'
+  }
+  </script>
+</head>
+
+<body>
+  <div id="fullpage" class="mobile-nav-right">
+    
+      <div id="wrapper" style="background-image: url(/uploads/artistic_image/bg.jpg)" title="背景图片来自网络">
+    
+    
+      <header id="header">
+  <div id="nav-toggle" class="nav-toggle"></div>
+  <div class="head-box global-width">
+    <nav class="nav-box nav-right">
+      
+        <a class="nav-item" href="/" title
+        
+        >首页</a>
+      
+        <a class="nav-item" href="/archives" title
+        
+        >归档</a>
+      
+        <a class="nav-item" href="/about" title
+        
+        >简历</a>
+      
+    </nav>
+  </div>
+</header>
+      <div id="middlecontent" title class="global-width sidebar-left">
+        <section id="main"><article id="post-JAVA—公平锁，非公平锁，悲观锁，乐观锁，死锁" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 class="article-title" itemprop="name">
+      JAVA—公平锁，非公平锁，悲观锁，乐观锁，死锁
+    </h1>
+  
+
+    </header>
+  
+  <div class="article-meta">
+    <a href="/2021/07/27/JAVA—公平锁，非公平锁，悲观锁，乐观锁，死锁/" class="article-date">
+  <time datetime="2021-07-27T13:44:50.000Z" itemprop="datePublished">2021-07-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JAVA-并发/">JAVA -并发</a>
+  </div>
+
+    
+  </div>
+  
+    <span id="busuanzi_container_page_pv">
+      本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+    </span>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud doorframe mac" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>&emsp;&emsp;这几个锁都可以从前面一篇<a href="http://haichenyi.com/2021/07/19/JAVA%E2%80%94%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5%E5%99%A8AQS/#more">线程同步器AQS</a>里面找到影子,我先把前面一篇的加锁流程图拿过来用一用。</p>
+ <a id="more"></a>
+<p><img src="/uploads/article/2021-07-19/加锁流程图.png" alt="加锁流程图.png"></p>
+<p>&emsp;&emsp;上面这个流程图是上一篇最开始讲的时候的一张流程图，后面写的时候，后面的流程图都没有画。这一片我们来画一下后面的流程图。</p>
+<h3 id="公平锁，非公平锁"><a href="#公平锁，非公平锁" class="headerlink" title="公平锁，非公平锁"></a>公平锁，非公平锁</h3><p>&emsp;&emsp;前面一篇讲的时候，我说过了，我们当时做的是一个公平锁。这个公平锁和非公平锁的主要区别就是在这个队列。</p>
+<p>&emsp;&emsp;我们前文讲过了，线程1拿到了锁，线程2，3，4就全部放进队列中等待，那么，流程图如下：</p>
+<p><img src="/uploads/article/2021-07-27/等待流程图1.png" alt="等待流程图1.png"></p>
+<p>&emsp;&emsp;如上图，我们理想状态是：线程1释放锁的时候，队列中的第一个元素，也就是线程2拿到锁，然后，开始执行。</p>
+<p>&emsp;&emsp;但是，往往不如意，谁规定的一共就只有4个线程呢？如果，我们正当1释放锁的同时，又有一个线程5进来了，我们要怎么操作呢？流程图如下：</p>
+<p><img src="/uploads/article/2021-07-27/等待流程图2.png" alt="等待流程图2.png"></p>
+<p>&emsp;&emsp;公平锁和非公平锁的区别就在这里：</p>
+<ol>
+<li>公平锁会把线程5放进队列中，放到线程4的后面，线程2获取到锁，然后执行自己的任务</li>
+<li>非公平锁则是，线程1释放锁之后，状态变成了0，线程5去竞争锁，获取到锁之后，状态state又变成了1，线程2被唤醒之后，正准备去获取锁的时候，一看，状态state是1，又进入等待状态。</li>
+</ol>
+<p>&emsp;&emsp;所以，公平锁就是释放锁之后，谁等待得时间长，谁先执行。非公平锁则是，释放锁之后，谁先获取到锁，谁先执行。可能后进的执行，也可能先进的先执行。</p>
+<p>&emsp;&emsp;<strong>ReentrantLock</strong>，初始化的时候传true就是公平锁，传false就是非公平锁，默认是非公平锁。下面就是ReentrantLock的构造方法。</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Creates an instance of &#123;@code ReentrantLock&#125;.</span><br><span class="line"> * This is equivalent to using &#123;@code ReentrantLock(false)&#125;.</span><br><span class="line"> */</span><br><span class="line">public ReentrantLock() &#123;</span><br><span class="line">    sync = new NonfairSync();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Creates an instance of &#123;@code ReentrantLock&#125; with the</span><br><span class="line"> * given fairness policy.</span><br><span class="line"> *</span><br><span class="line"> * @param fair &#123;@code true&#125; if this lock should use a fair ordering policy</span><br><span class="line"> */</span><br><span class="line">public ReentrantLock(boolean fair) &#123;</span><br><span class="line">    sync = fair ? new FairSync() : new NonfairSync();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h3 id="悲观锁锁，乐观锁"><a href="#悲观锁锁，乐观锁" class="headerlink" title="悲观锁锁，乐观锁"></a>悲观锁锁，乐观锁</h3><p>&emsp;&emsp;<strong>悲观锁</strong>：操作之前加锁，操作完成之后解锁。我们前文讲的buy方法就是悲观锁，进入方法就加锁，方法执行完就解锁。还有我们常用的<strong>synchronized</strong>关键字，就是悲观锁的典型代表。</p>
+<p>&emsp;&emsp;<strong>乐观锁</strong>：乐观锁是一种思想，比方说，我们前文提到的CAS机制，就是乐观锁的一种实现。当我们操作一个变量做加减操作的时候，我们多个线程可以同时做这个操作，但是到具体更新这个值的时候，去判断。典型代表就是Atomic原子类。这个原子类的实现也是CAS机制。</p>
+<p>&emsp;&emsp;<strong>性能问题</strong>：多个线程同时执行，悲观锁，就只有一个线程操作，其他线程挂起等待，释放锁之后，再切换回来。乐观锁，所有的线程都一起执行，最后执行冲突检测和数据更新操作。没有挂起等待，上下文的切换，所以，乐观锁的性能肯定比悲观锁好。但是，实际上真的是这样吗？答案是否定的。乐观锁的性能不一定比悲观锁好。</p>
+<p>&emsp;&emsp;前面，我们说到乐观锁是在最后更新得时候，去判断。那么怎么判断呢？早期1.5版本之前的CAS操作是有3个参数内存位置(V)、原值(A)、新值(B)。我们在更新的时候，先判断A是否满足，满足就更新成B上一篇文章已经说过了。不满足，那就再循环一边重复判断。极端情况下，要是线程足够的多，并且一直不满足，那是不是一直循环判断(CAS自旋)？那就一直占用CPU。这样性能肯定不好。</p>
+<p>&emsp;&emsp;<strong>synchronized</strong>在JDK1.5之前的确性能很差，但是在1.6的时候就已经做了优化了，从无锁状态，到偏向锁状态，再到轻量级锁状态，最后到重量级锁状态。这几个状态会随着竞争情况逐渐升级（锁不但可以升级还可以降级）。现在synchronized的性能跟ReentrantLock差不多。</p>
+<p>&emsp;&emsp;所以，悲观锁的性能不一定比乐观锁差，乐观锁的性能不一定比悲观锁好。根据实际情况去选择悲观锁和乐观锁。那到底怎么选择呢？</p>
+<p>&emsp;&emsp;之前在网上看到过这么一组数据，启用多个线程进行计数相加到一亿，首先是synchronized方式</p>
+<p><img src="/uploads/article/2021-07-27/synchronized时间图.png" alt="synchronized时间图.png"></p>
+<p>&emsp;&emsp;当线程数为8时，性能明显提升，但是8到32个线程来说，每个线程的平均时间基本差不多，基本没有提升，到了64个线程的时候，性能又有一点提升。</p>
+<p>如果换成CAS实现多线程累加数为一亿，时间又会怎么样呢？</p>
+<p><img src="/uploads/article/2021-07-27/CAS时间图.png" alt="CAS时间图.png"></p>
+<p>&emsp;&emsp;在线程数相对较少的时候，CAS实现比较快，性能优于synchronized,当线程数多于8后，CAS实现明显开始下降，反而时间消耗高于synchronized；</p>
+<p>&emsp;&emsp;<strong>总结</strong>：synchronized是java提供的又简单方便，性能优化又非常好的功能，建议大家常用；CAS的话，线程数大于一定数量的话，多个线程在循环调用CAS接口，虽然不会让其他线程阻塞，但是这个时候竞争激烈，会导致CPU到达100%，同时比较耗时间，所以性能就不如synchronized了。</p>
+<h3 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>&emsp;&emsp;死锁是指：多个进程在运行过程中因争夺某一种资源，而造成的僵持状态，若无外力作用，他们都将无法向前推进。</p>
+<p><strong>举个栗子</strong>：</p>
+<p>小明在看电视，小红在玩手机，小明对小红说：你把手机给我玩，我把点视给你看；小红却说：你把点视给我看，我再把手机给你玩。</p>
+<p><strong>分析</strong>：</p>
+<ol>
+<li><strong>电视，手机</strong>都可以看作一种资源。</li>
+<li><strong>小明在看电视，小红在玩手机</strong>：表示电视分配给小明了，小明对电视持有锁；手机分配给小红了，小红对手机持有锁</li>
+<li><strong>小明对小红说，你把手机给我玩，我把点视给你看</strong>：小明想获取到手机的锁之后，再释放自己电视的锁。</li>
+<li><strong>小红却说，你把点视给我看，我再把手机给你玩</strong>：小红想获取电视的锁之后，再释放自己手机的锁</li>
+</ol>
+<p>&emsp;&emsp;所以，小明和小红都在等待对方释放锁，自己拿到想要的资源之后，释放自己资源的锁。这里谁都拿不到锁，就无线的等待下去。这就是死锁。</p>
+<h4 id="产生条件"><a href="#产生条件" class="headerlink" title="产生条件"></a>产生条件</h4><ol>
+<li><strong>互斥条件</strong>：某种资源一次只允许一个进程访问，即该资源一旦分配给某个进程，其他进程就不能再访问，直到该进程访问结束。(就是这里的电视只能给小明看，手机只能给小红玩)</li>
+<li><strong>占有且等待</strong>：一个进程本身占有资源（一种或多种），同时还有资源未得到满足，正在等待其他进程释放该资源。（小明等着小红释放手机资源，小红等着小明释放电视资源）</li>
+<li><strong>不剥夺条件</strong>：别人已经占有了某项资源，你不能因为自己也需要该资源，就去把别人的资源抢过来（小明在看电视的时候，小红不能说，我要看电视，你给我看。小红在玩手机的时候，小明不能说，我要玩手机，你把手机给我玩。我们要讲文明，不能耍流氓）</li>
+<li><strong>环路等待条件</strong>：存在一个进程链，使得每个进程都占有下一个进程所需的至少一种资源（小明等着小红释放手机资源，小红等着小明释放电视资源）</li>
+</ol>
+<h4 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h4><p>&emsp;&emsp;如果产生死锁只能重启。所以，我们在开发过程中要尽量避免死锁，比方说：著名的<strong>银行家算法</strong>。只要上面四种中的任意一种不满足，就不可能造成死锁：比方说占有等待，我们可以用共享锁的方式AQS里面每个加锁的方法都有一个try开头的方法。可以看一下acquire和tryAcquire的区别。这就破坏了第二个条件，等待。</p>
+
+      
+    </div>
+    
+      <footer class="article-footer">
+        完
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  <div class="article-nav-block">
+    
+  </div>
+  <div class="article-nav-block">
+    
+      <a href="/2021/07/19/JAVA—线程同步器AQS/" id="article-nav-older" class="article-nav-link-wrap">
+        <div class="article-nav-title">JAVA—线程同步器AQS</div>
+        <strong class="article-nav-caption"></strong>
+      </a>
+    
+  </div>
+</nav>
+
+    
+  
+  
+</article>
+</section>
+        <aside id="sidebar">
+  
+    <div class="widget-box">
+  <div class="avatar-box avatar-item">
+    <img class="avatar" src="/uploads/artistic_image/head.jpg" title="头像来自网络"></img>
+    <h3 class="avatar-name">
+      
+        海晨忆
+      
+    </h3>
+    <p class="avatar-slogan">
+      先谋生，再谋爱。人间值得，未来可期。
+    </p>
+  </div>
+</div>
+
+
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android-Socket/">Android -Socket</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-加密算法/">Android -加密算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-常用功能/">Android -常用功能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-框架/">Android -框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-源码解析/">Android -源码解析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-自定义view/">Android -自定义view</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-设计模式/">Android -设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JAVA-并发/">JAVA -并发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-SpringBoot/">Java -SpringBoot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/kotlin/">kotlin</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库-JDBC/">数据库 -JDBC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库-MySQL/">数据库 -MySQL</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/07/27/JAVA—公平锁，非公平锁，悲观锁，乐观锁，死锁/">JAVA—公平锁，非公平锁，悲观锁，乐观锁，死锁</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/19/JAVA—线程同步器AQS/">JAVA—线程同步器AQS</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/07/Android模拟点击/">Android模拟点击</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/27/SpringBoot系列-消息-RabbitMQ-（二十）/">SpringBoot系列-消息(RabbitMQ)（二十）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/13/SpringBoot系列-Docker（十九）/">SpringBoot系列-Docker（十九）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+      <div class="widget-box">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      
+        <a class="hrf" style="display: block;" href="https://github.com/haichenyi" title target='_blank'
+        >Github</a>
+      
+        <a class="hrf" style="display: block;" href="https://www.jianshu.com/u/6077ee440c37" title target='_blank'
+        >简书</a>
+      
+        <a class="hrf" style="display: block;" href="https://blog.csdn.net/qq_27634797" title target='_blank'
+        >CSDN</a>
+      
+    </div>
+  </div>
+
+  
+</aside>
+      </div>
+      <footer id="footer">
+  <div class="foot-box footers global-width">
+    &copy;2017-2021 海晨忆 &nbsp;&nbsp;
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">阁下是第<span id="busuanzi_value_site_pv"></span>个访客</span>
+  </div>
+</footer>
+      <script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script>
+if (!window.jQuery) {
+var script = document.createElement('script');
+script.src = "/js/jquery-2.0.3.min.js";
+document.body.write(script);
+}
+</script>
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+    </div>
+    <nav id="mobile-nav" class="mobile-nav-box">
+  <div class="mobile-nav-img mobile-nav-top"></div>
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">简历</a>
+  
+  <div class="mobile-nav-img  mobile-nav-bottom"></div>
+</nav>    
+  </div>
+</body>
+</html>
