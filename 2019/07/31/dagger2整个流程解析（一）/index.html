@@ -13,43 +13,43 @@
   <meta name="description" content="&amp;emsp;&amp;emsp;众所周知，dagger的入门是比较难的，在嵌入之前，我先说一下这个dagger必要的东西，也是比较常见的东西，几个注解 @Component，@Singleton，@Module，@Provides，@Inject">
 <meta property="og:type" content="article">
 <meta property="og:title" content="dagger2整个流程解析（一）">
-<meta property="og:url" content="http://haichenyi.com/2019/07/31/dagger2整个流程解析（一）/index.html">
+<meta property="og:url" content="https://haichenyi.com/2019/07/31/dagger2整个流程解析（一）/index.html">
 <meta property="og:site_name" content="海晨忆的博客">
 <meta property="og:description" content="&amp;emsp;&amp;emsp;众所周知，dagger的入门是比较难的，在嵌入之前，我先说一下这个dagger必要的东西，也是比较常见的东西，几个注解 @Component，@Singleton，@Module，@Provides，@Inject">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-07-31/图一.png">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-07-31/图五.png">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-07-31/图二.png">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-07-31/图三.png">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-07-31/图四.png">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-07-31/图六.png">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-07-31/图七.png">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-07-31/图八.png">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-07-31/图九.png">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-07-31/图九.png">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-07-31/图十一.png">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-07-31/图十二.png">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-07-31/图十三.png">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-07-31/图十四.png">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-07-31/图十五.png">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-07-31/图十六.png">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-07-31/图十七.png">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-07-31/图十八.png">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-07-31/图十九.png">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-07-31/图二十.png">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-07-31/图二十一.png">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-07-31/图二十二.png">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-07-31/图二十三.png">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-07-31/图二十四.png">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-07-31/图二十五.png">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-07-31/图二十六.png">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-07-31/图二十七.png">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2019-07-31/图二十八.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2019-07-31/图一.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2019-07-31/图五.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2019-07-31/图二.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2019-07-31/图三.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2019-07-31/图四.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2019-07-31/图六.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2019-07-31/图七.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2019-07-31/图八.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2019-07-31/图九.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2019-07-31/图九.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2019-07-31/图十一.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2019-07-31/图十二.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2019-07-31/图十三.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2019-07-31/图十四.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2019-07-31/图十五.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2019-07-31/图十六.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2019-07-31/图十七.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2019-07-31/图十八.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2019-07-31/图十九.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2019-07-31/图二十.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2019-07-31/图二十一.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2019-07-31/图二十二.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2019-07-31/图二十三.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2019-07-31/图二十四.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2019-07-31/图二十五.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2019-07-31/图二十六.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2019-07-31/图二十七.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2019-07-31/图二十八.png">
 <meta property="og:updated_time" content="2019-09-18T09:02:34.288Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="dagger2整个流程解析（一）">
 <meta name="twitter:description" content="&amp;emsp;&amp;emsp;众所周知，dagger的入门是比较难的，在嵌入之前，我先说一下这个dagger必要的东西，也是比较常见的东西，几个注解 @Component，@Singleton，@Module，@Provides，@Inject">
-<meta name="twitter:image" content="http://haichenyi.com/uploads/article/2019-07-31/图一.png">
+<meta name="twitter:image" content="https://haichenyi.com/uploads/article/2019-07-31/图一.png">
   
     <link rel="alternate" href="/atom.xml" title="海晨忆的博客" type="application/atom+xml">
   

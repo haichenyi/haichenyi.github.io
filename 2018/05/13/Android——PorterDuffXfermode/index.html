@@ -13,31 +13,31 @@
   <meta name="description" content="简介&amp;emsp;&amp;emsp;PorterDuffXfermode是什么鬼？个人理解，简单的来讲就是做两个Bitmap操作的，什么操作呢？有裁剪，合并等等，有16种图形混合模式。先举一个简单的例子，我们在慢慢讲：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android——PorterDuffXfermode">
-<meta property="og:url" content="http://haichenyi.com/2018/05/13/Android——PorterDuffXfermode/index.html">
+<meta property="og:url" content="https://haichenyi.com/2018/05/13/Android——PorterDuffXfermode/index.html">
 <meta property="og:site_name" content="海晨忆的博客">
 <meta property="og:description" content="简介&amp;emsp;&amp;emsp;PorterDuffXfermode是什么鬼？个人理解，简单的来讲就是做两个Bitmap操作的，什么操作呢？有裁剪，合并等等，有16种图形混合模式。先举一个简单的例子，我们在慢慢讲：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2018-05-13/简介demo图.png">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2018-05-13/注意点1.png">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2018-05-13/注意点2.png">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2018-05-13/注意点3.png">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2018-05-13/去掉saveLayer(">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2018-05-13/saveLayer.png">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2018-05-13/no_saveLayer.png">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2018-05-13/DST.png">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2018-05-13/SRC_OVER.png">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2018-05-13/DST_OVER.png">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2018-05-13/SRC_IN.png">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2018-05-13/DST_IN.png">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2018-05-13/SRC_OUT.png">
-<meta property="og:image" content="http://haichenyi.com/uploads/article/2018-05-13/DST_OUT.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2018-05-13/简介demo图.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2018-05-13/注意点1.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2018-05-13/注意点2.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2018-05-13/注意点3.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2018-05-13/去掉saveLayer(">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2018-05-13/saveLayer.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2018-05-13/no_saveLayer.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2018-05-13/DST.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2018-05-13/SRC_OVER.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2018-05-13/DST_OVER.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2018-05-13/SRC_IN.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2018-05-13/DST_IN.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2018-05-13/SRC_OUT.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2018-05-13/DST_OUT.png">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-dcdb3859d8e4fbf8.gif?imageMogr2/auto-orient/strip">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/7041675-946eca2d7f94cdcf.gif?imageMogr2/auto-orient/strip">
 <meta property="og:updated_time" content="2019-09-18T08:51:58.242Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android——PorterDuffXfermode">
 <meta name="twitter:description" content="简介&amp;emsp;&amp;emsp;PorterDuffXfermode是什么鬼？个人理解，简单的来讲就是做两个Bitmap操作的，什么操作呢？有裁剪，合并等等，有16种图形混合模式。先举一个简单的例子，我们在慢慢讲：">
-<meta name="twitter:image" content="http://haichenyi.com/uploads/article/2018-05-13/简介demo图.png">
+<meta name="twitter:image" content="https://haichenyi.com/uploads/article/2018-05-13/简介demo图.png">
   
     <link rel="alternate" href="/atom.xml" title="海晨忆的博客" type="application/atom+xml">
   
