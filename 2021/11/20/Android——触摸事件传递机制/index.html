@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Android——触摸事件传递机制 | 海晨忆的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  <meta name="description" content="1.目录 1–目录 2–预知识点 3–Android点击事件 3.1–结论 3.2–某一层不想要分发这次事件，怎么办呢？(dispatch) 3.3–view group想要拦截这次事件，怎么办？(onIntercept) 3.4–某一层想自己处理，不回传了，怎么办？(onTouchEvent)   2.预知识点 Android的一次点击事件由三部分组成：   ACTION_DOWN(按下)：只">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android——触摸事件传递机制">
+<meta property="og:url" content="https://haichenyi.com/2021/11/20/Android——触摸事件传递机制/index.html">
+<meta property="og:site_name" content="海晨忆的博客">
+<meta property="og:description" content="1.目录 1–目录 2–预知识点 3–Android点击事件 3.1–结论 3.2–某一层不想要分发这次事件，怎么办呢？(dispatch) 3.3–view group想要拦截这次事件，怎么办？(onIntercept) 3.4–某一层想自己处理，不回传了，怎么办？(onTouchEvent)   2.预知识点 Android的一次点击事件由三部分组成：   ACTION_DOWN(按下)：只">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2021-11-20/不做任何处理的结论图.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2021-11-20/activity图.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2021-11-20/viewgroup图.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2021-11-20/view图.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2021-11-20/activity布局图.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2021-11-20/完整的流程图.png">
+<meta property="og:updated_time" content="2021-11-19T17:38:54.295Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android——触摸事件传递机制">
+<meta name="twitter:description" content="1.目录 1–目录 2–预知识点 3–Android点击事件 3.1–结论 3.2–某一层不想要分发这次事件，怎么办呢？(dispatch) 3.3–view group想要拦截这次事件，怎么办？(onIntercept) 3.4–某一层想自己处理，不回传了，怎么办？(onTouchEvent)   2.预知识点 Android的一次点击事件由三部分组成：   ACTION_DOWN(按下)：只">
+<meta name="twitter:image" content="https://haichenyi.com/uploads/article/2021-11-20/不做任何处理的结论图.png">
+  
+    <link rel="alternate" href="/atom.xml" title="海晨忆的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/uploads/artistic_image/head.jpg">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/highlight.css">
+  <script>
+  let antiquityStorage = window.sessionStorage.getItem('antiquitySessionStorage');
+  if (antiquityStorage == '' || antiquityStorage == null) {
+    var antiquityLoader = '<div id="loaderbox"><div class="loader"><div class="load-roll"><div class="load-top"></div><div class="load-right"></div><div class="load-bottom"></div></div></div></div>';
+    document.write(antiquityLoader);
+    document.body.style.overflow = 'hidden'
+  }
+  </script>
+</head>
+
+<body>
+  <div id="fullpage" class="mobile-nav-right">
+    
+      <div id="wrapper" style="background-image: url(/uploads/artistic_image/bg.jpg)" title="背景图片来自网络">
+    
+    
+      <header id="header">
+  <div id="nav-toggle" class="nav-toggle"></div>
+  <div class="head-box global-width">
+    <nav class="nav-box nav-right">
+      
+        <a class="nav-item" href="/" title
+        
+        >首页</a>
+      
+        <a class="nav-item" href="/archives" title
+        
+        >归档</a>
+      
+        <a class="nav-item" href="/about" title
+        
+        >简历</a>
+      
+    </nav>
+  </div>
+</header>
+      <div id="middlecontent" title class="global-width sidebar-left">
+        <section id="main"><article id="post-Android——触摸事件传递机制" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 class="article-title" itemprop="name">
+      Android——触摸事件传递机制
+    </h1>
+  
+
+    </header>
+  
+  <div class="article-meta">
+    <a href="/2021/11/20/Android——触摸事件传递机制/" class="article-date">
+  <time datetime="2021-11-19T17:22:11.000Z" itemprop="datePublished">2021-11-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android-自定义view/">Android -自定义view</a>
+  </div>
+
+    
+  </div>
+  
+    <span id="busuanzi_container_page_pv">
+      本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+    </span>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud doorframe mac" itemprop="articleBody">
+      
+        <p><span id="c1"></span></p>
+<h2 id="1-目录"><a href="#1-目录" class="headerlink" title="1.目录"></a>1.目录</h2><ul>
+<li><a href="#c1">1–目录</a></li>
+<li><a href="#c2">2–预知识点</a></li>
+<li><a href="#c3">3–Android点击事件</a></li>
+<li><a href="#c4">3.1–结论</a></li>
+<li><a href="#c5">3.2–某一层不想要分发这次事件，怎么办呢？(dispatch)</a></li>
+<li><a href="#c6">3.3–view group想要拦截这次事件，怎么办？(onIntercept)</a></li>
+<li><a href="#c7">3.4–某一层想自己处理，不回传了，怎么办？(onTouchEvent)</a></li>
+</ul>
+<p><span id="c2"></span></p>
+<h2 id="2-预知识点"><a href="#2-预知识点" class="headerlink" title="2.预知识点"></a>2.预知识点</h2><ol>
+<li>Android的一次点击事件由三部分组成：</li>
+</ol>
+<ul>
+<li>ACTION_DOWN(按下)：只能有一个</li>
+<li>ACTION_UP(抬起)：只能有一个</li>
+<li>ACTION_MOVE(移动)：一个或者多个</li>
+</ul>
+<p>&emsp;&emsp;<strong>为什么移动事件能有多个呢</strong>？因为你手指按在屏幕上滑动会触发多个MOVE事件，而这次点击事件的结束，是在你手指离开屏幕的那一刻，才结束。</p>
+<ol>
+<li><p><strong>Android的事件传递是责任链的模式</strong>，一层一层的向下传递，传递到最下层之后，没人认领，就一层一层的往回传（这就是很多人说的从外到内，再从内到外）</p>
+<a id="more"></a>
+</li>
+</ol>
+<p><span id="c3"></span></p>
+<h2 id="3-Android点击事件"><a href="#3-Android点击事件" class="headerlink" title="3.Android点击事件"></a>3.Android点击事件</h2><p><span id="c4"></span></p>
+<h3 id="3-1-结论"><a href="#3-1-结论" class="headerlink" title="3.1 结论"></a>3.1 结论</h3><p>&emsp;&emsp; 简单的分析成从 <strong>Activity——ViewGroup——View</strong>，结论：如下图</p>
+<p><img src="/uploads/article/2021-11-20/不做任何处理的结论图.png" alt="不做任何处理的结论图.png"></p>
+<p><strong>有几点要注意：</strong></p>
+<ul>
+<li><strong>dispatch分发方法，不做任何处理，表示向下分发</strong></li>
+<li><strong>onIntercept拦截方法，不做任何处理，表示不拦截</strong></li>
+<li><strong>onTouchEvent，不做任何处理，表示不处理事件</strong></li>
+<li><strong>view group比activity和view多一个拦截方法</strong>。activity不需要拦截方法是因为，他要么向下分发，要么自己处理不需要拦截。view也类似，要么分发，要么回传。</li>
+</ul>
+<p>这个图就是我们不修改默认的返回值的情况下，全部都是super的方式一层一层传递的结论。最上层的activity，中间层的viewgroup，最下层的view。跟着箭头的方向看：</p>
+<ol>
+<li>activity的分发事件不做处理，分发给中间层view group去做分发</li>
+<li>view group的分发事件也不做处理，传递给自己的拦截方法</li>
+<li>view group的拦截事件不做处理，传递给最下层的view去做分发</li>
+<li>view的分发事件不做处理，它也没有下一层了，所以，它就会传递给自己的onTouchEvent方法，去处理事件</li>
+<li>view的onTouchEvent方法，不做任何处理，那么，它就会回传给中间层view group的onTouchEvent方法</li>
+<li>view group的onTouchEvent方法不做处理，就会回传给最上层activity的onTouchEvent方法</li>
+<li>如果，最上层的activity的onTouchEvent方法也不做处理，那么，系统就会抛弃这次点击事件，也就是 这次点击事件没有任何反应。</li>
+</ol>
+<p>以上就是一次点击事件不做处理的正常流程</p>
+<p>上面的结论是怎么的出来的呢？就是新建一个view group，新建一个view，重写这几个方法，打印日志，其他啥也没动。</p>
+<p><img src="/uploads/article/2021-11-20/activity图.png" alt="activity图.png"></p>
+<p><img src="/uploads/article/2021-11-20/viewgroup图.png" alt="viewgroup图.png"></p>
+<p><img src="/uploads/article/2021-11-20/view图.png" alt="view图.png"></p>
+<p><img src="/uploads/article/2021-11-20/activity布局图.png" alt="activity布局图.png"></p>
+<p>想要验证上面的结论，自己也可以去写了试一下，没有什么难点，就是打印日志，把view写到activity布局里面，然后点击view就行了</p>
+<p><strong>埋个点</strong>：这里日志打印都在super前面。</p>
+<p>那么，问题来了，如果：</p>
+<ol>
+<li>某一层不想要分发这次事件，怎么办呢？(dispatch)</li>
+<li>view group想要拦截这次事件，怎么办？(onIntercept)</li>
+<li>某一层想自己处理，不回传了，怎么办？(onTouchEvent)</li>
+</ol>
+<p><span id="c5"></span></p>
+<h3 id="3-2-某一层不想要分发这次事件，怎么办呢？-dispatch"><a href="#3-2-某一层不想要分发这次事件，怎么办呢？-dispatch" class="headerlink" title="3.2 某一层不想要分发这次事件，怎么办呢？(dispatch)"></a>3.2 某一层不想要分发这次事件，怎么办呢？(dispatch)</h3><p>&emsp;&emsp;<strong>activity层如果想要不分发这次点击事件，自己的onTouchEvent直接处理</strong>。你只有不调用super方法，直接写死返回值，不管是true，还是false，都会直接调用自己的onTouchEvent方法。就像下面这样：</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//activity的dispatchTouchEvent方法</span><br><span class="line">    @Override</span><br><span class="line">    public boolean dispatchTouchEvent(MotionEvent ev) &#123;</span><br><span class="line">        Log.v(&quot;hcy&quot;,&quot;activity:dispatchTouchEvent:&quot;+ev.getAction());</span><br><span class="line">        //只要你调用了super方法，不管是返回true还是false，都会正常的向下传递</span><br><span class="line">//        super.dispatchTouchEvent(ev);</span><br><span class="line">        return true;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
+<p>运行的结论我就不贴出来了。最后再总结一张总图</p>
+<p>&emsp;&emsp;view group不分发，此时，activity已经分发下来了，view group不想往下分发了，就需要回传回activity的onTouchEvent方法。写法如下：</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//view group的dispatchTouchEvent方法</span><br><span class="line">    @Override</span><br><span class="line">    public boolean dispatchTouchEvent(MotionEvent ev) &#123;</span><br><span class="line">        Log.v(&quot;hcy&quot;,&quot;viewGroup:dispatchTouchEvent:&quot;+ev.getAction());</span><br><span class="line">        //不调用super方法，返回true，流程就会在这里中断，分发方法就直接消费了这次事件</span><br><span class="line">//        return super.dispatchTouchEvent(ev);</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
+<p>&emsp;&emsp;view 不想分发，就需要回传给view group的onTouchEvent方法，然后是否需要回传给activity的onTouchEvent方法，就需要view group的onTouchEvent方法的返回值去判断了，后面再说。</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//view 的dispatchTouchEvent方法</span><br><span class="line">    @Override</span><br><span class="line">    public boolean dispatchTouchEvent(MotionEvent event) &#123;</span><br><span class="line">        Log.v(&quot;hcy&quot;,&quot;view:dispatchTouchEvent:&quot;+event.getAction());</span><br><span class="line">//        return super.dispatchTouchEvent(event);</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
+<p>那么，结论就如下表格：<br>|return|true|false|super.dispatchTouchEvent(event)|<br>|:–:|:–:|:–:|:–:|<br>|activity|中断|中断|分发|<br>|view group|中断|不分发|分发|<br>|view|中断|不分发|分发|</p>
+<p>ps：中断：表示整个流程就中断了，没有任何回调了</p>
+<p>不分发：表示正常回调，符合预期</p>
+<p>符合预期，需要去思考一下。我们这里是不分发，就把事件还给上一层，那么，</p>
+<ol>
+<li>view group，就是触发activity的onTouchEvent方法。</li>
+<li>view，就是触发view group的onTouchEvent方法。</li>
+</ol>
+<p><span id="c6"></span></p>
+<h3 id="3-3-view-group想要拦截这次事件，怎么办？-onIntercept"><a href="#3-3-view-group想要拦截这次事件，怎么办？-onIntercept" class="headerlink" title="3.3 view group想要拦截这次事件，怎么办？(onIntercept)"></a>3.3 view group想要拦截这次事件，怎么办？(onIntercept)</h3><div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//view group的拦截事件</span><br><span class="line">    @Override</span><br><span class="line">    public boolean onInterceptTouchEvent(MotionEvent ev) &#123;</span><br><span class="line">        Log.v(&quot;hcy&quot;,&quot;viewGroup:onInterceptTouchEvent:&quot;+ev.getAction());</span><br><span class="line">//        return super.onInterceptTouchEvent(ev);</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
+<p>拦截事件：表示拦截了自己处理</p>
+<p>那么，结论就如下表格：<br>|return|true|false|super.onInterceptTouchEvent(event)|<br>|:–:|:–:|:–:|:–:|<br>|view group|拦截|不拦截|不拦截|</p>
+<p>这里的拦截，会触发自己的onTouchEvent方法。</p>
+<p>上面的不分发，是触发上一层的onTouchEvent方法。</p>
+<p>这里的概念都不能死记硬背，需要结合上下文去理解。</p>
+<p><span id="c7"></span></p>
+<h3 id="3-4-某一层想自己处理，不回传了，怎么办？-onTouchEvent"><a href="#3-4-某一层想自己处理，不回传了，怎么办？-onTouchEvent" class="headerlink" title="3.4 某一层想自己处理，不回传了，怎么办？(onTouchEvent)"></a>3.4 某一层想自己处理，不回传了，怎么办？(onTouchEvent)</h3><p>onTouchEvent是从内向外回传，那么，我们先来看最内层view的onTouchEvent，代码如下</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//view的onTouchEvent代码</span><br><span class="line">    @Override</span><br><span class="line">    public boolean onTouchEvent(MotionEvent event) &#123;</span><br><span class="line">        Log.v(&quot;hcy&quot;,&quot;view:onTouchEvent:&quot;+event.getAction());</span><br><span class="line">//        return super.onTouchEvent(event);</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
+<p>true，表示自己处理，不会往上回传。false,super表示不自己处理，需要回传</p>
+<p>view group的onTouchEvent，代码如下</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//view group的onTouchEvent代码</span><br><span class="line">    @Override</span><br><span class="line">    public boolean onTouchEvent(MotionEvent event) &#123;</span><br><span class="line">        Log.v(&quot;hcy&quot;,&quot;viewGroup:onTouchEvent:&quot;+event.getAction());</span><br><span class="line">//        return super.onTouchEvent(event);</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
+<p>view group的结论与view的相同。都是：true，表示自己处理，不会往上回传。false,super表示不自己处理，需要回传。<br>&emsp;&emsp;activity没有上一层，不需要回传。所以，activity的onTouchEvent，不需要去考虑</p>
+<p>那么，结论就如下表格：<br>|return|true|false|super.onTouchEvent(event)|<br>|:–:|:–:|:–:|:–:|<br>|view|自己处理|不处理|不处理|<br>|view group|自己处理|不处理|不处理|</p>
+<p>到这里，事件的传递基本上就说完了。完整的流程图如下：</p>
+<p><img src="/uploads/article/2021-11-20/完整的流程图.png" alt="完整的流程图.png"></p>
+<p>更简单的理解：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">true</th>
+<th style="text-align:center">false</th>
+<th style="text-align:center">super</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">dispatch</td>
+<td style="text-align:center">中断</td>
+<td style="text-align:center">不分发</td>
+<td style="text-align:center">正常流程</td>
+</tr>
+<tr>
+<td style="text-align:center">Intercept</td>
+<td style="text-align:center">拦截</td>
+<td style="text-align:center">不不拦截</td>
+<td style="text-align:center">正常流程</td>
+</tr>
+<tr>
+<td style="text-align:center">onTouchEvent</td>
+<td style="text-align:center">处理</td>
+<td style="text-align:center">不处理</td>
+<td style="text-align:center">正常流程</td>
+</tr>
+</tbody>
+</table>
+<p>dispatch：是否分发</p>
+<p>Intercept：是否拦截</p>
+<p>onTouchEvent：是否自己处理</p>
+<p>true：真的</p>
+<p>false：假的</p>
+<p>分发需要额外单独记忆。</p>
+
+      
+    </div>
+    
+      <footer class="article-footer">
+        完
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  <div class="article-nav-block">
+    
+  </div>
+  <div class="article-nav-block">
+    
+      <a href="/2021/08/09/JAVA-TCP，UDP/" id="article-nav-older" class="article-nav-link-wrap">
+        <div class="article-nav-title">JAVA-TCP，UDP</div>
+        <strong class="article-nav-caption"></strong>
+      </a>
+    
+  </div>
+</nav>
+
+    
+  
+  
+</article>
+</section>
+        <aside id="sidebar">
+  
+    <div class="widget-box">
+  <div class="avatar-box avatar-item">
+    <img class="avatar" src="/uploads/artistic_image/head.jpg" title="头像来自网络"></img>
+    <h3 class="avatar-name">
+      
+        海晨忆
+      
+    </h3>
+    <p class="avatar-slogan">
+      先谋生，再谋爱。人间值得，未来可期。
+    </p>
+  </div>
+</div>
+
+
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android-Socket/">Android -Socket</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-加密算法/">Android -加密算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-常用功能/">Android -常用功能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-框架/">Android -框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-源码解析/">Android -源码解析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-自定义view/">Android -自定义view</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-设计模式/">Android -设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JAVA-基础/">JAVA -基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JAVA-并发/">JAVA -并发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-SpringBoot/">Java -SpringBoot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/kotlin/">kotlin</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库-JDBC/">数据库 -JDBC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库-MySQL/">数据库 -MySQL</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">August 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/11/20/Android——触摸事件传递机制/">Android——触摸事件传递机制</a>
+          </li>
+        
+          <li>
+            <a href="/2021/08/09/JAVA-TCP，UDP/">JAVA-TCP，UDP</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/27/JAVA—公平锁，非公平锁，悲观锁，乐观锁，死锁/">JAVA—公平锁，非公平锁，悲观锁，乐观锁，死锁</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/19/JAVA—线程同步器AQS/">JAVA—线程同步器AQS</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/07/Android模拟点击/">Android模拟点击</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+      <div class="widget-box">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      
+        <a class="hrf" style="display: block;" href="https://github.com/haichenyi" title target='_blank'
+        >Github</a>
+      
+        <a class="hrf" style="display: block;" href="https://www.jianshu.com/u/6077ee440c37" title target='_blank'
+        >简书</a>
+      
+        <a class="hrf" style="display: block;" href="https://blog.csdn.net/qq_27634797" title target='_blank'
+        >CSDN</a>
+      
+    </div>
+  </div>
+
+  
+</aside>
+      </div>
+      <footer id="footer">
+  <div class="foot-box footers global-width">
+    &copy;2017-2021 海晨忆 &nbsp;&nbsp;
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">阁下是第<span id="busuanzi_value_site_pv"></span>个访客</span>
+  </div>
+</footer>
+      <script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script>
+if (!window.jQuery) {
+var script = document.createElement('script');
+script.src = "/js/jquery-2.0.3.min.js";
+document.body.write(script);
+}
+</script>
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+    </div>
+    <nav id="mobile-nav" class="mobile-nav-box">
+  <div class="mobile-nav-img mobile-nav-top"></div>
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">简历</a>
+  
+  <div class="mobile-nav-img  mobile-nav-bottom"></div>
+</nav>    
+  </div>
+</body>
+</html>

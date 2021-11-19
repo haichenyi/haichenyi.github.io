@@ -70,6 +70,50 @@
       <div id="middlecontent" title class="global-width sidebar-left">
         <section id="main">
   
+    <article id="post-kotlin之内部类，匿名内部类与伴生对象" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/14/kotlin之内部类，匿名内部类与伴生对象/">kotlin之内部类，匿名内部类与伴生对象</a>
+    </h1>
+  
+
+    </header>
+  
+  <div class="article-meta">
+    <a href="/2019/06/14/kotlin之内部类，匿名内部类与伴生对象/" class="article-date">
+  <time datetime="2019-06-14T12:57:56.000Z" itemprop="datePublished">2019-06-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/kotlin/">kotlin</a>
+  </div>
+
+    
+  </div>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud doorframe mac" itemprop="articleBody">
+      
+        <h3 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h3><p>&emsp;&emsp;kotlin的内部类与java的内部类有点不同<strong><em>java的内部类可以直接访问外部类的成员，kotlin的内部类不能直接访问外部类的成员，必须用inner标记之后才能访问外部类的成员</em></strong></p>
+        
+          <p class="article-more-link">
+            <a href="/2019/06/14/kotlin之内部类，匿名内部类与伴生对象/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    
+  </div>
+  
+  
+</article>
+
+  
     <article id="post-kotlin之扩展方法" class="article global-container article-type-post" itemscope itemprop="blogPost">
   
     <header class="article-header">
@@ -472,54 +516,6 @@
 </article>
 
   
-    <article id="post-MySQL数据库操作（三）——数据库的备份与恢复" class="article global-container article-type-post" itemscope itemprop="blogPost">
-  
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/11/MySQL数据库操作（三）——数据库的备份与恢复/">MySQL数据库操作（三）——数据库的备份与恢复</a>
-    </h1>
-  
-
-    </header>
-  
-  <div class="article-meta">
-    <a href="/2018/10/11/MySQL数据库操作（三）——数据库的备份与恢复/" class="article-date">
-  <time datetime="2018-10-11T14:50:13.000Z" itemprop="datePublished">2018-10-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/数据库-MySQL/">数据库 -MySQL</a>
-  </div>
-
-    
-  </div>
-  
-
-  <div class="article-inner">
-    
-    <div class="article-content article-content-cloud doorframe mac" itemprop="articleBody">
-      
-        <h3 id="数据库的备份与恢复"><a href="#数据库的备份与恢复" class="headerlink" title="数据库的备份与恢复"></a>数据库的备份与恢复</h3><p><strong>备份</strong>：<code>mysqldump -u用户名 -p密码 数据库名&gt;生成的脚本路径</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//末尾没有分号，也不要登录</span><br><span class="line">mysqldunp -uroot -p123 school&gt;C:a.sql</span><br></pre></td></tr></table></figure>
-<p><strong>恢复</strong>：<code>mysqldump -u用户名 -p密码 数据库名&lt;生成的脚本路径</code></p>
-<p><code>或者：登录之后，切换到需要恢复的数据库，输入：source 生成的脚本路径</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//要先删除school数据库，再重新创建数据库，这两步需要登录</span><br><span class="line">//执行下面sql语句，不要登录，末尾没有分号</span><br><span class="line">mysqldunp -uroot -p123 school&lt;C:a.sql</span><br></pre></td></tr></table></figure>
-        
-          <p class="article-more-link">
-            <a href="/2018/10/11/MySQL数据库操作（三）——数据库的备份与恢复/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    
-  </div>
-  
-  
-</article>
-
-  
 
 
   <nav id="page-nav">
@@ -566,7 +562,7 @@
   <div class="widget-box">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">August 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">August 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
     </div>
   </div>
 
@@ -576,6 +572,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2021/11/20/Android——触摸事件传递机制/">Android——触摸事件传递机制</a>
+          </li>
         
           <li>
             <a href="/2021/08/09/JAVA-TCP，UDP/">JAVA-TCP，UDP</a>
@@ -591,10 +591,6 @@
         
           <li>
             <a href="/2021/07/07/Android模拟点击/">Android模拟点击</a>
-          </li>
-        
-          <li>
-            <a href="/2019/11/27/SpringBoot系列-消息-RabbitMQ-（二十）/">SpringBoot系列-消息(RabbitMQ)（二十）</a>
           </li>
         
       </ul>
