@@ -70,6 +70,64 @@
       <div id="middlecontent" title class="global-width sidebar-left">
         <section id="main">
   
+    <article id="post-Android-深入理解handler机制" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/11/21/Android-深入理解handler机制/">Android--深入理解handler机制</a>
+    </h1>
+  
+
+    </header>
+  
+  <div class="article-meta">
+    <a href="/2021/11/21/Android-深入理解handler机制/" class="article-date">
+  <time datetime="2021-11-21T03:33:57.000Z" itemprop="datePublished">2021-11-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android-源码解析/">Android -源码解析</a>
+  </div>
+
+    
+  </div>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud doorframe mac" itemprop="articleBody">
+      
+        <p><span id="c1"></span></p>
+<h2 id="1-目录"><a href="#1-目录" class="headerlink" title="1. 目录"></a>1. 目录</h2><ul>
+<li><a href="#c1">1–目录</a></li>
+<li><a href="#c2">2–前言</a></li>
+<li><a href="#c3">3–简单总结</a></li>
+<li><a href="#c4">4–Looper的区别：MainLooper和普通Looper</a></li>
+<li><a href="#c5">5–handler发送的消息过程</a></li>
+<li><a href="#c6">6–MessageQueue怎么把这条消息放进队列的</a></li>
+<li><a href="#c7">7–Looper读取消息：loop()</a></li>
+<li><a href="#c8">8–MessageQueue读取消息：next()</a></li>
+<li><a href="#c9">9–如何提高消息的优先级？同步消息，屏障消息，异步消息</a></li>
+<li><a href="#c10">10–handler知识点总结</a></li>
+</ul>
+<p><span id="c2"></span></p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>&emsp;&emsp;Android程序是一个以消息驱动的程序，页面的跟新，Activity生命周期的变化，点击事件等等都与消息息息相关。</p>
+        
+          <p class="article-more-link">
+            <a href="/2021/11/21/Android-深入理解handler机制/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    
+  </div>
+  
+  
+</article>
+
+  
     <article id="post-Android——触摸事件传递机制" class="article global-container article-type-post" itemscope itemprop="blogPost">
   
     <header class="article-header">
@@ -511,50 +569,6 @@
 </article>
 
   
-    <article id="post-SpringBoot系列—缓存及其源码分析（十六）" class="article global-container article-type-post" itemscope itemprop="blogPost">
-  
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/05/SpringBoot系列—缓存及其源码分析（十六）/">SpringBoot系列—缓存及其源码分析（十六）</a>
-    </h1>
-  
-
-    </header>
-  
-  <div class="article-meta">
-    <a href="/2019/11/05/SpringBoot系列—缓存及其源码分析（十六）/" class="article-date">
-  <time datetime="2019-11-05T02:52:46.000Z" itemprop="datePublished">2019-11-05</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java-SpringBoot/">Java -SpringBoot</a>
-  </div>
-
-    
-  </div>
-  
-
-  <div class="article-inner">
-    
-    <div class="article-content article-content-cloud doorframe mac" itemprop="articleBody">
-      
-        <p>&emsp;&emsp;缓存是每个项目都用到的为了提高接口响应效率，降低数据库的查询压力，从而提高系统性能。所以，缓存对于一个项目来说是至关重要的。</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/11/05/SpringBoot系列—缓存及其源码分析（十六）/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    
-  </div>
-  
-  
-</article>
-
-  
 
 
   <nav id="page-nav">
@@ -613,6 +627,10 @@
       <ul>
         
           <li>
+            <a href="/2021/11/21/Android-深入理解handler机制/">Android--深入理解handler机制</a>
+          </li>
+        
+          <li>
             <a href="/2021/11/20/Android——触摸事件传递机制/">Android——触摸事件传递机制</a>
           </li>
         
@@ -626,10 +644,6 @@
         
           <li>
             <a href="/2021/07/19/JAVA—线程同步器AQS/">JAVA—线程同步器AQS</a>
-          </li>
-        
-          <li>
-            <a href="/2021/07/07/Android模拟点击/">Android模拟点击</a>
           </li>
         
       </ul>
