@@ -70,6 +70,64 @@
       <div id="middlecontent" title class="global-width sidebar-left">
         <section id="main">
   
+    <article id="post-Android-MVVM之ViewModel" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/11/28/Android-MVVM之ViewModel/">Android--MVVM之ViewModel</a>
+    </h1>
+  
+
+    </header>
+  
+  <div class="article-meta">
+    <a href="/2021/11/28/Android-MVVM之ViewModel/" class="article-date">
+  <time datetime="2021-11-28T14:00:39.000Z" itemprop="datePublished">2021-11-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android-源码解析/">Android -源码解析</a>
+  </div>
+
+    
+  </div>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud doorframe mac" itemprop="articleBody">
+      
+        <p><span id="c1"></span></p>
+<h2 id="1-目录"><a href="#1-目录" class="headerlink" title="1. 目录"></a>1. 目录</h2><ul>
+<li><a href="#c1">1–目录</a></li>
+<li><a href="#c2">2–前言(MVVM演变路程)</a></li>
+<li><a href="#c3">3–目的</a></li>
+<li><a href="#c4">4–ViewModel为什么不会内存泄漏？</a></li>
+<li><a href="#c5">5–Activity屏幕旋，为什么ViewModel没有被重新创建还是使用的是之前的？</a></li>
+<li><a href="#c6">6–Activity与Fragment之间数据如何共享的</a></li>
+<li><a href="#c7">7–GlobeScope，viewModelScope，lifecycleScope的相关问题</a></li>
+</ul>
+<p><span id="c2"></span></p>
+<h3 id="前言-MVVM演变路程"><a href="#前言-MVVM演变路程" class="headerlink" title="前言(MVVM演变路程)"></a>前言(MVVM演变路程)</h3><p>&emsp;&emsp;以前有说过MVC,MVP,MVVM之间的区别，这里就不再说了。</p>
+<p>&emsp;&emsp;MVC架构，最主要的就是循环引用造成的逻辑复杂，维护困难。</p>
+<p>&emsp;&emsp;为了解决MVC存在的问题，推出了MVP架构，MVP将View和Model完全隔离开了，直接P层从M层获取数据，从而更新V层，都是单向操作，逻辑就很明确。但是，这样重担就全部在P层了，所有的逻辑都在P层，造成接口过多，维护起来也困难。</p>
+<p>&emsp;&emsp;为了解决MVP存在的问题，演变出了MVVM。</p>
+        
+          <p class="article-more-link">
+            <a href="/2021/11/28/Android-MVVM之ViewModel/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    
+  </div>
+  
+  
+</article>
+
+  
     <article id="post-Android-深入理解handler机制" class="article global-container article-type-post" itemscope itemprop="blogPost">
   
     <header class="article-header">
@@ -525,50 +583,6 @@
 </article>
 
   
-    <article id="post-SpringBoot系列—Redis（十七）" class="article global-container article-type-post" itemscope itemprop="blogPost">
-  
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/06/SpringBoot系列—Redis（十七）/">SpringBoot系列—Redis（十七）</a>
-    </h1>
-  
-
-    </header>
-  
-  <div class="article-meta">
-    <a href="/2019/11/06/SpringBoot系列—Redis（十七）/" class="article-date">
-  <time datetime="2019-11-06T08:40:38.000Z" itemprop="datePublished">2019-11-06</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java-SpringBoot/">Java -SpringBoot</a>
-  </div>
-
-    
-  </div>
-  
-
-  <div class="article-inner">
-    
-    <div class="article-content article-content-cloud doorframe mac" itemprop="articleBody">
-      
-        <p>&emsp;&emsp;前面一篇说到了spring boot自带的缓存SimpleCache，我们也聊到了他的底层实际上就是HashMap，并且这个缓存是放在内存当中的，这样弊端也是有的，比如：内存大小，当服务器关闭之后，缓存就没了等等。</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/11/06/SpringBoot系列—Redis（十七）/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    
-  </div>
-  
-  
-</article>
-
-  
 
 
   <nav id="page-nav">
@@ -627,6 +641,10 @@
       <ul>
         
           <li>
+            <a href="/2021/11/28/Android-MVVM之ViewModel/">Android--MVVM之ViewModel</a>
+          </li>
+        
+          <li>
             <a href="/2021/11/21/Android-深入理解handler机制/">Android--深入理解handler机制</a>
           </li>
         
@@ -640,10 +658,6 @@
         
           <li>
             <a href="/2021/07/27/JAVA—公平锁，非公平锁，悲观锁，乐观锁，死锁/">JAVA—公平锁，非公平锁，悲观锁，乐观锁，死锁</a>
-          </li>
-        
-          <li>
-            <a href="/2021/07/19/JAVA—线程同步器AQS/">JAVA—线程同步器AQS</a>
           </li>
         
       </ul>
