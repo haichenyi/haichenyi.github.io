@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Android--MVVM之DataBinding(一) | 海晨忆的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  <meta name="description" content="1. 目录 1–目录 2–DataBinding的疑惑 3–设置页面布局 4–获取view引用 5–更新(界面)流程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android--MVVM之DataBinding(一)">
+<meta property="og:url" content="https://haichenyi.com/2021/12/17/Android-MVVM之DataBinding-一/index.html">
+<meta property="og:site_name" content="海晨忆的博客">
+<meta property="og:description" content="1. 目录 1–目录 2–DataBinding的疑惑 3–设置页面布局 4–获取view引用 5–更新(界面)流程">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2021-12-17/databinding方法图.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2021-12-17/databinding生成xml的图.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2021-12-17/databinding绑定后的数组.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2021-12-17/LayoutTest1Binding.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2021-12-17/view绑定流程知识点.png">
+<meta property="og:updated_time" content="2021-12-17T15:32:12.636Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android--MVVM之DataBinding(一)">
+<meta name="twitter:description" content="1. 目录 1–目录 2–DataBinding的疑惑 3–设置页面布局 4–获取view引用 5–更新(界面)流程">
+<meta name="twitter:image" content="https://haichenyi.com/uploads/article/2021-12-17/databinding方法图.png">
+  
+    <link rel="alternate" href="/atom.xml" title="海晨忆的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/uploads/artistic_image/head.jpg">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/highlight.css">
+  <script>
+  let antiquityStorage = window.sessionStorage.getItem('antiquitySessionStorage');
+  if (antiquityStorage == '' || antiquityStorage == null) {
+    var antiquityLoader = '<div id="loaderbox"><div class="loader"><div class="load-roll"><div class="load-top"></div><div class="load-right"></div><div class="load-bottom"></div></div></div></div>';
+    document.write(antiquityLoader);
+    document.body.style.overflow = 'hidden'
+  }
+  </script>
+</head>
+
+<body>
+  <div id="fullpage" class="mobile-nav-right">
+    
+      <div id="wrapper" style="background-image: url(/uploads/artistic_image/bg.jpg)" title="背景图片来自网络">
+    
+    
+      <header id="header">
+  <div id="nav-toggle" class="nav-toggle"></div>
+  <div class="head-box global-width">
+    <nav class="nav-box nav-right">
+      
+        <a class="nav-item" href="/" title
+        
+        >首页</a>
+      
+        <a class="nav-item" href="/archives" title
+        
+        >归档</a>
+      
+        <a class="nav-item" href="/about" title
+        
+        >简历</a>
+      
+    </nav>
+  </div>
+</header>
+      <div id="middlecontent" title class="global-width sidebar-left">
+        <section id="main"><article id="post-Android-MVVM之DataBinding-一" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 class="article-title" itemprop="name">
+      Android--MVVM之DataBinding(一)
+    </h1>
+  
+
+    </header>
+  
+  <div class="article-meta">
+    <a href="/2021/12/17/Android-MVVM之DataBinding-一/" class="article-date">
+  <time datetime="2021-12-17T15:26:10.000Z" itemprop="datePublished">2021-12-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android-源码解析/">Android -源码解析</a>
+  </div>
+
+    
+  </div>
+  
+    <span id="busuanzi_container_page_pv">
+      本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+    </span>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud doorframe mac" itemprop="articleBody">
+      
+        <p><span id="c1"></span></p>
+<h2 id="1-目录"><a href="#1-目录" class="headerlink" title="1. 目录"></a>1. 目录</h2><ul>
+<li><a href="#c1">1–目录</a></li>
+<li><a href="#c2">2–DataBinding的疑惑</a></li>
+<li><a href="#c3">3–设置页面布局</a></li>
+<li><a href="#c4">4–获取view引用</a></li>
+<li><a href="#c5">5–更新(界面)流程</a></li>
+</ul>
+<a id="more"></a>
+<p><span id="c2"></span></p>
+<h2 id="2-DataBinding的疑惑"><a href="#2-DataBinding的疑惑" class="headerlink" title="2.DataBinding的疑惑"></a>2.DataBinding的疑惑</h2><p>&emsp;&emsp;假设你已经会用databinding，不会就去看一下怎么用，很简单，</p>
+<ol>
+<li>下面是新建一个xml，名字叫<strong>layout_test1</strong>根布局是layout，你重新编译一下项目之后系统就会生成<strong>LayoutTest1Binding</strong>，以你的xml的名字加binding驼峰命名</li>
+<li><strong>AgeData</strong>类两个属性，一个名字，一个年龄。</li>
+</ol>
+<p><img src="/uploads/article/2021-12-17/databinding方法图.png" alt="databinding方法图.png"></p>
+<p>&emsp;&emsp;如上图所示，我们只要按照DataBinding规定的写法，我们通过获取到的引用就能拿到布局里面的控件，设置完数据，就能更新页面。</p>
+<p>&emsp;&emsp;我们平常页面更新的三个流程：</p>
+<ol>
+<li>在onCreate生命周期方法里面通过setContentView设置页面布局</li>
+<li>通过findViewById获取到控件的引用</li>
+<li>通过控件的引用调用对应的方法TextView的就是setText方法去更新</li>
+</ol>
+<p>&emsp;&emsp;到DataBinding这里怎么就什么都不需要做了，就直接可以用了呢？</p>
+<p>&emsp;&emsp;欢迎大家步入DataBinding的神奇世界，我来为大家一一解惑。</p>
+<p><span id="c3"></span></p>
+<h2 id="3-设置页面布局"><a href="#3-设置页面布局" class="headerlink" title="3.设置页面布局"></a>3.设置页面布局</h2><p>&emsp;&emsp;这个其实最简单，我们先来看一下它的用法，调用的一个工具类的setContentView方法，传递了一个泛型，如下代码：</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">val binding =</span><br><span class="line">            DataBindingUtil.setContentView&lt;LayoutTest1Binding&gt;(this, R.layout.layout_test1)</span><br><span class="line">binding.ageData = AgeData(&quot;张三&quot;,&quot;18岁&quot;)</span><br></pre></td></tr></table></figure></div>
+<p>&emsp;&emsp;那么，为什么按照它这个调用方式就能设置布局呢？我们来看一下它的setContentView方法：</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//我们调用的这个方法，它又调用的一个setContentView重载方法</span><br><span class="line">public static &lt;T extends ViewDataBinding&gt; T setContentView(@NonNull Activity activity,</span><br><span class="line">            int layoutId) &#123;</span><br><span class="line">    return setContentView(activity, layoutId, sDefaultComponent);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//内部调用这个方法</span><br><span class="line">public static &lt;T extends ViewDataBinding&gt; T setContentView(@NonNull Activity activity,</span><br><span class="line">            int layoutId, @Nullable DataBindingComponent bindingComponent) &#123;</span><br><span class="line">    //看到了嘛？等于说它实际上还是调用的activity的setContentView方法，只不过这里，它做了额外处理，拿到了传递的view</span><br><span class="line">    activity.setContentView(layoutId);</span><br><span class="line">    //decorView不是我们的重点，可以简单说一下，我们所写的布局只是我们自己的内容的根布局。decorView是整个界面的根布局</span><br><span class="line">    View decorView = activity.getWindow().getDecorView();</span><br><span class="line">    ViewGroup contentView = (ViewGroup) decorView.findViewById(android.R.id.content);</span><br><span class="line">    //看整个名字，绑定views</span><br><span class="line">    return bindToAddedViews(bindingComponent, contentView, 0, layoutId);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>&emsp;&emsp;上面，我们看到了实际上，他还是调用的activity的setContentView方法去设置的布局。</p>
+<p><span id="c4"></span></p>
+<h2 id="4-获取view引用"><a href="#4-获取view引用" class="headerlink" title="4.获取view引用"></a>4.获取view引用</h2><p>&emsp;&emsp;我们平时设置布局，findViewById找到控件，然后通过调用控件的方法去设置内容，从而达到更新页面的功能。那么，databinding是怎么获取到控件的呢？我们接着上面的方法往下看：</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">//这里的parent就是我们的内容布局，也就是我们写的布局的上一层</span><br><span class="line">private static &lt;T extends ViewDataBinding&gt; T bindToAddedViews(DataBindingComponent component,</span><br><span class="line">            ViewGroup parent, int startChildren, int layoutId) &#123;</span><br><span class="line">    //获取全部子view的个数</span><br><span class="line">    final int endChildren = parent.getChildCount();</span><br><span class="line">    final int childrenAdded = endChildren - startChildren;</span><br><span class="line">    //判断当前获取的子view是不是一个</span><br><span class="line">    if (childrenAdded == 1) &#123;</span><br><span class="line">        //如果是一个，就直接获取</span><br><span class="line">        final View childView = parent.getChildAt(endChildren - 1);</span><br><span class="line">        //开始绑定</span><br><span class="line">        return bind(component, childView, layoutId);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        //如果不是一个，就看有多少个，创建一个数据</span><br><span class="line">        //for循环把子view的引用全部放进数据里面</span><br><span class="line">        final View[] children = new View[childrenAdded];</span><br><span class="line">        for (int i = 0; i &lt; childrenAdded; i++) &#123;</span><br><span class="line">            children[i] = parent.getChildAt(i + startChildren);</span><br><span class="line">        &#125;</span><br><span class="line">        //开始绑定</span><br><span class="line">        return bind(component, children, layoutId);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>&emsp;&emsp;我们再来看看这里绑定的方法，这里调用的方法其实都是差不多的，都是重载方法，一个是传view，一个是传的view类型的数据。<br><div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">static &lt;T extends ViewDataBinding&gt; T bind(DataBindingComponent bindingComponent, View[] roots,</span><br><span class="line">            int layoutId) &#123;</span><br><span class="line">    return (T) sMapper.getDataBinder(bindingComponent, roots, layoutId);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">static &lt;T extends ViewDataBinding&gt; T bind(DataBindingComponent bindingComponent, View root,</span><br><span class="line">            int layoutId) &#123;</span><br><span class="line">    return (T) sMapper.getDataBinder(bindingComponent, root, layoutId);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public abstract class DataBinderMapper &#123;</span><br><span class="line">    public abstract ViewDataBinding getDataBinder(DataBindingComponent bindingComponent, View view,</span><br><span class="line">            int layoutId);</span><br><span class="line">    public abstract ViewDataBinding getDataBinder(DataBindingComponent bindingComponent,</span><br><span class="line">            View[] view, int layoutId);</span><br><span class="line">    public abstract int getLayoutId(String tag);</span><br><span class="line">    public abstract String convertBrIdToString(int id);</span><br><span class="line">    @NonNull</span><br><span class="line">    public List&lt;DataBinderMapper&gt; collectDependencies() &#123;</span><br><span class="line">        // default implementation for backwards compatibility.</span><br><span class="line">        return Collections.emptyList();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></p>
+<p>&emsp;&emsp;我们点进去发现跳转到了一个抽象类的方法。然后，怎么办呢？方法调用，不是静态的，肯定得看对象呀。静态的是<strong>类.方法名</strong>，不是静态的，<strong>变量.方法名</strong>。我们回过头来看这个调用的对象的类型。</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">public class DataBindingUtil &#123;</span><br><span class="line">    //他的实际类是DataBinderMapperImpl，我们点到这个类里面去看一下</span><br><span class="line">    private static DataBinderMapper sMapper = new DataBinderMapperImpl();</span><br><span class="line">    //省略掉不需要的</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class DataBinderMapperImpl extends MergedDataBinderMapper &#123;</span><br><span class="line">  DataBinderMapperImpl() &#123;</span><br><span class="line">    //熟悉嘛？这里有我们的包名，还有一个实现类，我们点到这个实现类里面去看,放到后面再说</span><br><span class="line">    addMapper(new com.haichenyi.hcy.DataBinderMapperImpl());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//这个方法addMapper里面 干什么了呢？</span><br><span class="line">public void addMapper(DataBinderMapper mapper) &#123;</span><br><span class="line">    Class&lt;? extends DataBinderMapper&gt; mapperClass = mapper.getClass();</span><br><span class="line">    //判断有没有添加过</span><br><span class="line">    if (mExistingMappers.add(mapperClass)) &#123;</span><br><span class="line">        //然后把这个mapper放进mMappers遍历里面</span><br><span class="line">        mMappers.add(mapper);</span><br><span class="line">        final List&lt;DataBinderMapper&gt; dependencies = mapper.collectDependencies();</span><br><span class="line">        for(DataBinderMapper dependency : dependencies) &#123;</span><br><span class="line">            addMapper(dependency);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>&emsp;&emsp;回到最开始的位置<strong>sMapper.getDataBinder</strong>方法，其中sMapper是<strong>DataBinderMapperImpl</strong>类型的，但是，它的类里面并没有getDataBinder方法，所以，这里调用的就是<strong>DataBinderMapperImpl父类的getDataBinder</strong>方法。也就是<strong>MergedDataBinderMapper</strong>。我们来看一下</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class MergedDataBinderMapper extends DataBinderMapper &#123;</span><br><span class="line">    ...</span><br><span class="line">    @Override</span><br><span class="line">    public ViewDataBinding getDataBinder(DataBindingComponent bindingComponent, View view,</span><br><span class="line">            int layoutId) &#123;</span><br><span class="line">        //这里遍历mMappers获取里面的每一项，然后调用getDataBinder方法。这个list从哪里赋值的呢？这个遍历不眼熟吗？</span><br><span class="line">        for(DataBinderMapper mapper : mMappers) &#123;</span><br><span class="line">            ViewDataBinding result = mapper.getDataBinder(bindingComponent, view, layoutId);</span><br><span class="line">            if (result != null) &#123;</span><br><span class="line">                return result;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (loadFeatures()) &#123;</span><br><span class="line">            return getDataBinder(bindingComponent, view, layoutId);</span><br><span class="line">        &#125;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>&emsp;&emsp;没错，就是这里上面构造方法里面添加的<strong>addMapper(new com.haichenyi.hcy.DataBinderMapperImpl())</strong>，我们再来看看这个<strong>DataBinderMapperImpl</strong>，看看它的getDataBinder，因为前面<strong>sMapper.getDataBinder</strong>调用的就是它</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">//简单的贴我们需要的</span><br><span class="line">public class DataBinderMapperImpl extends DataBinderMapper &#123;</span><br><span class="line">  private static final int LAYOUT_LAYOUTTEST1 = 1;</span><br><span class="line"></span><br><span class="line">  private static final SparseIntArray INTERNAL_LAYOUT_ID_LOOKUP = new SparseIntArray(1);</span><br><span class="line">  //首先是有一个静态的SparseIntArray，不知道是啥，反正，我基本上没用过这个东西，通过他这个存数据的方式来看，类似于map，应该是优化过后的，用在这里性能比较高，不然为啥不用map？</span><br><span class="line">  static &#123;</span><br><span class="line">    //以我们的布局id为key，以他自己定义的对应的int数据为值，来存</span><br><span class="line">    INTERNAL_LAYOUT_ID_LOOKUP.put(com.haichenyi.hcy.R.layout.layout_test1, LAYOUT_LAYOUTTEST1);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  //这里我直接贴出来了一个类型的，就是传view的，那个传view类型数组的，实际上就是循环调用的这个方法。</span><br><span class="line">  //可以看DataBinderMapperImpl的父类MergedDataBinderMapper里面有逻辑</span><br><span class="line">  @Override</span><br><span class="line">  public ViewDataBinding getDataBinder(DataBindingComponent component, View view, int layoutId) &#123;</span><br><span class="line">    //这里，就能够获取到值了，就是全局变量1</span><br><span class="line">    int localizedLayoutId = INTERNAL_LAYOUT_ID_LOOKUP.get(layoutId);</span><br><span class="line">    //1&gt;0，判断就进去了</span><br><span class="line">    if(localizedLayoutId &gt; 0) &#123;</span><br><span class="line">      //到这里，view.getTag，我们逻辑走到这里，我们没有设置tag啊？这里岂不是判断一直都是空？就抛异常了？</span><br><span class="line">      //我们可以打断点看一下，就会发现这里是能拿到值的，以我这个为例，这里获取到的tag是：layout/layout_test1_0，为什么呢？</span><br><span class="line">      final Object tag = view.getTag();</span><br><span class="line">      if(tag == null) &#123;</span><br><span class="line">        throw new RuntimeException(&quot;view must have a tag&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">      switch(localizedLayoutId) &#123;</span><br><span class="line">        case  LAYOUT_LAYOUTTEST1: &#123;</span><br><span class="line">          if (&quot;layout/layout_test1_0&quot;.equals(tag)) &#123;</span><br><span class="line">            return new LayoutTest1BindingImpl(component, view);</span><br><span class="line">          &#125;</span><br><span class="line">          throw new IllegalArgumentException(&quot;The tag for layout_test1 is invalid. Received: &quot; + tag);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return null;</span><br><span class="line">  &#125;</span><br><span class="line">  //省略</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>&emsp;&emsp;到这里，我们来聊一下，为什么他这里获取到的tag有值呢？项目重新编译的时候，databinding会根据xml的根布局是否是layout布局来重新生成xml。如下图：</p>
+<p><img src="/uploads/article/2021-12-17/databinding生成xml的图.png" alt="databinding生成xml的图.png"></p>
+<p>&emsp;&emsp;如上图所示，databinding传进来的layout其实就是这个layout，并不是我们自己写的布局。所以，这个位置getTag能获取到值。</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;layout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;data&gt;</span><br><span class="line"></span><br><span class="line">        &lt;variable</span><br><span class="line">            name=&quot;ageData&quot;</span><br><span class="line">            type=&quot;com.haichenyi.hcy.data.AgeData&quot; /&gt;</span><br><span class="line">    &lt;/data&gt;</span><br><span class="line"></span><br><span class="line">    &lt;androidx.constraintlayout.widget.ConstraintLayout</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;match_parent&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;TextView</span><br><span class="line">            android:id=&quot;@+id/tvName&quot;</span><br><span class="line">            android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">            android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">            android:layout_marginTop=&quot;30dp&quot;</span><br><span class="line">            android:text=&quot;@&#123;ageData.name&#125;&quot;</span><br><span class="line">            android:textColor=&quot;@color/black&quot;</span><br><span class="line">            app:layout_constraintEnd_toEndOf=&quot;parent&quot;</span><br><span class="line">            app:layout_constraintStart_toStartOf=&quot;parent&quot;</span><br><span class="line">            app:layout_constraintTop_toTopOf=&quot;parent&quot; /&gt;</span><br><span class="line"></span><br><span class="line">        &lt;TextView</span><br><span class="line">            android:id=&quot;@+id/tvAge&quot;</span><br><span class="line">            android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">            android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">            android:layout_marginTop=&quot;30dp&quot;</span><br><span class="line">            android:text=&quot;@&#123;ageData.age&#125;&quot;</span><br><span class="line">            android:textColor=&quot;@color/black&quot;</span><br><span class="line">            app:layout_constraintEnd_toEndOf=&quot;parent&quot;</span><br><span class="line">            app:layout_constraintStart_toStartOf=&quot;parent&quot;</span><br><span class="line">            app:layout_constraintTop_toBottomOf=&quot;@id/tvName&quot; /&gt;</span><br><span class="line"></span><br><span class="line">        &lt;LinearLayout</span><br><span class="line">            android:layout_width=&quot;match_parent&quot;</span><br><span class="line">            android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">            android:gravity=&quot;center_horizontal&quot;</span><br><span class="line">            android:orientation=&quot;vertical&quot;</span><br><span class="line">            app:layout_constraintEnd_toEndOf=&quot;parent&quot;</span><br><span class="line">            app:layout_constraintStart_toStartOf=&quot;parent&quot;</span><br><span class="line">            app:layout_constraintTop_toBottomOf=&quot;@id/tvAge&quot;&gt;</span><br><span class="line"></span><br><span class="line">            &lt;ImageView</span><br><span class="line">                android:id=&quot;@+id/img&quot;</span><br><span class="line">                android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">                android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">                android:src=&quot;@mipmap/ic_launcher_round&quot; /&gt;</span><br><span class="line"></span><br><span class="line">            &lt;ImageView</span><br><span class="line">                android:layout_marginTop=&quot;10dp&quot;</span><br><span class="line">                android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">                android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">                android:src=&quot;@mipmap/ic_launcher_round&quot; /&gt;</span><br><span class="line"></span><br><span class="line">            &lt;TextView</span><br><span class="line">                android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">                android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">                android:text=&quot;@&#123;ageData.name&#125;&quot;/&gt;</span><br><span class="line">        &lt;/LinearLayout&gt;</span><br><span class="line">    &lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;</span><br><span class="line">&lt;/layout&gt;</span><br></pre></td></tr></table></figure></div>
+<p>对比一下我们自己的布局：就会发现规律</p>
+<ol>
+<li>在我们写的根布局会加上tag，名字叫：layout/(你的layout)_0</li>
+<li>在你有用bean类属性(@{ageData.name}之类)的位置，他会给你的view加上tag，名字叫：binding_i,这个i，从1开始，依次+1</li>
+</ol>
+<p>&emsp;&emsp;结合总结的这两条规律，对比一下上面的两个。</p>
+<p>&emsp;&emsp;我们再返回到上面，switch语句里面，就返回了<strong>LayoutTest1BindingImpl</strong>类，这个是不是很眼熟？没错，我们调用databinding的时候传递了一个泛型<strong>LayoutTest1Binding</strong>，他俩什么关系呢？Impl结尾，一看就知道是实现类。我们点到LayoutTest1BindingImpl看一下。</p>
+<p>&emsp;&emsp;我们从前面获取到布局的实现类LayoutTest1BindingImpl，上面的流程就走完了，我们还是没有看到怎么获取view的方法，一个类的创建先走的它自己的构造方法，那我们就来看一下这个实现类构造方法里面是什么，或许就有答案了。</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">public class LayoutTest1BindingImpl extends LayoutTest1Binding  &#123;</span><br><span class="line">    //表示布局里面有没有include标签，我们布局里面没有</span><br><span class="line">    @Nullable</span><br><span class="line">    private static final androidx.databinding.ViewDataBinding.IncludedLayouts sIncludes;</span><br><span class="line">    //这个变量是干什么的呢？</span><br><span class="line">    @Nullable</span><br><span class="line">    private static final android.util.SparseIntArray sViewsWithIds;</span><br><span class="line">    static &#123;</span><br><span class="line">        sIncludes = null;</span><br><span class="line">        sViewsWithIds = new android.util.SparseIntArray();</span><br><span class="line">        //为什么要把这个id叫img的控件这样放呢？为啥其他的不放在这里？</span><br><span class="line">        //这里就可以把答案给出来，我们这个img并没有在xml里面用bean类的属性，所以就单独这样放的。</span><br><span class="line">        //只要是在xml里面用了bean的属性，不管你有没有id，都是通过tag去获取的</span><br><span class="line">        //有个印象就行，下面还会说这个view的获取流程</span><br><span class="line">        sViewsWithIds.put(R.id.img, 4);</span><br><span class="line">    &#125;</span><br><span class="line">    // views</span><br><span class="line">    @NonNull</span><br><span class="line">    private final androidx.constraintlayout.widget.ConstraintLayout mboundView0;</span><br><span class="line">    @NonNull</span><br><span class="line">    private final android.widget.TextView mboundView3;</span><br><span class="line">    // variables</span><br><span class="line">    // values</span><br><span class="line">    // listeners</span><br><span class="line">    // Inverse Binding Event Handlers</span><br><span class="line"></span><br><span class="line">    public LayoutTest1BindingImpl(@Nullable androidx.databinding.DataBindingComponent bindingComponent, @NonNull View root) &#123;</span><br><span class="line">        //正常的调用自己的三个参数的构造方法，主要，看一下第三个参数，获取的是Object[]，下面贴出来了这个方法</span><br><span class="line">        this(bindingComponent, root, mapBindings(bindingComponent, root, 5, sIncludes, sViewsWithIds));</span><br><span class="line">    &#125;</span><br><span class="line">    private LayoutTest1BindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) &#123;</span><br><span class="line">        //调用父类的构造方法</span><br><span class="line">        super(bindingComponent, root, 0</span><br><span class="line">            , (android.widget.ImageView) bindings[4]</span><br><span class="line">            , (android.widget.TextView) bindings[2]</span><br><span class="line">            , (android.widget.TextView) bindings[1]</span><br><span class="line">            );</span><br><span class="line">        this.mboundView0 = (androidx.constraintlayout.widget.ConstraintLayout) bindings[0];</span><br><span class="line">        this.mboundView0.setTag(null);</span><br><span class="line">        this.mboundView3 = (android.widget.TextView) bindings[3];</span><br><span class="line">        this.mboundView3.setTag(null);</span><br><span class="line">        this.tvAge.setTag(null);</span><br><span class="line">        this.tvName.setTag(null);</span><br><span class="line">        setRootTag(root);</span><br><span class="line">        // listeners</span><br><span class="line">        invalidateAll();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void invalidateAll() &#123;</span><br><span class="line">        synchronized(this) &#123;</span><br><span class="line">                mDirtyFlags = 0x2L;</span><br><span class="line">        &#125;</span><br><span class="line">        requestRebind();</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">    public void setAgeData(@Nullable com.haichenyi.hcy.data.AgeData AgeData) &#123;</span><br><span class="line">        this.mAgeData = AgeData;</span><br><span class="line">        synchronized(this) &#123;</span><br><span class="line">            mDirtyFlags |= 0x1L;</span><br><span class="line">        &#125;</span><br><span class="line">        notifyPropertyChanged(BR.ageData);</span><br><span class="line">        super.requestRebind();</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>&emsp;&emsp;重点就在这里了，mapBindings这个方法里面就是获取view的流程，我们，可以来看一下。</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line">protected static Object[] mapBindings(DataBindingComponent bindingComponent, View root,</span><br><span class="line">            int numBindings, IncludedLayouts includes, SparseIntArray viewsWithIds) &#123;</span><br><span class="line">    //这个numbindings的大小是你布局里面控件的个数</span><br><span class="line">    Object[] bindings = new Object[numBindings];</span><br><span class="line">    mapBindings(bindingComponent, root, bindings, includes, viewsWithIds, true);</span><br><span class="line">    return bindings;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//来咯来咯，它来咯，本篇的重点</span><br><span class="line">private static void mapBindings(DataBindingComponent bindingComponent, View view,</span><br><span class="line">            Object[] bindings, IncludedLayouts includes, SparseIntArray viewsWithIds,</span><br><span class="line">            boolean isRoot) &#123;</span><br><span class="line">    final int indexInIncludes;</span><br><span class="line">    //这个getBinding方法可以点进去看一下，通过这个view的tag(R.id.dataBinding)，来获取ViewDataBinding对象。</span><br><span class="line">    //这个设置tag是在绑定完这个view后面才设置的，可以回过头去看LayoutTest1BindingImpl的构造方法里面，有个setRootTag方法，就是设置tag的位置</span><br><span class="line">    //所以，这里，我们还没有设置，这里获取到的就是空，这里判断就进不去，接着往下面走</span><br><span class="line">    final ViewDataBinding existingBinding = getBinding(view);</span><br><span class="line">    if (existingBinding != null) &#123;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    //就到了这里，这里这个tag就是前面说过的DataBinding自己生成的xml，添加的tag</span><br><span class="line">    //就是我们前面说的那两点规律，跟布局是layout/xxx_0,控件是bind_i,i是累加的</span><br><span class="line">    Object objTag = view.getTag();</span><br><span class="line">    final String tag = (objTag instanceof String) ? (String) objTag : null;</span><br><span class="line">    boolean isBound = false;</span><br><span class="line">    //判断是不是根布局，并且tag不为空，并且tag是以layout开头。</span><br><span class="line">    //结合我们的布局来看，layout/layout_test1_0满足这个条件</span><br><span class="line">    if (isRoot &amp;&amp; tag != null &amp;&amp; tag.startsWith(&quot;layout&quot;)) &#123;</span><br><span class="line">        //最后一个下划线的下标，我们的这里是19</span><br><span class="line">        final int underscoreIndex = tag.lastIndexOf(&apos;_&apos;);</span><br><span class="line">        //19大于0，后面这个判断是判断下划线的后一位，是否是数字，我们这里是0，也满足</span><br><span class="line">        if (underscoreIndex &gt; 0 &amp;&amp; isNumeric(tag, underscoreIndex + 1)) &#123;</span><br><span class="line">            //取出最后一位，我们这里是0</span><br><span class="line">            final int index = parseTagInt(tag, underscoreIndex + 1);</span><br><span class="line">            //这个数组里面0号位置之前没有放过，肯定是空的</span><br><span class="line">            if (bindings[index] == null) &#123;</span><br><span class="line">                //所以，就把0号位置放这个根布局</span><br><span class="line">                bindings[index] = view;</span><br><span class="line">            &#125;</span><br><span class="line">            //includes,当前布局有没有include标签，我们布局没有，一直都是空，这里indexInIncludes就等于-1</span><br><span class="line">            indexInIncludes = includes == null ? -1 : index;</span><br><span class="line">            isBound = true;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            indexInIncludes = -1;</span><br><span class="line">        &#125;</span><br><span class="line">        //这个else 是判断当前tag是不是binding打头</span><br><span class="line">    &#125; else if (tag != null &amp;&amp; tag.startsWith(BINDING_TAG_PREFIX)) &#123;</span><br><span class="line">        int tagIndex = parseTagInt(tag, BINDING_NUMBER_START);</span><br><span class="line">        //并且取出tag的最后一位，也就是那个数字位，</span><br><span class="line">        //判断这个位置有没有元素，没有元素，就把当前元素放到这个位置</span><br><span class="line">        //也就是我们的bindings[1]=TextView等</span><br><span class="line">        if (bindings[tagIndex] == null) &#123;</span><br><span class="line">            bindings[tagIndex] = view;</span><br><span class="line">        &#125;</span><br><span class="line">        isBound = true;</span><br><span class="line">        indexInIncludes = includes == null ? -1 : tagIndex;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        // Not a bound view</span><br><span class="line">        indexInIncludes = -1;</span><br><span class="line">    &#125;</span><br><span class="line">    //isBound这个值，是在前面有tag的时候，判断进去了，才会赋值成true</span><br><span class="line">    //可以理解成，没有自动生成tag的元素(也就是xml里面没有用@&#123;&#125;赋值)，前面判断进不去，这里判断会进去。</span><br><span class="line">    if (!isBound) &#123;</span><br><span class="line">        //要判断当前这个view有没有id，没有id就不用管，有id也要赋值</span><br><span class="line">        final int id = view.getId();</span><br><span class="line">        if (id &gt; 0) &#123;</span><br><span class="line">            int index;</span><br><span class="line">            //viewsWithIds.get(id, -1)，在viewsWithIds这个数组里面通过id获取它的索引</span><br><span class="line">            //我们再回过头去看一下LayoutTest1BindingImpl的static代码块，它那里提前就存好了对应的下标</span><br><span class="line">            //它这个下标是怎么来的呢？为什么我们这里img对应的是4呢？</span><br><span class="line">            //我个人理解是，它先循环完有tag元素的索引，我们这里到3了，然后，我们布局里面，有id没有设置用@&#123;&#125;赋值的，就依次累加，所以，我们这里img对应的索引是4</span><br><span class="line">            if (viewsWithIds != null &amp;&amp; (index = viewsWithIds.get(id, -1)) &gt;= 0 &amp;&amp;</span><br><span class="line">                    bindings[index] == null) &#123;</span><br><span class="line">                bindings[index] = view;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    //判断当前这个元素是不是ViewGroup，如果是ViewGroup，它里面可能还有子元素</span><br><span class="line">    if (view instanceof  ViewGroup) &#123;</span><br><span class="line">        final ViewGroup viewGroup = (ViewGroup) view;</span><br><span class="line">        final int count = viewGroup.getChildCount();</span><br><span class="line">        int minInclude = 0;</span><br><span class="line">        //循环它的子元素，去获取</span><br><span class="line">        for (int i = 0; i &lt; count; i++) &#123;</span><br><span class="line">            final View child = viewGroup.getChildAt(i);</span><br><span class="line">            boolean isInclude = false;</span><br><span class="line">            //这里是表示我们的布局里面有没有嵌套include标签，如果DataBinding的布局可能存在嵌套的情况，先循环里层的，再循环外层的</span><br><span class="line">            if (indexInIncludes &gt;= 0 &amp;&amp; child.getTag() instanceof String) &#123;</span><br><span class="line">                //不是本篇的重点就不说这里面了</span><br><span class="line">                ...</span><br><span class="line">            &#125;</span><br><span class="line">            //上面循环玩之后，就走到这里，绑定下一个子view</span><br><span class="line">            if (!isInclude) &#123;</span><br><span class="line">                mapBindings(bindingComponent, child, bindings, includes, viewsWithIds, false);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>&emsp;&emsp;经过上面这个方法的调用，就把布局里面定义了id的，生成了tag的view放进了binding里面，Object类型的数组返回回去。如下图所示：</p>
+<p><img src="/uploads/article/2021-12-17/databinding绑定后的数组.png" alt="databinding绑定后的数组.png"></p>
+<p>&emsp;&emsp;从上面循环也看出来了，优先通过tag找view，然后通过findViewById找view，两个都没有，就被丢弃了。所以，这里只有5个。我们布局一共7个view；LinearLayout和其中一个ImageView没有id，没有tag。循环的时候就没有找到。</p>
+<p>&emsp;&emsp;再强调一遍DataBinding生成tag，是因为你再xml里面通过它规定的方式设置了值，即使，你没有给view设置id，这里也会绑定上，因为，它优先通过tag绑定view的。</p>
+<p>&emsp;&emsp;流程走到这里，DataBinding已经把需要的view都找到了，并且放到了Object数组里面，接下来就是绑定引用了。我们再回过头去看重载的构造方法的代码：</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public LayoutTest1BindingImpl(@Nullable androidx.databinding.DataBindingComponent bindingComponent, @NonNull View root) &#123;</span><br><span class="line">    this(bindingComponent, root, mapBindings(bindingComponent, root, 5, sIncludes, sViewsWithIds));</span><br><span class="line">&#125;</span><br><span class="line">//上面的mapBindings绑定好了view，传递到第三个参数，Object[] bindings。</span><br><span class="line">private LayoutTest1BindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) &#123;</span><br><span class="line">    //super调用父类的方法，我们发现代码点不过去，我们就看类上面的继承</span><br><span class="line">    //CTRL+鼠标左键会直接指向xml，我们全局搜一下LayoutTest1Binding类，下面有图</span><br><span class="line">    super(bindingComponent, root, 0</span><br><span class="line">        //看这里获取view，强转，都是通过bindings前面绑定的</span><br><span class="line">        , (android.widget.ImageView) bindings[4]</span><br><span class="line">        , (android.widget.TextView) bindings[2]</span><br><span class="line">        , (android.widget.TextView) bindings[1]</span><br><span class="line">        );</span><br><span class="line">    this.mboundView0 = (androidx.constraintlayout.widget.ConstraintLayout) bindings[0];</span><br><span class="line">    this.mboundView0.setTag(null);</span><br><span class="line">    this.mboundView3 = (android.widget.TextView) bindings[3];</span><br><span class="line">    this.mboundView3.setTag(null);</span><br><span class="line">    this.tvAge.setTag(null);</span><br><span class="line">    this.tvName.setTag(null);</span><br><span class="line">    setRootTag(root);</span><br><span class="line">    // listeners</span><br><span class="line">    invalidateAll();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>&emsp;&emsp;就是这个类，点进去看</p>
+<p><img src="/uploads/article/2021-12-17/LayoutTest1Binding.png" alt="LayoutTest1Binding.png"></p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">public abstract class LayoutTest1Binding extends ViewDataBinding &#123;</span><br><span class="line">  @NonNull</span><br><span class="line">  public final ImageView img;</span><br><span class="line"></span><br><span class="line">  @NonNull</span><br><span class="line">  public final TextView tvAge;</span><br><span class="line"></span><br><span class="line">  @NonNull</span><br><span class="line">  public final TextView tvName;</span><br><span class="line"></span><br><span class="line">  @Bindable</span><br><span class="line">  protected AgeData mAgeData;</span><br><span class="line"></span><br><span class="line">  protected LayoutTest1Binding(Object _bindingComponent, View _root, int _localFieldCount,</span><br><span class="line">      ImageView img, TextView tvAge, TextView tvName) &#123;</span><br><span class="line">    super(_bindingComponent, _root, _localFieldCount);</span><br><span class="line">    this.img = img;</span><br><span class="line">    this.tvAge = tvAge;</span><br><span class="line">    this.tvName = tvName;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public abstract void setAgeData(@Nullable AgeData ageData);</span><br><span class="line"></span><br><span class="line">  @Nullable</span><br><span class="line">  public AgeData getAgeData() &#123;</span><br><span class="line">    return mAgeData;</span><br><span class="line">  &#125;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>&emsp;&emsp;这里只贴出来了几个我们想要知道的东西，我们从前面通过tag，id把view找到之后，传递到构造方法里面，然后，这里创建的全局的变量，分别赋值给这些变量。这样，就拿到了这些引用了。</p>
+<p>&emsp;&emsp;一直到这里，获取view的引用，绑定流程就走完了。再回过头去看最开始的问题binding.tvName,binding.tvAge等等，就是拿的这里的引用，也可以看到我们最开始拿到的binding这个变量的类型就是<strong>ViewDataBinding</strong>，我们这里的<strong>LayoutTest1Binding</strong>继承的就是<strong>ViewDataBinding</strong>，就全部串起来了。</p>
+<p><span id="c5"></span></p>
+<h2 id="5-更新-界面-流程"><a href="#5-更新-界面-流程" class="headerlink" title="5.更新(界面)流程"></a>5.更新(界面)流程</h2><p>&emsp;&emsp;可以先说结论，用的就是观察者模式。绑定view的后面它他先注册监听，我们设置数据的时候，触发回调，更新界面。</p>
+<p>文章有点长了，更新流程放到下一章吧。这个view的绑定东西还是比较长的。最后总结一下绑定view的流程图</p>
+<p><img src="/uploads/article/2021-12-17/view绑定流程知识点.png" alt="view绑定流程知识点.png"></p>
+
+      
+    </div>
+    
+      <footer class="article-footer">
+        完
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  <div class="article-nav-block">
+    
+  </div>
+  <div class="article-nav-block">
+    
+      <a href="/2021/11/28/Android-MVVM之ViewModel/" id="article-nav-older" class="article-nav-link-wrap">
+        <div class="article-nav-title">Android--MVVM之ViewModel</div>
+        <strong class="article-nav-caption"></strong>
+      </a>
+    
+  </div>
+</nav>
+
+    
+  
+  
+</article>
+</section>
+        <aside id="sidebar">
+  
+    <div class="widget-box">
+  <div class="avatar-box avatar-item">
+    <img class="avatar" src="/uploads/artistic_image/head.jpg" title="头像来自网络"></img>
+    <h3 class="avatar-name">
+      
+        海晨忆
+      
+    </h3>
+    <p class="avatar-slogan">
+      先谋生，再谋爱。人间值得，未来可期。
+    </p>
+  </div>
+</div>
+
+
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android-Socket/">Android -Socket</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-加密算法/">Android -加密算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-常用功能/">Android -常用功能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-框架/">Android -框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-源码解析/">Android -源码解析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-自定义view/">Android -自定义view</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-设计模式/">Android -设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JAVA-基础/">JAVA -基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JAVA-并发/">JAVA -并发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-SpringBoot/">Java -SpringBoot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/kotlin/">kotlin</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库-JDBC/">数据库 -JDBC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库-MySQL/">数据库 -MySQL</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">August 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/12/17/Android-MVVM之DataBinding-一/">Android--MVVM之DataBinding(一)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/11/28/Android-MVVM之ViewModel/">Android--MVVM之ViewModel</a>
+          </li>
+        
+          <li>
+            <a href="/2021/11/21/Android-深入理解handler机制/">Android--深入理解handler机制</a>
+          </li>
+        
+          <li>
+            <a href="/2021/11/20/Android——触摸事件传递机制/">Android——触摸事件传递机制</a>
+          </li>
+        
+          <li>
+            <a href="/2021/08/09/JAVA-TCP，UDP/">JAVA-TCP，UDP</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+      <div class="widget-box">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      
+        <a class="hrf" style="display: block;" href="https://github.com/haichenyi" title target='_blank'
+        >Github</a>
+      
+        <a class="hrf" style="display: block;" href="https://www.jianshu.com/u/6077ee440c37" title target='_blank'
+        >简书</a>
+      
+        <a class="hrf" style="display: block;" href="https://blog.csdn.net/qq_27634797" title target='_blank'
+        >CSDN</a>
+      
+    </div>
+  </div>
+
+  
+</aside>
+      </div>
+      <footer id="footer">
+  <div class="foot-box footers global-width">
+    &copy;2017-2021 海晨忆 &nbsp;&nbsp;
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">阁下是第<span id="busuanzi_value_site_pv"></span>个访客</span>
+  </div>
+</footer>
+      <script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script>
+if (!window.jQuery) {
+var script = document.createElement('script');
+script.src = "/js/jquery-2.0.3.min.js";
+document.body.write(script);
+}
+</script>
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+    </div>
+    <nav id="mobile-nav" class="mobile-nav-box">
+  <div class="mobile-nav-img mobile-nav-top"></div>
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">简历</a>
+  
+  <div class="mobile-nav-img  mobile-nav-bottom"></div>
+</nav>    
+  </div>
+</body>
+</html>
