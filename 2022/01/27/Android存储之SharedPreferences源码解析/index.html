@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Android存储之SharedPreferences源码解析 | 海晨忆的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  <meta name="description" content="个人博客：haichenyi.com。感谢关注  1. 目录 1–目录 2–简介 3–getSharedPreferences会不会阻塞线程，为什么？ 4–get操作，为什么有时候会卡顿？ 5–commit和apply的区别 6–sp写入异常会怎么处理？ 7–优化sp操作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android存储之SharedPreferences源码解析">
+<meta property="og:url" content="https://haichenyi.com/2022/01/27/Android存储之SharedPreferences源码解析/index.html">
+<meta property="og:site_name" content="海晨忆的博客">
+<meta property="og:description" content="个人博客：haichenyi.com。感谢关注  1. 目录 1–目录 2–简介 3–getSharedPreferences会不会阻塞线程，为什么？ 4–get操作，为什么有时候会卡顿？ 5–commit和apply的区别 6–sp写入异常会怎么处理？ 7–优化sp操作">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2022-01-27/sp1.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2022-01-27/sp2.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2022-01-27/sp3.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2022-01-27/spImpl.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2022-01-27/spImpl-get.png">
+<meta property="og:image" content="https://haichenyi.com/uploads/article/2022-01-27/activity-onStop.png">
+<meta property="og:updated_time" content="2022-01-27T10:24:52.200Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android存储之SharedPreferences源码解析">
+<meta name="twitter:description" content="个人博客：haichenyi.com。感谢关注  1. 目录 1–目录 2–简介 3–getSharedPreferences会不会阻塞线程，为什么？ 4–get操作，为什么有时候会卡顿？ 5–commit和apply的区别 6–sp写入异常会怎么处理？ 7–优化sp操作">
+<meta name="twitter:image" content="https://haichenyi.com/uploads/article/2022-01-27/sp1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="海晨忆的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/uploads/artistic_image/head.jpg">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/highlight.css">
+  <script>
+  let antiquityStorage = window.sessionStorage.getItem('antiquitySessionStorage');
+  if (antiquityStorage == '' || antiquityStorage == null) {
+    var antiquityLoader = '<div id="loaderbox"><div class="loader"><div class="load-roll"><div class="load-top"></div><div class="load-right"></div><div class="load-bottom"></div></div></div></div>';
+    document.write(antiquityLoader);
+    document.body.style.overflow = 'hidden'
+  }
+  </script>
+</head>
+
+<body>
+  <div id="fullpage" class="mobile-nav-right">
+    
+      <div id="wrapper" style="background-image: url(/uploads/artistic_image/bg.jpg)" title="背景图片来自网络">
+    
+    
+      <header id="header">
+  <div id="nav-toggle" class="nav-toggle"></div>
+  <div class="head-box global-width">
+    <nav class="nav-box nav-right">
+      
+        <a class="nav-item" href="/" title
+        
+        >首页</a>
+      
+        <a class="nav-item" href="/archives" title
+        
+        >归档</a>
+      
+        <a class="nav-item" href="/about" title
+        
+        >简历</a>
+      
+    </nav>
+  </div>
+</header>
+      <div id="middlecontent" title class="global-width sidebar-left">
+        <section id="main"><article id="post-Android存储之SharedPreferences源码解析" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 class="article-title" itemprop="name">
+      Android存储之SharedPreferences源码解析
+    </h1>
+  
+
+    </header>
+  
+  <div class="article-meta">
+    <a href="/2022/01/27/Android存储之SharedPreferences源码解析/" class="article-date">
+  <time datetime="2022-01-27T06:24:56.000Z" itemprop="datePublished">2022-01-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android-源码解析/">Android -源码解析</a>
+  </div>
+
+    
+  </div>
+  
+    <span id="busuanzi_container_page_pv">
+      本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+    </span>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud doorframe mac" itemprop="articleBody">
+      
+        <p><strong>个人博客：<a href="http://haichenyi.com">haichenyi.com</a>。感谢关注</strong></p>
+<p><span id="c1"></span></p>
+<h2 id="1-目录"><a href="#1-目录" class="headerlink" title="1. 目录"></a>1. 目录</h2><ul>
+<li><a href="#c1">1–目录</a></li>
+<li><a href="#c2">2–简介</a></li>
+<li><a href="#c3">3–getSharedPreferences会不会阻塞线程，为什么？</a></li>
+<li><a href="#c4">4–get操作，为什么有时候会卡顿？</a></li>
+<li><a href="#c5">5–commit和apply的区别</a></li>
+<li><a href="#c6">6–sp写入异常会怎么处理？</a></li>
+<li><a href="#c7">7–优化sp操作</a></li>
+</ul>
+<a id="more"></a>
+<p><span id="c2"></span></p>
+<h2 id="2-简介"><a href="#2-简介" class="headerlink" title="2.简介"></a>2.简介</h2><p>&emsp;&emsp;从工作开始，Android存储数据最常见的应该就是SharePreference，但是，你真的用懂了吗？源码你看过吗？Google对sp的定位你知道吗？是不是所有数据都应该用sp来存储呢？</p>
+<p>&emsp;&emsp;为什么现在面试关于sp非常常见呢？不就是一个get，put键值对的东西吗？commit或者apply就提交存储了，这么简单的一个东西，有啥好问的？</p>
+<p>&emsp;&emsp;腾讯的mmkv，Google的dataSorce又是什么东西呢？</p>
+<p>&emsp;&emsp;先说说sp，Google对sp的定位是轻量级存储，轻量级是什么意思呢？数据量小，数据量大肯定不建议用，但是，往往很多程序员，不管三七二十一，全都是用sp做本地持久化，导致，或多或少的性能问题，当然，不可否认sp的设计也有它的弊端。</p>
+<p>&emsp;&emsp;<strong><em>sp 加锁多 xml解析 全量更新 速度慢 性能差 提交数据可能会ANR</em></strong></p>
+<p><span id="c3"></span></p>
+<h2 id="3-getSharedPreferences会不会阻塞线程，为什么？"><a href="#3-getSharedPreferences会不会阻塞线程，为什么？" class="headerlink" title="3.getSharedPreferences会不会阻塞线程，为什么？"></a>3.getSharedPreferences会不会阻塞线程，为什么？</h2><p>下面从用法一步一步来讲解sp的问题</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SharedPreferences sp = getSharedPreferences(&quot;haichenyi&quot;, MODE_PRIVATE);</span><br></pre></td></tr></table></figure></div>
+<p>&emsp;&emsp;上面这个是获取sp，第一个问题就来了，我们都知道获取sp这里是从磁盘读取数据，就是从文件中读取数据，我们一般从文件中读取数据都是要新开线程的，这里没有新开线程，会不会阻塞主线程，为什么？带着这个问题，我们往下走。</p>
+<p><img src="/uploads/article/2022-01-27/sp1.png" alt="sp源码图1.png"></p>
+<p>&emsp;&emsp;这里调用的是base的getSharedPreferences方法，我们看这个base的类型，会发现是Context类型的，Context我们都知道，是装饰者模式，它的实现类<strong>ContextImpl</strong>，我们到这个类里面区找上面的这个方法，如下图</p>
+<p><img src="/uploads/article/2022-01-27/sp2.png" alt="sp源码图2.png"></p>
+<p>&emsp;&emsp;这个里面逻辑并不复杂，就是一个name在 api19以下的空判断，然后就是file的空判断，用的ArrayMap存储，最后就是调用的重载方法，如下图</p>
+<p><img src="/uploads/article/2022-01-27/sp3.png" alt="sp源码图3.png"></p>
+<p>&emsp;&emsp;重点就是框起来的这里了，SharedPreferences的实现类SharedPreferencesImpl，这里也是装饰者模式(到处都是)。</p>
+<p><img src="/uploads/article/2022-01-27/spImpl.png" alt="SharedPreferencesImpl类.png"></p>
+<p>&emsp;&emsp;看到这里就知道了，它的startLoadFromDisk方法，看名字就知道是从磁盘读取数据，这里有个<strong>synchronized锁</strong>,锁对象是mLock，这个mLock比较重要。里面有一个mLoaded的Boolean类型的值，它也比较重要。下面具体读数据的逻辑，loadFromDisk是新开线程读取的。</p>
+<p>&emsp;&emsp;所以，我们回到前面的问题会不会阻塞线程？虽然，它是同步返回的sp对象，但是，具体读数据的逻辑是新开线程的，所以，不会阻塞线程。</p>
+<p><span id="c4"></span></p>
+<h2 id="4-get操作，为什么有时候会卡顿？"><a href="#4-get操作，为什么有时候会卡顿？" class="headerlink" title="4.get操作，为什么有时候会卡顿？"></a>4.get操作，为什么有时候会卡顿？</h2><p>&emsp;&emsp;会卡顿吗？怎么没有碰到过呢？答案是肯定的，肯定会有卡顿的情况，这是为什么呢？我们来看看它的实现：</p>
+<p><img src="/uploads/article/2022-01-27/spImpl-get.png" alt="SharedPreferencesImpl类的get方法.png"></p>
+<p>&emsp;&emsp;我们来看看这个getXXX这一系列的方法，里面都有同步锁，然后，都有一个<strong>awaitLoadedLocked</strong>方法，重点就是这个方法，看名字就知道：等待加载锁。什么意思呢？我们看一下具体实现</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">private void awaitLoadedLocked() &#123;</span><br><span class="line">    ...</span><br><span class="line">    //while循环，当mLoaded为false的时候进入while</span><br><span class="line">    while (!mLoaded) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            //wait方法</span><br><span class="line">            mLock.wait();</span><br><span class="line">        &#125; catch (InterruptedException unused) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>&emsp;&emsp;这里有一个while循环，判断的就是上面我们提到过的mLoaded，然后，里面就是我们上面也提到过的mLock对象，mLock.wait()方法。</p>
+<p>&emsp;&emsp;当代码执行到这里的时候，如果mLoaded是false，就会进入while循环，然后，会调用mLoack的wait方法，进入等待状态。</p>
+<p>&emsp;&emsp;那，这个mLoaded的值又是在哪里修改的呢？mLock对象是时候唤醒呢？</p>
+<p>&emsp;&emsp;我们回到上面说的，新开线程执行loadFromDisk方法</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">private void loadFromDisk() &#123;</span><br><span class="line">    ...</span><br><span class="line">    //开始从文件读取数据</span><br><span class="line">    Map&lt;String, Object&gt; map = null;</span><br><span class="line">    StructStat stat = null;</span><br><span class="line">    Throwable thrown = null;</span><br><span class="line">    try &#123;</span><br><span class="line">        stat = Os.stat(mFile.getPath());</span><br><span class="line">        if (mFile.canRead()) &#123;</span><br><span class="line">            BufferedInputStream str = null;</span><br><span class="line">            try &#123;</span><br><span class="line">                str = new BufferedInputStream(</span><br><span class="line">                            new FileInputStream(mFile), 16 * 1024);</span><br><span class="line">                //把数据赋值给map</span><br><span class="line">                map = (Map&lt;String, Object&gt;) XmlUtils.readMapXml(str);</span><br><span class="line">            &#125; catch (Exception e) &#123;</span><br><span class="line">                Log.w(TAG, &quot;Cannot read &quot; + mFile.getAbsolutePath(), e);</span><br><span class="line">            &#125; finally &#123;</span><br><span class="line">                IoUtils.closeQuietly(str);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; catch (ErrnoException e) &#123;</span><br><span class="line">        // An errno exception means the stat failed. Treat as empty/non-existing by</span><br><span class="line">        // ignoring.</span><br><span class="line">    &#125; catch (Throwable t) &#123;</span><br><span class="line">        thrown = t;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    synchronized (mLock) &#123;</span><br><span class="line">        //修改mLoaded的值</span><br><span class="line">        mLoaded = true;</span><br><span class="line">        mThrowable = thrown;</span><br><span class="line"></span><br><span class="line">        // It&apos;s important that we always signal waiters, even if we&apos;ll make</span><br><span class="line">        // them fail with an exception. The try-finally is pretty wide, but</span><br><span class="line">        // better safe than sorry.</span><br><span class="line">        try &#123;</span><br><span class="line">            if (thrown == null) &#123;</span><br><span class="line">                if (map != null) &#123;</span><br><span class="line">                    //把刚才读取的数据赋值给全局变量mMap</span><br><span class="line">                    mMap = map;</span><br><span class="line">                    mStatTimestamp = stat.st_mtim;</span><br><span class="line">                    mStatSize = stat.st_size;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    mMap = new HashMap&lt;&gt;();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            // In case of a thrown exception, we retain the old map. That allows</span><br><span class="line">            // any open editors to commit and store updates.</span><br><span class="line">        &#125; catch (Throwable t) &#123;</span><br><span class="line">            mThrowable = t;</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            //唤醒mLock</span><br><span class="line">            mLock.notifyAll();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>&emsp;&emsp;源码里面注释都写的比较清楚。mLoaded值的修改是在从磁盘中把数据读取完之后，然后，在finally里面调用notifyAll唤醒mLock。</p>
+<p>&emsp;&emsp;数据读完之后，修改boolean值，然后，在finally里面唤醒，finally是try-catch最后执行的。</p>
+<p>&emsp;&emsp;为什么会卡顿呢？我们平时用sp，是不是像下面这样用的：</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//这里是直接返回对象，</span><br><span class="line">//但是，它实际上数据量大的时候，是需要时间去从磁盘读数据的</span><br><span class="line">SharedPreferences sp = getSharedPreferences(&quot;haichenyi&quot;, MODE_PRIVATE);</span><br><span class="line">//当代码执行到这里的时候，我们虽然，拿到了sp对象，</span><br><span class="line">//但是，数据可能没有读取完，上面说的boolean的值，还是false，</span><br><span class="line">//就进入while循环，调用awit方法，进入等待状态</span><br><span class="line">//然后，过一会从磁盘读取完数据，修改boolean值为true，在finally调用notifyAll唤醒mLock</span><br><span class="line">//然后，唤醒了while循环，boolean的值这个时候是true，跳出while循环</span><br><span class="line">//所以，这个卡顿的时间，就是从磁盘读取数据的时间</span><br><span class="line">String s = sp.getString(&quot;xxx&quot;,&quot;aaa&quot;);</span><br></pre></td></tr></table></figure></div>
+<p>&emsp;&emsp;上面代码的注释写的很清楚了吧？不用在做过多的解释了吧？</p>
+<p><strong>PS:它这个卡顿仅限于第一次，为什么呢</strong>？因为它从磁盘读出数据之后，把数据存到内存中了（也就是loadFromDisk方法中的mMap对象），我在那里加了注释，可以去看一下。读取数据都是从这个mMap对象返回的，也就是从内存中返回，这也是为什么从另一方面说，sp返回数据比较快的原因。它都是从内存中返回的，并不是每次都是从磁盘读数据，然后返回的。</p>
+<p><span id="c5"></span></p>
+<h2 id="5-commit和apply的区别"><a href="#5-commit和apply的区别" class="headerlink" title="5.commit和apply的区别"></a>5.commit和apply的区别</h2><p>&emsp;&emsp;先说结论：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">返回值</th>
+<th style="text-align:center">同步</th>
+<th style="text-align:center">ANR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">commit</td>
+<td style="text-align:center">有</td>
+<td style="text-align:center">同步提交</td>
+<td style="text-align:center">可能会</td>
+</tr>
+<tr>
+<td style="text-align:center">apply</td>
+<td style="text-align:center">无</td>
+<td style="text-align:center">异步提交</td>
+<td style="text-align:center">可能会</td>
+</tr>
+</tbody>
+</table>
+<p>&emsp;&emsp;我们一个一个来慢慢说这个结论：</p>
+<h3 id="是否有返回值"><a href="#是否有返回值" class="headerlink" title="是否有返回值"></a>是否有返回值</h3><p>&emsp;&emsp;这个很简单吧？用过如果没注意，可能不知道，因为，我们平时也不用处理这些东西，我们来看一下源码就知道了。</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">//看到这个方法有返回值就知道了，boolean类型的返回值</span><br><span class="line">public boolean commit() &#123;</span><br><span class="line">        ...</span><br><span class="line">        //为什么说每次都是全量更新，就在这里，这个commitToMemory方法里面，</span><br><span class="line">        //它每次都会把内存的map数据全部都更新好</span><br><span class="line">        MemoryCommitResult mcr = commitToMemory();</span><br><span class="line">        //然后通过这个enqueueDisk方法全部都重新写到硬盘上</span><br><span class="line">        //第二个参数是null，它的注释也比较清楚</span><br><span class="line">        SharedPreferencesImpl.this.enqueueDiskWrite(</span><br><span class="line">            mcr, null /* sync write on this thread okay */);</span><br><span class="line">        try &#123;</span><br><span class="line">            //然后，写入等待</span><br><span class="line">            mcr.writtenToDiskLatch.await();</span><br><span class="line">        &#125; catch (InterruptedException e) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            ...</span><br><span class="line">        &#125;</span><br><span class="line">        notifyListeners(mcr);</span><br><span class="line">        //返回写入结果</span><br><span class="line">        return mcr.writeToDiskResult;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">//这个方法没有返回值</span><br><span class="line">public void apply() &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
+<p>&emsp;&emsp;我们先说返回值的问题，上面这两个方法就是commit和apply的大致结构。所以，commit是有个boolean类型的返回值，apply是没有返回值的</p>
+<h3 id="是否有同步"><a href="#是否有同步" class="headerlink" title="是否有同步"></a>是否有同步</h3><p>&emsp;&emsp;这个问题，上面commit的源码注释那里已经解释清楚了，它会有一个wait方法等待数据更新完，所以commit是同步的。</p>
+<p>&emsp;&emsp;我们再来看看apply方法，上面主要是说返回值的问题，所以，没有把apply的源码贴出来，下面我们来看看apply的源码</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">public void apply() &#123;</span><br><span class="line">    final long startTime = System.currentTimeMillis();</span><br><span class="line">    final MemoryCommitResult mcr = commitToMemory();</span><br><span class="line">    //重点就是这里，它这里是新建了一个runnable来执行await方法，</span><br><span class="line">    //上面commit方法是直接在当前线程执行的</span><br><span class="line">    final Runnable awaitCommit = new Runnable() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void run() &#123;</span><br><span class="line">            try &#123;</span><br><span class="line">                mcr.writtenToDiskLatch.await();</span><br><span class="line">            &#125; catch (InterruptedException ignored) &#123;</span><br><span class="line">            &#125;</span><br><span class="line">            ...</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    //然后调用了QueuedWork.addFinisher,把这个runnable传了进去</span><br><span class="line">    //这个QueuedWork是什么呢？下面我贴出来了这个方法，addFinisher</span><br><span class="line">    QueuedWork.addFinisher(awaitCommit);</span><br><span class="line">    //上面其实就是把runnable加到了一个队列当中</span><br><span class="line">    </span><br><span class="line">    //又新开了一个runnable执行了上面runnable的run方法，</span><br><span class="line">    //这是什么意思还要我做过多的解释吗？runnable.run()</span><br><span class="line">    Runnable postWriteRunnable = new Runnable() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void run() &#123;</span><br><span class="line">            awaitCommit.run();</span><br><span class="line">            QueuedWork.removeFinisher(awaitCommit);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    //回过头看看，commit的这个方法，第二个参数是null，上面我特意做了解释的。</span><br><span class="line">    //看这里，第二个参数，传的runnable</span><br><span class="line">    //就是在runnable的线程里面执行</span><br><span class="line">    SharedPreferencesImpl.this.enqueueDiskWrite(mcr, postWriteRunnable);</span><br><span class="line"></span><br><span class="line">    // Okay to notify the listeners before it&apos;s hit disk</span><br><span class="line">    // because the listeners should always get the same</span><br><span class="line">    // SharedPreferences instance back, which has the</span><br><span class="line">    // changes reflected in memory.</span><br><span class="line">    notifyListeners(mcr);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@UnsupportedAppUsage</span><br><span class="line">public static void addFinisher(Runnable finisher) &#123;</span><br><span class="line">    synchronized (sLock) &#123;</span><br><span class="line">        //等于，就是把我们的runnable给add到了sFinishers，这个sFinishers又是什么呢？</span><br><span class="line">        sFinishers.add(finisher);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//没错，它其实就是一个队列，再回到上面</span><br><span class="line">private static final LinkedList&lt;Runnable&gt; sFinishers = new LinkedList&lt;&gt;();</span><br></pre></td></tr></table></figure></div>
+<p>&emsp;&emsp;我这里的源码解释的是比较清楚的了吧？所以，apply是异步的。</p>
+<h3 id="是否会ANR"><a href="#是否会ANR" class="headerlink" title="是否会ANR"></a>是否会ANR</h3><p>&emsp;&emsp;说到ANR，我们先来聊一下ANR，什么是ANR？多长时间会造成ANR提示？</p>
+<p>&emsp;&emsp;ANR：Android系统是消息驱动的，每个消息都需要在一定的时间范围内处理完，如果在规定的时间内未处理完，系统就会提示ANR异常</p>
+<p>&emsp;&emsp;那么，这个时间是怎么限定的呢？</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">Service</th>
+<th style="text-align:center">Broadcast</th>
+<th style="text-align:center">Activity</th>
+<th style="text-align:center">ContentProvider</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">前台(单位：s)</td>
+<td style="text-align:center">20</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">10</td>
+</tr>
+<tr>
+<td style="text-align:center">后台(单位：s)</td>
+<td style="text-align:center">20*10</td>
+<td style="text-align:center">60</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+</tr>
+</tbody>
+</table>
+<p>&emsp;&emsp;前两个都好理解，这个ANR就很难理解了，commit是同步提交，可能会ANR我可以理解，sp每次都是全量更新，commit又是在主线程提交，cpu峰值的时候，数据量大，可能就会卡住主线程，造成ANR。</p>
+<p>&emsp;&emsp;辣么，问题就来了，commit同步卡能会卡住主线程，造成ANR，apply是异步的呀？为什么apply也会造成ANR呢？是结论错了吗？</p>
+<p>&emsp;&emsp;<a href="https://blog.csdn.net/aloe20" target="_blank" rel="noopener">龙儿筝</a>给我说了一个结论：<strong>Google认为SP是数据持久化，数据的安全性要大于页面的行为，当页面离开时，会等待持久化完成。</strong></p>
+<p>&emsp;&emsp;这个结论怎么理解呢？有一个场景，当你调用apply去更新数据，然后，紧接着下一行代码就执行了finish方法，或者跳转了下一个界面，此时会怎么样呢？</p>
+<p>&emsp;&emsp;我们先来简单聊一聊activity启动相关的问题</p>
+<p>&emsp;&emsp;简单的从AMS开始说两句吧，当zygote进程启动了系统主要的服务之后，里面就有一个AMS(ActivityManagerService)，AMS通过Binder创建了ActivityThread，然后通过handler开始发消息，创建Activity，我们activity的生命周期的回调，都说是系统调用了，系统是怎么调用的呢？都是通过handler发送一个一个的消息，然后去执行对应的回调方法。</p>
+<p>&emsp;&emsp;然后，再是，我们常说的<strong>onCreate—onStart(可见，不能与用户交互)—onResume(可见，与用户交互)—activity running—onPause—onStop—onDestroy</strong></p>
+<p>&emsp;&emsp;除了activity running，其余的每一种生命周期都对应着一个handler的message。handler的机制，在我的博文<a href="https://blog.csdn.net/qq_27634797/article/details/121451270" target="_blank" rel="noopener">深入理解handler机制</a>里面讲的很清楚了</p>
+<p>&emsp;&emsp;辣么，从Activity A跳转Activity B，两个activity的生命周期是怎么变化的呢？</p>
+<p>&emsp;&emsp;当A中启动B，生命周期的流程是这样的：</p>
+<ol>
+<li>A的onPause</li>
+<li>B的onCreate-onStart-onResume</li>
+<li>A的onStop</li>
+</ol>
+<p>&emsp;&emsp;扯了这么远，回到上面说的apply的问题，为什么它会ANR线程呢？</p>
+<p>&emsp;&emsp;问题就出在这个A的onStop方法里面，我们来看看这个onStop放的源码：</p>
+<p><img src="/uploads/article/2022-01-27/activity-onStop.png" alt="activity的onStop方法.png"></p>
+<p>&emsp;&emsp;如上图，我们通过handler发送消息，最终定位到执行的是这一块的代码，看到我框起来的代码了吗？</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// Make sure any pending writes are now committed.</span><br><span class="line">//看这个注释写的，确认没有正在写入的操作，就是这个waitToFinish方法，</span><br><span class="line">//这个if判断，可以看实现，只要taget小于11判断就是true，我们现在都是大于11了，所以，这里是false</span><br><span class="line">//然后，前面取了一个非，所以，我们现在这里能进去</span><br><span class="line">//如果要是小于11呢？看activity的onPause方法里面，你会有新发现</span><br><span class="line">if (!r.isPreHoneycomb()) &#123;</span><br><span class="line">    QueuedWork.waitToFinish();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>&emsp;&emsp;上面的注释很清楚了，这个waitToFinish方法里面的逻辑是什么样的呢？大致贴一下主要的逻辑：</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public static void waitToFinish() &#123;</span><br><span class="line">    ...</span><br><span class="line">    try &#123;</span><br><span class="line">        //while循环</span><br><span class="line">        while (true) &#123;</span><br><span class="line">            Runnable finisher;</span><br><span class="line">            synchronized (sLock) &#123;</span><br><span class="line">              //从sFinishers队列中取出runnable</span><br><span class="line">                finisher = sFinishers.poll();</span><br><span class="line">            &#125;</span><br><span class="line">            if (finisher == null) &#123;</span><br><span class="line">                //空(队列中没有数据了)就中止while循环</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">            //执行runnable</span><br><span class="line">            finisher.run();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; finally &#123;</span><br><span class="line">        sCanDelay = true;</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>&emsp;&emsp;我们想想之前apply方法里面，是不是新建的runnable，然后，把这个runnable是不是添加到sFinishers队列中去了？</p>
+<p>&emsp;&emsp;所以，整个逻辑就是</p>
+<ol>
+<li>你在Activity A中apply之后(假设数据量大)，立马跳转Activity B</li>
+<li>当Activity B正常启动完，走完它自己的onResume方法，执行了Activity A的onStop方法</li>
+<li>执行的时候发现，QueueWork里面还有提交正在执行，就会等待它执行完，就会阻塞当前线程</li>
+</ol>
+<p><span id="c6"></span></p>
+<h2 id="6-sp写入异常会怎么处理？"><a href="#6-sp写入异常会怎么处理？" class="headerlink" title="6.sp写入异常会怎么处理？"></a>6.sp写入异常会怎么处理？</h2><p>&emsp;&emsp;在代码执行getSharedPreferences的时候，你会发现，磁盘上会多一个同名文件，扩展名不一样，扩展名是  点<strong>bak</strong>,这个文件是备份文件。写入成功就会删除这个文件，写入失败，下次就会用这个备份文件。</p>
+<p>&emsp;&emsp;我们再来找一下源码你会发现：</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">static File makeBackupFile(File prefsFile) &#123;</span><br><span class="line">    return new File(prefsFile.getPath() + &quot;.bak&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>&emsp;&emsp;这个方法在哪调用的呢？在SharedPreferencesImpl的构造方法里面</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SharedPreferencesImpl(File file, int mode) &#123;</span><br><span class="line">    mFile = file;</span><br><span class="line">    //就是这个变量</span><br><span class="line">    mBackupFile = makeBackupFile(file);</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>&emsp;&emsp;我们再来看看这个写入方法，你会发现，在写入完成之后，会把这个文件删除</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">private void writeToFile(MemoryCommitResult mcr, boolean isFromSyncCommit) &#123;</span><br><span class="line">    ...</span><br><span class="line">    // Attempt to write the file, delete the backup and return true as atomically as</span><br><span class="line">    // possible.  If any exception occurs, delete the new file; next time we will restore</span><br><span class="line">    // from the backup.</span><br><span class="line">    try &#123;</span><br><span class="line">        FileOutputStream str = createFileOutputStream(mFile);</span><br><span class="line">        if (DEBUG) &#123;</span><br><span class="line">            outputStreamCreateTime = System.currentTimeMillis();</span><br><span class="line">        &#125;</span><br><span class="line">        if (str == null) &#123;</span><br><span class="line">            mcr.setDiskWriteResult(false, false);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        XmlUtils.writeMapXml(mcr.mapToWriteToDisk, str);</span><br><span class="line">        writeTime = System.currentTimeMillis();</span><br><span class="line">        FileUtils.sync(str);</span><br><span class="line">        fsyncTime = System.currentTimeMillis();</span><br><span class="line">        str.close();</span><br><span class="line">        ContextImpl.setFilePermissionsFromMode(mFile.getPath(), mMode, 0);</span><br><span class="line">        if (DEBUG) &#123;</span><br><span class="line">            setPermTime = System.currentTimeMillis();</span><br><span class="line">        &#125;</span><br><span class="line">        try &#123;</span><br><span class="line">            final StructStat stat = Os.stat(mFile.getPath());</span><br><span class="line">            synchronized (mLock) &#123;</span><br><span class="line">                mStatTimestamp = stat.st_mtim;</span><br><span class="line">                mStatSize = stat.st_size;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (ErrnoException e) &#123;</span><br><span class="line">            // Do nothing</span><br><span class="line">        &#125;</span><br><span class="line">        if (DEBUG) &#123;</span><br><span class="line">            fstatTime = System.currentTimeMillis();</span><br><span class="line">        &#125;</span><br><span class="line">        // Writing was successful, delete the backup file if there is one.</span><br><span class="line">        //就是这里，写入操作在前面，如果前面没有异常，那就正常写完了，自然就会走到这里</span><br><span class="line">        //如果前面异常，自然就不会走到这里</span><br><span class="line">        mBackupFile.delete();</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p><span id="c7"></span></p>
+<h2 id="7-优化sp操作"><a href="#7-优化sp操作" class="headerlink" title="7.优化sp操作"></a>7.优化sp操作</h2><ol>
+<li>sp获取的时候，会新开线程去读取数据，我们可以提前读取sp，不要每次到用的时候，再去读取。</li>
+<li>sp每次提交都是全量更新，不要每次修改了就直接提交，可以多修改几次之后，一起提交</li>
+<li>sp是轻量级存储，数据量大，不要存sp</li>
+<li>sp的内容不要太多，sp内容过多，读取的时候会非常慢，可以适当的拆分sp的内容，分多个sp存储，但是也不要太多</li>
+</ol>
+<p>&emsp;&emsp;但是，这些优化操作，都是基于sp原有的性能做的优化操作，不能从根本上解决问题。</p>
+<p>&emsp;&emsp;sp的源码就说完了，为什么Google更新了十多版本之后的sp，最终还是放弃维护了？而是新出推出了Jetpack的组件之一DataStore这是人性的扭曲还是道德的沦丧，我们且听下回分解。</p>
+<p>&emsp;&emsp;下一篇来聊聊MMKV，它是怎么从根本上解决问题的。</p>
+
+      
+    </div>
+    
+      <footer class="article-footer">
+        完
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  <div class="article-nav-block">
+    
+  </div>
+  <div class="article-nav-block">
+    
+      <a href="/2021/12/17/Android-MVVM之DataBinding-一/" id="article-nav-older" class="article-nav-link-wrap">
+        <div class="article-nav-title">Android--MVVM之DataBinding(一)</div>
+        <strong class="article-nav-caption"></strong>
+      </a>
+    
+  </div>
+</nav>
+
+    
+  
+  
+</article>
+</section>
+        <aside id="sidebar">
+  
+    <div class="widget-box">
+  <div class="avatar-box avatar-item">
+    <img class="avatar" src="/uploads/artistic_image/head.jpg" title="头像来自网络"></img>
+    <h3 class="avatar-name">
+      
+        海晨忆
+      
+    </h3>
+    <p class="avatar-slogan">
+      先谋生，再谋爱。人间值得，未来可期。
+    </p>
+  </div>
+</div>
+
+
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android-Socket/">Android -Socket</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-加密算法/">Android -加密算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-常用功能/">Android -常用功能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-框架/">Android -框架</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-源码解析/">Android -源码解析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-自定义view/">Android -自定义view</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-设计模式/">Android -设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JAVA-基础/">JAVA -基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JAVA-并发/">JAVA -并发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-SpringBoot/">Java -SpringBoot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/kotlin/">kotlin</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库-JDBC/">数据库 -JDBC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库-MySQL/">数据库 -MySQL</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">August 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/01/27/Android存储之SharedPreferences源码解析/">Android存储之SharedPreferences源码解析</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/17/Android-MVVM之DataBinding-一/">Android--MVVM之DataBinding(一)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/11/28/Android-MVVM之ViewModel/">Android--MVVM之ViewModel</a>
+          </li>
+        
+          <li>
+            <a href="/2021/11/21/Android-深入理解handler机制/">Android--深入理解handler机制</a>
+          </li>
+        
+          <li>
+            <a href="/2021/11/20/Android——触摸事件传递机制/">Android——触摸事件传递机制</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+      <div class="widget-box">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      
+        <a class="hrf" style="display: block;" href="https://github.com/haichenyi" title target='_blank'
+        >Github</a>
+      
+        <a class="hrf" style="display: block;" href="https://www.jianshu.com/u/6077ee440c37" title target='_blank'
+        >简书</a>
+      
+        <a class="hrf" style="display: block;" href="https://blog.csdn.net/qq_27634797" title target='_blank'
+        >CSDN</a>
+      
+    </div>
+  </div>
+
+  
+</aside>
+      </div>
+      <footer id="footer">
+  <div class="foot-box footers global-width">
+    &copy;2017-2022 海晨忆 &nbsp;&nbsp;
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">阁下是第<span id="busuanzi_value_site_pv"></span>个访客</span>
+  </div>
+</footer>
+      <script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script>
+if (!window.jQuery) {
+var script = document.createElement('script');
+script.src = "/js/jquery-2.0.3.min.js";
+document.body.write(script);
+}
+</script>
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+    </div>
+    <nav id="mobile-nav" class="mobile-nav-box">
+  <div class="mobile-nav-img mobile-nav-top"></div>
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">简历</a>
+  
+  <div class="mobile-nav-img  mobile-nav-bottom"></div>
+</nav>    
+  </div>
+</body>
+</html>
